@@ -46,16 +46,16 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
           </div>
         </div>
 
-        <section className={styles.dropoff}>
+        <section className={styles.dropOff}>
           <AiOutlineArrowDown />
 
           <div className={styles.input}>
-            <p>Dropoff address</p>
+            <p>DropOff address</p>
             <input
               type='text'
               placeholder='Enter destination'
-              name='dropoff'
-              // value={addresses.dropoff}
+              name='dropOff'
+              // value={addresses.dropOff}
               value=''
               onChange={handleChange}
               required

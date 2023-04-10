@@ -39,9 +39,10 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
       rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: $white;
+    position: relative;
 
     .pickup,
-    .dropoff {
+    .dropOff {
       @include flex();
       padding: 0 4rem;
 
@@ -65,7 +66,7 @@
       .pickup {
         padding: 0;
       }
-      .dropoff {
+      .dropOff {
         padding: 0 0 0 2rem;
       }
     }
@@ -86,7 +87,7 @@
       padding: 0;
 
       .pickup,
-      .dropoff {
+      .dropOff {
         background-color: $white;
         padding: 0.5rem;
         width: 100%;
@@ -97,7 +98,7 @@
           width: 90%;
         }
       }
-      .dropoff {
+      .dropOff {
         border: none;
         margin: 1.5rem 0 3rem 0;
       }

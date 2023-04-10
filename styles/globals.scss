@@ -1,6 +1,7 @@
 @import 'normalize.css';
 @import './variables.module.scss';
-@import './fonts.scss';
+// @import './fonts.scss';
+@import url('https://use.typekit.net/qzf0hrt.css');
 
 // Global SCSS Reset
 
@@ -15,6 +16,7 @@ html {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 *,
@@ -118,7 +120,7 @@ button {
   border-radius: 0.5rem;
   border: 1px solid $main-color;
   color: $main-color;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.2rem;
   position: relative;
   display: inline-block;
@@ -161,7 +163,8 @@ h1 {
   ); /* Responsive font size using clamp function */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
+  font-weight: 800;
 }
 
 /* h2 typography */
@@ -172,8 +175,8 @@ h2 {
     3rem
   ); /* Responsive font size using clamp function */
   margin-bottom: 0.75rem; /* Bottom margin for spacing */
+  font-weight: 800;
   /* Additional styles like font-family, color, etc. can be added here */
-  letter-spacing: 1px;
 }
 
 /* h3 typography */
@@ -195,11 +198,24 @@ p {
     5vw,
     1.15rem
   ); /* Responsive font size using clamp function */
-  font-weight: 400; /* Normal font weight */
+  font-weight: 600; /* Normal font weight */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
-  line-height: 1.4;
-  letter-spacing: 0.5px;
+}
+
+a {
+  font-size: clamp(
+    0.9rem,
+    5vw,
+    1.15rem
+  ); /* Responsive font size using clamp function */
+  font-weight: 600; /* Normal font weight */
+  /* Additional styles like font-family, color, etc. can be added here */
+
+  &:hover {
+    color: $main-color;
+    transition-duration: 0.2s;
+  }
 }
 
 .copyright {

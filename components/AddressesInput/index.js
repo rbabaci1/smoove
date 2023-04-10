@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 import { updateAddresses } from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
@@ -7,6 +8,7 @@ import styles from './styles.module.scss';
 const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
   const addresses = useSelector(state => state.order.addresses);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleChange = event => {
     let { name, value } = event.target;
@@ -16,7 +18,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('submit');
+    router.push('/estimate');
   };
 
   return (

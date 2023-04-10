@@ -18,6 +18,7 @@
     span {
       color: #fff;
       padding: 0.5rem 1rem;
+
       @include radius-tl-br();
       background-color: $main-color;
     }
@@ -26,8 +27,8 @@
       border-bottom-right-radius: 20px;
       border-top-left-radius: 20px;
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      margin: 0.5rem 0 2rem 0;
+      padding: 8px 20px;
+      margin: 1rem 0 3rem 0;
     }
   }
 
@@ -58,6 +59,7 @@
 
     .pickup {
       border-right: 2px solid $light-gray;
+      padding-right: 1rem;
     }
   }
 

@@ -1,2 +1,89 @@
-.container {
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
+.navWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $white;
+
+  .container {
+    @include flex(row, space-between);
+    padding: 1rem 2rem;
+
+    .logo {
+      @include flex(column, center, flex-start);
+
+      h2 {
+        margin-bottom: 0.3rem;
+        font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+        color: $main-color;
+      }
+      span {
+        font-size: clamp(0.9rem, 5vw, 1.15rem);
+        color: gray;
+        font-weight: 400;
+      }
+    }
+
+    .burgerMenu {
+      display: none;
+
+      @media screen and (max-width: 850px) {
+        display: block;
+        font-size: 30px;
+        color: $main-color;
+        cursor: pointer;
+      }
+    }
+
+    .items {
+      @include flex(row, space-between);
+      width: 50%;
+
+      .item {
+        @include flex();
+        font-weight: 500;
+        letter-spacing: 0.3px;
+
+        .dropdown {
+          &:hover {
+            cursor: pointer;
+          }
+
+          a {
+            div {
+              font-size: clamp(0.9rem, 5vw, 1.15rem);
+              font-family: 'proxima-nova', sans-serif;
+            }
+          }
+        }
+
+        @media screen and (max-width: 1024px) {
+          a {
+            font-size: 16px;
+          }
+
+          .dropdown {
+            a {
+              color: red !important;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 850px) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      height: 80px;
+      padding: 0 25px 0 0;
+
+      .logo {
+        width: fit-content;
+      }
+    }
+  }
 }

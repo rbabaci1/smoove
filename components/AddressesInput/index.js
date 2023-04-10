@@ -1,17 +1,17 @@
-// import { useSelector, useDispatch } from 'react-redux';
-// import { updateAddresses } from '../reduxSlices/productSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 
+import { updateAddresses } from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
-  // const addresses = useSelector(state => state.product.addresses);
-  // const dispatch = useDispatch();
+  const addresses = useSelector(state => state.order.addresses);
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     let { name, value } = event.target;
 
-    // dispatch(updateAddresses({ type: name, address: value }));
+    dispatch(updateAddresses({ type: name, address: value }));
   };
 
   const handleSubmit = event => {
@@ -38,8 +38,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
               type='text'
               placeholder='Enter pickup'
               name='pickup'
-              // value={addresses.pickup}
-              value=''
+              value={addresses.pickup}
               onChange={handleChange}
               required
             />
@@ -55,8 +54,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
               type='text'
               placeholder='Enter destination'
               name='dropOff'
-              // value={addresses.dropOff}
-              value=''
+              value={addresses.dropOff}
               onChange={handleChange}
               required
             />

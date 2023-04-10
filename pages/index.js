@@ -13,7 +13,7 @@ export default function Home() {
           content='Smoove is a Bay Area moving company that offers fully online services. Customers can easily book and track their moves online, eliminating the hassle of phone calls and paperwork. With professional movers and real-time tracking, Smoove provides a smooth and efficient moving experience.'
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/public/favicon.ico' />
       </Head>
 
       <main className={styles.main}>

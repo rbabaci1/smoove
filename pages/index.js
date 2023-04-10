@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import { Landing, Navbar, Footer } from '@/containers';
 import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
@@ -16,7 +17,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Main</h1>
+        <Landing />
+        <Navbar />
       </main>
     </>
   );

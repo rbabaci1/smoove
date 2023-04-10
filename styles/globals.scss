@@ -136,12 +136,12 @@ input:-webkit-autofill:active {
 }
 
 button {
-  padding: 1.1rem 1rem;
+  padding: 1rem;
   background-color: $white;
   border-radius: 0.5rem;
   border: 1px solid $main-color;
   color: $main-color;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.2rem;
   position: relative;
   display: inline-block;
@@ -149,6 +149,7 @@ button {
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   z-index: 1;
+  letter-spacing: 0.8px;
 
   &::before {
     content: '';
@@ -214,7 +215,7 @@ p {
     5vw,
     1.15rem
   ); /* Responsive font size using clamp function */
-  font-weight: 400; /* Normal font weight */
+  font-weight: 500; /* Normal font weight */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
   line-height: 1.4;

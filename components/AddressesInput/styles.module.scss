@@ -65,11 +65,13 @@
 
   @media (min-width: 768px) and (max-width: 1024px) {
     .addresses {
+      margin: 0;
+
       .pickup {
         padding: 0;
       }
       .dropOff {
-        padding: 0 0 0 2rem;
+        padding: 0 0 0 3rem;
       }
     }
   }

@@ -111,7 +111,7 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 :placeholder-shown {
-  color: $gray;
+  color: gray;
 }
 
 button {
@@ -170,9 +170,9 @@ h1 {
 /* h2 typography */
 h2 {
   font-size: clamp(
-    2rem,
+    2.2rem,
     4.5vw,
-    3rem
+    3.2rem
   ); /* Responsive font size using clamp function */
   margin-bottom: 0.75rem; /* Bottom margin for spacing */
   font-weight: 800;
@@ -183,12 +183,11 @@ h2 {
 h3 {
   font-size: clamp(
     1.5rem,
-    2vw,
-    3.5rem
+    3vw,
+    1.8rem
   ); /* Responsive font size using clamp function */
-  margin-bottom: 0.5rem; /* Bottom margin for spacing */
+  margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
-  letter-spacing: 1px;
 }
 
 /* p typography */
@@ -201,6 +200,7 @@ p {
   font-weight: 600; /* Normal font weight */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
+  color: $dark-blue;
 }
 
 a {
@@ -211,6 +211,7 @@ a {
   ); /* Responsive font size using clamp function */
   font-weight: 600; /* Normal font weight */
   /* Additional styles like font-family, color, etc. can be added here */
+  color: $dark-blue;
 
   &:hover {
     color: $main-color;

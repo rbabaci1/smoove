@@ -1,5 +1,47 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
 .container {
-  height: 200vh;
+  min-height: 100vh;
   z-index: 1;
   padding: 4rem 2rem 2rem 2rem;
+
+  span {
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+    color: gray;
+    font-weight: 500;
+  }
+
+  .steps {
+    margin-top: 4rem;
+
+    .verticalTimeline {
+      padding: 0;
+
+      h2 {
+        font-weight: 700;
+        color: $main-color;
+        font-size: 1.25rem;
+      }
+      svg {
+        transform: scale(1.4);
+      }
+    }
+
+    .step {
+      @include flex(column, center, flex-start);
+
+      p {
+        font-weight: 500;
+        color: $dark-blue;
+        line-height: 1.35;
+        font-size: 1.12rem;
+      }
+
+      img {
+        height: 12rem;
+        object-fit: contain;
+      }
+    }
+  }
 }

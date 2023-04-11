@@ -1,10 +1,22 @@
 import Link from 'next/link';
 import { AiOutlineDown } from 'react-icons/ai';
 import { FcHome, FcShop, FcFullTrash, FcDonate } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
 
+import {
+  updateServiceType,
+  setProceedToOptions,
+} from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const Dropdown = () => {
+  const dispatch = useDispatch();
+
+  const handleServiceType = serviceType => {
+    dispatch(updateServiceType(serviceType));
+    dispatch(setProceedToOptions(true));
+  };
+
   return (
     <div className={styles.container}>
       <Link href='#'>
@@ -12,7 +24,12 @@ const Dropdown = () => {
       </Link>
 
       <div className={styles.services}>
-        <Link href='/book/location'>
+        <Link
+          href='/book/location'
+          onClick={() => {
+            handleServiceType('Store delivery');
+          }}
+        >
           <FcHome />
           Regular move
         </Link>

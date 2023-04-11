@@ -128,7 +128,7 @@ button {
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   z-index: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1px;
 
   &::before {
     content: '';
@@ -207,7 +207,7 @@ a {
   font-size: clamp(
     0.9rem,
     5vw,
-    1.15rem
+    1.1rem
   ); /* Responsive font size using clamp function */
   font-weight: 600; /* Normal font weight */
   /* Additional styles like font-family, color, etc. can be added here */

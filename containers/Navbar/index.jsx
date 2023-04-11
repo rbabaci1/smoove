@@ -1,28 +1,45 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { LoginOutlined, MenuOutlined } from '@ant-design/icons';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { HiOutlineUser } from 'react-icons/hi';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
 
-import {
-  updateServiceType,
-  setProceedToOptions,
-} from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 import { Dropdown } from '@/components';
 
 function Navbar() {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-  const handleServiceType = serviceType => {
-    dispatch(updateServiceType(serviceType));
-    dispatch(setProceedToOptions(true));
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+
+      // Hide Navbar when scrolling down and user has scrolled past 10vh
+      if (
+        prevScrollPos > currentScrollPos &&
+        currentScrollPos > window.innerHeight * 1.1
+      ) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos]);
 
   return (
-    <div className={styles.navWrapper}>
+    <div
+      className={`${styles.navWrapper} ${isNavbarVisible ? '' : styles.hidden}`}
+    >
       <div className={styles.container}>
         <Link href='#home' className={styles.logo}>
           <h2>Smoove</h2>
@@ -30,7 +47,7 @@ function Navbar() {
         </Link>
 
         <div className={styles.burgerMenu}>
-          <MenuOutlined />
+          <AiOutlineMenu />
         </div>
 
         <div className={styles.navLinks}>
@@ -38,9 +55,9 @@ function Navbar() {
 
           <Link href='/partners'>Partners</Link>
 
-          <Link href='/login'>
-            <LoginOutlined style={{ marginRight: 7 }} />
+          <Link href='/login' className={styles.loginLink}>
             Sign in
+            <HiOutlineUser />
           </Link>
 
           <button type='text' onClick={() => router.push('/book/location')}>

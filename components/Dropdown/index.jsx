@@ -25,26 +25,41 @@ const Dropdown = () => {
 
       <div className={styles.services}>
         <Link
-          href='/book/location'
+          href='/services/?regular-move'
           onClick={() => {
-            handleServiceType('Store delivery');
+            handleServiceType('Regular move');
           }}
         >
           <FcHome />
           Regular move
         </Link>
 
-        <Link href='/book/location'>
+        <Link
+          href='/services/?store-delivery'
+          onClick={() => {
+            handleServiceType('Store delivery');
+          }}
+        >
           <FcShop />
           Store delivery
         </Link>
 
-        <Link href='/book/location'>
+        <Link
+          href='/services/?junk-removal'
+          onClick={() => {
+            handleServiceType('Junk removal');
+          }}
+        >
           <FcFullTrash />
           Junk removal
         </Link>
 
-        <Link href='/book/location'>
+        <Link
+          href='/services/?donations'
+          onClick={() => {
+            handleServiceType('Donations');
+          }}
+        >
           <FcDonate />
           Donations
         </Link>

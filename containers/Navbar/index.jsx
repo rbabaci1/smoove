@@ -53,7 +53,7 @@ function Navbar() {
         <div className={styles.navLinks}>
           <Dropdown />
 
-          <Link href='/partners'>Partners</Link>
+          <Link href='/partner'>Partners</Link>
 
           <Link href='/login' className={styles.loginLink}>
             Sign in

@@ -5,7 +5,7 @@ const initialState = {
     pickup: '',
     dropOff: '',
   },
-  orderType: '',
+  serviceType: '',
   vehicleType: '',
   movingDate: 'Today',
   availableMovingWindows: [],
@@ -33,8 +33,8 @@ export const OrderSlice = createSlice({
         [action.payload.type]: action.payload.address,
       };
     },
-    updateOrderType: (state, action) => {
-      state.orderType = action.payload;
+    updateServiceType: (state, action) => {
+      state.serviceType = action.payload;
     },
     updateVehicleType: (state, action) => {
       state.vehicleType = action.payload;
@@ -62,7 +62,7 @@ export const OrderSlice = createSlice({
 
 export const {
   updateAddresses,
-  updateOrderType,
+  updateServiceType,
   updateVehicleType,
   updateDescription,
   updateMovingDate,

@@ -7,7 +7,7 @@ import { BsBrowserChrome } from 'react-icons/bs';
 import { FaTruckLoading } from 'react-icons/fa';
 import { FaGratipay } from 'react-icons/fa';
 
-import { howItWorks1, howItWorks2, howItWorks3 } from '/public/images';
+import { howItWorks1, howItWorks2, howItWorks3, cloud } from '/public/images';
 import styles from './styles.module.scss';
 import 'react-vertical-timeline-component/style.min.css';
 
@@ -23,59 +23,53 @@ const HowItWorks = () => {
           className={styles.verticalTimeline}
         >
           <VerticalTimelineElement
-            contentStyle={{ boxShadow: '0 3px #edf2f8' }}
+            contentStyle={{ boxShadow: '0 1px #edf2f8' }}
             contentArrowStyle={{ borderRight: '7px solid  #410eff' }}
-            date={<h2>Book your move</h2>}
             iconStyle={{ background: '#e76b4a', color: '#fff' }}
             icon={<BsBrowserChrome />}
+            className={styles.step}
           >
-            <div className={styles.step}>
-              <Image src={howItWorks1} alt='first moving step is to book' />
+            <Image src={howItWorks1} alt='first moving step is to book' />
+            <h3>Book your move</h3>
 
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                blanditiis voluptate expedita sit labore. Maiores laborum
-                quibusdam amet ut inventore dignissimos iusto veniam quos
-                obcaecati quo? Laboriosam magnam perspiciatis aperiam
-              </p>
-            </div>
+            <p>
+              Choose your desired moving date, provide us with the pickup and
+              drop-off addresses, and select the appropriate service package
+              that suits your needs.
+            </p>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
-            contentStyle={{ boxShadow: '0 3px #edf2f8' }}
+            contentStyle={{ boxShadow: '0 1px #edf2f8' }}
             contentArrowStyle={{ borderRight: '7px solid  #410eff' }}
-            date={<h2>We handle it from here</h2>}
             iconStyle={{ background: '#e76b4a', color: '#fff' }}
             icon={<FaTruckLoading />}
+            className={styles.step}
           >
-            <div className={styles.step}>
-              <Image src={howItWorks2} alt='we move your items' />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                blanditiis voluptate expedita sit labore. Maiores laborum
-                quibusdam amet ut inventore dignissimos iusto veniam quos
-                obcaecati quo? Laboriosam magnam perspiciatis aperiam
-              </p>
-            </div>
+            <Image src={howItWorks2} alt='we move your items' />
+            <h3>We handle it from here</h3>
+            <p>
+              Sit back and relax as our experienced team arrives on the
+              scheduled date to handle all the heavy lifting, packing, and
+              transportation with care, ensuring a smooth moving experience!
+            </p>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
-            contentStyle={{ boxShadow: '0 3px #edf2f8' }}
+            contentStyle={{ boxShadow: '0 1px #edf2f8' }}
             contentArrowStyle={{ borderRight: '7px solid  #410eff' }}
-            date={<h2>Review and tip</h2>}
             iconStyle={{ background: '#e76b4a', color: '#fff' }}
             icon={<FaGratipay />}
+            className={styles.step}
           >
-            <div className={styles.step}>
-              <Image src={howItWorks3} alt='moving is done' />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                blanditiis voluptate expedita sit labore. Maiores laborum
-                quibusdam amet ut inventore dignissimos iusto veniam quos
-                obcaecati quo? Laboriosam magnam perspiciatis aperiam
-              </p>
-            </div>
+            <Image src={howItWorks3} alt='moving is done' />
+            <h3>Review & tip</h3>
+            <p>
+              Share your feedback by rating your overall experience. If you are
+              satisfied with our exceptional service, you have the option to
+              express appreciation to our hardworking team by leaving a
+              well-deserved tip as a gesture of gratitude!
+            </p>
           </VerticalTimelineElement>
         </VerticalTimeline>
       </div>

@@ -170,7 +170,7 @@ h1 {
 /* h2 typography */
 h2 {
   font-size: clamp(
-    2.2rem,
+    2rem,
     4.5vw,
     3.2rem
   ); /* Responsive font size using clamp function */
@@ -182,9 +182,9 @@ h2 {
 /* h3 typography */
 h3 {
   font-size: clamp(
-    1.5rem,
-    3vw,
-    1.8rem
+    1.3rem,
+    5vw,
+    1.5rem
   ); /* Responsive font size using clamp function */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
@@ -194,13 +194,13 @@ h3 {
 p {
   font-size: clamp(
     0.9rem,
-    5vw,
+    4.5vw,
     1.15rem
-  ); /* Responsive font size using clamp function */
-  font-weight: 600; /* Normal font weight */
+  ) !important; /* Responsive font size using clamp function */
   margin-bottom: 1rem; /* Bottom margin for spacing */
   /* Additional styles like font-family, color, etc. can be added here */
   color: $dark-blue;
+  line-height: 1.1;
 }
 
 a {

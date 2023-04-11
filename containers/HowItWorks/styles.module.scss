@@ -7,7 +7,7 @@
   padding: 4rem 2rem 2rem 2rem;
 
   span {
-    font-size: clamp(0.8rem, 4vw, 1.2rem);
+    font-size: clamp(0.95rem, 4.5vw, 1.2rem);
     color: gray;
     font-weight: 500;
   }
@@ -16,12 +16,12 @@
     margin-top: 4rem;
 
     .verticalTimeline {
+      width: 100%;
       padding: 0;
 
-      h2 {
-        font-weight: 700;
+      h3 {
         color: $main-color;
-        font-size: 1.25rem;
+        margin: 1rem 0 0.7rem 0;
       }
       svg {
         transform: scale(1.4);
@@ -29,18 +29,26 @@
     }
 
     .step {
-      @include flex(column, center, flex-start);
+      padding: 0;
+      position: relative;
+
+      div {
+        padding: 0 0 1rem 0;
+
+        &:nth-child(1) {
+          padding: 0;
+        }
+      }
 
       p {
-        font-weight: 500;
         color: $dark-blue;
-        line-height: 1.35;
-        font-size: 1.12rem;
+        margin: 0;
       }
 
       img {
         height: 12rem;
         object-fit: contain;
+        z-index: 1;
       }
     }
   }

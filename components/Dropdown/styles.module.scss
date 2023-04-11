@@ -4,6 +4,7 @@
 .container {
   position: relative;
   cursor: pointer;
+  z-index: 2;
 
   a {
     @include flex();

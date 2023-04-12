@@ -46,6 +46,10 @@
     }
   }
 
+  .reviews {
+    @include flex();
+  }
+
   @media screen and (max-width: 1024px) {
     padding: 4rem 1.5rem;
   }

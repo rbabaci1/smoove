@@ -1,6 +1,12 @@
 import Head from 'next/head';
 
-import { Landing, Navbar, HowItWorks, GetAnEstimate } from '@/containers';
+import {
+  Landing,
+  Navbar,
+  HowItWorks,
+  GetAnEstimate,
+  Reviews,
+} from '@/containers';
 import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
@@ -21,6 +27,7 @@ export default function Home() {
         <Navbar />
         <HowItWorks />
         <GetAnEstimate />
+        <Reviews />
       </main>
     </>
   );

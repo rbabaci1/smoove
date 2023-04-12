@@ -1,0 +1,79 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.containerWrapper {
+  background-color: $primary-color;
+  padding: 4rem 2rem;
+
+  .container {
+    @include flex(row, space-between);
+    max-width: 1150px;
+    margin: 2rem auto 0 auto;
+    background-color: $main-color;
+    @include radius-tl-br();
+    box-shadow: blue 0px 0px 0px 2px inset,
+      rgb(255, 255, 255) 10px -10px 0px -3px,
+      lighten($color: $main-color, $amount: 7.5) 10px -10px,
+      rgb(255, 255, 255) 20px -20px 0px -3px,
+      lighten($color: $main-color, $amount: 15) 20px -20px,
+      rgb(255, 255, 255) 30px -30px 0px -3px,
+      lighten($color: $main-color, $amount: 22.5) 30px -30px,
+      rgb(255, 255, 255) 40px -40px 0px -3px,
+      lighten($color: $main-color, $amount: 30) 40px -40px;
+
+    .inputs {
+      width: 40%;
+      padding: 1rem 0 1rem 1rem;
+
+      h2 {
+        color: #fff;
+
+        font-size: clamp(2rem, 3vw, 3.2rem);
+      }
+      p {
+        color: $light-gray;
+        line-height: 1.4;
+      }
+
+      .addresses {
+        button {
+          background-color: $yellow;
+          border: none;
+          color: $dark-blue;
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .input {
+          position: relative;
+
+          svg {
+            position: absolute;
+            top: 1.15rem;
+            font-size: 1.1rem;
+            left: 0.55rem;
+            color: $light-gray;
+          }
+        }
+
+        ::placeholder {
+          color: $light-gray;
+        }
+      }
+    }
+
+    .bgImg {
+      width: 55%;
+      height: 22.1rem;
+      background-image: url('/images/movers.jpg');
+      background-size: cover;
+      background-position: center;
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        $main-color 50%,
+        transparent
+      );
+    }
+  }
+}

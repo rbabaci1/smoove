@@ -7,15 +7,4 @@ import howItWorks1 from './howItWorks1.png';
 import howItWorks2 from './howItWorks2.png';
 import howItWorks3 from './howItWorks3.png';
 
-import cloud from './cloud.png';
-
-export {
-  fam1,
-  fam2,
-  loading,
-  truck,
-  howItWorks1,
-  howItWorks2,
-  howItWorks3,
-  cloud,
-};
+export { fam1, fam2, loading, truck, howItWorks1, howItWorks2, howItWorks3 };

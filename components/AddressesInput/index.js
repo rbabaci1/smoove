@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import { updateAddresses } from '../../reduxSlices/orderSlice';
@@ -23,14 +24,27 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
+        className={styles.header}
+      >
         <h1>
           <span>Smoove</span> anything!
         </h1>
         <p>On your schedule. Arriving in as little as 25 minutes.</p>
-      </div>
+      </motion.div>
 
-      <form className={styles.addresses} onSubmit={handleSubmit}>
+      <motion.form
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className={styles.addresses}
+        onSubmit={handleSubmit}
+      >
         <div className={styles.pickup}>
           <AiOutlineArrowUp />
 
@@ -64,7 +78,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
         </section>
 
         <button type='submit'>{buttonText}</button>
-      </form>
+      </motion.form>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { BsBrowserChrome } from 'react-icons/bs';
 import { FaTruckLoading } from 'react-icons/fa';
 import { FaGratipay } from 'react-icons/fa';
 
-import { howItWorks1, howItWorks2, howItWorks3, cloud } from '/public/images';
+import { howItWorks1, howItWorks2, howItWorks3 } from '/public/images';
 import styles from './styles.module.scss';
 import 'react-vertical-timeline-component/style.min.css';
 
@@ -47,6 +47,7 @@ const HowItWorks = () => {
             className={styles.step}
           >
             <Image src={howItWorks2} alt='we move your items' />
+
             <h3>We handle it from here</h3>
             <p>
               Sit back and relax as our experienced team arrives on the

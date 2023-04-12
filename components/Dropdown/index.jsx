@@ -7,9 +7,9 @@ import styles from './styles.module.scss';
 const Dropdown = () => {
   return (
     <div className={styles.container}>
-      <Link href='#'>
+      <a>
         Services <AiOutlineDown />
-      </Link>
+      </a>
 
       <div className={styles.services}>
         <Link

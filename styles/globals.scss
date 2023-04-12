@@ -98,22 +98,6 @@ textarea {
   }
 }
 
-input {
-  font-size: 1.2rem;
-
-  &:hover {
-  }
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-}
-:placeholder-shown {
-  color: gray;
-}
-
 button {
   padding: 0.95rem;
   background-color: $white;
@@ -122,36 +106,53 @@ button {
   color: $main-color;
   font-weight: 700;
   font-size: 1.2rem;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
   z-index: 1;
   letter-spacing: 0.1px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: $main-color;
-    transition: left 0.3s;
-    color: #fff;
-    z-index: -1;
-  }
-  &:hover::before {
-    left: 0;
-  }
-  &:hover {
-    color: #fff;
-  }
-
   @media (max-width: 767px) {
     width: 100%;
   }
+}
+
+input {
+  font-size: 1.1rem;
+}
+
+:placeholder-shown {
+  color: gray;
+}
+
+.input {
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  width: 100%;
+  background-color: inherit;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: $main-color;
+  caret-color: #fff;
+  border: 1px solid $primary-color;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border-color: #a1a2a4;
+
+  &:hover {
+    border-color: #fff;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
+    -webkit-text-fill-color: #fff;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
 }
 
 /* h1 typography */

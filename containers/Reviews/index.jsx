@@ -1,6 +1,8 @@
+import Image from 'next/image';
+
 import { avatar1, avatar2, avatar3, avatar4 } from '/public/images';
 import styles from './styles.module.scss';
-import Image from 'next/image';
+import { Review } from '@/components';
 
 const Reviews = () => {
   return (
@@ -16,6 +18,105 @@ const Reviews = () => {
         <h2>
           Happy <span>customers</span> all around
         </h2>
+      </div>
+
+      <div className={styles.reviews}>
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+      </div>
+
+      <div className={styles.reviews}>
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+      </div>
+
+      <div className={styles.reviews}>
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
+        <Review
+          desc='Very professional and communicative. Both were easy to work with and made the move much less stressful.'
+          name='Rabah Babaci'
+          location='Oakland, CA'
+        />
       </div>
     </div>
   );

@@ -65,11 +65,11 @@
     }
 
     @media screen and (max-width: 1024px) {
-      padding: 3rem 1.5rem 2rem 1.5rem;
+      padding: 3rem 1.5rem;
     }
 
     @media screen and (max-width: 767px) {
-      padding: 2rem 1.5rem 1rem 1.5rem;
+      padding-top: 2rem;
 
       h2 {
         line-height: 1.3;

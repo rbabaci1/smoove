@@ -181,6 +181,15 @@ h3 {
     1.6rem
   ); /* Responsive font size using clamp function */
 }
+h4 {
+  font-size: clamp(
+    0.9rem,
+    5vw,
+    1.1rem
+  ); /* Responsive font size using clamp function */
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
 
 /* p typography */
 p {

@@ -1,0 +1,29 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  box-sizing: content-box;
+
+  .collapse {
+    width: 70%;
+    background-color: $white;
+    padding-top: 2rem;
+
+    .panel {
+      // @include flex(row, flex-start);
+      padding: 0;
+
+      p {
+        margin: 0;
+      }
+
+      svg {
+        width: 0.8rem;
+        height: 0.8rem;
+      }
+    }
+  }
+}

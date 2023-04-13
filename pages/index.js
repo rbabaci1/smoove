@@ -7,6 +7,7 @@ import {
   GetAnEstimate,
   Reviews,
   Careers,
+  FrequentlyAskedQuestions,
 } from '@/containers';
 import styles from '@/styles/Home.module.scss';
 
@@ -30,6 +31,7 @@ export default function Home() {
         <GetAnEstimate />
         <Reviews />
         <Careers />
+        <FrequentlyAskedQuestions />
       </main>
     </>
   );

@@ -4,16 +4,15 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 3rem 1.5rem 2rem 1.5rem;
   box-sizing: content-box;
 
   .collapse {
     width: 70%;
     background-color: $white;
-    padding-top: 2rem;
+    padding-top: 1rem;
 
     .panel {
-      // @include flex(row, flex-start);
       padding: 0;
 
       p {

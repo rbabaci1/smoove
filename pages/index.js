@@ -8,6 +8,7 @@ import {
   Reviews,
   Careers,
   FrequentlyAskedQuestions,
+  Footer,
 } from '@/containers';
 import styles from '@/styles/Home.module.scss';
 
@@ -32,6 +33,7 @@ export default function Home() {
         <Reviews />
         <Careers />
         <FrequentlyAskedQuestions />
+        <Footer />
       </main>
     </>
   );

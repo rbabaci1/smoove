@@ -60,58 +60,63 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <section className={styles.avatars}>
-          <Image src={avatar1} alt='customer avatar' />
-          <Image src={avatar2} alt='customer avatar' />
-          <Image src={avatar3} alt='customer avatar' />
-          <Image src={avatar4} alt='customer avatar' />
+    <div className={styles.containerWrapper}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <section className={styles.avatars}>
+            <Image src={avatar1} alt='customer avatar' />
+            <Image src={avatar2} alt='customer avatar' />
+            <Image src={avatar3} alt='customer avatar' />
+            <Image src={avatar4} alt='customer avatar' />
+          </section>
+
+          <h2>
+            Happy <span>customers</span> all around!
+          </h2>
+        </div>
+
+        <section className={`${styles.reviews} ${styles.firstReviews}`}>
+          <Marquee
+            direction='right'
+            speed={10}
+            gradientWidth={40}
+            gradientColor={[247, 250, 255]}
+            className={styles.marquee}
+          >
+            {reviews.map((review, index) => (
+              <Review key={index} {...review} />
+            ))}
+          </Marquee>
         </section>
 
-        <h2>
-          Happy <span>customers</span> all around!
-        </h2>
+        <section className={styles.reviews}>
+          <Marquee
+            direction='left'
+            speed={10}
+            gradientWidth={40}
+            gradientColor={[247, 250, 255]}
+            className={styles.marquee}
+          >
+            {reviews.reverse().map((review, index) => (
+              <Review key={index} {...review} />
+            ))}
+          </Marquee>
+        </section>
+
+        <section className={styles.reviews}>
+          <Marquee
+            direction='right'
+            speed={10}
+            gradientWidth={40}
+            gradientColor={[247, 250, 255]}
+            className={styles.marquee}
+          >
+            {reviews.map((review, index) => (
+              <Review key={index} {...review} />
+            ))}
+          </Marquee>
+        </section>
       </div>
-
-      <section className={`${styles.reviews} ${styles.firstReviews}`}>
-        <Marquee
-          direction='right'
-          speed={10}
-          gradientWidth={40}
-          className={styles.marquee}
-        >
-          {reviews.map((review, index) => (
-            <Review key={index} {...review} />
-          ))}
-        </Marquee>
-      </section>
-
-      <section className={styles.reviews}>
-        <Marquee
-          direction='left'
-          speed={10}
-          gradientWidth={40}
-          className={styles.marquee}
-        >
-          {reviews.reverse().map((review, index) => (
-            <Review key={index} {...review} />
-          ))}
-        </Marquee>
-      </section>
-
-      <section className={styles.reviews}>
-        <Marquee
-          direction='right'
-          speed={10}
-          gradientWidth={40}
-          className={styles.marquee}
-        >
-          {reviews.map((review, index) => (
-            <Review key={index} {...review} />
-          ))}
-        </Marquee>
-      </section>
     </div>
   );
 };

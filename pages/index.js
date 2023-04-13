@@ -6,6 +6,7 @@ import {
   HowItWorks,
   GetAnEstimate,
   Reviews,
+  Careers,
 } from '@/containers';
 import styles from '@/styles/Home.module.scss';
 
@@ -28,6 +29,7 @@ export default function Home() {
         <HowItWorks />
         <GetAnEstimate />
         <Reviews />
+        <Careers />
       </main>
     </>
   );

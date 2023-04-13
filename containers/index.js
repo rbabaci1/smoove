@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import HowItWorks from './HowItWorks';
 import GetAnEstimate from './GetAnEstimate';
 import Reviews from './Reviews';
+import Careers from './Careers';
 import Footer from './Footer';
 
-export { Landing, Navbar, HowItWorks, GetAnEstimate, Reviews, Footer };
+export { Landing, Navbar, HowItWorks, GetAnEstimate, Reviews, Careers, Footer };

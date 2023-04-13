@@ -4,7 +4,7 @@
 .container {
   @include flex(column, space-between, flex-start);
   position: relative;
-  background-color: $primary-color;
+  background-color: $white;
   border-radius: 2rem;
   padding: 1rem;
   margin: 0 0.5rem;

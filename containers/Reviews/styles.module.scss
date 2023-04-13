@@ -1,64 +1,72 @@
 @import '/styles/variables.module.scss';
 @import '/styles/mixins.module.scss';
 
-.container {
-  padding: 4rem 0;
-  max-width: 1200px;
-  margin: 0 auto;
+.containerWrapper {
+  background-color: $primary-color;
 
-  .header {
-    text-align: center;
+  .container {
+    padding: 4rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
 
-    .avatars {
-      @include flex();
-      margin-bottom: 3rem;
+    .header {
+      text-align: center;
 
-      img {
-        width: 3.5rem;
-        height: 3.5rem;
-        border-radius: 50%;
-        border: 3px solid $light-blue;
-        object-fit: cover;
-        position: relative;
+      .avatars {
+        @include flex();
+        margin-bottom: 3rem;
+
+        img {
+          width: 3.5rem;
+          height: 3.5rem;
+          border-radius: 50%;
+          border: 3px solid $light-blue;
+          object-fit: cover;
+          position: relative;
+        }
+
+        :nth-child(1) {
+          left: 1rem;
+          z-index: 9;
+        }
+        :nth-child(2) {
+          z-index: 7;
+        }
+
+        :nth-child(3) {
+          right: 1rem;
+          z-index: 5;
+        }
+        :nth-child(4) {
+          right: 2rem;
+          z-index: 3;
+        }
       }
 
-      :nth-child(1) {
-        left: 1rem;
-        z-index: 1;
-      }
-
-      :nth-child(3) {
-        right: 1rem;
-        z-index: -1;
-      }
-      :nth-child(4) {
-        right: 2rem;
-        z-index: -2;
+      h2 {
+        span {
+          background-color: $light-blue;
+          padding: 0 1rem;
+          @include radius-tl-br();
+        }
       }
     }
 
-    h2 {
-      span {
-        background-color: $light-blue;
-        padding: 0 1rem;
-        @include radius-tl-br();
+    .firstReviews {
+      padding-top: 4rem;
+    }
+
+    .reviews {
+      @include flex(row, space-between);
+
+      .marquee {
+        height: 12.5rem;
+        background-color: $primary-color;
       }
     }
-  }
 
-  .firstReviews {
-    padding-top: 4rem;
-  }
-
-  .reviews {
-    @include flex(row, space-between);
-
-    .marquee {
-      height: 12.5rem;
+    @media screen and (max-width: 1024px) {
+      padding: 4rem 1.5rem;
     }
-  }
-
-  @media screen and (max-width: 1024px) {
-    padding: 4rem 1.5rem;
   }
 }

@@ -78,7 +78,7 @@ const Reviews = () => {
         <Marquee
           direction='right'
           speed={10}
-          gradientWidth={30}
+          gradientWidth={40}
           className={styles.marquee}
         >
           {reviews.map((review, index) => (
@@ -88,7 +88,12 @@ const Reviews = () => {
       </section>
 
       <section className={styles.reviews}>
-        <Marquee speed={10} gradientWidth={30} className={styles.marquee}>
+        <Marquee
+          direction='left'
+          speed={10}
+          gradientWidth={40}
+          className={styles.marquee}
+        >
           {reviews.reverse().map((review, index) => (
             <Review key={index} {...review} />
           ))}
@@ -99,7 +104,7 @@ const Reviews = () => {
         <Marquee
           direction='right'
           speed={10}
-          gradientWidth={30}
+          gradientWidth={40}
           className={styles.marquee}
         >
           {reviews.map((review, index) => (

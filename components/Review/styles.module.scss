@@ -31,7 +31,7 @@
       height: 3.2rem;
       width: 3.2rem;
       background-color: $yellow;
-      border: 5px dashed $white;
+      border: 5px dashed $primary-color;
       text-align: center;
       line-height: calc(3.2rem - 10px);
     }
@@ -70,6 +70,40 @@
       margin: 0;
       font-weight: 600;
       font-size: 0.9rem;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0.8rem;
+
+    .rating {
+      .ratingValue {
+        right: -1.5rem;
+        top: -1.5rem;
+        height: 2.8rem;
+        width: 2.8rem;
+        line-height: calc(2.8rem - 10px);
+        font-size: 1rem;
+      }
+    }
+
+    .desc {
+      height: 3.9rem;
+      width: 16rem;
+      font-size: 0.95rem;
+    }
+
+    .details {
+      .name {
+        height: 1.6rem;
+        width: 1.6rem;
+        line-height: 1.6rem;
+        font-size: 0.9rem;
+        margin-right: 0.4rem;
+      }
+      .location {
+        font-size: 0.85rem;
+      }
     }
   }
 }

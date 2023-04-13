@@ -5,7 +5,7 @@
   background-color: $primary-color;
 
   .container {
-    padding: 4rem 0;
+    padding: 4rem 0 3rem 0;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -61,12 +61,23 @@
 
       .marquee {
         height: 12.5rem;
-        background-color: $primary-color;
       }
     }
 
     @media screen and (max-width: 1024px) {
       padding: 4rem 1.5rem;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 3rem 1.5rem 2rem 1.5rem;
+
+      h2 {
+        line-height: 1.3;
+      }
+
+      .firstReviews {
+        padding-top: 2rem;
+      }
     }
   }
 }

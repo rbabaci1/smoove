@@ -28,8 +28,6 @@
 
       h2 {
         color: #fff;
-
-        font-size: clamp(2rem, 3vw, 3.2rem);
       }
       p {
         color: $light-gray;
@@ -93,7 +91,7 @@
       }
     }
 
-    @media (max-width: 767px) {
+    @media screen and (max-width: 767px) {
       flex-direction: column-reverse;
       height: auto;
 
@@ -103,10 +101,6 @@
         padding: 1rem 1rem 1.5rem 1rem;
         border-radius: 2rem;
         border-top: 1px solid $light-gray;
-
-        h2 {
-          font-size: clamp(1.7rem, 3vw, 2.5rem);
-        }
 
         .addresses {
           .input {

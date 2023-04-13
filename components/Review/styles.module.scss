@@ -7,6 +7,7 @@
   background-color: $primary-color;
   border-radius: 2rem;
   padding: 1rem;
+  margin: 0 0.5rem;
 
   .rating {
     @include flex(row, space-between);
@@ -22,7 +23,7 @@
     .ratingValue {
       position: absolute;
       display: inline-block;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       right: -2rem;
       top: -2rem;
       font-weight: 700;
@@ -41,7 +42,7 @@
     font-size: 1.03rem;
     font-weight: 600;
     margin: 0.8rem 0;
-    width: 21rem;
+    width: 19rem;
     height: 3.9rem;
     overflow: hidden;
     display: -webkit-box;

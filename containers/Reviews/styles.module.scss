@@ -17,14 +17,14 @@
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 50%;
-        border: 2px solid $light-blue;
+        border: 3px solid $light-blue;
         object-fit: cover;
         position: relative;
       }
 
       :nth-child(1) {
         left: 1rem;
-        z-index: 3;
+        z-index: 1;
       }
 
       :nth-child(3) {
@@ -46,9 +46,16 @@
     }
   }
 
-  .reviews {
-    @include flex(row, space-between, flex-start);
+  .firstReviews {
     padding-top: 4rem;
+  }
+
+  .reviews {
+    @include flex(row, space-between);
+
+    .marquee {
+      height: 12.5rem;
+    }
   }
 
   @media screen and (max-width: 1024px) {

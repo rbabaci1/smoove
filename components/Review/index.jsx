@@ -5,12 +5,15 @@ import { useEffect } from 'react';
 const Review = ({ name = 'S', location = 'CA', desc = ' ' }) => {
   // Generate a random number between 0 and 1
   const random = Math.random();
-  // Conditionally determine the number of stars to display
-  const numStars = random < 0.15 ? 4.5 : 5;
-  // Create an array of stars
   const stars = Array(5).fill(null);
 
+  let numStars = 5;
+  // Create an array of stars
+
   useEffect(() => {
+    // Conditionally determine the number of stars to display
+    numStars = random < 0.15 ? 4 : 5;
+
     // Generate random hue values for each item
     const items = document.querySelectorAll('.random-color-item');
     items.forEach(item => {

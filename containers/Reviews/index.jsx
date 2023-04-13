@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Marquee from 'react-fast-marquee';
 
+import { Review } from '@/components';
 import { avatar1, avatar2, avatar3, avatar4 } from '/public/images';
 import styles from './styles.module.scss';
-import { Review } from '@/components';
 
 const reviews = [
   {
@@ -69,26 +70,42 @@ const Reviews = () => {
         </section>
 
         <h2>
-          Happy <span>customers</span> all around
+          Happy <span>customers</span> all around!
         </h2>
       </div>
 
-      <section className={styles.reviews}>
-        {reviews.map((review, index) => (
-          <Review key={index} {...review} />
-        ))}
+      <section className={`${styles.reviews} ${styles.firstReviews}`}>
+        <Marquee
+          direction='right'
+          speed={10}
+          gradientWidth={30}
+          className={styles.marquee}
+        >
+          {reviews.map((review, index) => (
+            <Review key={index} {...review} />
+          ))}
+        </Marquee>
       </section>
 
       <section className={styles.reviews}>
-        {reviews.reverse().map((review, index) => (
-          <Review key={index} {...review} />
-        ))}
+        <Marquee speed={10} gradientWidth={30} className={styles.marquee}>
+          {reviews.reverse().map((review, index) => (
+            <Review key={index} {...review} />
+          ))}
+        </Marquee>
       </section>
 
       <section className={styles.reviews}>
-        {reviews.map((review, index) => (
-          <Review key={index} {...review} />
-        ))}
+        <Marquee
+          direction='right'
+          speed={10}
+          gradientWidth={30}
+          className={styles.marquee}
+        >
+          {reviews.map((review, index) => (
+            <Review key={index} {...review} />
+          ))}
+        </Marquee>
       </section>
     </div>
   );

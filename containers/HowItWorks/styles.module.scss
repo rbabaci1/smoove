@@ -27,6 +27,7 @@
         color: $main-color;
         margin: 1rem 0 0.7rem 0;
       }
+
       svg {
         transform: scale(1.4);
       }
@@ -45,8 +46,8 @@
       }
 
       p {
-        color: $dark-blue;
         margin: 0;
+        font-size: clamp(0.9rem, 4.5vw, 1.15rem);
       }
 
       img {

@@ -157,14 +157,8 @@ input:-webkit-autofill:active {
 
 /* h1 typography */
 h1 {
-  font-size: clamp(
-    2.2rem,
-    6vw,
-    4rem
-  ); /* Responsive font size using clamp function */
-  margin-bottom: 1rem; /* Bottom margin for spacing */
-  /* Additional styles like font-family, color, etc. can be added here */
-  // letter-spacing: 1px;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  margin-bottom: 1rem;
   font-weight: 800;
 }
 
@@ -175,9 +169,8 @@ h2 {
     4.5vw,
     3.2rem
   ); /* Responsive font size using clamp function */
-  margin-bottom: 0.75rem; /* Bottom margin for spacing */
+  margin-bottom: 0.75rem;
   font-weight: 800;
-  /* Additional styles like font-family, color, etc. can be added here */
 }
 
 /* h3 typography */
@@ -187,8 +180,6 @@ h3 {
     5vw,
     1.5rem
   ); /* Responsive font size using clamp function */
-  margin-bottom: 1rem; /* Bottom margin for spacing */
-  /* Additional styles like font-family, color, etc. can be added here */
 }
 
 /* p typography */
@@ -197,11 +188,11 @@ p {
     0.9rem,
     4.5vw,
     1.15rem
-  ) !important; /* Responsive font size using clamp function */
-  margin-bottom: 1rem; /* Bottom margin for spacing */
-  /* Additional styles like font-family, color, etc. can be added here */
+  ); /* Responsive font size using clamp function */
+  margin-bottom: 1rem;
+  font-weight: 500;
   color: $dark-blue;
-  line-height: 1.1;
+  line-height: 1.6;
 }
 
 a {
@@ -210,8 +201,7 @@ a {
     5vw,
     1.1rem
   ); /* Responsive font size using clamp function */
-  font-weight: 600; /* Normal font weight */
-  /* Additional styles like font-family, color, etc. can be added here */
+  font-weight: 600;
   color: $dark-blue;
 
   &:hover {

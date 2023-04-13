@@ -47,7 +47,8 @@
   }
 
   .reviews {
-    @include flex();
+    @include flex(row, space-between, flex-start);
+    padding-top: 4rem;
   }
 
   @media screen and (max-width: 1024px) {

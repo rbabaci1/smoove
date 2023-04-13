@@ -23,7 +23,9 @@ const HowItWorks = () => {
           className={styles.verticalTimeline}
         >
           <VerticalTimelineElement
-            contentStyle={{ boxShadow: '0 1px #edf2f8' }}
+            contentStyle={{
+              boxShadow: '0 1px #edf2f8',
+            }}
             contentArrowStyle={{ borderRight: '7px solid  #410eff' }}
             iconStyle={{ background: '#e76b4a', color: '#fff' }}
             icon={<BsBrowserChrome />}

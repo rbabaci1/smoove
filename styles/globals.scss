@@ -166,7 +166,7 @@ h1 {
 /* h2 typography */
 h2 {
   font-size: clamp(
-    2rem,
+    1.85rem,
     4.5vw,
     2.6rem
   ); /* Responsive font size using clamp function */
@@ -230,7 +230,7 @@ a {
 }
 
 .ant-collapse-expand-icon {
-  padding: 0 !important;
+  padding: 0 0 0 0.5 !important;
 }
 
 .ant-collapse-content-box {

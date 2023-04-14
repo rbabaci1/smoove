@@ -2,7 +2,6 @@
 @import '/styles/mixins.module.scss';
 
 .container {
-  min-height: 100vh;
   z-index: 1;
   padding: 4rem 1.5rem 4rem 1.5rem;
   max-width: 1200px;
@@ -57,5 +56,9 @@
         z-index: 1;
       }
     }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 2rem;
   }
 }

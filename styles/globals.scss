@@ -166,7 +166,7 @@ h1 {
 /* h2 typography */
 h2 {
   font-size: clamp(
-    1.8rem,
+    2rem,
     4.5vw,
     2.6rem
   ); /* Responsive font size using clamp function */
@@ -201,7 +201,7 @@ p {
   margin-bottom: 0.75rem;
   font-weight: 500;
   color: $dark-blue;
-  line-height: 1.1;
+  line-height: 1.5;
 }
 
 a {

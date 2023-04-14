@@ -4,8 +4,12 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 2rem 1.5rem;
+  padding: 3rem 1.5rem;
   box-sizing: content-box;
+
+  h2 {
+    line-height: 1.3;
+  }
 
   .collapse {
     width: 70%;
@@ -30,5 +34,9 @@
     .collapse {
       width: 100%;
     }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 2rem;
   }
 }

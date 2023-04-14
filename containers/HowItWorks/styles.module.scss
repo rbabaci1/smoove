@@ -61,4 +61,11 @@
   @media screen and (max-width: 767px) {
     padding-top: 2rem;
   }
+  @media screen and (max-width: 389px) {
+    padding: 2rem 0.5rem;
+
+    span {
+      font-size: clamp(0.7rem, 4.5vw, 0.95rem);
+    }
+  }
 }

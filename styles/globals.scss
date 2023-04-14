@@ -147,6 +147,11 @@ input {
     -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
     -webkit-text-fill-color: #fff;
   }
+
+  @media screen and (max-width: 389px) {
+    font-size: 0.65rem;
+    padding: 0.3rem 1rem;
+  }
 }
 
 input:-webkit-autofill,
@@ -265,4 +270,29 @@ a {
 
 .ant-collapse-content-box {
   padding: 0 0 1.5rem 0 !important;
+}
+
+@media screen and (max-width: 389px) {
+  h1 {
+    font-size: clamp(0.9rem, 5vw, 2rem);
+  }
+  h2 {
+    font-size: clamp(0.9rem, 5vw, 1.5rem);
+    margin-bottom: 0.4rem;
+  }
+  h3 {
+    font-size: clamp(0.9rem, 5vw, 1.2rem);
+  }
+  h4 {
+    font-size: clamp(0.7rem, 5vw, 0.9rem);
+  }
+  p {
+    font-size: clamp(0.5rem, 5vw, 1rem);
+    margin: 0;
+  }
+
+  button {
+    padding: 0.5rem 0;
+    font-size: clamp(0.7rem, 5vw, 1.1rem);
+  }
 }

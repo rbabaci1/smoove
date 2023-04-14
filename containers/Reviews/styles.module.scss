@@ -82,5 +82,19 @@
         padding-top: 1rem;
       }
     }
+
+    @media screen and (max-width: 389px) {
+      padding: 2rem 0.5rem;
+
+      .header {
+        .avatars {
+          img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-width: 1px;
+          }
+        }
+      }
+    }
   }
 }

@@ -26,21 +26,20 @@
       font-size: 1.05rem;
       right: -2rem;
       top: -2rem;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: 50%;
       height: 3.2rem;
       width: 3.2rem;
       background-color: $yellow;
-      border: 5px dashed $primary-color;
+      border: 4px dashed $primary-color;
       text-align: center;
-      line-height: calc(3.2rem - 10px);
+      line-height: calc(3.2rem - 8px);
     }
   }
 
   .desc {
     line-height: 1.3;
     font-size: 1.03rem;
-    font-weight: 600;
     margin: 0.8rem 0;
     width: 19rem;
     height: 3.9rem;
@@ -59,7 +58,7 @@
       border-radius: 50%;
       text-align: center;
       line-height: 1.8rem;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 0.95rem;
       margin-right: 0.5rem;
       /* Use custom property to generate random colors */

@@ -42,71 +42,27 @@ const questionsAnswers = {
         </p>
 
         <br />
-        <ul style={{ listStyle: 'circle' }}>
-          <li
-            style={{
-              display: 'flex',
-              marginLeft: '0.5rem',
-            }}
-          >
-            <h4 style={{ fontSize: 'clamp(0.8rem,4.5vw,0.95rem )' }}>
-              - Smoove Pickup Truck:
-            </h4>
-            <p
-              style={{
-                width: '70%',
-                fontSize: 'clamp(0.8rem,4.5vw,1rem )',
-                margin: '0 0 0.5rem 0.5rem',
-                fontWeight: '400',
-              }}
-            >
+        <ul>
+          <li>
+            <h4>Smoove Pickup Truck:</h4>
+            <p>
               Length of 6ft+ and width of 4.5ft. The tailgate can be left open
               for extra length, and all items will be secured with straps during
               transport.
             </p>
           </li>
 
-          <li
-            style={{
-              display: 'flex',
-              margin: '0 0 0.5rem 0.5rem',
-            }}
-          >
-            <h4 style={{ fontSize: 'clamp(0.8rem,4.5vw,0.95rem )' }}>
-              - Smoove Van:
-            </h4>
-            <p
-              style={{
-                width: '70%',
-                fontSize: 'clamp(0.8rem,4.5vw,1rem )',
-                marginLeft: '0.5rem',
-                fontWeight: '400',
-              }}
-            >
+          <li>
+            <h4>Smoove Van:</h4>
+            <p>
               Length of 8ft+, width of 4ft, and height of 5ft. Please note that
               king or cal king mattresses will not fit in this vehicle.
             </p>
           </li>
 
-          <li
-            style={{
-              display: 'flex',
-              marginLeft: '0.5rem',
-            }}
-          >
-            <h4 style={{ fontSize: 'clamp(0.8rem,4.5vw,0.95rem )' }}>
-              - Smoove XL:
-            </h4>
-            <p
-              style={{
-                width: '70%',
-                fontSize: 'clamp(0.8rem,4.5vw,1rem )',
-                margin: '0 0 0.5rem 0.5rem',
-                fontWeight: '400',
-              }}
-            >
-              Length of 10ft+, width of 6ft, and height of 7ft.
-            </p>
+          <li>
+            <h4>Smoove XL:</h4>
+            <p>Length of 10ft+, width of 6ft, and height of 7ft.</p>
           </li>
         </ul>
       </div>

@@ -166,7 +166,7 @@ h1 {
 /* h2 typography */
 h2 {
   font-size: clamp(
-    1.85rem,
+    1.8rem,
     4.5vw,
     2.6rem
   ); /* Responsive font size using clamp function */
@@ -223,6 +223,37 @@ a {
   //!!!
 }
 
+// antd collapse override
+.ant-collapse-item:nth-child(3) {
+  ul {
+    padding-left: 0.5rem;
+    li {
+      padding: 0 0 0.5rem 0.8rem;
+      position: relative;
+
+      &::before {
+        /* Style of the custom bullet points */
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.85rem;
+        transform: translateY(-50%);
+        width: 6px; /* Width of the bullet point */
+        height: 6px; /* Height of the bullet point */
+        background-color: #111; /* Color of the bullet point */
+        border-radius: 50%; /* Rounded shape of the bullet point */
+      }
+
+      h4 {
+        font-size: clamp(0.8rem, 4.5vw, 0.95rem);
+      }
+      p {
+        font-size: clamp(0.8rem, 4.5vw, 1rem);
+        font-weight: 400;
+      }
+    }
+  }
+}
 .ant-collapse-header {
   padding: 1rem 0 !important;
   flex-direction: row-reverse;

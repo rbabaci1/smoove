@@ -35,9 +35,9 @@
         color: $light-gray;
 
         span {
-          @include radius-tl-br();
+          @include radius-tl-br(1.2rem, 1.2rem);
           background-color: $yellow;
-          padding: 0.1rem 0.8rem;
+          padding: 0.05rem 0.8rem;
           color: $apricot;
           font-weight: 700;
         }

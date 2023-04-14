@@ -1,8 +1,7 @@
 .carousel {
-  height: 100vh;
-
   .item {
     height: 100vh;
+    transition: 0.3s ease-in-out;
 
     img {
       height: 100vh;

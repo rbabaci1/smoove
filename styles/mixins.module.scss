@@ -6,7 +6,7 @@
   flex-wrap: $wrap;
 }
 
-@mixin radius-tl-br {
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+@mixin radius-tl-br($radius-t-l: 2rem, $radius-b-r: 2rem) {
+  border-top-left-radius: $radius-t-l;
+  border-bottom-right-radius: $radius-b-r;
 }

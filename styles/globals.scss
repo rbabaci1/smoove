@@ -102,7 +102,7 @@ textarea {
 button {
   padding: 0.95rem;
   background-color: $white;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   border: 1px solid $main-color;
   color: $main-color;
   font-weight: 600;
@@ -261,7 +261,7 @@ a {
 }
 
 .ant-collapse-expand-icon {
-  padding: 0 0 0 0.5 !important;
+  padding: 0 0 0 0.5rem !important;
 }
 
 .ant-collapse-content-box {

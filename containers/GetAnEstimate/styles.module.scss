@@ -29,6 +29,7 @@
       @include flex(column, center, flex-start);
 
       h2 {
+        font-size: clamp(1.7rem, 4.5vw, 2.5rem);
         color: #fff;
       }
       p {

@@ -13,8 +13,8 @@
       text-align: center;
 
       .avatars {
-        @include flex(rwo);
-        @include radius-tl-br();
+        @include flex();
+        @include radius(2rem, 0, 0, 2rem);
         margin-bottom: 3rem;
 
         img {
@@ -50,7 +50,7 @@
         span {
           background-color: $light-blue;
           padding: 0 0.8rem;
-          @include radius-tl-br();
+          @include radius(2rem, 0, 0, 2rem);
         }
       }
     }

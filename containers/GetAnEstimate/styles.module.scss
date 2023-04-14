@@ -7,7 +7,7 @@
 
   .container {
     @include flex(row, space-between);
-    @include radius-tl-br();
+    @include radius(2rem, 0.5rem, 0.5rem, 2rem);
     max-width: 1200px;
     height: 24rem;
     margin: 2rem auto 0 auto;
@@ -40,9 +40,6 @@
         width: 100%;
 
         button {
-          background-color: $yellow;
-          border: none;
-          color: $dark-blue;
           width: 100%;
         }
 

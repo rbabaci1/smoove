@@ -23,14 +23,13 @@
     span {
       color: #fff;
       padding: 0.5rem 1rem;
-      @include radius-tl-br();
+      @include radius(2rem, 0, 0, 2rem);
       background-color: $main-color;
     }
 
     p {
       color: #fff;
-      border-bottom-right-radius: 20px;
-      border-top-left-radius: 20px;
+      @include radius(1.2rem, 0, 0, 1.2rem);
       background-color: rgba(0, 0, 0, 0.6);
       padding: 5px 10px;
       margin: 1rem 0 3rem 0;
@@ -39,16 +38,16 @@
 
   .addresses {
     @include flex();
-    @include radius-tl-br();
+    @include radius(2rem, 0, 0, 2rem);
     position: relative;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
       rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: $white;
 
-    // p {
-    //   font-weight: 500;
-    // }
+    p {
+      font-weight: 600;
+    }
 
     .pickup,
     .dropOff {

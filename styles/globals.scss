@@ -101,10 +101,9 @@ textarea {
 
 button {
   padding: 0.95rem;
-  background-color: $white;
+  background-color: $yellow;
   border-radius: 1rem;
-  border: 1px solid $main-color;
-  color: $main-color;
+  color: $dark-blue;
   font-weight: 600;
   font-size: 1.2rem;
   cursor: pointer;
@@ -133,7 +132,7 @@ input {
   background-color: $main-color;
   caret-color: #fff;
   border: 1px solid $primary-color;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   margin-bottom: 1rem;
   outline: none;
   border-color: #a1a2a4;

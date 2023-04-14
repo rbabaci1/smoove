@@ -25,4 +25,10 @@
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .collapse {
+      width: 100%;
+    }
+  }
 }

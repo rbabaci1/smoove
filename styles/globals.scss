@@ -1,5 +1,6 @@
 @import 'normalize.css';
 @import './variables.module.scss';
+@import './mixins.module.scss';
 // @import './fonts.scss';
 @import url('https://use.typekit.net/qzf0hrt.css');
 
@@ -104,7 +105,7 @@ button {
   border-radius: 0.5rem;
   border: 1px solid $main-color;
   color: $main-color;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.2rem;
   cursor: pointer;
   z-index: 1;
@@ -157,15 +158,15 @@ input:-webkit-autofill:active {
 
 /* h1 typography */
 h1 {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  margin-bottom: 1rem;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  margin-bottom: 0.75rem;
   font-weight: 800;
 }
 
 /* h2 typography */
 h2 {
   font-size: clamp(
-    1.9rem,
+    1.8rem,
     4.5vw,
     2.6rem
   ); /* Responsive font size using clamp function */
@@ -188,7 +189,6 @@ h4 {
     1.1rem
   ); /* Responsive font size using clamp function */
   font-weight: 600;
-  margin-bottom: 0.75rem;
 }
 
 /* p typography */
@@ -201,7 +201,7 @@ p {
   margin-bottom: 0.75rem;
   font-weight: 500;
   color: $dark-blue;
-  line-height: 1.6;
+  line-height: 1.1;
 }
 
 a {
@@ -221,4 +221,18 @@ a {
 
 .copyright {
   //!!!
+}
+
+.ant-collapse-header {
+  padding: 1rem 0 !important;
+  flex-direction: row-reverse;
+  align-items: center !important;
+}
+
+.ant-collapse-expand-icon {
+  padding: 0 !important;
+}
+
+.ant-collapse-content-box {
+  padding: 0 0 1.5rem 0 !important;
 }

@@ -1,9 +1,18 @@
 .carousel {
-  height: 100vh;
+  // height: 100vh;
 
-  img {
+  .item {
     height: 100vh;
-    width: 100vw;
-    object-fit: cover;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
   }
+
+  // img {
+  //   height: 100vh;
+  //   width: 100vw;
+  //   object-fit: cover;
+  // }
 }

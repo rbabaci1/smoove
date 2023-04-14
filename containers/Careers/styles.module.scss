@@ -35,9 +35,9 @@
         color: $light-gray;
 
         span {
-          background-color: $yellow;
-          padding: 0.1rem 0.9rem;
           @include radius-tl-br();
+          background-color: $yellow;
+          padding: 0.1rem 0.8rem;
           color: $apricot;
           font-weight: 700;
         }
@@ -76,6 +76,10 @@
       .textContent {
         width: 48%;
         padding-left: 1rem;
+
+        p {
+          line-height: 1.5;
+        }
       }
 
       .bgImg {

@@ -8,45 +8,46 @@
   height: 100%;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 1.5rem;
 
   .header {
     @include flex(column);
+    text-align: center;
+    width: 100%;
 
     h1 {
       color: $yellow;
+      width: 100%;
     }
+
     span {
       color: #fff;
       padding: 0.5rem 1rem;
-
       @include radius-tl-br();
       background-color: $main-color;
     }
+
     p {
       color: #fff;
       border-bottom-right-radius: 20px;
       border-top-left-radius: 20px;
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 8px 20px;
+      padding: 5px 10px;
       margin: 1rem 0 3rem 0;
-      font-weight: 600;
-      line-height: 1.1;
     }
   }
 
   .addresses {
     @include flex();
     @include radius-tl-br();
-    margin: 0 2rem;
+    position: relative;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
       rgba(0, 0, 0, 0.05) 0px 5px 10px;
     background-color: $white;
-    position: relative;
 
     p {
       font-weight: 600;
-      line-height: 1.1;
     }
 
     .pickup,
@@ -59,9 +60,6 @@
         color: gray;
         font-size: 1.1rem;
       }
-
-      .input {
-      }
     }
 
     .pickup {
@@ -70,7 +68,7 @@
     }
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     .addresses {
       margin: 0;
 
@@ -83,18 +81,23 @@
     }
   }
 
-  @media (max-width: 767px) {
+  @media screen and (max-width: 767px) {
+    justify-content: space-evenly;
+
     .header {
-      padding: 0 1.5rem;
-      text-align: center;
+      h1 {
+        span {
+          padding: 0.5rem;
+        }
+      }
     }
 
     .addresses {
       background-color: transparent;
-      margin: 5rem 0 0 0;
+      // margin: 4rem 0 0 0;
       border-radius: 0;
       box-shadow: none;
-      padding: 0 1.5rem;
+      padding: 0;
 
       .pickup,
       .dropOff {

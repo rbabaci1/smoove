@@ -1,5 +1,5 @@
 import { Carousel, AddressesInput } from '@/components';
-import styles from './Styles.module.scss';
+import styles from './styles.module.scss';
 
 const Landing = () => {
   return (

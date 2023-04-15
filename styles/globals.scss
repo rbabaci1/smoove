@@ -100,7 +100,7 @@ textarea {
 }
 
 button {
-  padding: 0.95rem;
+  padding: 0.9rem;
   background-color: $yellow;
   border-radius: 1rem;
   color: $dark-blue;
@@ -117,6 +117,7 @@ button {
 
 input {
   font-size: 1.1rem;
+  width: 100%;
 }
 
 :placeholder-shown {

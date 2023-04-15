@@ -24,49 +24,46 @@ function Footer() {
           <div className={styles.item}>
             <h3>Smoove</h3>
             <ul>
-              <Link href='/book/location'>
-                <li>Get an estimate</li>
-              </Link>
-              <Link href='/become_a_mover'>
-                <li>Join our team</li>
-              </Link>
+              <li>
+                <Link href='/book/location'>Get an estimate</Link>
+              </li>
+
+              <li>
+                <Link href='/become_a_mover'>Join us</Link>
+              </li>
             </ul>
           </div>
 
           <div className={styles.item}>
             <h3>Support</h3>
             <ul>
-              <Link href='/help'>
-                <li>Help center</li>
-              </Link>
-
-              <Link href='/contact'>
-                <li>Contact us</li>
-              </Link>
+              <li>
+                <Link href='/help'>Help center</Link>
+              </li>
+              <li>
+                <Link href='/contact'>Contact us</Link>
+              </li>
             </ul>
           </div>
 
           <div className={styles.appsContainer}>
-            <div className={styles.text}>
-              Move anything on your schedule! Download our app.
-            </div>
+            <p>Move anything on your schedule! Download our app.</p>
+
             <div className={styles.apps}>
               <div className={styles.app}>
                 <BsApple className={styles.apple} />
-                <span>GET IT ON APPLE</span>
+                <span>Coming soon</span>
               </div>
 
               <div>
                 <div className={styles.app}>
                   <BsAndroid2 className={styles.android} />
-                  <span>GET IT ON GOOGLE PLAY</span>
+                  <span>Coming soon</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className={styles.legals}>Smoove&copy;2023</div>
       </div>
     </div>
   );

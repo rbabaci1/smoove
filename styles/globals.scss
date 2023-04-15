@@ -100,12 +100,12 @@ textarea {
 }
 
 button {
-  padding: 0.9rem;
+  padding: 0.9rem 1rem;
   background-color: $yellow;
   border-radius: 1rem;
   color: $dark-blue;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   z-index: 1;
   letter-spacing: 0.1px;
@@ -117,7 +117,10 @@ button {
 
 input {
   font-size: 1.1rem;
-  width: 100%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 :placeholder-shown {

@@ -96,8 +96,7 @@
             @include flex(row, space-between, center);
             color: darken($color: #fff, $amount: 73);
             padding: 0.5rem;
-            // border-radius: 0.5rem;
-            @include radius(1rem, 0, 0, 1rem);
+            border-radius: 1rem;
             background-color: $white;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px,
               rgba(0, 0, 0, 0.22) 0px 5px 5px;

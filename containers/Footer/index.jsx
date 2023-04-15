@@ -47,7 +47,7 @@ function Footer() {
           </div>
 
           <div className={styles.appsContainer}>
-            <p>Move anything on your schedule! Download our app.</p>
+            <p>Move anything on your schedule!</p>
 
             <div className={styles.apps}>
               <div className={styles.app}>

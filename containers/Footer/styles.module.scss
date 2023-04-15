@@ -32,7 +32,7 @@
           border: 1px solid $light-blue;
           border-radius: 1rem;
           width: 100%;
-          max-width: 15rem;
+          max-width: 15.5rem;
 
           &:hover {
             border-color: $gray;
@@ -69,6 +69,7 @@
             a {
               color: $main-color;
               font-size: clamp(0.7rem, 4.5vw, 1.05rem);
+              font-weight: 500;
 
               &:hover {
                 color: #111;
@@ -155,7 +156,7 @@
             margin-top: 2rem;
 
             .app:first-child {
-              margin-right: 2rem;
+              margin-right: 1.5rem;
             }
           }
         }
@@ -163,6 +164,33 @@
     }
 
     @media screen and (max-width: 389px) {
+      padding: 2rem 0.5rem 1rem 0.5rem;
+
+      .subscribe {
+        padding-bottom: 2rem;
+        .email {
+          input {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+          }
+          button {
+            margin: 1rem 0 0 0;
+          }
+        }
+      }
+      .learnMore {
+        padding-top: 2rem;
+
+        .appsContainer {
+          .apps {
+            margin-top: 1rem;
+
+            .app:first-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,110 @@
-.container {
-  max-width: 1200px;
-  padding: 3rem 1.5rem;
-  margin: 0 auto;
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.footerWrapper {
+  background-color: $primary-color;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    box-sizing: content-box;
+
+    .subscribe {
+      @include flex(row, space-between);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid $light-gray;
+
+      p {
+        margin: 0;
+      }
+
+      .email {
+        @include flex(row, space-between);
+        width: 50%;
+
+        input {
+          background-color: $white;
+          color: #111;
+          padding: 0.75rem 2rem 0.75rem 2rem;
+          font-size: 1.1rem;
+          border: 1px solid $light-blue;
+          border-radius: 1rem;
+          width: 60%;
+        }
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .learnMore {
+      @include flex(row, space-between, flex-start);
+      padding-top: 3rem;
+
+      .item {
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin: 10px 0;
+            color: $main-color;
+            cursor: pointer;
+
+            &:hover {
+              color: #111;
+            }
+          }
+        }
+      }
+
+      .appsContainer {
+        width: 380px;
+
+        .text {
+          margin-left: 5px;
+        }
+
+        .apps {
+          @include flex(column, space-between, flex-start);
+          padding-top: 15px;
+
+          .app:first-child {
+            margin-bottom: 20px;
+          }
+
+          .app {
+            @include flex(row);
+            color: darken($color: #fff, $amount: 73);
+            cursor: pointer;
+
+            span {
+              font-size: 11px;
+              font-weight: 600;
+            }
+
+            .apple,
+            .android {
+              font-size: 40px;
+            }
+
+            &:hover {
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+    }
+
+    @media screen and (max-width: 767px) {
+    }
+
+    @media screen and (max-width: 389px) {
+    }
+  }
 }

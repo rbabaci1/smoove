@@ -23,7 +23,7 @@
     span {
       color: #fff;
       padding: 0.5rem 1rem;
-      @include radius(2rem, 0, 0, 2rem);
+      @include radius(2rem, 0, 0 2rem);
       background-color: $main-color;
     }
 

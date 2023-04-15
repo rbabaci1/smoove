@@ -7,7 +7,7 @@
 
   .container {
     @include flex(row, space-between);
-    @include radius(2rem, 0.5rem, 0.5rem, 2rem);
+    @include radius(2rem, 0, 0, 2rem);
     max-width: 1200px;
     height: 24rem;
     margin: 2rem auto 0 auto;
@@ -111,8 +111,12 @@
 
         .addresses {
           .input {
+            input {
+              padding: 0.8rem 2rem 0.8rem 2rem;
+            }
+
             svg {
-              top: 1.1rem;
+              top: 0.95rem;
               left: 0.6rem;
               font-size: 1rem;
             }

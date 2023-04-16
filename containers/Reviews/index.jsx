@@ -67,7 +67,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
     >
       <div className={styles.container}>
         <div className={styles.header}>
-          <section className={styles.avatars}>
+          <div className={styles.avatars}>
             <motion.div
               initial={{ y: -100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -101,7 +101,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             >
               <Image src={avatar1} alt='customer avatar' />
             </motion.div>
-          </section>
+          </div>
 
           <motion.h2
             initial={{ y: 100, opacity: 0 }}

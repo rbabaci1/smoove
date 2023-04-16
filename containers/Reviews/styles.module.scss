@@ -13,7 +13,7 @@
       .avatars {
         @include flex(row-reverse);
         @include radius(2rem, 0, 0, 2rem);
-        margin-bottom: 3rem;
+        margin: 0 0 3rem 0rem;
 
         img {
           width: 3.5rem;
@@ -27,16 +27,17 @@
         }
 
         :nth-child(1) img {
-          right: 1rem;
+          right: 0.75rem;
         }
         :nth-child(2) img {
+          right: 0.2rem;
         }
 
         :nth-child(3) img {
-          left: 1rem;
+          left: 0.25rem;
         }
         :nth-child(4) img {
-          left: 2rem;
+          left: 0.75rem;
         }
       }
 

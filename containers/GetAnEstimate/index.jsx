@@ -29,11 +29,11 @@ function GetAnEstimate({ bgColor = '#f7faff' }) {
       style={{ backgroundColor: bgColor }}
     >
       <motion.div
+        className={styles.container}
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
         viewport={{ once: true }}
-        className={styles.container}
       >
         <div className={styles.inputs}>
           <h2>Get an estimate</h2>

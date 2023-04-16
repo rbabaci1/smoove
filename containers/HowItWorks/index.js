@@ -19,9 +19,17 @@ const HowItWorks = () => {
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         <h2>How it works</h2>
-        <span>3 easy steps to move anything!</span>
+        <motion.span
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          3 easy steps to move anything!
+        </motion.span>
       </motion.div>
 
       <div className={styles.steps}>
@@ -41,7 +49,8 @@ const HowItWorks = () => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              viewport={{ once: true }}
             >
               <Image src={howItWorks1} alt='first moving step is to book' />
               <h3>Book your move</h3>
@@ -64,7 +73,8 @@ const HowItWorks = () => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              viewport={{ once: true }}
             >
               <Image src={howItWorks2} alt='we move your items' />
 
@@ -87,7 +97,8 @@ const HowItWorks = () => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              viewport={{ once: true }}
             >
               <Image src={howItWorks3} alt='moving is done' />
               <h3>Review & tip</h3>

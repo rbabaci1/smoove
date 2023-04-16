@@ -10,6 +10,7 @@ const Careers = () => {
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         <div className={styles.textContent}>
           <h2>Start making money now</h2>

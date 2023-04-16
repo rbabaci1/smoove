@@ -13,7 +13,7 @@
       text-align: center;
 
       .avatars {
-        @include flex();
+        @include flex(row-reverse);
         @include radius(2rem, 0, 0, 2rem);
         margin-bottom: 3rem;
 
@@ -29,16 +29,16 @@
         }
 
         :nth-child(1) img {
-          left: 1rem;
+          right: 1rem;
         }
         :nth-child(2) img {
         }
 
         :nth-child(3) img {
-          right: 1rem;
+          left: 1rem;
         }
         :nth-child(4) img {
-          right: 2rem;
+          left: 2rem;
         }
       }
 

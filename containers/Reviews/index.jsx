@@ -66,35 +66,37 @@ const Reviews = () => {
         <div className={styles.header}>
           <section className={styles.avatars}>
             <motion.div
-              initial={{ x: -120, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              <Image src={avatar1} alt='customer avatar' />
-            </motion.div>
-
-            <motion.div
-              initial={{ x: -70, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              initial={{ y: -100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <Image src={avatar4} alt='customer avatar' />
+            </motion.div>
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
             >
               <Image src={avatar2} alt='customer avatar' />
             </motion.div>
-
             <motion.div
-              initial={{ x: 70, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              initial={{ y: -100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
             >
               <Image src={avatar3} alt='customer avatar' />
             </motion.div>
 
             <motion.div
-              initial={{ x: 120, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
             >
-              <Image src={avatar4} alt='customer avatar' />
+              <Image src={avatar1} alt='customer avatar' />
             </motion.div>
           </section>
 
@@ -102,6 +104,7 @@ const Reviews = () => {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
           >
             Happy <span>customers</span> all around!
           </motion.h2>

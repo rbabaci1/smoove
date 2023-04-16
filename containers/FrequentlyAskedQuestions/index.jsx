@@ -13,6 +13,7 @@ const questionsAnswers = {
         initial={{ x: -50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         What are the operating hours of Smoove?
       </motion.h4>
@@ -29,9 +30,10 @@ const questionsAnswers = {
   question2: {
     header: (
       <motion.h4
-        initial={{ x: -70, opacity: 0 }}
+        initial={{ x: -65, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         How can I request an additional moving crew?
       </motion.h4>
@@ -52,9 +54,10 @@ const questionsAnswers = {
   question3: {
     header: (
       <motion.h4
-        initial={{ x: -90, opacity: 0 }}
+        initial={{ x: -80, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         What are the dimensions of our vehicles?
       </motion.h4>
@@ -96,9 +99,10 @@ const questionsAnswers = {
   question4: {
     header: (
       <motion.h4
-        initial={{ x: -110, opacity: 0 }}
+        initial={{ x: -95, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         How many items are included in the price of a move?
       </motion.h4>
@@ -115,9 +119,10 @@ const questionsAnswers = {
   question5: {
     header: (
       <motion.h4
-        initial={{ x: -130, opacity: 0 }}
+        initial={{ x: -110, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         Will the movers bring my items inside?
       </motion.h4>
@@ -146,6 +151,7 @@ const FrequentlyAskedQuestions = () => {
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
       >
         Frequently asked questions
       </motion.h2>

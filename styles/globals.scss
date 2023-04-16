@@ -303,13 +303,13 @@ a {
 
 ::-webkit-scrollbar {
   // height: 12px;
-  width: 3px;
+  // width: 3px;
   // background: $apricot;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: $main-color;
-  box-shadow: rgba(0, 0, 0, 0.25) 10px 14px 28px;
 }
 
 ::-webkit-scrollbar-corner {

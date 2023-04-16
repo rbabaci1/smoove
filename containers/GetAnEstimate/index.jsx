@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { updateAddresses } from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
-function GetAnEstimate() {
+function GetAnEstimate({ bgColor = '#f7faff' }) {
   const router = useRouter();
   const addresses = useSelector(state => state.order.addresses);
   const dispatch = useDispatch();
@@ -24,7 +24,10 @@ function GetAnEstimate() {
   };
 
   return (
-    <div className={styles.containerWrapper}>
+    <div
+      className={styles.containerWrapper}
+      style={{ backgroundColor: bgColor }}
+    >
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

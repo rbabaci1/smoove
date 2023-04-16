@@ -1,46 +1,48 @@
 @import '/styles/variables.module.scss';
 @import '/styles/mixins.module.scss';
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-  box-sizing: content-box;
+.wrapper {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    box-sizing: content-box;
 
-  h2 {
-    line-height: 1.3;
-  }
-
-  .collapse {
-    width: 70%;
-    background-color: $white;
-    padding-top: 1rem;
-
-    .panel {
-      padding: 0;
-
-      p {
-        margin: 0;
-      }
-
-      svg {
-        width: 0.8rem;
-        height: 0.8rem;
-      }
+    h2 {
+      line-height: 1.3;
     }
-  }
 
-  @media screen and (max-width: 1024px) {
     .collapse {
-      width: 100%;
+      width: 70%;
+      background-color: $white;
+      padding-top: 1rem;
+
+      .panel {
+        padding: 0;
+
+        p {
+          margin: 0;
+        }
+
+        svg {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
     }
-  }
 
-  @media screen and (max-width: 767px) {
-    padding-top: 2rem;
-  }
+    @media screen and (max-width: 1024px) {
+      .collapse {
+        width: 100%;
+      }
+    }
 
-  @media screen and (max-width: 389px) {
-    padding: 2rem 0.5rem;
+    @media screen and (max-width: 767px) {
+      padding-top: 2rem;
+    }
+
+    @media screen and (max-width: 389px) {
+      padding: 2rem 0.5rem;
+    }
   }
 }

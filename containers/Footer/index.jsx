@@ -11,7 +11,7 @@ const initialState = {
   clientSignedUp: false,
 };
 
-function Footer() {
+function Footer({ bgColor = '#f7faff' }) {
   const [signupInfo, setSignUpInfo] = useState(initialState);
 
   const handleChange = event => {
@@ -30,7 +30,7 @@ function Footer() {
   };
 
   return (
-    <div className={styles.footerWrapper}>
+    <div className={styles.footerWrapper} style={{ backgroundColor: bgColor }}>
       <div className={styles.container}>
         <div className={styles.subscribe}>
           <p>Sign up for emails and announcements, news, deals and more! </p>

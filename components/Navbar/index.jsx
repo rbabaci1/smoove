@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
-        <Link href='#home' className={styles.logo}>
+        <Link href='/' className={styles.logo}>
           <h2>Smoove</h2>
           <span>SF Bay area moving & delivery</span>
         </Link>

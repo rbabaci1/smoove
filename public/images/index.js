@@ -12,6 +12,8 @@ import avatar2 from './avatar2.jpg';
 import avatar3 from './avatar3.jpg';
 import avatar4 from './avatar4.jpg';
 
+import help from './help.png';
+
 export {
   fam1,
   fam2,
@@ -24,4 +26,5 @@ export {
   avatar2,
   avatar3,
   avatar4,
+  help,
 };

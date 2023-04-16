@@ -12,9 +12,9 @@ import { howItWorks1, howItWorks2, howItWorks3 } from '/public/images';
 import styles from './styles.module.scss';
 import 'react-vertical-timeline-component/style.min.css';
 
-const HowItWorks = () => {
+const HowItWorks = ({ bgColor = '#fff' }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ backgroundColor: bgColor }}>
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

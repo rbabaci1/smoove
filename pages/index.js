@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import {
   Landing,
-  Navbar,
   HowItWorks,
   GetAnEstimate,
   Reviews,
@@ -11,6 +10,7 @@ import {
   Footer,
 } from '@/containers';
 import styles from '@/styles/Home.module.scss';
+import { Navbar } from '@/components';
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main id='home' className={styles.main}>
+      <main className={styles.main}>
         <Landing />
         <Navbar />
         <HowItWorks />

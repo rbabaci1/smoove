@@ -8,8 +8,8 @@ import styles from './styles.module.scss';
 
 const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
   const addresses = useSelector(state => state.order.addresses);
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     let { name, value } = event.target;
@@ -24,19 +24,6 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
 
   return (
     <div className={styles.container}>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-        className={styles.header}
-      >
-        <h1>
-          <span>Smoove</span> anything!
-        </h1>
-        <p>On your schedule. Arriving in as little as 25 minutes.</p>
-      </motion.div>
-
       <motion.form
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

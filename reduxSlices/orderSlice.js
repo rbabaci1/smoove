@@ -11,10 +11,8 @@ const initialState = {
   availableMovingWindows: [],
   movingWindow: '',
   description: '',
-  additionalContact: {
-    name: '',
-    phoneNumber: '',
-  },
+  additionalContacts: [],
+  bookingStep: 0,
   prices: {
     Pickup: '$40 + $0.95 per labor min',
     Van: '$90 + $2.00 per labor min',
@@ -57,6 +55,12 @@ export const OrderSlice = createSlice({
     setProceedToOptions: (state, action) => {
       state.proceedToOptions = action.payload;
     },
+    goToNextBookingStep: state => {
+      state.bookingStep += 1;
+    },
+    goToPreviousBookingStep: state => {
+      state.bookingStep -= 1;
+    },
   },
 });
 
@@ -70,6 +74,8 @@ export const {
   updateAvailableMovingWindows,
   updateAdditionalContact,
   setProceedToOptions,
+  goToNextBookingStep,
+  goToPreviousBookingStep,
 } = OrderSlice.actions;
 
 export default OrderSlice.reducer;

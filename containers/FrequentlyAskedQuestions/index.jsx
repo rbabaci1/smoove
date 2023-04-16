@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Collapse } from 'antd';
 import { motion } from 'framer-motion';
 
@@ -144,29 +145,31 @@ const questionsAnswers = {
   },
 };
 
-const FrequentlyAskedQuestions = () => {
+const FrequentlyAskedQuestions = ({ bgColor = '#fff' }) => {
   return (
-    <div className={styles.container}>
-      <motion.h2
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        Frequently asked questions
-      </motion.h2>
+    <div className={styles.wrapper} style={{ backgroundColor: bgColor }}>
+      <div className={styles.container}>
+        <motion.h2
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          viewport={{ once: true }}
+        >
+          Frequently asked questions
+        </motion.h2>
 
-      <Collapse bordered={false} className={styles.collapse}>
-        {Object.keys(questionsAnswers).map((question, index) => (
-          <Panel
-            header={questionsAnswers[question].header}
-            key={index}
-            className={styles.panel}
-          >
-            {questionsAnswers[question].answer}
-          </Panel>
-        ))}
-      </Collapse>
+        <Collapse bordered={false} className={styles.collapse}>
+          {Object.keys(questionsAnswers).map((question, index) => (
+            <Panel
+              header={questionsAnswers[question].header}
+              key={index}
+              className={styles.panel}
+            >
+              {questionsAnswers[question].answer}
+            </Panel>
+          ))}
+        </Collapse>
+      </div>
     </div>
   );
 };

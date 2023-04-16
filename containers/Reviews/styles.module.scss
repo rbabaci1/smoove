@@ -2,8 +2,6 @@
 @import '/styles/mixins.module.scss';
 
 .containerWrapper {
-  background-color: $primary-color;
-
   .container {
     padding: 3rem 0;
     max-width: 1200px;

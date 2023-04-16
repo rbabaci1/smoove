@@ -2,9 +2,12 @@ import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
-const Careers = () => {
+const Careers = ({ bgColor = '#fff' }) => {
   return (
-    <div className={styles.containerWrapper}>
+    <div
+      className={styles.containerWrapper}
+      style={{ backgroundColor: bgColor }}
+    >
       <motion.div
         className={styles.container}
         initial={{ y: 100, opacity: 0 }}
@@ -23,7 +26,7 @@ const Careers = () => {
             whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
             type='submit'
           >
-            Get an estimate
+            Apply now
           </motion.button>
         </div>
 

@@ -59,9 +59,12 @@ const reviews = [
   },
 ];
 
-const Reviews = () => {
+const Reviews = ({ bgColor = '#f7faff' }) => {
   return (
-    <div className={styles.containerWrapper}>
+    <div
+      className={styles.containerWrapper}
+      style={{ backgroundColor: bgColor }}
+    >
       <div className={styles.container}>
         <div className={styles.header}>
           <section className={styles.avatars}>

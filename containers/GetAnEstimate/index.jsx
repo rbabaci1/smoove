@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import { updateAddresses } from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
@@ -24,7 +25,12 @@ function GetAnEstimate() {
 
   return (
     <div className={styles.containerWrapper}>
-      <div className={styles.container}>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className={styles.container}
+      >
         <div className={styles.inputs}>
           <h2>Get an estimate</h2>
           <p>
@@ -59,12 +65,17 @@ function GetAnEstimate() {
               />
             </section>
 
-            <button type='submit'>Get an estimate</button>
+            <motion.button
+              whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+              type='submit'
+            >
+              Get an estimate
+            </motion.button>
           </form>
         </div>
 
         <div className={styles.bgImg} />
-      </div>
+      </motion.div>
     </div>
   );
 }

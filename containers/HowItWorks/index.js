@@ -6,6 +6,7 @@ import {
 import { BsBrowserChrome } from 'react-icons/bs';
 import { FaTruckLoading } from 'react-icons/fa';
 import { FaGratipay } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import { howItWorks1, howItWorks2, howItWorks3 } from '/public/images';
 import styles from './styles.module.scss';
@@ -14,8 +15,14 @@ import 'react-vertical-timeline-component/style.min.css';
 const HowItWorks = () => {
   return (
     <div className={styles.container}>
-      <h2>How it works</h2>
-      <span>3 easy steps to move anything!</span>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <h2>How it works</h2>
+        <span>3 easy steps to move anything!</span>
+      </motion.div>
 
       <div className={styles.steps}>
         <VerticalTimeline
@@ -31,14 +38,20 @@ const HowItWorks = () => {
             icon={<BsBrowserChrome />}
             className={styles.step}
           >
-            <Image src={howItWorks1} alt='first moving step is to book' />
-            <h3>Book your move</h3>
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image src={howItWorks1} alt='first moving step is to book' />
+              <h3>Book your move</h3>
 
-            <p>
-              Choose your desired moving date, provide us with the pickup and
-              drop-off addresses, and select the appropriate service package
-              that suits your needs.
-            </p>
+              <p>
+                Choose your desired moving date, provide us with the pickup and
+                drop-off addresses, and select the appropriate service package
+                that suits your needs.
+              </p>
+            </motion.div>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
@@ -48,14 +61,20 @@ const HowItWorks = () => {
             icon={<FaTruckLoading />}
             className={styles.step}
           >
-            <Image src={howItWorks2} alt='we move your items' />
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image src={howItWorks2} alt='we move your items' />
 
-            <h3>We handle it from here</h3>
-            <p>
-              Sit back and relax as our experienced team arrives on the
-              scheduled date to handle all the heavy lifting, packing, and
-              transportation with care, ensuring a smooth moving experience!
-            </p>
+              <h3>We handle it from here</h3>
+              <p>
+                Sit back and relax as our experienced team arrives on the
+                scheduled date to handle all the heavy lifting, packing, and
+                transportation with care, ensuring a smooth moving experience!
+              </p>
+            </motion.div>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
@@ -65,14 +84,20 @@ const HowItWorks = () => {
             icon={<FaGratipay />}
             className={styles.step}
           >
-            <Image src={howItWorks3} alt='moving is done' />
-            <h3>Review & tip</h3>
-            <p>
-              Share your feedback by rating your overall experience. If you are
-              satisfied with our exceptional service, you have the option to
-              express appreciation to our hardworking team by leaving a
-              well-deserved tip as a gesture of gratitude!
-            </p>
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image src={howItWorks3} alt='moving is done' />
+              <h3>Review & tip</h3>
+              <p>
+                Share your feedback by rating your overall experience. If you
+                are satisfied with our exceptional service, you have the option
+                to express appreciation to our hardworking team by leaving a
+                well-deserved tip as a gesture of gratitude!
+              </p>
+            </motion.div>
           </VerticalTimelineElement>
         </VerticalTimeline>
       </div>

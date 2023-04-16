@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
+import { motion } from 'framer-motion';
 
 import { Review } from '@/components';
 import { avatar1, avatar2, avatar3, avatar4 } from '/public/images';
@@ -64,15 +65,46 @@ const Reviews = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <section className={styles.avatars}>
-            <Image src={avatar1} alt='customer avatar' />
-            <Image src={avatar2} alt='customer avatar' />
-            <Image src={avatar3} alt='customer avatar' />
-            <Image src={avatar4} alt='customer avatar' />
+            <motion.div
+              initial={{ x: -120, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image src={avatar1} alt='customer avatar' />
+            </motion.div>
+
+            <motion.div
+              initial={{ x: -70, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image src={avatar2} alt='customer avatar' />
+            </motion.div>
+
+            <motion.div
+              initial={{ x: 70, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image src={avatar3} alt='customer avatar' />
+            </motion.div>
+
+            <motion.div
+              initial={{ x: 120, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image src={avatar4} alt='customer avatar' />
+            </motion.div>
           </section>
 
-          <h2>
+          <motion.h2
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             Happy <span>customers</span> all around!
-          </h2>
+          </motion.h2>
         </div>
 
         <section className={`${styles.reviews} ${styles.firstReviews}`}>

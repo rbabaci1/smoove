@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { BsApple, BsAndroid2 } from 'react-icons/bs';
+import { BsGooglePlay } from 'react-icons/bs';
+import { FaAppStoreIos } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
@@ -43,9 +45,12 @@ function Footer() {
               required
             />
 
-            <button type='submit'>
+            <motion.button
+              whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+              type='submit'
+            >
               {signupInfo.clientSignedUp ? 'Thanks!' : 'Subscribe'}
-            </button>
+            </motion.button>
           </form>
         </div>
 
@@ -80,13 +85,13 @@ function Footer() {
 
             <div className={styles.apps}>
               <div className={styles.app}>
-                <BsApple className={styles.apple} />
+                <FaAppStoreIos color='#007AFF ' className={styles.apple} />
                 <span>Coming soon...</span>
               </div>
 
               <div>
                 <div className={styles.app}>
-                  <BsAndroid2 className={styles.android} />
+                  <BsGooglePlay color='#4CAF50' className={styles.android} />
                   <span>Coming soon...</span>
                 </div>
               </div>

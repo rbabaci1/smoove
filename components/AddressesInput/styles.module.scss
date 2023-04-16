@@ -23,13 +23,13 @@
     span {
       color: #fff;
       padding: 0.5rem 1rem;
-      @include radius(2rem, 0, 0 2rem);
+      @include radius(1.5rem, 0, 0 1.5rem);
       background-color: $main-color;
     }
 
     p {
       color: #fff;
-      @include radius(2rem, 0, 0, 2rem);
+      @include radius(1.5rem, 0, 0, 1.5rem);
       background-color: rgba(0, 0, 0, 0.6);
       padding: 6px 12px;
       margin: 1rem 0 3rem 0;
@@ -38,7 +38,7 @@
 
   .addresses {
     @include flex(row, space-between);
-    @include radius(2rem, 0, 0, 2rem);
+    @include radius(1.5rem, 0, 0, 1.5rem);
     position: relative;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
@@ -103,7 +103,7 @@
         padding: 0.5rem;
         width: 100%;
         border: none;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
 
         .input {
           width: 90%;

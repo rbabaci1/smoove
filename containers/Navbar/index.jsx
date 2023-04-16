@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import { Dropdown } from '@/components';
@@ -31,9 +32,13 @@ function Navbar() {
             <HiOutlineUser />
           </Link>
 
-          <button type='text' onClick={() => router.push('/book/location')}>
+          <motion.button
+            whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+            type='text'
+            onClick={() => router.push('/book/location')}
+          >
             Book now
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

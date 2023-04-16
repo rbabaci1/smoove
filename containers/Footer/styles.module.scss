@@ -27,10 +27,10 @@
         input {
           background-color: $white;
           color: #111;
-          padding: 0.7rem 1.2rem;
+          padding: 0.55rem 1.2rem;
           font-size: 1.1rem;
           border: 1px solid $light-blue;
-          border-radius: 1rem;
+          border-radius: 0.5rem;
           width: 100%;
           max-width: 15.5rem;
 
@@ -89,21 +89,21 @@
           @include flex(row, flex-start, flex-start);
 
           .app:first-child {
-            margin-right: 1rem;
+            margin-right: 1.5rem;
           }
 
           .app {
             @include flex(row, space-between, center);
             color: darken($color: #fff, $amount: 73);
             padding: 0.5rem;
-            border-radius: 1rem;
+            border-radius: 0.5rem;
             background-color: $white;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px,
               rgba(0, 0, 0, 0.22) 0px 5px 5px;
 
             span {
               font-size: 0.65rem;
-              font-weight: 600;
+              margin-left: 0.3rem;
               color: $gray;
             }
 
@@ -136,6 +136,17 @@
 
           input {
             max-width: 50%;
+          }
+        }
+      }
+
+      .learnMore {
+        .appsContainer {
+          .apps {
+            justify-content: space-between;
+            .app:first-child {
+              margin-right: 0;
+            }
           }
         }
       }

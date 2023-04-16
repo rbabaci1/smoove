@@ -45,7 +45,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
         className={styles.addresses}
         onSubmit={handleSubmit}
       >
-        <div className={styles.pickup}>
+        <section className={styles.pickup}>
           <AiOutlineArrowUp />
 
           <div className={styles.input}>
@@ -59,7 +59,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
               required
             />
           </div>
-        </div>
+        </section>
 
         <section className={styles.dropOff}>
           <AiOutlineArrowDown />
@@ -77,7 +77,12 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
           </div>
         </section>
 
-        <button type='submit'>{buttonText}</button>
+        <motion.button
+          whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+          type='submit'
+        >
+          {buttonText}
+        </motion.button>
       </motion.form>
     </div>
   );

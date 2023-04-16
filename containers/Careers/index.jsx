@@ -1,10 +1,16 @@
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+import { motion } from 'framer-motion';
+
 import styles from './styles.module.scss';
 
 const Careers = () => {
   return (
     <div className={styles.containerWrapper}>
-      <div className={styles.container}>
+      <motion.div
+        className={styles.container}
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
         <div className={styles.textContent}>
           <h2>Start making money now</h2>
           <p>
@@ -12,11 +18,16 @@ const Careers = () => {
             week!
           </p>
 
-          <button type='submit'>Get an estimate</button>
+          <motion.button
+            whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+            type='submit'
+          >
+            Get an estimate
+          </motion.button>
         </div>
 
         <div className={styles.bgImg} />
-      </div>
+      </motion.div>
     </div>
   );
 };

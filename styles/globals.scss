@@ -102,7 +102,7 @@ textarea {
 button {
   padding: 0.9rem 1rem;
   background-color: $yellow;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: $dark-blue;
   font-weight: 600;
   font-size: 1.05rem;
@@ -136,7 +136,7 @@ input {
   background-color: $main-color;
   caret-color: #fff;
   border: 1px solid $primary-color;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin-bottom: 1rem;
   outline: none;
   border-color: #a1a2a4;
@@ -299,4 +299,19 @@ a {
     padding: 0.5rem 0;
     font-size: clamp(0.7rem, 5vw, 1.1rem);
   }
+}
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 10px;
+  // background: $apricot;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $main-color;
+  box-shadow: rgba(0, 0, 0, 0.25) 10px 14px 28px;
+}
+
+::-webkit-scrollbar-corner {
+  background: $yellow;
 }

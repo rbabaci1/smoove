@@ -1,4 +1,5 @@
 import { Collapse } from 'antd';
+import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import './styles.module.scss';
@@ -7,7 +8,15 @@ const { Panel } = Collapse;
 
 const questionsAnswers = {
   question1: {
-    header: <h4>What are the operating hours of Smoove?</h4>,
+    header: (
+      <motion.h4
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        What are the operating hours of Smoove?
+      </motion.h4>
+    ),
     answer: (
       <p>
         Smoove operates Monday to Saturday from 7 AM to 9 PM, and Sunday from 9
@@ -18,7 +27,15 @@ const questionsAnswers = {
     ),
   },
   question2: {
-    header: <h4>How can I request an additional moving crew?</h4>,
+    header: (
+      <motion.h4
+        initial={{ x: -70, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        How can I request an additional moving crew?
+      </motion.h4>
+    ),
     answer: (
       <p>
         To request an additional moving crew with Smoove, you can access your
@@ -33,7 +50,15 @@ const questionsAnswers = {
   },
 
   question3: {
-    header: <h4>What are the dimensions of our vehicles?</h4>,
+    header: (
+      <motion.h4
+        initial={{ x: -90, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        What are the dimensions of our vehicles?
+      </motion.h4>
+    ),
     answer: (
       <div>
         <p>
@@ -69,7 +94,15 @@ const questionsAnswers = {
     ),
   },
   question4: {
-    header: <h4>How many items are included in the price of a move?</h4>,
+    header: (
+      <motion.h4
+        initial={{ x: -110, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        How many items are included in the price of a move?
+      </motion.h4>
+    ),
     answer: (
       <p>
         A move covers whatever items can fit into a Smoove Pickup, Smoove Van,
@@ -80,7 +113,15 @@ const questionsAnswers = {
     ),
   },
   question5: {
-    header: <h4>Will the movers bring my items inside?</h4>,
+    header: (
+      <motion.h4
+        initial={{ x: -130, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        Will the movers bring my items inside?
+      </motion.h4>
+    ),
     answer: (
       <p>
         Absolutely! Our movers will pick up and drop off your items right to the
@@ -101,7 +142,13 @@ const questionsAnswers = {
 const FrequentlyAskedQuestions = () => {
   return (
     <div className={styles.container}>
-      <h2>Frequently asked questions</h2>
+      <motion.h2
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        Frequently asked questions
+      </motion.h2>
 
       <Collapse bordered={false} className={styles.collapse}>
         {Object.keys(questionsAnswers).map((question, index) => (

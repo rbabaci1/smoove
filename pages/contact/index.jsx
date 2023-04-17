@@ -40,7 +40,7 @@ const Contact = () => {
               </Link>
             </section>
 
-            <Link href=''>
+            <Link href='' className={styles.comingSoon}>
               Free promotional fliers for your store or business (coming soon)
             </Link>
 
@@ -53,7 +53,7 @@ const Contact = () => {
           </div>
 
           <div className={styles.socials}>
-            <h2>Follow us</h2>
+            <h1>Follow us</h1>
           </div>
         </div>
       </div>

@@ -10,7 +10,9 @@
 
   .container {
     @include flex(row, space-between);
-    padding: 0.8rem 1.5rem;
+    height: 5rem;
+    padding: 0 1.5rem;
+
     transition: opacity 0.3s ease-in-out;
 
     .logo {

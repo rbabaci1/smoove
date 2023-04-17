@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { BsInstagram, BsFacebook, BsLinkedin, BsTwitter } from 'react-icons/bs';
 
 import { Footer } from '@/containers';
 import { Navbar } from '@/components';
@@ -53,7 +55,25 @@ const Contact = () => {
           </div>
 
           <div className={styles.socials}>
-            <h1>Follow us</h1>
+            <h1>Find us online</h1>
+
+            <div className={styles.socialLinks}>
+              <Link href='' target='_blank' className={styles.instagram}>
+                <BsInstagram />
+              </Link>
+
+              <Link href='' target='_blank' className={styles.facebook}>
+                <BsFacebook />
+              </Link>
+
+              <Link href='' target='_blank' className={styles.linkedin}>
+                <BsLinkedin />
+              </Link>
+
+              <Link href='' target='_blank' className={styles.twitter}>
+                <BsTwitter />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

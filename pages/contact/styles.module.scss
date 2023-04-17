@@ -52,6 +52,105 @@
 
     .socials {
       padding-top: 6rem;
+
+      h1 {
+        padding-bottom: 2rem;
+      }
+
+      .socialLinks {
+        @include flex();
+        gap: 1.5rem;
+        padding-bottom: 1rem;
+
+        a {
+          transition: all 0.2s ease-in-out;
+          padding: 3rem;
+          border-radius: 50%;
+          background-color: $primary-color;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 14px,
+            rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+          &:hover {
+            background-color: $white;
+          }
+
+          svg {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+        }
+
+        .instagram {
+          color: #c13584;
+        }
+        .facebook {
+          color: #1877f2;
+        }
+        .linkedin {
+          color: #0077b5;
+        }
+        .twitter {
+          color: #1da1f2;
+        }
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .socials {
+        .socialLinks {
+          a {
+            padding: 2rem;
+
+            svg {
+              width: 2.3rem;
+              height: 2.3rem;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 389px) {
+      padding: 0 0.5rem 3rem 0.5rem;
+
+      .contact {
+        padding: 1rem 0 2rem 0;
+
+        h1 {
+          margin-bottom: 1rem;
+        }
+
+        .mainEmail {
+          span {
+            font-size: 0.7rem;
+          }
+        }
+
+        .jobs {
+          padding: 2rem 0 0 0;
+        }
+      }
+
+      .socials {
+        padding-top: 2rem;
+
+        h1 {
+          padding-bottom: 1rem;
+        }
+
+        .socialLinks {
+          padding-bottom: 0;
+
+          a {
+            padding: 1rem;
+
+            svg {
+              width: 1.2rem;
+              height: 1.2rem;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -74,10 +74,10 @@ const Become_a_mover = () => {
 
                 <h2>Need a truck?</h2>
                 <p>
-                  Don't worry you can still apply as a helper! Owning a vehicle
+                  {`Don't worry you can still apply as a helper! Owning a vehicle
                   is not a requirement to becoming a Mover. Just select "No" for
                   the question (Do you own a truck and want to use it with
-                  Smoove?)
+                  Smoove?)`}
                 </p>
               </div>
 
@@ -133,9 +133,9 @@ const Become_a_mover = () => {
                     <section>
                       <h3>Spread joy as a mover</h3>
                       <p>
-                        Bring smiles to customers' faces by providing
+                        {`Bring smiles to customers' faces by providing
                         stress-free smooth moving experiences as a mover, and be
-                        appreciated for your professionalism and helpfulness.
+                        appreciated for your professionalism and helpfulness.`}
                       </p>
                     </section>
                   </li>

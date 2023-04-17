@@ -1,0 +1,56 @@
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
+.main {
+  // min-height: 100vh;
+
+  .content {
+    padding: 4rem 1.5rem 3rem 1.5rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .contact {
+      @include flex(column);
+      border-bottom: 1px solid $light-blue;
+      padding-bottom: 2rem;
+      min-height: 80vh;
+
+      h1 {
+        margin-bottom: 4rem;
+      }
+      h4 {
+        font-size: clamp(0.9rem, 5vw, 1.25rem);
+        margin-bottom: 0.5rem;
+      }
+      a {
+        display: block;
+        color: $main-color;
+        text-decoration: underline;
+        font-size: clamp(0.9rem, 5vw, 1.2rem);
+      }
+
+      .mainEmail {
+        span {
+          display: block;
+          font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+          margin-bottom: 0.5rem;
+          color: gray;
+          font-weight: 500;
+        }
+      }
+
+      .storesEmail {
+        padding: 3rem 0;
+      }
+
+      .jobs {
+        padding: 3rem 0;
+      }
+    }
+
+    .socials {
+      padding-top: 4rem;
+    }
+  }
+}

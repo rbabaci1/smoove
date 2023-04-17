@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import { ErrorMessage, Navbar } from '@/components';
@@ -9,14 +10,34 @@ import { Footer } from '@/containers';
 import { calendar, cash, daily, smile, trucks } from '@/public/images';
 
 const Become_a_mover = () => {
+  const [isFromSubmitted, setIsFormSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    reset,
   } = useForm();
 
   const onSubmit = formData => {
-    console.log(data);
+    console.log('Submitted!');
+    setIsFormSubmitted(true);
+
+    setTimeout(() => {
+      setIsFormSubmitted(false);
+
+      reset({
+        fullName: '',
+        phoneNumber: '',
+        email: '',
+        birthDate: '',
+        location: '',
+        referral: '',
+        liftCapacity: '',
+        ownTruck: '',
+      });
+    }, 1500);
   };
 
   return (
@@ -39,7 +60,7 @@ const Become_a_mover = () => {
             <div className={styles.left}>
               <div className={styles.header}>
                 <h1>
-                  Earn money with
+                  Earn <span>money</span> with
                   <br /> your truck
                 </h1>
                 <p>
@@ -153,28 +174,158 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.fullName && <ErrorMessage />}
+                      {errors.fullName && <ErrorMessage name='Full name' />}
                     </AnimatePresence>
                   </section>
                 </div>
 
                 <div className={styles.input}>
-                  <label>Mobile phone number</label>
+                  <label htmlFor='phoneNumber'>Mobile phone number</label>
                   <input
                     type='text'
                     id='phoneNumber'
-                    placeholder='Enter phone number'
+                    placeholder='Enter your phone number'
                     {...register('phoneNumber', { required: true })}
                   />
 
                   <section className={styles.error}>
-                    {errors.phoneNumber && (
-                      <motion.span>This field is required</motion.span>
-                    )}
+                    <AnimatePresence>
+                      {errors.phoneNumber && (
+                        <ErrorMessage name='Phone number' />
+                      )}
+                    </AnimatePresence>
                   </section>
                 </div>
 
-                <button type='submit'>Submit</button>
+                <div className={styles.input}>
+                  <label htmlFor='email'>Email</label>
+                  <input
+                    type='text'
+                    id='email'
+                    placeholder='Enter your email'
+                    {...register('email', { required: true })}
+                  />
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.email && <ErrorMessage name='Email' />}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor='birthDate'>Birth-date</label>
+                  <input
+                    className={styles.birthDate}
+                    type='date'
+                    id='birthDate'
+                    {...register('birthDate', { required: true })}
+                  />
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.birthDate && <ErrorMessage name='Birth date' />}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor='location'>Where are you located?</label>
+                  <select
+                    id='location'
+                    {...register('location', { required: true })}
+                  >
+                    <option value='' disabled selected hidden>
+                      Choose county
+                    </option>
+                    <option value='Alameda'>Alameda</option>
+                    <option value='San Francisco'>San Francisco</option>
+                    <option value='Santa Clara'>Santa Clara</option>
+                    <option value='San Mateo'>San Mateo</option>
+                    <option value='Marin'>Marin</option>
+                  </select>
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.location && <ErrorMessage name='Location' />}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor='referral'>Referred by</label>
+                  <select
+                    id='referral'
+                    {...register('referral', { required: true })}
+                  >
+                    <option value='' disabled selected hidden>
+                      Select option
+                    </option>
+                    <option value='Craigslist'>Craigslist</option>
+                    <option value='Facebook'>Facebook</option>
+                    <option value='Instagram'>Instagram</option>
+                    <option value='LinkedIn'>LinkedIn</option>
+                    <option value='Active mover'>Active mover</option>
+                    <option value='Yelp'>Yelp</option>
+                    <option value='Other'>Other</option>
+                  </select>
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.referral && <ErrorMessage name='Location' />}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor='liftCapacity'>
+                    Are you able to lift up to 100 pounds yourself?
+                  </label>
+                  <select
+                    id='liftCapacity'
+                    {...register('liftCapacity', { required: true })}
+                  >
+                    <option value='' disabled selected hidden>
+                      Select option
+                    </option>
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.liftCapacity && (
+                        <ErrorMessage name='Ability to lift 100lbs is required' />
+                      )}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor='ownTruck'>Do you own a truck?</label>
+                  <select
+                    id='ownTruck'
+                    {...register('ownTruck', { required: true })}
+                  >
+                    <option value='' disabled selected hidden>
+                      Select option
+                    </option>
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+
+                  <section className={styles.error}>
+                    <AnimatePresence>
+                      {errors.ownTruck && (
+                        <ErrorMessage name='Owning a truck is required' />
+                      )}
+                    </AnimatePresence>
+                  </section>
+                </div>
+
+                <button type='submit'>
+                  {!isFromSubmitted ? 'Submit' : 'Submitting ...'}
+                </button>
               </form>
             </div>
           </div>

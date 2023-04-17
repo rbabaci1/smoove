@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ name }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }} // initial position of the span
@@ -12,7 +12,7 @@ const ErrorMessage = () => {
       viewport={{ once: true }}
       className={styles.container}
     >
-      <span>This field is required</span>
+      <span>{name} is required</span>
     </motion.div>
   );
 };

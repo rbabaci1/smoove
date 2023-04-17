@@ -16,7 +16,6 @@ const Become_a_mover = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
     reset,
   } = useForm();
 
@@ -37,7 +36,7 @@ const Become_a_mover = () => {
         liftCapacity: '',
         ownTruck: '',
       });
-    }, 1500);
+    }, 3000);
   };
 
   return (
@@ -324,7 +323,7 @@ const Become_a_mover = () => {
                 </div>
 
                 <button type='submit'>
-                  {!isFromSubmitted ? 'Submit' : 'Submitting ...'}
+                  {isFromSubmitted ? 'Thanks' : 'Submit'}
                 </button>
               </form>
             </div>

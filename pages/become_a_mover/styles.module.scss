@@ -1,0 +1,142 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.main {
+  .content {
+    background-color: rgba(16, 15, 15, 0.7);
+
+    .backgroundImg {
+      position: fixed;
+      top: 5rem;
+      min-height: calc(100vh - 5rem);
+      width: 100%;
+      background-image: url('/images/movers.jpg');
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .container {
+      @include flex(row, space-between, flex-start);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 01.5rem;
+
+      .left {
+        width: 55%;
+        color: $white;
+
+        p {
+          color: $light-gray;
+        }
+
+        .header {
+          span {
+            @include radius(1.2rem, 0, 0, 1.2rem);
+            background-color: $yellow;
+            color: $apricot;
+            font-weight: 700;
+            padding: 0.05rem 0.8rem;
+            font-size: 20px;
+          }
+        }
+
+        .underHeader {
+          padding-bottom: 4rem;
+          border-bottom: 1px solid $light-gray;
+
+          img {
+            margin: 1.8rem 0;
+          }
+        }
+
+        .becomeMover {
+          padding: 4rem 0;
+
+          h1 {
+            span {
+              background-color: $main-color;
+              color: $white;
+              padding: 2px 15px;
+              @include radius(2rem, 0, 0, 2rem);
+            }
+          }
+
+          .perks {
+            padding-top: 3rem;
+
+            li {
+              @include flex(row, flex-start);
+              list-style: none;
+              margin-bottom: 1.5rem;
+
+              section {
+                width: 85%;
+                padding-left: 1.5rem;
+
+                p {
+                  margin-top: 5px;
+                }
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        form {
+          @include flex(column, space-between, flex-start);
+          background-color: $white;
+          padding: 2rem;
+          border-radius: 0.5rem;
+
+          .input {
+            @include flex(column, space-between, flex-start);
+            // margin-bottom: 1rem;
+
+            label {
+              padding-bottom: 0.5rem;
+              font-size: 1.15rem;
+              font-weight: 500;
+            }
+
+            input {
+              padding: 0.5rem;
+              border-radius: 0.4rem;
+              border: 1px solid $light-gray;
+
+              &:hover {
+                border-color: #111;
+              }
+            }
+
+            .error {
+              width: 100%;
+              height: 2.2rem;
+              padding: 0.4rem 0 0 0.5rem;
+            }
+          }
+
+          button {
+            width: 100%;
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      // inside content
+    }
+
+    @media screen and (max-width: 767px) {
+      // inside content
+    }
+
+    @media screen and (max-width: 389px) {
+    }
+  }
+}

@@ -63,7 +63,7 @@ function Footer({ bgColor = '#f7faff' }) {
               </li>
 
               <li>
-                <Link href='/become_a_mover'>Join us</Link>
+                <Link href='/become_a_mover'>Become a mover</Link>
               </li>
             </ul>
           </div>

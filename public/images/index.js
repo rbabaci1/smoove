@@ -14,6 +14,12 @@ import avatar4 from './avatar4.jpg';
 
 import help from './help.png';
 
+import calendar from './calendar.png';
+import cash from './cash.png';
+import daily from './daily.png';
+import smile from './smile.png';
+import trucks from './trucks.png';
+
 export {
   fam1,
   fam2,
@@ -27,4 +33,9 @@ export {
   avatar3,
   avatar4,
   help,
+  calendar,
+  cash,
+  daily,
+  smile,
+  trucks,
 };

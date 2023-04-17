@@ -11,16 +11,16 @@ const Contact = () => {
   return (
     <>
       <Head>
-        <title>Contact | Smoove</title>
+        <title>Contact - Smoove</title>
         <meta
           name='description'
           content={`Connect with Smoove - Your Trusted Moving Partner. Contact Smoove via email for all your inquiries - from customer support to business partnerships. Get in touch with our knowledgeable team for prompt assistance and solutions. Stores can also request free flyers to enhance their business. Job hunters can inquire about available positions. Contact Smoove today for a seamless experience and personalized support.`}
         />
       </Head>
 
-      <Navbar />
-
       <div className={styles.main}>
+        <Navbar />
+
         <div className={styles.content}>
           <div className={styles.contact}>
             <h1>Contact us</h1>
@@ -76,9 +76,9 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 };

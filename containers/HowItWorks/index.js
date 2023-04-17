@@ -49,7 +49,7 @@ const HowItWorks = ({ bgColor = '#fff' }) => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <Image src={howItWorks1} alt='first moving step is to book' />
@@ -73,7 +73,7 @@ const HowItWorks = ({ bgColor = '#fff' }) => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <Image src={howItWorks2} alt='we move your items' />
@@ -97,7 +97,7 @@ const HowItWorks = ({ bgColor = '#fff' }) => {
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <Image src={howItWorks3} alt='moving is done' />

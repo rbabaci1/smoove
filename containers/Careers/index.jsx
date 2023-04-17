@@ -1,8 +1,11 @@
+import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
 const Careers = ({ bgColor = '#fff' }) => {
+  const router = useRouter();
+
   return (
     <div
       className={styles.containerWrapper}
@@ -18,13 +21,13 @@ const Careers = ({ bgColor = '#fff' }) => {
         <div className={styles.textContent}>
           <h2>Start making money now</h2>
           <p>
-            Be active, meet new people daily & earn up to <span>$2900</span> a
-            week!
+            Be active, meet new people daily & earn up to <span>$2900</span>
+            <br /> a week!
           </p>
 
           <motion.button
             whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
-            type='submit'
+            onClick={() => router.push('/become_a_mover')}
           >
             Apply now
           </motion.button>

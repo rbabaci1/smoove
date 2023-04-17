@@ -30,6 +30,8 @@
         margin-right: 1rem;
 
         h1 {
+          font-size: clamp(2.1rem, 6vw, 3.8rem);
+
           span {
             background-color: $main-color;
             color: $yellow;
@@ -133,8 +135,6 @@
               }
             }
 
-            // add styles to select icon
-
             .birthDate {
               padding: 0.5rem;
             }
@@ -162,25 +162,109 @@
     @media screen and (max-width: 1024px) {
       .container {
         grid-template-columns: 1fr;
-        padding: 4rem 1.5rem 3rem 1.5rem;
+        padding: 4rem 1.5rem 4rem 1.5rem;
 
         .left {
           margin-right: 0;
+        }
+      }
+    }
 
+    @media screen and (max-width: 767px) {
+      .container {
+        .left {
           .becomeMover {
-            h1 {
-              border: 1px solid red;
+            .perks {
+              li {
+                width: 100%;
+                justify-content: space-between;
+
+                img {
+                  width: 45px;
+                  height: 45px;
+                }
+                section {
+                  width: 82%;
+                  padding: 0;
+                }
+              }
             }
           }
         }
       }
     }
 
-    @media screen and (max-width: 767px) {
-      // inside content
-    }
-
     @media screen and (max-width: 389px) {
+      .backgroundImg {
+        top: 3rem;
+        min-height: calc(100vh - 3rem);
+        background-position: center;
+      }
+
+      .container {
+        padding: 3rem 0.5rem 2rem 0.5rem;
+
+        .left {
+          h1 {
+            font-size: clamp(1.1rem, 6vw, 2.1rem);
+
+            span {
+              padding: 0 10px;
+            }
+          }
+          .header p span {
+            font-size: 12px;
+            padding: 0 0.4rem;
+          }
+
+          .underHeader {
+            padding-bottom: 2rem;
+          }
+          .becomeMover {
+            padding: 2rem 0;
+
+            .perks {
+              padding-top: 1rem;
+
+              li {
+                img {
+                  width: 30px;
+                  height: 30px;
+                }
+                section {
+                  width: 80%;
+                }
+              }
+            }
+          }
+        }
+
+        .right {
+          form {
+            padding: 0.5rem;
+
+            .input {
+              label {
+                font-size: 0.7rem;
+              }
+
+              input,
+              select {
+                font-size: 0.7rem;
+                padding: 0.1rem 0.2rem;
+              }
+
+              .birthDate {
+                padding: 0.5rem 0.5rem 0.5rem 0;
+              }
+            }
+
+            button {
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -185,7 +185,7 @@
     }
 
     @media screen and (max-width: 389px) {
-      padding: 2rem 0.5rem 1rem 0.5rem;
+      padding: 2rem 0.5rem 0 0.5rem;
 
       .subscribe {
         padding-bottom: 2rem;
@@ -206,6 +206,20 @@
         .appsContainer {
           .apps {
             margin-top: 1rem;
+            justify-content: space-between;
+
+            .app {
+              padding: 0.3rem;
+
+              span {
+                font-size: 0.5rem;
+              }
+
+              .apple,
+              .android {
+                font-size: 1rem;
+              }
+            }
 
             .app:first-child {
               margin-right: 0;

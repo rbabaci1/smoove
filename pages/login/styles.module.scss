@@ -10,7 +10,6 @@
     padding: 0rem 1.5rem 10rem 1.5rem;
 
     .header {
-      // width: fit-content;
       text-align: center;
 
       span {
@@ -18,31 +17,31 @@
         font-size: clamp(0.9rem, 4.5vw, 1.2rem);
         color: gray;
         font-weight: 500;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
       }
     }
 
     form {
       @include flex(column, center, flex-start);
-      padding-top: 2rem;
+      padding-top: 3rem;
       min-width: 21rem;
-      width: fit-content;
+
+      input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 1.15rem;
+        border: 1px solid $light-gray;
+      }
 
       .phoneNumberInput {
         width: 100%;
+        margin-bottom: 2rem;
+        position: relative;
 
-        input {
-          width: 100%;
-          padding: 0.8rem 1rem;
-          border-radius: 0.5rem;
-          font-weight: 500;
-          font-size: 1.15rem;
-          margin: 1.5rem 0 0 0;
-          border: 1px solid $light-gray;
-
-          &:hover {
-            border-color: #111;
-          }
+        .input input:disabled {
+          opacity: 0.5;
         }
 
         select,
@@ -50,32 +49,71 @@
           display: none;
         }
 
-        .error {
-          margin-top: 0.2rem;
-          width: 100%;
-          height: 2.5rem;
+        .borderError input {
+          border-color: $error-color;
         }
       }
 
       .verificationCode {
         width: 100%;
-        height: 3.5rem;
+        position: relative;
 
         input {
-          margin: 0;
+          border: 1px solid $light-gray;
+        }
+
+        .borderError {
+          border-color: $error-color;
+        }
+
+        svg {
+          color: $main-color;
+          font-size: 1.3rem;
+          position: absolute;
+          right: 1rem;
+          top: 1.1rem;
+          animation: rotate 1s infinite linear;
+        }
+
+        .resendCode {
+          position: absolute;
+          right: 0.5rem;
+          top: 1.2rem;
+          font-weight: 600;
+          color: $main-color;
+          cursor: pointer;
         }
       }
 
-      .error {
-        height: 2rem;
-        padding-top: 0.3rem;
+      .textError {
+        position: absolute;
         text-align: center;
+        margin-top: 0.3rem;
         width: 100%;
       }
 
       button {
         width: 100%;
+        position: relative;
+        height: 3.5rem;
+
+        svg {
+          top: 1.15rem !important;
+          right: 9.6rem !important;
+        }
+      }
+
+      button:disabled {
+        cursor: default;
       }
     }
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

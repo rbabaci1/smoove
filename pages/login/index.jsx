@@ -1,26 +1,111 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import styles from './styles.module.scss';
 import { Navbar, ErrorMessage } from '@/components';
 import { Footer } from '@/containers';
 
+// temporary verification code length
+const verificationCodeLength = 4;
+const CODE = '1234';
+
 const Login = () => {
+  const phoneNumberInputRef = useRef(null);
+  const verificationCodeInputRef = useRef(null);
+
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [previousVerificationCode, setPreviousVerificationCode] = useState('');
+
   const [sendingVerificationCode, setSendingVerificationCode] = useState(false);
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
-  const [showVerificationCodeInput, setShowVerificationCodeInput] =
-    useState(false);
-  const [error, setError] = useState('');
+  const [verifyingCode, setVerifyingCode] = useState(false);
+
+  const [phoneNumberErrors, setPhoneNumberErrors] = useState('');
+  const [verificationCodeErrors, setVerificationCodeErrors] = useState('');
+
+  useEffect(() => {
+    if (!verificationCodeSent && phoneNumberInputRef.current) {
+      phoneNumberInputRef.current.focus();
+    } else if (verificationCodeInputRef.current) {
+      if (verificationCodeSent || verifyingCode) {
+        verificationCodeInputRef.current.focus();
+      }
+    }
+  }, [verificationCodeSent, verifyingCode]);
 
   const handlePhoneNumberChange = value => {
     setPhoneNumber(value);
 
     if (value !== undefined && isPossiblePhoneNumber(value) === true) {
-      setError('');
+      setPhoneNumberErrors('');
     }
+  };
+
+  const handleVerificationCodeChange = e => {
+    const verificationCode = e.target.value;
+    const event = {
+      target: { value: verificationCode },
+      key: 'Enter',
+      keyCode: 13,
+    };
+
+    setVerificationCodeErrors('');
+    setVerificationCode(verificationCode);
+
+    // verify code automatically if code length is equal to verificationCodeLength
+    if (verificationCode.length === verificationCodeLength) {
+      if (previousVerificationCode !== verificationCode) {
+        verifyCode(event);
+      } else {
+        setVerificationCodeErrors('Same verification code. Please try again.');
+      }
+    }
+  };
+
+  const verifyCode = event => {
+    const {
+      key,
+      keyCode,
+      target: { value: verificationCode },
+    } = event;
+
+    if (key === 'Enter' || keyCode === 13) {
+      if (verificationCode.length === 0) {
+        setVerificationCodeErrors('Please enter a verification code');
+      } else if (verificationCode.length < verificationCodeLength) {
+        setVerificationCodeErrors('Wrong verification code. Please try again.');
+      } else if (previousVerificationCode === verificationCode) {
+        setVerificationCodeErrors('Same verification code. Please try again.');
+      } else {
+        setVerifyingCode(true);
+        setVerificationCodeErrors('');
+        setPreviousVerificationCode(verificationCode);
+
+        setTimeout(() => {
+          setVerifyingCode(false);
+
+          // !! verify code with server and redirect to dashboard if successful
+          if (verificationCode === CODE) {
+            // redirect to dashboard
+            console.log('SUCCESS');
+          } else {
+            setVerificationCodeErrors(
+              'Wrong verification code. Please try again.'
+            );
+          }
+        }, 2000);
+      }
+    }
+  };
+
+  const resendCode = () => {
+    setVerificationCode('');
+    setVerificationCodeErrors('');
+    setVerificationCodeSent(false);
   };
 
   const handleSubmit = e => {
@@ -32,13 +117,12 @@ const Login = () => {
       setTimeout(() => {
         setSendingVerificationCode(false);
         setVerificationCodeSent(true);
-        setShowVerificationCodeInput(true);
       }, 2000);
     } else {
       if (phoneNumber === '') {
-        setError('Please enter a phone number');
+        setPhoneNumberErrors('Please enter a phone number');
       } else {
-        setError('Please enter a valid phone number');
+        setPhoneNumberErrors('Please enter a valid phone number');
       }
     }
   };
@@ -79,39 +163,81 @@ const Login = () => {
                 defaultCountry='US'
                 limitMaxLength={true}
                 international={false}
+                className={`${
+                  phoneNumberErrors.length ? styles.borderError : ''
+                } ${styles.input}`}
+                disabled={sendingVerificationCode || verificationCodeSent}
+                ref={phoneNumberInputRef}
               />
 
-              <section className={styles.error}>
+              <section className={styles.textError}>
                 <AnimatePresence>
-                  {error.length && <ErrorMessage message={error} />}
+                  {phoneNumberErrors.length && (
+                    <ErrorMessage message={phoneNumberErrors} />
+                  )}
                 </AnimatePresence>
               </section>
             </motion.div>
 
             <div className={styles.verificationCode}>
               <AnimatePresence>
-                {showVerificationCodeInput ? (
-                  <motion.input
-                    type='text'
-                    placeholder='Enter verification code'
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 40 }}
-                    transition={{ duration: 0.3 }}
-                    viewport={{ once: true }}
-                  />
+                {verificationCodeSent ? (
+                  <>
+                    <motion.input
+                      type='tel'
+                      placeholder='Enter verification code'
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 40 }}
+                      transition={{ duration: 0.3 }}
+                      viewport={{ once: true }}
+                      onChange={handleVerificationCodeChange}
+                      onKeyDown={verifyCode}
+                      value={verificationCode}
+                      className={
+                        verificationCodeErrors.length ? styles.borderError : ''
+                      }
+                      disabled={verifyingCode}
+                      ref={verificationCodeInputRef}
+                    />
+
+                    <section className={styles.textError}>
+                      <AnimatePresence>
+                        {verificationCodeErrors.length && (
+                          <ErrorMessage message={verificationCodeErrors} />
+                        )}
+                      </AnimatePresence>
+                    </section>
+
+                    {verifyingCode || sendingVerificationCode ? (
+                      <AiOutlineLoading3Quarters />
+                    ) : (
+                      <motion.span
+                        className={styles.resendCode}
+                        onClick={resendCode}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        viewport={{ once: true }}
+                      >
+                        Resend?
+                      </motion.span>
+                    )}
+                  </>
                 ) : (
                   <motion.button
                     type='submit'
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 40 }}
                     transition={{ duration: 0.3 }}
                     viewport={{ once: true }}
+                    disabled={sendingVerificationCode}
                   >
-                    {sendingVerificationCode
-                      ? 'Sending...'
-                      : 'Request verification code'}
+                    {sendingVerificationCode ? (
+                      <AiOutlineLoading3Quarters />
+                    ) : (
+                      'Request verification code'
+                    )}
                   </motion.button>
                 )}
               </AnimatePresence>

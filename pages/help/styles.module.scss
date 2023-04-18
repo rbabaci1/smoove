@@ -37,7 +37,7 @@
 
         input {
           border: 1px solid $gray;
-          padding: 0.7rem 1rem 0.7rem 3rem;
+          padding: 0.8rem 1rem 0.8rem 3rem;
           border-radius: 0.5rem;
           width: 100%;
         }
@@ -79,12 +79,6 @@
       .input {
         padding: 2rem 0;
         width: 100%;
-
-        .searchInput {
-          input {
-            width: 100%;
-          }
-        }
       }
 
       img {

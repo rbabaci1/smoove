@@ -25,11 +25,9 @@
         input {
           background-color: $white;
           color: #111;
-          padding: 0.65rem 1.2rem;
-          font-size: 1.1rem;
+          // padding: 0.65rem 1.2rem;
           border: 1px solid $light-blue;
           border-radius: 0.5rem;
-          width: 100%;
           max-width: 15.5rem;
 
           &:hover {

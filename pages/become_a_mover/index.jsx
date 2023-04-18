@@ -30,7 +30,6 @@ const Become_a_mover = () => {
         fullName: '',
         phoneNumber: '',
         email: '',
-        birthDate: '',
         location: '',
         referral: '',
         liftCapacity: '',
@@ -211,25 +210,6 @@ const Become_a_mover = () => {
                     <AnimatePresence>
                       {errors.email && (
                         <ErrorMessage message='Email is required.' />
-                      )}
-                    </AnimatePresence>
-                  </section>
-                </div>
-
-                <div className={styles.input}>
-                  <label htmlFor='birthDate'>Birth date</label>
-                  <input
-                    className={styles.birthDate}
-                    placeholder='mm/dd/yyyy'
-                    type='date'
-                    id='birthDate'
-                    {...register('birthDate', { required: true })}
-                  />
-
-                  <section className={styles.error}>
-                    <AnimatePresence>
-                      {errors.birthDate && (
-                        <ErrorMessage message='Birth date is required.' />
                       )}
                     </AnimatePresence>
                   </section>

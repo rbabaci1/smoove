@@ -3,11 +3,11 @@
 
 .main {
   .content {
-    @include flex(column);
+    @include flex(column, flex-start);
     height: calc(100vh - 5rem);
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0rem 1.5rem 10rem 1.5rem;
+    padding: 8rem 1.5rem 0 1.5rem;
 
     .header {
       text-align: center;
@@ -27,11 +27,7 @@
       min-width: 21rem;
 
       input {
-        width: 100%;
-        padding: 0.8rem 1rem;
         border-radius: 0.5rem;
-        font-weight: 600;
-        font-size: 1.15rem;
         border: 1px solid $light-gray;
       }
 
@@ -82,6 +78,7 @@
           font-weight: 600;
           color: $main-color;
           cursor: pointer;
+          font-size: clamp(0.85rem, 5vw, 1rem);
         }
       }
 

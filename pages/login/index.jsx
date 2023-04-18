@@ -61,7 +61,7 @@ const Login = () => {
 
             <div className={styles.verificationCode}>
               <AnimatePresence>
-                {!showVerificationCodeInput ? (
+                {showVerificationCodeInput ? (
                   <motion.input
                     type='text'
                     placeholder='Enter verification code'

@@ -30,7 +30,7 @@
         border-radius: 0.5rem;
         border: 1px solid $light-gray;
         font-weight: 600;
-        font-size: clamp(0.9rem, 4.5vw, 1.4rem);
+        font-size: clamp(0.9rem, 4.5vw, 1.3rem);
       }
       ::placeholder {
         font-weight: 500;
@@ -83,7 +83,7 @@
           font-weight: 600;
           color: $main-color;
           cursor: pointer;
-          font-size: clamp(0.75rem, 5vw, 0.9rem);
+          font-size: clamp(0.8rem, 5vw, 0.95rem);
         }
       }
 

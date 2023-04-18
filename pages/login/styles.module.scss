@@ -80,6 +80,7 @@
           position: absolute;
           right: 0.5rem;
           top: 1.35rem;
+
           font-weight: 600;
           color: $main-color;
           cursor: pointer;
@@ -101,7 +102,7 @@
 
         svg {
           top: 1.15rem !important;
-          right: 9.6rem !important;
+          right: 10rem !important;
         }
       }
 
@@ -120,8 +121,7 @@
           height: 4.2rem;
 
           svg {
-            top: 1.35rem !important;
-            right: 10rem !important;
+            top: 1.4rem !important;
           }
         }
 

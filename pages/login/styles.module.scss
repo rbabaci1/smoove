@@ -29,8 +29,8 @@
       input {
         border-radius: 0.5rem;
         border: 1px solid $light-gray;
-        font-weight: 600;
-        font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+        font-weight: 500;
+        font-size: clamp(0.9rem, 4.5vw, 1.4rem);
       }
 
       .phoneNumberInput {
@@ -69,7 +69,7 @@
           font-size: 1.3rem;
           position: absolute;
           right: 1rem;
-          top: 1.1rem;
+          top: 1.3rem;
           animation: rotate 1s infinite linear;
         }
 

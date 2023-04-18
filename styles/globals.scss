@@ -100,7 +100,7 @@ textarea {
 
 button {
   padding: 1.1rem 1rem;
-  font-size: 1.1rem;
+  // font-size: 1.2rem !important;
   background-color: $yellow;
   border-radius: 0.5rem;
   color: $dark-blue;
@@ -166,8 +166,9 @@ input:-webkit-autofill:active {
 
 /* h1 typography */
 h1 {
-  font-size: clamp(2.3rem, 6vw, 4rem);
-  margin-bottom: 0.75rem;
+  font-size: clamp(2.3rem, 6vw, 3.8rem) !important;
+
+  margin: 0 0 0.75rem 0 !important;
   font-weight: 800;
 }
 

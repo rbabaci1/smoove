@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import styles from './styles.module.scss';
-import { Navbar } from '@/components';
+import { Navbar, ErrorMessage } from '@/components';
 import { Footer } from '@/containers';
 
 const Login = () => {
@@ -13,9 +13,18 @@ const Login = () => {
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
   const [showVerificationCodeInput, setShowVerificationCodeInput] =
     useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = formData => {
-    // console.log(isPossiblePhoneNumber(phoneNumber) === true);
+  const handlePhoneNumberChange = value => {
+    setPhoneNumber(value);
+
+    if (value !== undefined && isPossiblePhoneNumber(value) === true) {
+      setError('');
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
 
     if (isPossiblePhoneNumber(phoneNumber) === true) {
       setSendingVerificationCode(true);
@@ -26,7 +35,11 @@ const Login = () => {
         setShowVerificationCodeInput(true);
       }, 2000);
     } else {
-      console.log('Invalid phone number');
+      if (phoneNumber === '') {
+        setError('Please enter a phone number');
+      } else {
+        setError('Please enter a valid phone number');
+      }
     }
   };
 
@@ -50,14 +63,30 @@ const Login = () => {
           </section>
 
           <form onSubmit={handleSubmit}>
-            <PhoneInput
-              placeholder='Enter phone number'
-              value={phoneNumber}
-              onChange={setPhoneNumber}
-              country='US'
-              defaultCountry='US'
-              limitMaxLength={true}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
+              className={styles.phoneNumberInput}
+            >
+              <PhoneInput
+                placeholder='Enter phone number'
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+                country='US'
+                defaultCountry='US'
+                limitMaxLength={true}
+                international={false}
+              />
+
+              <section className={styles.error}>
+                <AnimatePresence>
+                  {error.length && <ErrorMessage message={error} />}
+                </AnimatePresence>
+              </section>
+            </motion.div>
 
             <div className={styles.verificationCode}>
               <AnimatePresence>

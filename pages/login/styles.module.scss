@@ -25,27 +25,36 @@
     form {
       @include flex(column, center, flex-start);
       padding-top: 2rem;
+      min-width: 21rem;
       width: fit-content;
 
-      min-width: 21rem;
-
-      input {
+      .phoneNumberInput {
         width: 100%;
-        padding: 0.8rem 1rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        font-size: 1.15rem;
-        margin: 1.5rem 0;
-        border: 1px solid $light-gray;
 
-        &:hover {
-          border-color: #111;
+        input {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          border-radius: 0.5rem;
+          font-weight: 500;
+          font-size: 1.15rem;
+          margin: 1.5rem 0 0 0;
+          border: 1px solid $light-gray;
+
+          &:hover {
+            border-color: #111;
+          }
         }
-      }
 
-      select,
-      img {
-        display: none;
+        select,
+        img {
+          display: none;
+        }
+
+        .error {
+          margin-top: 0.2rem;
+          width: 100%;
+          height: 2.5rem;
+        }
       }
 
       .verificationCode {

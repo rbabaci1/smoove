@@ -83,7 +83,7 @@
           font-weight: 600;
           color: $main-color;
           cursor: pointer;
-          font-size: clamp(0.8rem, 5vw, 0.95rem);
+          font-size: clamp(0.85rem, 5vw, 0.95rem);
         }
       }
 
@@ -118,6 +118,11 @@
 
         button {
           height: 4.2rem;
+
+          svg {
+            top: 1.35rem !important;
+            right: 10rem !important;
+          }
         }
 
         .verificationCode .resendCode {

@@ -11,7 +11,7 @@ const Partner = () => {
         <title>Become a partner - Smoove</title>
         <meta
           name='description'
-          content={`Join the Smoove Partner Program and offer same-day delivery for your store with Smoove, your trusted moving partner. Sign up today to become a Smoove partner and connect with our knowledgeable team for prompt assistance and solutions. Enhance your business with free flyers and start fulfilling same-day deliveries to your customers as early as the next day. Join Smoove now for a seamless experience and personalized support on your journey to providing fast and reliable delivery services through our trusted moving service.`}
+          content='Join the Smoove Partner Program and offer same-day delivery for your store with Smoove, your trusted moving partner. Sign up today to become a Smoove partner and connect with our knowledgeable team for prompt assistance and solutions. Enhance your business with free flyers and start fulfilling same-day deliveries to your customers as early as the next day. Join Smoove now for a seamless experience and personalized support on your journey to providing fast and reliable delivery services through our trusted moving service.'
         />
       </Head>
 

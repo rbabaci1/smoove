@@ -173,7 +173,9 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.fullName && <ErrorMessage name='Full name' />}
+                      {errors.fullName && (
+                        <ErrorMessage message='Full name is required.' />
+                      )}
                     </AnimatePresence>
                   </section>
                 </div>
@@ -190,7 +192,7 @@ const Become_a_mover = () => {
                   <section className={styles.error}>
                     <AnimatePresence>
                       {errors.phoneNumber && (
-                        <ErrorMessage name='Phone number' />
+                        <ErrorMessage message='Phone number is required.' />
                       )}
                     </AnimatePresence>
                   </section>
@@ -207,7 +209,9 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.email && <ErrorMessage name='Email' />}
+                      {errors.email && (
+                        <ErrorMessage message='Email is required.' />
+                      )}
                     </AnimatePresence>
                   </section>
                 </div>
@@ -224,7 +228,9 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.birthDate && <ErrorMessage name='Birth date' />}
+                      {errors.birthDate && (
+                        <ErrorMessage message='Birth date is required.' />
+                      )}
                     </AnimatePresence>
                   </section>
                 </div>
@@ -247,7 +253,9 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.location && <ErrorMessage name='Location' />}
+                      {errors.location && (
+                        <ErrorMessage message='Location is required.' />
+                      )}
                     </AnimatePresence>
                   </section>
                 </div>
@@ -272,7 +280,9 @@ const Become_a_mover = () => {
 
                   <section className={styles.error}>
                     <AnimatePresence>
-                      {errors.referral && <ErrorMessage name='Location' />}
+                      {errors.referral && (
+                        <ErrorMessage message='Referred is required' />
+                      )}
                     </AnimatePresence>
                   </section>
                 </div>
@@ -295,7 +305,7 @@ const Become_a_mover = () => {
                   <section className={styles.error}>
                     <AnimatePresence>
                       {errors.liftCapacity && (
-                        <ErrorMessage name='Ability to lift 100lbs is required' />
+                        <ErrorMessage message='Ability to lift 100lbs is required' />
                       )}
                     </AnimatePresence>
                   </section>
@@ -317,7 +327,7 @@ const Become_a_mover = () => {
                   <section className={styles.error}>
                     <AnimatePresence>
                       {errors.ownTruck && (
-                        <ErrorMessage name='Owning a truck is required' />
+                        <ErrorMessage message='Owning a truck is required' />
                       )}
                     </AnimatePresence>
                   </section>

@@ -99,7 +99,7 @@ textarea {
 }
 
 button {
-  padding: 1rem;
+  padding: 1.15rem;
   background-color: $yellow;
   border-radius: 0.5rem;
   color: $dark-blue;
@@ -310,4 +310,9 @@ a {
 
 ::-webkit-scrollbar-corner {
   background: $yellow;
+}
+
+// react-phone-input reset
+.PhoneInput {
+  width: 100%;
 }

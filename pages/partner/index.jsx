@@ -1,6 +1,8 @@
 import Head from 'next/head';
 
+import { Navbar } from '@/components';
 import styles from './styles.module.scss';
+import { Footer } from '@/containers';
 
 const Partner = () => {
   return (
@@ -14,12 +16,16 @@ const Partner = () => {
       </Head>
 
       <div className={styles.main}>
+        <Navbar />
+
         <div className={styles.content}>
           <div className={styles.header}>
             <h1>Same day deliver</h1>
             <p>Empower your store to fulfill same-day delivery requests!</p>
           </div>
         </div>
+
+        <Footer />
       </div>
     </>
   );

@@ -213,9 +213,10 @@ const Become_a_mover = () => {
                 </div>
 
                 <div className={styles.input}>
-                  <label htmlFor='birthDate'>Birth-date</label>
+                  <label htmlFor='birthDate'>Birth date</label>
                   <input
                     className={styles.birthDate}
+                    placeholder='mm/dd/yyyy'
                     type='date'
                     id='birthDate'
                     {...register('birthDate', { required: true })}

@@ -21,8 +21,8 @@ const Careers = ({ bgColor = '#fff' }) => {
         <div className={styles.textContent}>
           <h2>Start making money now</h2>
           <p>
-            Be active, meet new people daily & earn up to <span>$2900</span>
-            <br /> a week!
+            Be active, meet new people daily & earn up to <span>$2900</span> a
+            week!
           </p>
 
           <motion.button

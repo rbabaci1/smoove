@@ -45,7 +45,7 @@ const Login = () => {
 
         <div className={styles.content}>
           <section className={styles.header}>
-            <h1>Ahoy there!</h1>
+            <h1>Hello there!</h1>
             <span>Tap your digits, gain access!</span>
           </section>
 

@@ -212,16 +212,9 @@ const Login = () => {
                     {verifyingCode || sendingVerificationCode ? (
                       <AiOutlineLoading3Quarters />
                     ) : (
-                      <motion.span
-                        className={styles.resendCode}
-                        onClick={resendCode}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        viewport={{ once: true }}
-                      >
+                      <span className={styles.resendCode} onClick={resendCode}>
                         Resend?
-                      </motion.span>
+                      </span>
                     )}
                   </>
                 ) : (

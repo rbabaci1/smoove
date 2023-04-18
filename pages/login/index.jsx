@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import { useForm } from 'react-hook-form';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import styles from './styles.module.scss';
-import { ErrorMessage, Navbar } from '@/components';
+import { Navbar } from '@/components';
 import { Footer } from '@/containers';
 
 const Login = () => {
@@ -15,16 +14,7 @@ const Login = () => {
   const [showVerificationCodeInput, setShowVerificationCodeInput] =
     useState(false);
 
-  console.log(phoneNumber);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-
-  const onSubmit = formData => {
+  const handleSubmit = formData => {
     // console.log(isPossiblePhoneNumber(phoneNumber) === true);
 
     if (isPossiblePhoneNumber(phoneNumber) === true) {
@@ -56,10 +46,10 @@ const Login = () => {
         <div className={styles.content}>
           <section className={styles.header}>
             <h1>Ahoy there!</h1>
-            <p>Tap your digits, gain access!</p>
+            <span>Tap your digits, gain access!</span>
           </section>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit}>
             <PhoneInput
               placeholder='Enter phone number'
               value={phoneNumber}
@@ -71,7 +61,7 @@ const Login = () => {
 
             <div className={styles.verificationCode}>
               <AnimatePresence>
-                {showVerificationCodeInput ? (
+                {!showVerificationCodeInput ? (
                   <motion.input
                     type='text'
                     placeholder='Enter verification code'
@@ -105,19 +95,5 @@ const Login = () => {
     </>
   );
 };
-// {...register('phoneNumber', {
-//                 pattern: {
-//                   value: /^\(\d{3}\) \d{3}-\d{4}$/,
-//                   message:
-//                     'Please enter a valid phone number in the format (xxx) xxx-xxxx.',
-//                 },
-//                 minLength: {
-//                   value: 14,
-//                   message: 'Phone number must have exactly 10 digits.',
-//                 },
-//                 maxLength: {
-//                   value: 14,
-//                   message: 'Phone number must have exactly 10 digits.',
-//                 },
-//               })}
+
 export default Login;

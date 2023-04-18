@@ -11,25 +11,35 @@
 
     .header {
       width: fit-content;
-      min-width: 21.5rem;
       text-align: center;
+
+      span {
+        display: inline-block;
+        font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+        color: gray;
+        font-weight: 500;
+        margin-top: 1rem;
+      }
     }
 
     form {
       @include flex(column, center, flex-start);
       padding-top: 2rem;
       width: fit-content;
-      min-width: 21.5rem;
+      min-width: 19rem;
 
       input {
         width: 100%;
         padding: 0.8rem 1rem;
         border-radius: 0.5rem;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-          rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         font-weight: 500;
         font-size: 1.15rem;
-        margin-bottom: 1.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid $light-gray;
+
+        &:hover {
+          border-color: #111;
+        }
       }
 
       select,

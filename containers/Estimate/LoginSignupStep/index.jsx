@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 const LoginSignUpStep = () => {
-  return <div>LoginSignUpStep</div>;
+  return <div className={styles.container}>LoginSignUpStep</div>;
 };
 
 export default LoginSignUpStep;

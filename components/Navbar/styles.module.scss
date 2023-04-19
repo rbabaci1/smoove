@@ -67,8 +67,12 @@
       padding: 0.5rem;
 
       .logo {
+        h2 {
+          font-size: clamp(1.25rem, 10vw, 2.5rem) !important;
+          margin: 0 !important;
+        }
         span {
-          font-size: clamp(0.6rem, 4vw, 0.8rem);
+          font-size: clamp(0.65rem, 4vw, 0.8rem);
         }
       }
     }

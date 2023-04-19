@@ -14,9 +14,11 @@ const BookingNavbar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.left}>
-        <BsArrowLeft />
+    <div className={styles.navWrapper}>
+      <div className={styles.container}>
+        <div className={styles.left}>
+          <BsArrowLeft />
+        </div>
       </div>
     </div>
   );

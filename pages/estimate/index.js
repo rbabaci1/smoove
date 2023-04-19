@@ -9,7 +9,7 @@ import {
   ServiceVehiclesStep,
   ConfirmServiceVehicleStep,
   ServiceDetailsStep,
-  LoginSignUpStep,
+  FinalStep,
 } from '@/containers/Estimate';
 import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 
@@ -30,7 +30,7 @@ const Estimate = () => {
       case 5:
         return <ServiceDetailsStep />;
       case 6:
-        return <LoginSignUpStep />;
+        return <FinalStep />;
       default:
         return <AddressesInputStep />;
     }

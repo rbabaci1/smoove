@@ -3,7 +3,7 @@ import ConfirmServiceVehicleStep from './ConfirmServiceVehicleStep';
 import ServiceDetailsStep from './ServiceDetailsStep';
 import ServicesStep from './ServicesStep';
 import ServiceVehiclesStep from './ServiceVehiclesStep';
-import LoginSignUpStep from './LoginSignUpStep';
+import FinalStep from './FinalStep';
 
 export {
   AddressesInputStep,
@@ -11,5 +11,5 @@ export {
   ServiceDetailsStep,
   ServicesStep,
   ServiceVehiclesStep,
-  LoginSignUpStep,
+  FinalStep,
 };

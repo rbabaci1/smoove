@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    height: 5rem;
+    height: 6rem;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -28,8 +28,8 @@
         line-height: 0;
 
         svg {
-          height: 2.3rem;
-          width: 2.3rem;
+          height: 2.7rem;
+          width: 2.7rem;
           color: $main-color;
           background-color: $white;
           margin-right: 1rem;
@@ -42,30 +42,25 @@
         }
       }
 
-      .stepCount {
-        height: 2.3rem;
-        width: 2.3rem;
+      span {
+        display: inline-block;
+        height: 2.7rem;
+        width: 2.7rem;
+        line-height: 2.7rem;
+        text-align: center;
+        background-color: $main-color;
+        color: $white;
+        border-radius: 50%;
+        font-size: 1.35rem;
+        font-weight: 600;
 
-        span {
-          display: inline-block;
-          height: 2.3rem;
-          width: 2.3rem;
-          line-height: 2.3rem;
-          text-align: center;
-          background-color: $main-color;
-          color: $white;
-          border-radius: 50%;
-          font-size: 1.25rem;
-          font-weight: 600;
-
-          svg {
-            height: 2.3rem;
-          }
+        svg {
+          height: 2.7rem;
         }
       }
 
       h3 {
-        font-size: clamp(1rem, 5vw, 1.2rem);
+        font-size: clamp(1.15rem, 6vw, 1.3rem);
         margin-left: 0.5rem;
       }
     }
@@ -84,8 +79,8 @@
       text-align: end;
 
       svg {
-        height: 2.3rem;
-        width: 2.3rem;
+        height: 2.7rem;
+        width: 2.7rem;
         color: $error-color;
         cursor: pointer;
 
@@ -108,6 +103,7 @@
 
     @media screen and (max-width: 767px) {
       @include flex(row, space-between);
+      padding: 0 1rem;
 
       .navigation {
         width: fit-content;
@@ -138,26 +134,21 @@
           }
         }
 
-        .stepCount {
-          height: 1.3rem;
-          width: 1.3rem;
+        span {
+          height: 1.4rem;
+          width: 1.4rem;
+          line-height: 1.4rem;
+          font-size: 0.7rem;
+          margin-right: 0.5rem;
 
-          span {
+          svg {
             height: 1.4rem;
-            width: 1.4rem;
-            line-height: 1.4rem;
-            font-size: 0.7rem;
-            margin-right: 0.5rem;
-
-            svg {
-              height: 1.4rem;
-            }
           }
         }
 
         h3 {
-          font-size: clamp(0.7rem, 5vw, 1rem);
-          margin-left: 0.5rem;
+          font-size: clamp(0.75rem, 5vw, 1rem);
+          margin-left: 0rem;
         }
       }
 

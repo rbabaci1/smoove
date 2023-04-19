@@ -40,15 +40,13 @@ const EstimateNavbar = () => {
             <BsArrowLeftShort />
           </button>
 
-          <section className={styles.stepCount}>
-            {estimateStep > 2 ? (
-              <span>{estimateStep}</span>
-            ) : (
-              <span>
-                <BiListUl />
-              </span>
-            )}
-          </section>
+          {estimateStep > 1 ? (
+            <span>{estimateStep}</span>
+          ) : (
+            <span>
+              <BiListUl />
+            </span>
+          )}
 
           <h3>{stepsNames[estimateStep - 1]}</h3>
         </div>

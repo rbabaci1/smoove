@@ -35,7 +35,7 @@ function Navbar() {
           <motion.button
             whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
             type='text'
-            onClick={() => router.push('/book/location')}
+            onClick={() => router.push('/estimate')}
           >
             Book now
           </motion.button>

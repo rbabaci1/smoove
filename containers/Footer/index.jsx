@@ -59,7 +59,7 @@ function Footer({ bgColor = '#f7faff' }) {
             <h3>Smoove</h3>
             <ul>
               <li>
-                <Link href='/book/location'>Get an estimate</Link>
+                <Link href='/estimate'>Get an estimate</Link>
               </li>
 
               <li>

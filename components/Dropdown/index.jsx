@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import { AiOutlineDown } from 'react-icons/ai';
 import { FcHome, FcShop, FcFullTrash, FcDonate } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
 
+import { updateServiceType } from 'reduxSlices/orderSlice.js';
 import styles from './styles.module.scss';
 
 const Dropdown = () => {
+  const dispatch = useDispatch();
+
+  const selectServiceType = service => {
+    dispatch(updateServiceType(service));
+  };
+
   return (
     <div className={styles.container}>
       <a>
@@ -13,41 +21,30 @@ const Dropdown = () => {
 
       <div className={styles.services}>
         <Link
-          href={{
-            pathname: '/services',
-            query: { type: 'Regular move' },
-          }}
+          href='/estimate'
+          onClick={() => selectServiceType('Regular move')}
         >
           <FcHome />
           Regular move
         </Link>
 
         <Link
-          href={{
-            pathname: '/services',
-            query: { type: 'Store delivery' },
-          }}
+          href='/estimate'
+          onClick={() => selectServiceType('Store delivery')}
         >
           <FcShop />
           Store delivery
         </Link>
 
         <Link
-          href={{
-            pathname: '/services',
-            query: { type: 'Junk removal' },
-          }}
+          href='/estimate'
+          onClick={() => selectServiceType('Junk removal')}
         >
           <FcFullTrash />
           Junk removal
         </Link>
 
-        <Link
-          href={{
-            pathname: '/services',
-            query: { type: 'Donations' },
-          }}
-        >
+        <Link href='/estimate' onClick={() => selectServiceType('Donations')}>
           <FcDonate />
           Donations
         </Link>

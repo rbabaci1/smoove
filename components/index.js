@@ -2,7 +2,7 @@ import Carousel from './Carousel';
 import AddressesInput from './AddressesInput';
 import Dropdown from './Dropdown';
 import Navbar from './Navbar';
-import BookingNavbar from './BookingNavbar';
+import EstimateNavbar from './EstimateNavbar';
 import Review from './Review';
 import ErrorMessage from './ErrorMessage';
 
@@ -11,7 +11,7 @@ export {
   AddressesInput,
   Dropdown,
   Navbar,
-  BookingNavbar,
+  EstimateNavbar,
   Review,
   ErrorMessage,
 };

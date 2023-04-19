@@ -12,15 +12,30 @@ const Carousel = () => {
       </div>
 
       <div className={styles.item}>
-        <Image src={fam2} alt='happy family unpacking after moving' />
+        <Image
+          src={fam2}
+          width='auto'
+          height='auto'
+          alt='happy family unpacking after moving'
+        />
       </div>
 
       <div className={styles.item}>
-        <Image src={truck} alt='company moving truck' />
+        <Image
+          src={truck}
+          width='auto'
+          height='auto'
+          alt='company moving truck'
+        />
       </div>
 
       <div className={styles.item}>
-        <Image src={loading} alt='movers loading truck' />
+        <Image
+          src={loading}
+          width='auto'
+          height='auto'
+          alt='movers loading truck'
+        />
       </div>
     </ImagesCarousel>
   );

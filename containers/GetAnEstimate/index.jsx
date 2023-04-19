@@ -4,7 +4,10 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 
-import { updateAddresses } from '../../reduxSlices/orderSlice';
+import {
+  updateAddresses,
+  goToSpecificEstimateStep,
+} from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 function GetAnEstimate({ bgColor = '#f7faff' }) {
@@ -20,6 +23,7 @@ function GetAnEstimate({ bgColor = '#f7faff' }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(goToSpecificEstimateStep(2));
     router.push('/estimate');
   };
 

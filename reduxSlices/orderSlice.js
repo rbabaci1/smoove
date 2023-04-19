@@ -18,7 +18,7 @@ const initialState = {
     Van: '$90 + $2.00 per labor min',
     XL: '$140 + $2.10 per labor min',
   },
-  proceedToOptions: false,
+  skipStepTwo: false,
 };
 
 export const OrderSlice = createSlice({
@@ -49,17 +49,20 @@ export const OrderSlice = createSlice({
     updateDescription: (state, action) => {
       state.description = action.payload;
     },
-    updateAdditionalContact: (state, action) => {
-      state.additionalContact = action.payload;
+    addAdditionalContact: (state, action) => {
+      state.additionalContacts = [...state.additionalContacts, action.payload];
     },
-    setProceedToOptions: (state, action) => {
-      state.proceedToOptions = action.payload;
+    enableSkipStepTwo: (state, action) => {
+      state.skipStepTwo = true;
     },
     goToNextEstimateStep: state => {
       state.estimateStep += 1;
     },
     goToPreviousEstimateStep: state => {
       state.estimateStep -= 1;
+    },
+    goToSpecificEstimateStep: (state, action) => {
+      state.estimateStep = action.payload;
     },
     resetEstimateSteps: state => {
       state.estimateStep = 1;
@@ -75,10 +78,11 @@ export const {
   updateMovingDate,
   updateMovingWindow,
   updateAvailableMovingWindows,
-  updateAdditionalContact,
-  setProceedToOptions,
+  addAdditionalContact,
+  enableSkipStepTwo,
   goToNextEstimateStep,
   goToPreviousEstimateStep,
+  goToSpecificEstimateStep,
   resetEstimateSteps,
 } = OrderSlice.actions;
 

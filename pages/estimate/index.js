@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
-import { BookingNavbar } from '@/components';
+import { EstimateNavbar } from '@/components';
 import {
   AddressesInputStep,
   ServicesStep,
@@ -15,10 +15,10 @@ import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 
 const Estimate = () => {
   const dispatch = useDispatch();
-  const currEstimateStep = useSelector(state => state.order.estimateStep);
+  const { estimateStep } = useSelector(state => state.order);
 
   const renderStepContainer = () => {
-    switch (currEstimateStep) {
+    switch (estimateStep) {
       case 1:
         return <AddressesInputStep />;
       case 2:
@@ -52,11 +52,14 @@ const Estimate = () => {
 
       <div className={styles.main}>
         <div className={styles.content}>
-          <BookingNavbar />
+          <EstimateNavbar />
 
           <div className={styles.stepContainer}>
             {renderStepContainer()}
-            <button onClick={handleNext}>Continue</button>
+
+            <button onClick={handleNext} hidden={estimateStep === 6}>
+              Continue
+            </button>
           </div>
         </div>
       </div>

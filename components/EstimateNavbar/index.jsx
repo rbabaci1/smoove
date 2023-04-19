@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { BsArrowLeft } from 'react-icons/bs';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { BsArrowLeftShort } from 'react-icons/bs';
+import { BiListUl } from 'react-icons/bi';
 
 const stepsNames = [
-  'Move addresses',
+  'Pickup & dropOff',
   'Select a service',
   'Select a vehicle',
   'Confirm service',
@@ -17,9 +19,10 @@ import {
   resetEstimateSteps,
 } from '@/reduxSlices/orderSlice';
 
-const BookingNavbar = () => {
+const EstimateNavbar = () => {
   const dispatch = useDispatch();
-  const { serviceType, estimateStep } = useSelector(state => state.order);
+  const router = useRouter();
+  const { estimateStep } = useSelector(state => state.order);
 
   const handleBack = () => {
     dispatch(goToPreviousEstimateStep());
@@ -34,16 +37,24 @@ const BookingNavbar = () => {
       <div className={styles.container}>
         <div className={styles.navigation}>
           <button disabled={estimateStep === 1} onClick={handleBack}>
-            <BsArrowLeft />
+            <BsArrowLeftShort />
           </button>
 
-          <span>{estimateStep}</span>
+          <section className={styles.stepCount}>
+            {estimateStep > 2 ? (
+              <span>{estimateStep}</span>
+            ) : (
+              <span>
+                <BiListUl />
+              </span>
+            )}
+          </section>
 
           <h3>{stepsNames[estimateStep - 1]}</h3>
         </div>
 
         <div className={styles.logo}>
-          <h2>Smoove</h2>
+          <h2 onClick={() => router.push('/')}>Smoove</h2>
         </div>
 
         <div className={styles.resetSteps}>
@@ -54,4 +65,4 @@ const BookingNavbar = () => {
   );
 };
 
-export default BookingNavbar;
+export default EstimateNavbar;

@@ -3,13 +3,16 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-import { updateAddresses } from '../../reduxSlices/orderSlice';
+import {
+  updateAddresses,
+  goToSpecificEstimateStep,
+} from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
-  const addresses = useSelector(state => state.order.addresses);
-  const router = useRouter();
   const dispatch = useDispatch();
+  const router = useRouter();
+  const addresses = useSelector(state => state.order.addresses);
 
   const handleChange = event => {
     let { name, value } = event.target;
@@ -19,6 +22,7 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    dispatch(goToSpecificEstimateStep(2));
     router.push('/estimate');
   };
 

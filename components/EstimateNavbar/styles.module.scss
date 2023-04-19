@@ -1,0 +1,172 @@
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
+.navWrapper {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  z-index: 99;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+
+    .navigation {
+      @include flex(row, flex-start);
+
+      button {
+        padding: 0;
+        letter-spacing: 0;
+        border-radius: 0;
+        background-color: transparent;
+        line-height: 0;
+
+        svg {
+          height: 2.3rem;
+          width: 2.3rem;
+          color: $main-color;
+          background-color: $white;
+          margin-right: 1rem;
+
+          &:hover {
+            background-color: $main-color;
+            color: $white;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .stepCount {
+        height: 2.3rem;
+        width: 2.3rem;
+
+        span {
+          display: inline-block;
+          height: 2.3rem;
+          width: 2.3rem;
+          line-height: 2.3rem;
+          text-align: center;
+          background-color: $main-color;
+          color: $white;
+          border-radius: 50%;
+          font-size: 1.25rem;
+          font-weight: 600;
+
+          svg {
+            height: 2.3rem;
+          }
+        }
+      }
+
+      h3 {
+        font-size: clamp(1rem, 5vw, 1.2rem);
+        margin-left: 0.5rem;
+      }
+    }
+
+    .logo {
+      @include flex();
+      color: $main-color;
+
+      h2 {
+        width: fit-content;
+        cursor: pointer;
+      }
+    }
+
+    .resetSteps {
+      text-align: end;
+
+      svg {
+        height: 2.3rem;
+        width: 2.3rem;
+        color: $error-color;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $error-color;
+          color: $white;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    button:disabled {
+      cursor: text;
+      opacity: 0.5;
+    }
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr 0.8fr 1fr;
+    }
+
+    @media screen and (max-width: 767px) {
+      @include flex(row, space-between);
+
+      .navigation {
+        width: fit-content;
+        button {
+          width: fit-content;
+
+          svg {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      .logo {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 374px) {
+      height: 3rem;
+      padding: 0 0.5rem;
+
+      .navigation {
+        button {
+          svg {
+            height: 1.4rem;
+            width: 1.4rem;
+            margin-right: 0.2rem;
+          }
+        }
+
+        .stepCount {
+          height: 1.3rem;
+          width: 1.3rem;
+
+          span {
+            height: 1.4rem;
+            width: 1.4rem;
+            line-height: 1.4rem;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+
+            svg {
+              height: 1.4rem;
+            }
+          }
+        }
+
+        h3 {
+          font-size: clamp(0.7rem, 5vw, 1rem);
+          margin-left: 0.5rem;
+        }
+      }
+
+      .resetSteps {
+        svg {
+          height: 1.4rem;
+          width: 1.4rem;
+        }
+      }
+    }
+  }
+}

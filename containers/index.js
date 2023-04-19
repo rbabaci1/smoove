@@ -6,13 +6,6 @@ import Careers from './Careers';
 import Footer from './Footer';
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
 
-import AddressesInputStep from './Estimate/AddressesInputStep';
-import ConfirmVehicleStep from './Estimate/ConfirmVehicleTypeStep';
-import LoginSignUpStep from './Estimate/LoginSignUpStep';
-import ServiceDetailsStep from './Estimate/ServiceDetailsStep';
-import ServicesStep from './Estimate/ServicesStep';
-import ServiceVehiclesStep from './Estimate/ServiceVehiclesStep';
-
 export {
   Landing,
   HowItWorks,
@@ -21,13 +14,4 @@ export {
   Careers,
   FrequentlyAskedQuestions,
   Footer,
-};
-
-export const Estimate = {
-  AddressesInputStep,
-  ConfirmVehicleStep,
-  LoginSignUpStep,
-  ServiceDetailsStep,
-  ServicesStep,
-  ServiceVehiclesStep,
 };

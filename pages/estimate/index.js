@@ -1,14 +1,44 @@
 import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {} from 'reduxSlices/orderSlice.js';
 import styles from './styles.module.scss';
 import { BookingNavbar } from '@/components';
+import {
+  AddressesInputStep,
+  ServicesStep,
+  ServiceVehiclesStep,
+  ConfirmServiceVehicleStep,
+  ServiceDetailsStep,
+  LoginSignUpStep,
+} from '@/containers/Estimate';
+import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 
 const Estimate = () => {
-  const order = useSelector(state => state.order);
   const dispatch = useDispatch();
-  console.log(order);
+  const currEstimateStep = useSelector(state => state.order.estimateStep);
+
+  const renderStepContainer = () => {
+    switch (currEstimateStep) {
+      case 1:
+        return <AddressesInputStep />;
+      case 2:
+        return <ServicesStep />;
+      case 3:
+        return <ServiceVehiclesStep />;
+      case 4:
+        return <ConfirmServiceVehicleStep />;
+      case 5:
+        return <ServiceDetailsStep />;
+      case 6:
+        return <LoginSignUpStep />;
+      default:
+        return <AddressesInputStep />;
+    }
+  };
+
+  const handleNext = () => {
+    dispatch(goToNextEstimateStep());
+  };
 
   return (
     <>
@@ -23,6 +53,11 @@ const Estimate = () => {
       <div className={styles.main}>
         <div className={styles.content}>
           <BookingNavbar />
+
+          <div className={styles.stepContainer}>
+            {renderStepContainer()}
+            <button onClick={handleNext}>Continue</button>
+          </div>
         </div>
       </div>
     </>

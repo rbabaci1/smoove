@@ -3,5 +3,16 @@
 
 .main {
   .content {
+    .stepContainer {
+      height: 200vh;
+      background-color: $light-blue;
+      padding: 2rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      button {
+        margin-top: 2rem;
+      }
+    }
   }
 }

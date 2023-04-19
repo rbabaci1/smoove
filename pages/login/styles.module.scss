@@ -68,20 +68,20 @@
         }
 
         svg {
-          color: $dark-blue;
+          color: $main-color;
           font-size: 1.3rem;
           position: absolute;
           right: 1rem;
-          top: 1.5rem;
+          top: 1.3rem;
           animation: rotate 1s infinite linear;
         }
 
         .resendCode {
           position: absolute;
           right: 0.5rem;
-          top: 1.35rem;
+          top: 1.4rem;
           font-weight: 600;
-          color: $dark-blue;
+          color: $main-color;
           cursor: pointer;
           font-size: clamp(0.85rem, 5vw, 0.95rem);
         }

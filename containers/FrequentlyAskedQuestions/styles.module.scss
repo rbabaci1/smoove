@@ -22,6 +22,7 @@
 
         p {
           margin: 0;
+          font-size: clamp(0.6rem, 4.5vw, 1.08rem);
         }
 
         svg {

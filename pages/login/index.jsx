@@ -141,16 +141,22 @@ const Login = () => {
         <Navbar />
 
         <div className={styles.content}>
-          <section className={styles.header}>
+          <motion.section
+            className={styles.header}
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
+          >
             <h1>Hello there!</h1>
             <span>Tap your digits, gain access!</span>
-          </section>
+          </motion.section>
 
           <form onSubmit={handleSubmit}>
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 40 }}
+              exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.3 }}
               viewport={{ once: true }}
               className={styles.phoneNumberInput}
@@ -186,9 +192,9 @@ const Login = () => {
                     <motion.input
                       type='tel'
                       placeholder='Enter verification code'
-                      initial={{ opacity: 0, y: 40 }}
+                      initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 40 }}
+                      exit={{ opacity: 0, y: 50 }}
                       transition={{ duration: 0.3 }}
                       viewport={{ once: true }}
                       onChange={handleVerificationCodeChange}
@@ -220,7 +226,7 @@ const Login = () => {
                 ) : (
                   <motion.button
                     type='submit'
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     viewport={{ once: true }}

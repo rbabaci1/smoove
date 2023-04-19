@@ -68,7 +68,7 @@
         }
 
         svg {
-          color: $main-color;
+          color: $dark-blue;
           font-size: 1.3rem;
           position: absolute;
           right: 1rem;
@@ -80,9 +80,8 @@
           position: absolute;
           right: 0.5rem;
           top: 1.35rem;
-
           font-weight: 600;
-          color: $main-color;
+          color: $dark-blue;
           cursor: pointer;
           font-size: clamp(0.85rem, 5vw, 0.95rem);
         }
@@ -130,8 +129,64 @@
         }
       }
     }
+
+    @media screen and (max-width: 389px) {
+      padding: 3rem 0.5rem 0 0.5rem;
+      height: calc(100vh - 3rem);
+
+      .header {
+        h1 {
+          font-size: clamp(1rem, 6vw, 2.1rem) !important;
+        }
+        span {
+          margin: 0;
+        }
+      }
+
+      form {
+        padding-top: 2rem;
+        min-width: 100%;
+
+        input {
+          padding: 0.3rem 0.5rem;
+          font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+        }
+
+        .phoneNumberInput {
+          margin-bottom: 1rem;
+        }
+
+        button {
+          height: 1.8rem;
+          font-size: 0.7rem !important;
+
+          svg {
+            top: 1.4rem !important;
+          }
+        }
+
+        .verificationCode {
+          .resendCode {
+            top: 0.6rem;
+            font-size: clamp(0.6rem, 5vw, 0.8rem);
+          }
+
+          svg {
+            font-size: 0.8rem;
+            right: 50% !important;
+            top: 0.5rem !important;
+          }
+        }
+
+        .textError {
+          margin: 0.05rem;
+          font-size: clamp(0.6rem, 5vw, 0.8rem);
+        }
+      }
+    }
   }
 }
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);

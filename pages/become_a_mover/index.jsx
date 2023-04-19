@@ -221,7 +221,7 @@ const Become_a_mover = () => {
                     id='location'
                     {...register('location', { required: true })}
                   >
-                    <option value='' disabled selected hidden>
+                    <option disabled selected hidden>
                       Choose county
                     </option>
                     <option value='Alameda'>Alameda</option>
@@ -246,7 +246,7 @@ const Become_a_mover = () => {
                     id='referral'
                     {...register('referral', { required: true })}
                   >
-                    <option value='' disabled selected hidden>
+                    <option disabled selected hidden>
                       Select option
                     </option>
                     <option value='Craigslist'>Craigslist</option>
@@ -275,7 +275,7 @@ const Become_a_mover = () => {
                     id='liftCapacity'
                     {...register('liftCapacity', { required: true })}
                   >
-                    <option value='' disabled selected hidden>
+                    <option disabled selected hidden>
                       Select option
                     </option>
                     <option value='yes'>Yes</option>
@@ -297,7 +297,7 @@ const Become_a_mover = () => {
                     id='ownTruck'
                     {...register('ownTruck', { required: true })}
                   >
-                    <option value='' disabled selected hidden>
+                    <option disabled selected hidden>
                       Select option
                     </option>
                     <option value='yes'>Yes</option>

@@ -181,7 +181,7 @@
       }
     }
 
-    @media screen and (max-width: 389px) {
+    @media screen and (max-width: 374px) {
       .backgroundImg {
         top: 3rem;
         min-height: calc(100vh - 3rem);
@@ -193,14 +193,14 @@
 
         .left {
           h1 {
-            font-size: clamp(1.1rem, 6vw, 2.1rem);
+            font-size: clamp(1.1rem, 6vw, 2.1rem) !important;
 
             span {
               padding: 0 10px;
             }
           }
           .header p span {
-            font-size: 12px;
+            font-size: 14px;
             padding: 0 0.4rem;
           }
 
@@ -215,8 +215,8 @@
 
               li {
                 img {
-                  width: 30px;
-                  height: 30px;
+                  width: 32px;
+                  height: 32px;
                 }
                 section {
                   width: 80%;

@@ -76,6 +76,10 @@
           animation: rotate 1s infinite linear;
         }
 
+        button svg {
+          color: $dark-blue;
+        }
+
         .resendCode {
           position: absolute;
           right: 0.5rem;
@@ -116,6 +120,10 @@
           padding: 1.3rem 1rem;
         }
 
+        svg {
+          top: 1.5rem !important;
+        }
+
         button {
           height: 4.2rem;
 
@@ -130,7 +138,7 @@
       }
     }
 
-    @media screen and (max-width: 389px) {
+    @media screen and (max-width: 374px) {
       padding: 3rem 0.5rem 0 0.5rem;
       height: calc(100vh - 3rem);
 

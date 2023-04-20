@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
-import { IoMdClose } from 'react-icons/io';
+import { IoIosClose } from 'react-icons/io';
+
 import { BiListUl } from 'react-icons/bi';
 
 const stepsNames = [
@@ -58,7 +59,7 @@ const EstimateNavbar = () => {
         </div>
 
         <div className={styles.resetSteps}>
-          <IoMdClose onClick={handleReset} />
+          <IoIosClose onClick={handleReset} />
         </div>
       </div>
     </div>

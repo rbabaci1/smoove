@@ -29,12 +29,6 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
     router.asPath === '/' && router.push('/estimate');
   };
 
-  const vibrate = () => {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(200); // vibrate for 200ms
-    }
-  };
-
   return (
     <div className={styles.container}>
       <motion.form
@@ -80,7 +74,6 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
         <motion.button
           whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
           type='submit'
-          onClick={vibrate}
         >
           {buttonText}
         </motion.button>

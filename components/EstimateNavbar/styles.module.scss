@@ -59,7 +59,8 @@
       }
 
       h3 {
-        font-size: clamp(1.1rem, 6vw, 1.3rem);
+        font-size: clamp(1.1rem, 6vw, 1.2rem);
+        font-weight: 600;
         margin-left: 0.5rem;
       }
     }
@@ -116,8 +117,6 @@
           @include radius(0.5rem, 0, 0.5rem, 0);
           background-color: $error-color;
           color: $white;
-          height: 2.5rem;
-          width: 2.5rem;
 
           &:hover {
             @include radius(0.5rem, 0, 0.5rem, 0);

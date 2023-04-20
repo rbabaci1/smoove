@@ -1,2 +1,45 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
 .container {
+  height: 100%;
+  background-image: url('/images/bgImg.png');
+  background-size: cover;
+
+  .content {
+    @include flex(column, flex-start);
+    max-width: 1200px;
+    height: 100%;
+    padding: 8rem 1.5rem 3rem 1.5rem;
+    margin: 0 auto;
+
+    .title {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 2rem;
+      color: $dark-blue;
+      line-height: 1.3;
+    }
+
+    .addresses {
+      width: fit-content;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding-top: 5rem;
+
+      .title {
+        padding-bottom: 5rem;
+      }
+    }
+
+    @media screen and (max-width: 374px) {
+      padding: 2rem 0.5rem 1rem 0.5rem;
+
+      .title {
+        padding-bottom: 1.5rem;
+        font-size: clamp(0.9rem, 5vw, 2rem);
+      }
+    }
+  }
 }

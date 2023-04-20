@@ -20,6 +20,8 @@ import daily from './daily.png';
 import smile from './smile.png';
 import trucks from './trucks.png';
 
+import bgImg from './bgImg.png';
+
 export {
   fam1,
   fam2,
@@ -38,4 +40,5 @@ export {
   daily,
   smile,
   trucks,
+  bgImg,
 };

@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   const addresses = useSelector(state => state.order.addresses);
 
   const handleChange = event => {
@@ -23,7 +24,9 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(goToSpecificEstimateStep(2));
-    router.push('/estimate');
+
+    // only push to /estimate if we're on the homepage
+    router.asPath === '/' && router.push('/estimate');
   };
 
   return (

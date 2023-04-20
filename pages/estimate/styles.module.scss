@@ -2,17 +2,11 @@
 @import '/styles/mixins.module.scss';
 
 .main {
-  .content {
-    .stepContainer {
-      min-height: calc(100vh - 6rem);
-      max-width: 1200px;
-      background-color: $light-blue;
-      padding: 2rem 1.5rem;
-      margin: 0 auto;
+  .stepContainer {
+    height: calc(100vh - 6rem);
 
-      button {
-        margin-top: 2rem;
-      }
+    @media screen and (max-width: 374px) {
+      height: calc(100vh - 3rem);
     }
   }
 }

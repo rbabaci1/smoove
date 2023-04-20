@@ -12,6 +12,7 @@ import {
   FinalStep,
 } from '@/containers/Estimate';
 import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
+import { Footer } from '@/containers';
 
 const Estimate = () => {
   const dispatch = useDispatch();
@@ -51,17 +52,11 @@ const Estimate = () => {
       </Head>
 
       <div className={styles.main}>
-        <div className={styles.content}>
-          <EstimateNavbar />
+        <EstimateNavbar />
 
-          <div className={styles.stepContainer}>
-            {renderStepContainer()}
+        <div className={styles.stepContainer}>{renderStepContainer()}</div>
 
-            <button onClick={handleNext} hidden={estimateStep === 6}>
-              Continue
-            </button>
-          </div>
-        </div>
+        <Footer />
       </div>
     </>
   );

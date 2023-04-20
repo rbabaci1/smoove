@@ -4,7 +4,7 @@
 .navWrapper {
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(247, 250, 255, 0.5);
   backdrop-filter: blur(5px);
   z-index: 99;
 
@@ -62,6 +62,7 @@
       h3 {
         font-size: clamp(1.15rem, 6vw, 1.3rem);
         margin-left: 0.5rem;
+        color: $dark-blue;
       }
     }
 

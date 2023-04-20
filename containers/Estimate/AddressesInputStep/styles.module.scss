@@ -2,9 +2,19 @@
 @import '/styles/mixins.module.scss';
 
 .container {
+  position: relative;
   height: 100%;
-  background-image: url('/images/bgImg.png');
-  background-size: cover;
+
+  .bgImg {
+    position: absolute;
+    height: auto;
+    width: auto;
+    z-index: -99;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 
   .content {
     @include flex(column, flex-start);
@@ -26,7 +36,7 @@
     }
 
     @media screen and (max-width: 767px) {
-      padding-top: 5rem;
+      padding-top: 3rem;
 
       .title {
         padding-bottom: 5rem;

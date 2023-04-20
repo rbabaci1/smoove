@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
 import { motion } from 'framer-motion';
 
-import { Review } from '@/components';
+import { CustomerReview } from '@/components';
 import { avatar1, avatar2, avatar3, avatar4 } from '/public/images';
 import styles from './styles.module.scss';
 
@@ -59,7 +59,7 @@ const reviews = [
   },
 ];
 
-const Reviews = ({ bgColor = '#f7faff' }) => {
+const CustomersReviews = ({ bgColor = '#f7faff' }) => {
   return (
     <div
       className={styles.containerWrapper}
@@ -76,6 +76,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             >
               <Image src={avatar4} alt='customer avatar' />
             </motion.div>
+
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -84,6 +85,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             >
               <Image src={avatar2} alt='customer avatar' />
             </motion.div>
+
             <motion.div
               initial={{ y: -100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -123,7 +125,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             play={false}
           >
             {reviews.map((review, index) => (
-              <Review key={index} {...review} />
+              <CustomerReview key={index} {...review} />
             ))}
           </Marquee>
         </section>
@@ -138,7 +140,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             play={false}
           >
             {reviews.reverse().map((review, index) => (
-              <Review key={index} {...review} />
+              <CustomerReview key={index} {...review} />
             ))}
           </Marquee>
         </section>
@@ -153,7 +155,7 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
             play={false}
           >
             {reviews.map((review, index) => (
-              <Review key={index} {...review} />
+              <CustomerReview key={index} {...review} />
             ))}
           </Marquee>
         </section>
@@ -162,4 +164,4 @@ const Reviews = ({ bgColor = '#f7faff' }) => {
   );
 };
 
-export default Reviews;
+export default CustomersReviews;

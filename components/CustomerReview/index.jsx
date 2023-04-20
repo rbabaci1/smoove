@@ -2,7 +2,7 @@ import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import styles from './styles.module.scss';
 import { useEffect } from 'react';
 
-const Review = ({ name = 'S', location = 'CA', desc = ' ' }) => {
+const CustomerReview = ({ name = 'S', location = 'CA', desc = ' ' }) => {
   // Generate a random number between 0 and 1
   const random = Math.random();
   const stars = Array(5).fill(null);
@@ -50,4 +50,4 @@ const Review = ({ name = 'S', location = 'CA', desc = ' ' }) => {
   );
 };
 
-export default Review;
+export default CustomerReview;

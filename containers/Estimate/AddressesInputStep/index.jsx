@@ -14,12 +14,12 @@ const AddressesInputStep = () => {
           transition={{ duration: 0.3 }}
           viewport={{ once: true }}
         >
-          <h2>Enter Moving addresses</h2>
-          <span>Enter your pickup & dropOff addresses</span>
+          <h2>Pickup & dropOff addresses</h2>
+          <span>{`And we'll get you moving!`}</span>
         </motion.section>
 
         <section className={styles.addresses}>
-          <AddressesInput />
+          <AddressesInput buttonText='Continue' />
         </section>
       </div>
     </div>

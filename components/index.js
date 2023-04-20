@@ -3,8 +3,9 @@ import AddressesInput from './AddressesInput';
 import Dropdown from './Dropdown';
 import Navbar from './Navbar';
 import EstimateNavbar from './EstimateNavbar';
-import Review from './Review';
+import CustomerReview from './CustomerReview';
 import ErrorMessage from './ErrorMessage';
+import ServiceType from './ServiceType';
 
 export {
   Carousel,
@@ -12,6 +13,7 @@ export {
   Dropdown,
   Navbar,
   EstimateNavbar,
-  Review,
+  CustomerReview,
   ErrorMessage,
+  ServiceType,
 };

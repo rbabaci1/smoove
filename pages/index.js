@@ -4,7 +4,7 @@ import {
   Landing,
   HowItWorks,
   GetAnEstimate,
-  Reviews,
+  CustomersReviews,
   Careers,
   FrequentlyAskedQuestions,
   Footer,
@@ -30,7 +30,7 @@ export default function Home() {
         <Navbar />
         <HowItWorks />
         <GetAnEstimate />
-        <Reviews />
+        <CustomersReviews />
         <Careers />
         <FrequentlyAskedQuestions />
         <Footer />

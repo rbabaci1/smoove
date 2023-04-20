@@ -9,7 +9,7 @@ import {
   Footer,
   FrequentlyAskedQuestions,
   GetAnEstimate,
-  Reviews,
+  CustomersReviews,
 } from '@/containers';
 import { Navbar } from '@/components';
 import { help } from '@/public/images';
@@ -159,7 +159,7 @@ const Help = () => {
         </div>
 
         <FrequentlyAskedQuestions />
-        <Reviews />
+        <CustomersReviews />
         <GetAnEstimate bgColor='#fff' />
         <Footer />
       </div>

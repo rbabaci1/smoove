@@ -1,7 +1,7 @@
 import Landing from './Landing';
 import HowItWorks from './HowItWorks';
 import GetAnEstimate from './GetAnEstimate';
-import Reviews from './Reviews';
+import CustomersReviews from './CustomersReviews';
 import Careers from './Careers';
 import Footer from './Footer';
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
@@ -10,7 +10,7 @@ export {
   Landing,
   HowItWorks,
   GetAnEstimate,
-  Reviews,
+  CustomersReviews,
   Careers,
   FrequentlyAskedQuestions,
   Footer,

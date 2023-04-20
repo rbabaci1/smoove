@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { BsInstagram, BsFacebook, BsLinkedin, BsTwitter } from 'react-icons/bs';
 
 import { Footer } from '@/containers';

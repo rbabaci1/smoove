@@ -1,2 +1,60 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
 .container {
+  @include flex(column, space-between);
+  min-width: 17rem;
+  height: 14.5rem;
+  background-color: $white;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px,
+      rgba(0, 0, 0, 0.05) 10px 5px 5px;
+
+    .title {
+      background-color: $main-color;
+      h4 {
+        color: $white;
+      }
+    }
+  }
+
+  .img {
+    flex: 1;
+    width: 100%;
+
+    img {
+      position: relative;
+      max-width: 12.5rem;
+    }
+  }
+
+  .title {
+    @include radius(0, 0, 0.75rem, 0.75rem);
+    width: 100%;
+    padding: 0.75rem 0;
+    transition: all 0.2s ease-in-out;
+
+    h4 {
+      font-size: clamp(0.9rem, 5vw, 1.2rem);
+    }
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      color: $apricot;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.serviceSelected {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.05) 10px 5px 5px;
+
+  .title {
+    background-color: $main-color;
+    color: $white;
+  }
 }

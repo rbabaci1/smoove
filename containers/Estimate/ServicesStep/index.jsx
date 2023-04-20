@@ -6,11 +6,11 @@ import {
   goToSpecificEstimateStep,
   enableSkipStepTwo,
 } from '@/reduxSlices/orderSlice';
-import { services } from '@/public/Data';
-import styles from './styles.module.scss';
 import { ServiceType } from '@/components';
+import { service1, service2, service3, service4 } from '@/public/images';
+import styles from './styles.module.scss';
 
-const ServicesStep = goToNextStep => {
+const ServicesStep = () => {
   const dispatch = useDispatch();
   const { serviceType, skipStepTwo } = useSelector(state => state.order);
 
@@ -36,9 +36,31 @@ const ServicesStep = goToNextStep => {
           <span>What suits your needs?</span>
 
           <div className={styles.services}>
-            {services.map(service => (
-              <ServiceType key={service} service={service} />
-            ))}
+            <section className={styles.top}>
+              <ServiceType
+                service='Regular move'
+                img={service1}
+                uniqueStyles={{ top: '1rem' }}
+              />
+              <ServiceType
+                service='Store delivery'
+                img={service2}
+                uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
+              />
+            </section>
+
+            <section className={styles.bottom}>
+              <ServiceType
+                service='Dumping'
+                img={service3}
+                uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
+              />
+              <ServiceType
+                service='Donations'
+                img={service4}
+                uniqueStyles={{ top: '0.3rem' }}
+              />
+            </section>
           </div>
         </motion.section>
       </div>

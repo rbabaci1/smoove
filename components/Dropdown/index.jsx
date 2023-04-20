@@ -36,12 +36,9 @@ const Dropdown = () => {
           Store delivery
         </Link>
 
-        <Link
-          href='/estimate'
-          onClick={() => selectServiceType('Junk removal')}
-        >
+        <Link href='/estimate' onClick={() => selectServiceType('Dumping')}>
           <FcFullTrash />
-          Junk removal
+          Dumping
         </Link>
 
         <Link href='/estimate' onClick={() => selectServiceType('Donations')}>

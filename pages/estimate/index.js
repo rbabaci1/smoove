@@ -12,33 +12,27 @@ import {
   FinalStep,
 } from '@/containers/Estimate';
 import { Footer } from '@/containers';
-import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 
 const Estimate = () => {
-  const dispatch = useDispatch();
   const { estimateStep } = useSelector(state => state.order);
 
-  const renderStepContainer = goToNextStep => {
+  const renderStepContainer = () => {
     switch (estimateStep) {
       case 1:
         return <AddressesInputStep />;
       case 2:
-        return <ServicesStep goToNextStep={goToNextStep} />;
+        return <ServicesStep />;
       case 3:
-        return <ServiceVehiclesStep goToNextStep={goToNextStep} />;
+        return <ServiceVehiclesStep />;
       case 4:
-        return <ConfirmServiceVehicleStep goToNextStep={goToNextStep} />;
+        return <ConfirmServiceVehicleStep />;
       case 5:
-        return <ServiceDetailsStep goToNextStep={goToNextStep} />;
+        return <ServiceDetailsStep />;
       case 6:
         return <FinalStep />;
       default:
         return <AddressesInputStep />;
     }
-  };
-
-  const goToNextStep = () => {
-    dispatch(goToNextEstimateStep());
   };
 
   return (
@@ -54,9 +48,7 @@ const Estimate = () => {
       <div className={styles.main}>
         <EstimateNavbar />
 
-        <div className={styles.stepContainer}>
-          {renderStepContainer(goToNextStep)}
-        </div>
+        <div className={styles.stepContainer}>{renderStepContainer()}</div>
 
         <Footer />
       </div>

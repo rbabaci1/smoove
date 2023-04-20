@@ -2,19 +2,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 import { AddressesInput } from '@/components';
-import { bgImg } from '@/public/images';
 import styles from './styles.module.scss';
 
 const AddressesInputStep = () => {
   return (
     <div className={styles.container}>
-      <Image
-        src={bgImg}
-        alt='gray background with circles'
-        className={styles.bgImg}
-        priority
-      />
-
       <div className={styles.content}>
         <motion.h2
           initial={{ y: 100, opacity: 0 }}

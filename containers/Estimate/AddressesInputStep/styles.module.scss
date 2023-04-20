@@ -4,14 +4,8 @@
 .container {
   position: relative;
   height: 100%;
-
-  .bgImg {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    z-index: -99;
-    object-fit: cover;
-  }
+  background-image: url('/images/bgImg.png');
+  background-size: cover;
 
   .content {
     @include flex(column, flex-start);

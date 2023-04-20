@@ -8,7 +8,7 @@
     background-size: cover;
 
     @media screen and (max-width: 374px) {
-      height: calc(100vh - 3rem);
+      min-height: calc(100vh - 3rem);
     }
   }
 }

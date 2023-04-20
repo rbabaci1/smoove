@@ -16,7 +16,7 @@ const stepsNames = [
 import styles from './styles.module.scss';
 import {
   goToPreviousEstimateStep,
-  resetEstimateSteps,
+  goToSpecificEstimateStep,
 } from '@/reduxSlices/orderSlice';
 
 const EstimateNavbar = () => {
@@ -25,18 +25,20 @@ const EstimateNavbar = () => {
   const { estimateStep } = useSelector(state => state.order);
 
   const handleBack = () => {
-    dispatch(goToPreviousEstimateStep());
+    estimateStep === 1
+      ? router.push('/')
+      : dispatch(goToPreviousEstimateStep());
   };
 
   const handleReset = () => {
-    dispatch(resetEstimateSteps());
+    dispatch(goToSpecificEstimateStep(1));
   };
 
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
         <div className={styles.navigation}>
-          <button disabled={estimateStep === 1} onClick={handleBack}>
+          <button onClick={handleBack}>
             <BsArrowLeftShort />
           </button>
 

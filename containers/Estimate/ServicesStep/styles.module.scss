@@ -37,5 +37,9 @@
         gap: 2rem;
       }
     }
+
+    @media screen and (max-width: 374px) {
+      padding: 2rem 0.5rem 2.5rem 0.5rem;
+    }
   }
 }

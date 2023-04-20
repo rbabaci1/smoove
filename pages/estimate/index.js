@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';

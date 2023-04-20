@@ -64,9 +64,6 @@ export const OrderSlice = createSlice({
     goToSpecificEstimateStep: (state, action) => {
       state.estimateStep = action.payload;
     },
-    resetEstimateSteps: state => {
-      state.estimateStep = 1;
-    },
   },
 });
 
@@ -83,7 +80,6 @@ export const {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
-  resetEstimateSteps,
 } = OrderSlice.actions;
 
 export default OrderSlice.reducer;

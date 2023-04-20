@@ -4,7 +4,7 @@
 .navWrapper {
   position: sticky;
   top: 0;
-  background-color: rgba(237, 243, 247, 0.5);
+  background-color: rgba(237, 243, 247, 0.3);
   backdrop-filter: blur(5px);
   z-index: 99;
 
@@ -31,7 +31,6 @@
           height: 2.7rem;
           width: 2.7rem;
           color: $main-color;
-          background-color: $white;
           margin-right: 1rem;
 
           &:hover {
@@ -60,9 +59,8 @@
       }
 
       h3 {
-        font-size: clamp(1.15rem, 6vw, 1.3rem);
+        font-size: clamp(1.1rem, 6vw, 1.3rem);
         margin-left: 0.5rem;
-        color: $dark-blue;
       }
     }
 
@@ -108,6 +106,7 @@
 
       .navigation {
         width: fit-content;
+
         button {
           width: fit-content;
 

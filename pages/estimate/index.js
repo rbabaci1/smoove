@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';
@@ -11,11 +11,9 @@ import {
   ServiceDetailsStep,
   FinalStep,
 } from '@/containers/Estimate';
-import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 import { Footer } from '@/containers';
 
 const Estimate = () => {
-  const dispatch = useDispatch();
   const { estimateStep } = useSelector(state => state.order);
 
   const renderStepContainer = () => {
@@ -37,9 +35,9 @@ const Estimate = () => {
     }
   };
 
-  const handleNext = () => {
-    dispatch(goToNextEstimateStep());
-  };
+  // const handleNext = () => {
+  //   dispatch(goToNextEstimateStep());
+  // };
 
   return (
     <>

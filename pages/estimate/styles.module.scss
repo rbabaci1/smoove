@@ -4,6 +4,8 @@
 .main {
   .stepContainer {
     height: calc(100vh - 6rem);
+    background-image: url('/images/bgImg.png');
+    background-size: cover;
 
     @media screen and (max-width: 374px) {
       height: calc(100vh - 3rem);

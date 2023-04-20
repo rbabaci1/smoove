@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Collapse } from 'antd';
 import { CiSearch } from 'react-icons/ci';
 
@@ -119,25 +119,34 @@ const Help = () => {
               transition={{ duration: 0.3 }}
               viewport={{ once: true }}
             >
-              {searchTerm && searchTerm.trim() !== ''
-                ? questions
-                    .filter(question =>
-                      question.text
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    )
-                    .map((question, index) => (
-                      <Collapse
-                        key={index}
-                        className={styles.collapse}
-                        bordered={false}
-                      >
-                        <Collapse.Panel header={question.title} key={index}>
-                          <p>{question.answer}</p>
-                        </Collapse.Panel>
-                      </Collapse>
-                    ))
-                : null}
+              <AnimatePresence>
+                {searchTerm && searchTerm.trim() !== ''
+                  ? questions
+                      .filter(question =>
+                        question.text
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                      )
+                      .map((question, index) => (
+                        <Collapse
+                          key={index}
+                          className={styles.collapse}
+                          bordered={false}
+                        >
+                          <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 30 }}
+                            layout
+                          >
+                            <Collapse.Panel header={question.title} key={index}>
+                              <p>{question.answer}</p>
+                            </Collapse.Panel>
+                          </motion.div>
+                        </Collapse>
+                      ))
+                  : null}
+              </AnimatePresence>
             </motion.section>
           </div>
 

@@ -11,6 +11,7 @@ const ServicesStep = () => {
   const dispatch = useDispatch();
   const { serviceType, skipStepTwo } = useSelector(state => state.order);
 
+  // If serviceType is selected, go to step 3
   useEffect(() => {
     if (serviceType && !skipStepTwo) {
       dispatch(goToSpecificEstimateStep(3));
@@ -18,7 +19,13 @@ const ServicesStep = () => {
     }
   }, [dispatch, skipStepTwo, serviceType]);
 
-  return <div className={styles.container}>ServicesStep</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h2>Pick Your Perfect Move</h2>
+      </div>
+    </div>
+  );
 };
 
 export default ServicesStep;

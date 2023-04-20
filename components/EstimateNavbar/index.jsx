@@ -5,8 +5,8 @@ import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { BiListUl } from 'react-icons/bi';
 
 const stepsNames = [
-  'Pickup & dropOff',
-  'Select a service',
+  'Provide addresses',
+  'Select a category',
   'Select a vehicle',
   'Confirm service',
   'Move details',

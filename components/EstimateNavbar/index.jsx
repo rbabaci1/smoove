@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
-import { IoIosClose } from 'react-icons/io';
-
 import { BiListUl } from 'react-icons/bi';
+import { MdLockReset } from 'react-icons/md';
 
 const stepsNames = [
   'Provide addresses',
@@ -38,8 +37,8 @@ const EstimateNavbar = () => {
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
-        <div className={styles.navigation}>
-          <button onClick={handleBack}>
+        <section className={styles.navigation}>
+          <button onClick={handleBack} className={styles.arrowLeft}>
             <BsArrowLeftShort />
           </button>
 
@@ -52,15 +51,15 @@ const EstimateNavbar = () => {
           )}
 
           <h3>{stepsNames[estimateStep - 1]}</h3>
-        </div>
+        </section>
 
-        <div className={styles.logo}>
+        <section className={styles.logo}>
           <h2 onClick={() => router.push('/')}>Smoove</h2>
-        </div>
+        </section>
 
-        <div className={styles.resetSteps}>
-          <IoIosClose onClick={handleReset} />
-        </div>
+        <button className={styles.resetSteps}>
+          <MdLockReset onClick={handleReset} />
+        </button>
       </div>
     </div>
   );

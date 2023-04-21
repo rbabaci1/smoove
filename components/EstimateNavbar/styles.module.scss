@@ -20,13 +20,7 @@
     .navigation {
       @include flex(row, flex-start);
 
-      button {
-        padding: 0;
-        letter-spacing: 0;
-        border-radius: 0;
-        background-color: transparent;
-        line-height: 0;
-
+      .arrowLeft {
         svg {
           height: 2.7rem;
           width: 2.7rem;
@@ -92,6 +86,14 @@
       }
     }
 
+    button {
+      padding: 0;
+      letter-spacing: 0;
+      border-radius: 0;
+      background-color: transparent;
+      line-height: 0;
+    }
+
     @media screen and (max-width: 1024px) {
       grid-template-columns: 1fr 0.8fr 1fr;
       padding: 0;
@@ -99,8 +101,7 @@
       .navigation {
         width: fit-content;
 
-        button {
-          width: fit-content;
+        .arrowLeft {
           background-color: $main-color;
           margin-right: 0.5rem;
           @include radius(0, 0.5rem, 0, 0.5rem);

@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
-import { BiListUl } from 'react-icons/bi';
-import { MdLockReset } from 'react-icons/md';
+import { BiListUl, BiReset } from 'react-icons/bi';
 
 const stepsNames = [
   'Provide addresses',
@@ -58,7 +57,7 @@ const EstimateNavbar = () => {
         </section>
 
         <button className={styles.resetSteps}>
-          <MdLockReset onClick={handleReset} />
+          <BiReset onClick={handleReset} />
         </button>
       </div>
     </div>

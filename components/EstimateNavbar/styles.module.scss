@@ -104,6 +104,8 @@
         .arrowLeft {
           background-color: $main-color;
           margin-right: 0.5rem;
+          width: fit-content;
+
           @include radius(0, 0.5rem, 0, 0.5rem);
 
           svg {
@@ -132,30 +134,32 @@
       .logo {
         display: none;
       }
+      .resetSteps {
+        width: fit-content;
+      }
     }
 
     @media screen and (max-width: 374px) {
       height: 3rem;
-      padding: 0 0.5rem;
 
       .navigation {
-        button {
+        .arrowLeft {
           svg {
-            height: 1.4rem;
-            width: 1.4rem;
+            height: 1.5rem;
+            width: 1.5rem;
             margin-right: 0.1rem;
           }
         }
 
         span {
-          height: 1.3rem;
-          width: 1.3rem;
-          line-height: 1.3rem;
+          height: 1.5rem;
+          width: 1.5rem;
+          line-height: 1.5rem;
           font-size: 0.7rem;
           margin-right: 0.3rem;
 
           svg {
-            height: 1.3rem;
+            height: 1.5rem;
           }
         }
 
@@ -167,8 +171,8 @@
 
       .resetSteps {
         svg {
-          height: 1.4rem;
-          width: 1.4rem;
+          height: 1.5rem;
+          width: 1.5rem;
         }
       }
     }

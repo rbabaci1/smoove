@@ -22,7 +22,7 @@ const Landing = () => {
           <p>On your schedule. Arriving in as little as 25 minutes.</p>
         </motion.div>
 
-        <AddressesInput />
+        <AddressesInput animate={true} />
       </div>
     </div>
   );

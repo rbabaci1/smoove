@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';
@@ -15,23 +17,136 @@ import { Footer } from '@/containers';
 
 const Estimate = () => {
   const { estimateStep } = useSelector(state => state.order);
+  const [prevStep, setPrevStep] = useState(estimateStep);
+
+  useEffect(() => {
+    setPrevStep(estimateStep);
+
+    // Scroll to top of the page when user changes step
+    window.scrollTo(0, 0);
+  }, [estimateStep]);
 
   const renderStepContainer = () => {
+    const variants = {
+      enter: {
+        x: estimateStep > prevStep ? '100vw' : '-100vw',
+        opacity: 0,
+      },
+      center: {
+        x: 0,
+        opacity: 1,
+      },
+      exit: {
+        x: estimateStep > prevStep ? '-100vw' : '100vw',
+        opacity: 0,
+      },
+    };
+
+    const transition = {
+      type: 'spring',
+      stiffness: 300,
+      damping: 30,
+    };
+
     switch (estimateStep) {
       case 1:
-        return <AddressesInputStep />;
+        return (
+          <motion.div
+            key={1}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <AddressesInputStep />
+          </motion.div>
+        );
       case 2:
-        return <ServicesStep />;
+        return (
+          <motion.div
+            key={2}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <ServicesStep />
+          </motion.div>
+        );
       case 3:
-        return <ServiceVehiclesStep />;
+        return (
+          <motion.div
+            key={3}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <ServiceVehiclesStep />
+          </motion.div>
+        );
       case 4:
-        return <ConfirmServiceVehicleStep />;
+        return (
+          <motion.div
+            key={4}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <ConfirmServiceVehicleStep />
+          </motion.div>
+        );
       case 5:
-        return <ServiceDetailsStep />;
+        return (
+          <motion.div
+            key={5}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <ServiceDetailsStep />
+          </motion.div>
+        );
       case 6:
-        return <FinalStep />;
+        return (
+          <motion.div
+            key={6}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <FinalStep />
+          </motion.div>
+        );
       default:
-        return <AddressesInputStep />;
+        return (
+          <motion.div
+            key={1}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <AddressesInputStep />
+          </motion.div>
+        );
     }
   };
 
@@ -48,7 +163,9 @@ const Estimate = () => {
       <div className={styles.main}>
         <EstimateNavbar />
 
-        <div className={styles.stepContainer}>{renderStepContainer()}</div>
+        <div className={styles.background}>
+          <div className={styles.stepContainer}>{renderStepContainer()}</div>
+        </div>
 
         <Footer />
       </div>

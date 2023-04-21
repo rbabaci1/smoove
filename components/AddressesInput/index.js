@@ -9,10 +9,12 @@ import {
 } from '../../reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
-const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
+const AddressesInput = ({
+  buttonText = 'Get an estimate',
+  animate = false,
+}) => {
   const dispatch = useDispatch();
   const router = useRouter();
-
   const addresses = useSelector(state => state.order.addresses);
 
   const handleChange = event => {
@@ -30,15 +32,14 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <motion.form
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className={styles.addresses}
-        onSubmit={handleSubmit}
-      >
+    <motion.div
+      className={styles.container}
+      initial={animate ? { y: 100, opacity: 0 } : { y: 0, opacity: 1 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <form className={styles.addresses} onSubmit={handleSubmit}>
         <section className={styles.pickup}>
           <AiOutlineArrowUp />
 
@@ -77,8 +78,8 @@ const AddressesInput = ({ buttonText = 'Get an estimate' }) => {
         >
           {buttonText}
         </motion.button>
-      </motion.form>
-    </div>
+      </form>
+    </motion.div>
   );
 };
 

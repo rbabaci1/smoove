@@ -32,6 +32,7 @@
     padding: 0.75rem 0;
     transition: all 0.2s ease-in-out;
     background-color: $primary-color;
+    text-align: center;
 
     svg {
       width: 1.4rem;
@@ -42,22 +43,19 @@
   }
 
   @media screen and (max-width: 767px) {
-    min-width: 90%;
-    height: 15rem;
-
-    .img {
-      img {
-        max-width: 13rem;
-      }
+    &:hover {
+      box-shadow: none;
     }
   }
 
   @media screen and (max-width: 374px) {
     height: 12rem;
+    min-width: 10rem;
+    width: 100%;
 
     .img {
       img {
-        max-width: 8rem;
+        max-width: 10rem;
       }
     }
   }

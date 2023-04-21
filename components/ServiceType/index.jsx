@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoNavigateOutline } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
 import {
   updateServiceType,
@@ -8,7 +9,12 @@ import {
 } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
-const ServiceType = ({ service, img, uniqueStyles }) => {
+const ServiceType = ({
+  service,
+  img,
+  uniqueStyles,
+  initialAnimationDistance,
+}) => {
   const dispatch = useDispatch();
   const { serviceType } = useSelector(state => state.order);
 

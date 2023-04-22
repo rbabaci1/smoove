@@ -41,12 +41,6 @@
     }
   }
 
-  @media screen and (max-width: 767px) {
-    &:hover {
-      box-shadow: none;
-    }
-  }
-
   @media screen and (max-width: 374px) {
     height: 12rem;
     min-width: 10rem;

@@ -20,19 +20,24 @@
         background-color: $main-color;
         color: $white;
       }
+      p {
+        border-color: transparent;
+      }
     }
   }
 
   .img {
-    height: 100px;
+    height: 110px;
+    padding-top: 1rem;
 
     img {
-      max-width: 160px;
+      max-width: 200px;
     }
   }
 
   .info {
     @include flex(column);
+    width: 100%;
 
     .title {
       @include flex();
@@ -54,12 +59,13 @@
 
     p {
       text-align: center;
-      margin: 0.3rem 0 0.5rem 0;
       color: $dark-blue;
       font-weight: 500;
       line-height: 1.2 !important;
-      font-size: clamp(0.9rem, 4.5vw, 1.05rem);
-      padding: 0 1rem;
+      font-size: clamp(0.9rem, 4.5vw, 1rem);
+      padding: 0.3rem 0 0.75rem 0;
+      width: 90%;
+      border-bottom: 1px solid $light-blue;
     }
 
     h4 {
@@ -68,7 +74,63 @@
       text-align: center;
       width: 100%;
       font-weight: 600;
-      padding: 1rem;
+      padding: 1rem 0;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    height: 17rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    &:hover {
+      .info {
+        h4 {
+          background-color: $white;
+          color: #111;
+        }
+        p {
+          border-color: $light-blue;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    height: 10.5rem;
+
+    .img {
+      height: 80px;
+      padding-top: 0.5rem;
+
+      img {
+        max-width: 130px;
+      }
+    }
+
+    .info {
+      .title {
+        h3 {
+          font-size: clamp(0.85rem, 5vw, 1.2rem);
+        }
+
+        span {
+          font-size: clamp(0.6rem, 4.5vw, 0.8rem);
+          padding: 0.2rem 0.4rem;
+          font-size: clamp(0.6rem, 4.5vw, 0.8rem);
+        }
+      }
+
+      p {
+        font-size: clamp(0.65rem, 4.5vw, 0.8rem);
+        padding: 0.1rem 0 0.5rem 0;
+      }
+
+      h4 {
+        font-size: clamp(0.7rem, 5vw, 1rem);
+        padding: 0.5rem 0;
+      }
     }
   }
 }
@@ -81,6 +143,9 @@
     h4 {
       background-color: $main-color;
       color: $white;
+    }
+    p {
+      border-color: transparent;
     }
   }
 }

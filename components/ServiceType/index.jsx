@@ -9,12 +9,7 @@ import {
 } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
-const ServiceType = ({
-  service,
-  img,
-  uniqueStyles,
-  initialAnimationDistance,
-}) => {
+const ServiceType = ({ service, img, uniqueStyles }) => {
   const dispatch = useDispatch();
   const { serviceType } = useSelector(state => state.order);
 

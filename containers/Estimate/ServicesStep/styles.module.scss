@@ -28,13 +28,13 @@
 
     .services {
       @include flex(column);
-      gap: 2rem;
+      gap: 1rem;
       padding-top: 2rem;
 
       .top,
       .bottom {
         @include flex();
-        gap: 2rem;
+        gap: 1rem;
       }
     }
 

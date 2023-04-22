@@ -1,4 +1,86 @@
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
 .container {
-  border: 1px solid blue;
-  // height: 16rem;
+  @include flex(column, space-between);
+  width: 49%;
+  height: 16.5rem;
+  background-color: $white;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+    .info {
+      h4 {
+        background-color: $main-color;
+        color: $white;
+      }
+    }
+  }
+
+  .img {
+    height: 100px;
+
+    img {
+      max-width: 160px;
+    }
+  }
+
+  .info {
+    @include flex(column);
+
+    .title {
+      @include flex();
+      gap: 0.5rem;
+
+      h3 {
+        font-size: clamp(1.2rem, 5vw, 1.38rem);
+      }
+
+      span {
+        @include radius(0.5rem, 0, 0, 0.5rem);
+        font-size: clamp(0.8rem, 4.5vw, 0.9rem);
+        font-weight: 600;
+        padding: 0.3rem 0.5rem;
+        background-color: $main-color;
+        color: $white;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin: 0.3rem 0 0.5rem 0;
+      color: $dark-blue;
+      font-weight: 500;
+      line-height: 1.2 !important;
+      font-size: clamp(0.9rem, 4.5vw, 1.05rem);
+      padding: 0 1rem;
+    }
+
+    h4 {
+      @include radius(0, 0, 0.75rem, 0.75rem);
+      font-size: clamp(1rem, 5vw, 1.2rem);
+      text-align: center;
+      width: 100%;
+      font-weight: 600;
+      padding: 1rem;
+    }
+  }
+}
+
+.vehicleSelected {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  .info {
+    h4 {
+      background-color: $main-color;
+      color: $white;
+    }
+  }
 }

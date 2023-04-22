@@ -34,7 +34,7 @@ export const OrderSlice = createSlice({
     updateServiceType: (state, action) => {
       state.serviceType = action.payload;
     },
-    updateVehicleType: (state, action) => {
+    selectVehicleType: (state, action) => {
       state.vehicleType = action.payload;
     },
     updateMovingDate: (state, action) => {
@@ -70,7 +70,7 @@ export const OrderSlice = createSlice({
 export const {
   updateAddresses,
   updateServiceType,
-  updateVehicleType,
+  selectVehicleType,
   updateDescription,
   updateMovingDate,
   updateMovingWindow,

@@ -3,7 +3,7 @@
 
 .container {
   @include flex(column, space-between);
-  min-width: 17rem;
+  min-width: 19rem;
   height: 14.5rem;
   background-color: $white;
   border-radius: 0.75rem;
@@ -18,11 +18,10 @@
 
   .img {
     flex: 1;
-    width: 100%;
 
     img {
       position: relative;
-      max-width: 12.5rem;
+      max-width: 12rem;
     }
   }
 

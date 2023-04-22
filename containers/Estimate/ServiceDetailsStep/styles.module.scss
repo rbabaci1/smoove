@@ -1,0 +1,10 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.container {
+  min-height: calc(100vh - 6rem);
+  border: 1px solid red;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -9,27 +9,31 @@ const vehicles = [
   {
     name: 'Pickup ',
     image: pickup,
-    description: 'A small car with room for 4 passengers and 2 large bags.',
-    price: '$40 + $0.80 per moving min',
+    description: 'Delivery and transport for single, small items and loads.',
+    price: '$22 + $0.80 per moving min',
+    tooltip: 'Base fee of $22 + $0.80 per labor minute for loading/unloading.',
     isOneMover: true,
   },
   {
     name: 'Pickup',
     image: pickup,
-    description: 'A small car with room for 4 passengers and 2 large bags.',
-    price: '$40 + $1.52 per moving min',
+    description: 'Delivery and transport for single, small items and loads.',
+    price: '$32 + $1.52 per moving min',
+    tooltip: 'Base fee of $32 + $1.52 per labor minute for loading/unloading.',
   },
   {
     name: 'Medium size van',
     image: pickup,
-    description: 'A small car with room for 4 passengers and 2 large bags.',
+    description: 'Small moves and deliveries of multi items.',
     price: '$62 + $1.85 per moving min',
+    tooltip: 'Base fee of $62 + $1.85 per labor minute for loading/unloading.',
   },
   {
     name: 'Large',
     image: pickup,
-    description: 'A small car with room for 4 passengers and 2 large bags.',
+    description: 'Large moves, purchases, and deliveries.',
     price: '$101 + $2.05 per moving min',
+    tooltip: 'Base fee of $101 + $2.05 per labor minute for loading/unloading.',
   },
 ];
 

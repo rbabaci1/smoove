@@ -8,9 +8,9 @@ const stepsNames = [
   'Provide addresses',
   'Select a category',
   'Select a vehicle',
-  'Confirm service',
-  'Move details',
-  'Personal details',
+  'Select Day & time',
+  'Provide a description',
+  'Get verified',
 ];
 
 import styles from './styles.module.scss';

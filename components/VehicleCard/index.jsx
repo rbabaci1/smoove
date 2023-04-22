@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
+import { Tooltip } from 'antd';
 
 import { selectVehicleType } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
@@ -31,7 +32,12 @@ const VehicleCard = ({ vehicle }) => {
 
         <p>{vehicle.description}</p>
 
-        <h4>{vehicle.price}</h4>
+        <h4>
+          {vehicle.price}
+          <Tooltip title={vehicle.tooltip}>
+            <span>i</span>
+          </Tooltip>
+        </h4>
       </section>
     </div>
   );

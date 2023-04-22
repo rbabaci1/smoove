@@ -9,7 +9,6 @@ import {
   AddressesInputStep,
   ServicesStep,
   ServiceVehiclesStep,
-  ConfirmServiceVehicleStep,
   ServiceDetailsStep,
   FinalStep,
 } from '@/containers/Estimate';
@@ -95,20 +94,6 @@ const Estimate = () => {
         return (
           <motion.div
             key={4}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <ConfirmServiceVehicleStep />
-          </motion.div>
-        );
-      case 5:
-        return (
-          <motion.div
-            key={5}
             className={styles.stepContainer}
             variants={variants}
             initial='enter'

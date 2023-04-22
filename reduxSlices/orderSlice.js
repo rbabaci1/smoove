@@ -18,7 +18,7 @@ const initialState = {
     Van: '$90 + $2.00 per labor min',
     XL: '$140 + $2.10 per labor min',
   },
-  skipStepTwo: false,
+  serviceTypeSelected: false,
 };
 
 export const OrderSlice = createSlice({
@@ -52,8 +52,8 @@ export const OrderSlice = createSlice({
     addAdditionalContact: (state, action) => {
       state.additionalContacts = [...state.additionalContacts, action.payload];
     },
-    enableSkipStepTwo: (state, action) => {
-      state.skipStepTwo = true;
+    enableServiceTypeSelected: (state, action) => {
+      state.serviceTypeSelected = true;
     },
     goToNextEstimateStep: state => {
       state.estimateStep += 1;
@@ -76,7 +76,7 @@ export const {
   updateMovingWindow,
   updateAvailableMovingWindows,
   addAdditionalContact,
-  enableSkipStepTwo,
+  enableServiceTypeSelected,
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,

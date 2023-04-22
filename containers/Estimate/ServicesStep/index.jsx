@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   goToSpecificEstimateStep,
-  enableSkipStepTwo,
+  enableServiceTypeSelected,
 } from '@/reduxSlices/orderSlice';
 import { ServiceType } from '@/components';
 import { service1, service2, service3, service4 } from '@/public/images';
@@ -11,15 +11,18 @@ import styles from './styles.module.scss';
 
 const ServicesStep = () => {
   const dispatch = useDispatch();
-  const { serviceType, skipStepTwo } = useSelector(state => state.order);
+  const { serviceType, serviceTypeSelected } = useSelector(
+    state => state.order
+  );
 
   // If serviceType is selected, go to step 3
   useEffect(() => {
-    if (serviceType && !skipStepTwo) {
+    if (serviceType && !serviceTypeSelected) {
       dispatch(goToSpecificEstimateStep(3));
-      dispatch(enableSkipStepTwo());
     }
-  }, [dispatch, skipStepTwo, serviceType]);
+
+    dispatch(enableServiceTypeSelected());
+  }, [dispatch, serviceTypeSelected, serviceType]);
 
   return (
     <div className={styles.container}>

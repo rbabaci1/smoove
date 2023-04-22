@@ -1,0 +1,21 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.container {
+  min-height: calc(100vh - 6rem);
+  padding: 3rem 1.5rem 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid red;
+
+  .vehicles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 2rem;
+  }
+}

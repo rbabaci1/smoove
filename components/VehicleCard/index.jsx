@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip } from 'antd';
+import { motion } from 'framer-motion';
 
-import { selectVehicleType } from '@/reduxSlices/orderSlice';
+import {
+  goToNextEstimateStep,
+  selectVehicleType,
+} from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const VehicleCard = ({ vehicle }) => {
@@ -11,14 +15,19 @@ const VehicleCard = ({ vehicle }) => {
 
   const handleVehicleType = () => {
     dispatch(selectVehicleType(vehicle.name));
+
+    setTimeout(() => {
+      dispatch(goToNextEstimateStep());
+    }, 300);
   };
 
   return (
-    <div
+    <motion.div
       className={`${styles.container} ${
         vehicleType === vehicle.name ? styles.vehicleSelected : ''
       }`}
       onClick={handleVehicleType}
+      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
     >
       <section className={styles.img}>
         <Image src={vehicle.image} alt={vehicle.name} />
@@ -39,7 +48,7 @@ const VehicleCard = ({ vehicle }) => {
           </Tooltip>
         </h4>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

@@ -37,6 +37,11 @@ const vehicles = [
 const ServiceVehiclesStep = () => {
   return (
     <div className={styles.container}>
+      <section className={styles.header}>
+        <h2>Find Your Ideal Ride</h2>
+        <span>What suits your needs?</span>
+      </section>
+
       <div className={styles.vehicles}>
         {vehicles.map((vehicle, i) => (
           <VehicleCard vehicle={vehicle} key={i} />

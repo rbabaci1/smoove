@@ -10,10 +10,6 @@
     .stepContainer {
       min-height: calc(100vh - 6rem);
       overflow: hidden;
-
-      @media screen and (max-width: 374px) {
-        min-height: calc(100vh - 3rem);
-      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoNavigateOutline } from 'react-icons/io5';
 
@@ -14,15 +15,19 @@ const ServiceType = ({ service, img, uniqueStyles }) => {
 
   const goToNextStep = () => {
     dispatch(updateServiceType(service));
-    dispatch(goToNextEstimateStep());
+
+    setTimeout(() => {
+      dispatch(goToNextEstimateStep());
+    }, 300);
   };
 
   return (
-    <div
+    <motion.div
       className={`${styles.container} ${
         serviceType === service ? styles.serviceSelected : ''
       }`}
       onClick={goToNextStep}
+      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
     >
       <section className={styles.img}>
         <Image
@@ -36,7 +41,7 @@ const ServiceType = ({ service, img, uniqueStyles }) => {
         <h4>{service}</h4>
         <IoNavigateOutline />
       </section>
-    </div>
+    </motion.div>
   );
 };
 

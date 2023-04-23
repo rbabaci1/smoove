@@ -28,7 +28,7 @@ const ServicesStep = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <section className={styles.header}>
-          <h2>Pick Your Perfect Move</h2>
+          <h2>Pick Your Ideal Move</h2>
           <span>What suits your needs?</span>
         </section>
 

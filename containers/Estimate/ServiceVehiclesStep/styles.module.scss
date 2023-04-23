@@ -3,13 +3,31 @@
 
 .container {
   min-height: calc(100vh - 6rem);
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem 3rem 1.5rem;
   max-width: 900px;
   margin: 0 auto;
+
+  .header {
+    text-align: center;
+
+    h2 {
+      width: 100%;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    span {
+      width: 100%;
+      display: inline-block;
+      font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+      color: gray;
+      font-weight: 500;
+    }
+  }
 
   .vehicles {
     @include flex();
     gap: 1rem;
+    padding-top: 2rem;
   }
 
   button {
@@ -17,13 +35,7 @@
     margin: 1rem 0 2rem 0;
   }
 
-  @media screen and (max-width: 1024px) {
-    padding: 2rem 4rem;
-  }
-
   @media screen and (max-width: 767px) {
-    padding: 2rem 1.5rem;
-
     .vehicles {
       gap: 1.5rem;
     }

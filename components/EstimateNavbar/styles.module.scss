@@ -57,7 +57,7 @@
       }
 
       h3 {
-        font-size: clamp(1.1rem, 6vw, 1.2rem);
+        font-size: clamp(1.05rem, 6vw, 1.15rem);
         font-weight: 600;
       }
     }
@@ -89,10 +89,6 @@
       }
     }
 
-    .nextButton {
-      display: none;
-    }
-
     @media screen and (max-width: 1024px) {
       grid-template-columns: 1fr 0.8fr 1fr;
       padding: 0;
@@ -110,8 +106,8 @@
 
       .resetSteps {
         svg {
-          @include radius(0.5rem, 0, 0.5rem, 0);
           background-color: $error-color;
+          @include radius(0.5rem, 0, 0.5rem, 0);
           color: $white;
 
           &:hover {
@@ -132,7 +128,7 @@
           @include flex();
           height: 100%;
           border-radius: 0;
-          width: 4rem;
+          width: 4.5rem;
 
           svg {
             height: 80%;
@@ -144,13 +140,22 @@
         display: none;
       }
       .resetSteps {
-        display: none;
+        @include flex();
+        width: 4.5rem;
+        height: 100%;
+        cursor: pointer;
+        background-color: $error-color;
+        border-radius: 0;
+
+        svg {
+          height: 75%;
+          width: 100%;
+        }
       }
       .nextButton {
         display: block;
         width: fit-content;
         height: 100%;
-        width: 5rem;
         border-radius: 0;
       }
     }
@@ -160,7 +165,7 @@
 
       .navigation {
         .arrowLeft {
-          width: 2rem;
+          width: 2.2rem;
 
           svg {
             height: 60%;
@@ -185,8 +190,8 @@
         }
       }
 
-      .nextButton {
-        width: 2rem;
+      .resetSteps {
+        width: 2.2rem;
       }
     }
   }

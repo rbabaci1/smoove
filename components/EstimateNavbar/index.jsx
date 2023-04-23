@@ -62,14 +62,10 @@ const EstimateNavbar = () => {
           <h2 onClick={() => router.push('/')}>Smoove</h2>
         </section>
 
-        <section className={styles.resetSteps}>
-          <IoClose onClick={handleReset} />
-        </section>
-
         {estimateStep > 1 && (
-          <button className={styles.nextButton} onClick={handleNext}>
-            Next
-          </button>
+          <section className={styles.resetSteps}>
+            <IoClose onClick={handleReset} />
+          </section>
         )}
       </div>
     </div>

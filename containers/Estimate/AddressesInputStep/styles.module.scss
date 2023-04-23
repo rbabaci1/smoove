@@ -3,7 +3,7 @@
 
 .container {
   position: relative;
-  min-height: calc(100vh - 6rem);
+  min-height: calc(100vh - 5rem);
 
   .content {
     @include flex(column, flex-start);

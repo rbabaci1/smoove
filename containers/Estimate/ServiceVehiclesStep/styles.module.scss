@@ -31,26 +31,20 @@
     padding-top: 2rem;
   }
 
-  button {
-    width: 100%;
-    margin: 1rem 0 2rem 0;
-  }
-
-  @media screen and (max-width: 767px) {
-    button {
-      margin-top: 2rem;
-    }
-  }
-
   @media screen and (max-width: 374px) {
-    padding: 2rem 0.5rem;
+    padding: 1rem 0.5rem;
+
+    .header {
+      h2 {
+        font-size: clamp(0.95rem, 5vw, 2rem);
+      }
+      span {
+        font-size: clamp(0.75rem, 4.5vw, 1rem);
+      }
+    }
 
     .vehicles {
-      gap: 1rem;
-    }
-
-    button {
-      margin-top: 1rem;
+      gap: 0.5rem;
     }
   }
 }

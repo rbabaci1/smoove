@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { BiListUl } from 'react-icons/bi';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const stepsNames = [
   'Provide addresses',
@@ -21,7 +23,37 @@ import {
 const EstimateNavbar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { estimateStep } = useSelector(state => state.order);
+  const { serviceType, vehicleType, estimateStep } = useSelector(
+    state => state.order
+  );
+  const [showNextButton, setShowNextButton] = useState(false);
+
+  const variants = {
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: 'easeOut',
+      },
+    },
+    hidden: {
+      y: 50,
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  useEffect(() => {
+    setShowNextButton(
+      estimateStep > 1 &&
+        ((estimateStep === 2 && serviceType) ||
+          (estimateStep === 3 && vehicleType))
+    );
+  }, [estimateStep, serviceType, vehicleType]);
 
   const handleNext = () => {
     dispatch(goToNextEstimateStep());
@@ -56,9 +88,19 @@ const EstimateNavbar = () => {
           <h2 onClick={() => router.push('/')}>Smoove</h2>
         </section>
 
-        <section className={styles.nextButton}>
-          {estimateStep > 1 && <button onClick={handleNext}>Next</button>}
-        </section>
+        <AnimatePresence>
+          {showNextButton && (
+            <motion.section
+              className={styles.nextButton}
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
+              transition={{ type: 'spring', duration: 0.3 }}
+            >
+              <button onClick={handleNext}>Next</button>
+            </motion.section>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

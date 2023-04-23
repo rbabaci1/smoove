@@ -2,9 +2,53 @@
 @import '/styles/mixins.module.scss';
 
 .container {
-  min-height: calc(100vh - 6rem);
-  border: 1px solid red;
+  min-height: calc(100vh - 5rem);
+  @include flex(row, space-between);
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  .dateTimeDesc {
+    min-height: calc(100vh - 9rem);
+    width: 50%;
+    border-radius: 0.75rem;
+    background-color: $white;
+  }
+
+  .mapDetails {
+    width: 38%;
+    min-height: calc(100vh - 12rem);
+    background-color: $white;
+    border-radius: 0.75rem;
+
+    .map {
+      height: 250px;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        @include radius(0.75rem, 0.75rem, 0, 0);
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+
+    .dateTimeDesc {
+      width: 70%;
+    }
+
+    .mapDetails {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    height: calc(100vh - 4rem);
+
+    .dateTimeDesc {
+      width: 100%;
+    }
+  }
 }

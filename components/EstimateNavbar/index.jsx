@@ -28,25 +28,6 @@ const EstimateNavbar = () => {
   );
   const [showNextButton, setShowNextButton] = useState(false);
 
-  const variants = {
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut',
-      },
-    },
-    hidden: {
-      y: 50,
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-        ease: 'easeOut',
-      },
-    },
-  };
-
   useEffect(() => {
     setShowNextButton(
       estimateStep > 1 &&
@@ -92,10 +73,9 @@ const EstimateNavbar = () => {
           {showNextButton && (
             <motion.section
               className={styles.nextButton}
-              initial={{ y: 50, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              transition={{ type: 'spring', duration: 0.3 }}
+              exit={{ y: 40, opacity: 0 }}
             >
               <button onClick={handleNext}>Next</button>
             </motion.section>

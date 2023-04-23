@@ -12,7 +12,6 @@ import {
   ServiceDetailsStep,
   FinalStep,
 } from '@/containers/Estimate';
-import { Footer } from '@/containers';
 
 const Estimate = () => {
   const { estimateStep } = useSelector(state => state.order);

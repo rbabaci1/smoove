@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { BiListUl } from 'react-icons/bi';
-import { IoClose } from 'react-icons/io5';
 
 const stepsNames = [
   'Provide addresses',
@@ -16,7 +15,6 @@ const stepsNames = [
 import styles from './styles.module.scss';
 import {
   goToPreviousEstimateStep,
-  goToSpecificEstimateStep,
   goToNextEstimateStep,
 } from '@/reduxSlices/orderSlice';
 
@@ -33,10 +31,6 @@ const EstimateNavbar = () => {
     estimateStep === 1
       ? router.push('/')
       : dispatch(goToPreviousEstimateStep());
-  };
-
-  const handleReset = () => {
-    dispatch(goToSpecificEstimateStep(1));
   };
 
   return (
@@ -62,11 +56,9 @@ const EstimateNavbar = () => {
           <h2 onClick={() => router.push('/')}>Smoove</h2>
         </section>
 
-        {estimateStep > 1 && (
-          <section className={styles.resetSteps}>
-            <IoClose onClick={handleReset} />
-          </section>
-        )}
+        <section className={styles.nextButton}>
+          {estimateStep > 1 && <button onClick={handleNext}>Next</button>}
+        </section>
       </div>
     </div>
   );

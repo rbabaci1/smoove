@@ -4,7 +4,7 @@
 .container {
   @include flex(column, space-between);
   width: 49%;
-  height: 16.5rem;
+  height: 16rem;
   background-color: $white;
   border-radius: 0.75rem;
   cursor: pointer;

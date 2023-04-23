@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    height: 6rem;
+    height: 5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -47,6 +47,7 @@
         background-color: $main-color;
         color: $white;
         border-radius: 50%;
+        font-weight: 600;
         font-size: 1.35rem;
         margin: 0 0.5rem 0 1rem;
 
@@ -70,26 +71,17 @@
       }
     }
 
-    .resetSteps {
+    .nextButton {
       text-align: end;
 
-      svg {
-        height: 2.7rem;
-        width: 2.7rem;
-        color: $error-color;
-        cursor: pointer;
-
-        &:hover {
-          background-color: $error-color;
-          color: $white;
-          border-radius: 50%;
-        }
+      button {
+        width: 6rem;
       }
     }
 
     @media screen and (max-width: 1024px) {
       grid-template-columns: 1fr 0.8fr 1fr;
-      padding: 0;
+      padding: 0 1.5rem 0 0;
 
       .navigation {
         width: fit-content;
@@ -102,21 +94,16 @@
         }
       }
 
-      .resetSteps {
-        svg {
-          background-color: $error-color;
-          @include radius(0.5rem, 0, 0.5rem, 0);
-          color: $white;
-
-          &:hover {
-            @include radius(0.5rem, 0, 0.5rem, 0);
-          }
+      .nextButton {
+        button {
+          width: fit-content;
         }
       }
     }
 
     @media screen and (max-width: 767px) {
       @include flex(row, space-between);
+      padding: 0;
       height: 4rem;
 
       .navigation {
@@ -137,24 +124,15 @@
       .logo {
         display: none;
       }
-      .resetSteps {
-        @include flex();
-        width: 4.5rem;
-        height: 100%;
-        cursor: pointer;
-        background-color: $error-color;
-        border-radius: 0;
 
-        svg {
-          height: 65%;
-          width: 100%;
-        }
-      }
       .nextButton {
-        display: block;
         width: fit-content;
         height: 100%;
-        border-radius: 0;
+
+        button {
+          height: 100%;
+          border-radius: 0;
+        }
       }
     }
 
@@ -188,8 +166,10 @@
         }
       }
 
-      .resetSteps {
-        width: 2.2rem;
+      .nextButton {
+        button {
+          width: 2.2rem;
+        }
       }
     }
   }

@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip } from 'antd';
 import { motion } from 'framer-motion';
 
-import {
-  goToNextEstimateStep,
-  selectVehicleType,
-} from '@/reduxSlices/orderSlice';
+import { selectVehicleType } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const VehicleCard = ({ vehicle }) => {
@@ -15,10 +12,6 @@ const VehicleCard = ({ vehicle }) => {
 
   const handleVehicleType = () => {
     dispatch(selectVehicleType(vehicle.name));
-
-    setTimeout(() => {
-      dispatch(goToNextEstimateStep());
-    }, 300);
   };
 
   return (

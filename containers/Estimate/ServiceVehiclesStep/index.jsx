@@ -6,7 +6,7 @@ const vehicles = [
   {
     name: 'Pickup ',
     image: pickup,
-    description: 'Delivery and transport for single, small items and loads.',
+    description: 'Single items deliveries, small items and loads.',
     price: '$22 + $0.80 per moving min',
     tooltip: 'Base fee of $22 + $0.80 per labor minute for loading/unloading.',
     isOneMover: true,
@@ -14,7 +14,7 @@ const vehicles = [
   {
     name: 'Pickup',
     image: pickup,
-    description: 'Delivery and transport for single, small items and loads.',
+    description: 'Single items deliveries, small items and loads.',
     price: '$32 + $1.52 per moving min',
     tooltip: 'Base fee of $32 + $1.52 per labor minute for loading/unloading.',
   },

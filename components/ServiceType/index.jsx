@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoNavigateOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
 
 import {
   updateServiceType,

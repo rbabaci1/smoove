@@ -17,12 +17,17 @@ import styles from './styles.module.scss';
 import {
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
+  goToNextEstimateStep,
 } from '@/reduxSlices/orderSlice';
 
 const EstimateNavbar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { estimateStep } = useSelector(state => state.order);
+
+  const handleNext = () => {
+    dispatch(goToNextEstimateStep());
+  };
 
   const handleBack = () => {
     estimateStep === 1
@@ -38,9 +43,9 @@ const EstimateNavbar = () => {
     <div className={styles.navWrapper}>
       <div className={styles.container}>
         <section className={styles.navigation}>
-          <button onClick={handleBack} className={styles.arrowLeft}>
-            <BsArrowLeftShort />
-          </button>
+          <div className={styles.arrowLeft}>
+            <BsArrowLeftShort onClick={handleBack} />
+          </div>
 
           {estimateStep > 1 ? (
             <span>{estimateStep}</span>
@@ -57,9 +62,15 @@ const EstimateNavbar = () => {
           <h2 onClick={() => router.push('/')}>Smoove</h2>
         </section>
 
-        <button className={styles.resetSteps}>
+        <section className={styles.resetSteps}>
           <IoClose onClick={handleReset} />
-        </button>
+        </section>
+
+        {estimateStep > 1 && (
+          <button className={styles.nextButton} onClick={handleNext}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

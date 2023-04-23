@@ -151,8 +151,6 @@ const Estimate = () => {
         <div className={styles.background}>
           <div className={styles.stepContainer}>{renderStepContainer()}</div>
         </div>
-
-        <Footer />
       </div>
     </>
   );

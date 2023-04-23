@@ -1,6 +1,3 @@
-import { useDispatch } from 'react-redux';
-
-import { goToNextEstimateStep } from '@/reduxSlices/orderSlice';
 import { VehicleCard } from '@/components';
 import { pickup } from '@/public/images';
 import styles from './styles.module.scss';
@@ -38,12 +35,6 @@ const vehicles = [
 ];
 
 const ServiceVehiclesStep = () => {
-  const dispatch = useDispatch();
-
-  const handleNextStep = () => {
-    dispatch(goToNextEstimateStep());
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.vehicles}>
@@ -51,8 +42,6 @@ const ServiceVehiclesStep = () => {
           <VehicleCard vehicle={vehicle} key={i} />
         ))}
       </div>
-
-      <button onClick={handleNextStep}>Continue</button>
     </div>
   );
 };

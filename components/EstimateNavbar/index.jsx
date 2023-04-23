@@ -48,8 +48,11 @@ const EstimateNavbar = () => {
   };
 
   const handleReturnHome = () => {
-    router.push('/');
-    dispatch(goToSpecificEstimateStep(1));
+    router.push('/', undefined, {
+      onComplete: () => {
+        dispatch(goToSpecificEstimateStep(1));
+      },
+    });
   };
 
   return (

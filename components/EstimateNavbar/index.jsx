@@ -18,6 +18,7 @@ import styles from './styles.module.scss';
 import {
   goToPreviousEstimateStep,
   goToNextEstimateStep,
+  goToSpecificEstimateStep,
 } from '@/reduxSlices/orderSlice';
 
 const EstimateNavbar = () => {
@@ -46,6 +47,11 @@ const EstimateNavbar = () => {
       : dispatch(goToPreviousEstimateStep());
   };
 
+  const handleReturnHome = () => {
+    router.push('/');
+    dispatch(goToSpecificEstimateStep(1));
+  };
+
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
@@ -66,7 +72,7 @@ const EstimateNavbar = () => {
         </section>
 
         <section className={styles.logo}>
-          <h2 onClick={() => router.push('/')}>Smoove</h2>
+          <h2 onClick={handleReturnHome}>Smoove</h2>
         </section>
 
         <AnimatePresence>

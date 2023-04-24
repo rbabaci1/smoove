@@ -14,28 +14,42 @@ const stepsNames = [
   'Get verified',
 ];
 
-import styles from './styles.module.scss';
 import {
   goToPreviousEstimateStep,
   goToNextEstimateStep,
-  goToSpecificEstimateStep,
 } from '@/reduxSlices/orderSlice';
+import { ClickAnimation } from '@/Wrappers/MotionWraps';
+import styles from './styles.module.scss';
 
 const EstimateNavbar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { serviceType, vehicleType, estimateStep } = useSelector(
-    state => state.order
-  );
+  const {
+    serviceType,
+    vehicleType,
+    estimateStep,
+    movingDate,
+    movingWindow,
+    description,
+  } = useSelector(state => state.order);
   const [showNextButton, setShowNextButton] = useState(false);
 
   useEffect(() => {
     setShowNextButton(
       estimateStep > 1 &&
         ((estimateStep === 2 && serviceType) ||
-          (estimateStep === 3 && vehicleType))
+          (estimateStep === 3 && vehicleType) ||
+          (estimateStep === 4 && movingDate && movingWindow && description) ||
+          (estimateStep === 5 && description))
     );
-  }, [estimateStep, serviceType, vehicleType]);
+  }, [
+    estimateStep,
+    serviceType,
+    vehicleType,
+    movingDate,
+    movingWindow,
+    description,
+  ]);
 
   const handleNext = () => {
     dispatch(goToNextEstimateStep());
@@ -45,14 +59,6 @@ const EstimateNavbar = () => {
     estimateStep === 1
       ? router.push('/')
       : dispatch(goToPreviousEstimateStep());
-  };
-
-  const handleReturnHome = () => {
-    router.push('/', undefined, {
-      onComplete: () => {
-        dispatch(goToSpecificEstimateStep(1));
-      },
-    });
   };
 
   return (
@@ -75,18 +81,20 @@ const EstimateNavbar = () => {
         </section>
 
         <section className={styles.logo}>
-          <h2 onClick={handleReturnHome}>Smoove</h2>
+          <h2 onClick={() => router.push('/')}>Smoove</h2>
         </section>
 
         <AnimatePresence>
           {showNextButton && (
             <motion.section
               className={styles.nextButton}
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 40, opacity: 0 }}
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 50, opacity: 0 }}
             >
-              <button onClick={handleNext}>Next</button>
+              <ClickAnimation>
+                <button onClick={handleNext}>Next</button>
+              </ClickAnimation>
             </motion.section>
           )}
         </AnimatePresence>

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 import { selectVehicleType, setMovingPrice } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
+import { ClickAnimation } from '@/Wrappers/MotionWraps';
 
 const VehicleCard = ({ vehicle }) => {
   const dispatch = useDispatch();

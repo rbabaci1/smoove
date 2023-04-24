@@ -2,13 +2,11 @@
 @import '/styles/mixins.module.scss';
 
 .main {
+  overflow: hidden;
+
   .background {
     background-image: url('/images/bgImg.png');
     background-position: fixed;
     background-size: cover;
-
-    .stepContainer {
-      overflow: hidden;
-    }
   }
 }

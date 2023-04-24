@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 
 import {
   Landing,
@@ -9,10 +12,20 @@ import {
   FrequentlyAskedQuestions,
   Footer,
 } from '@/containers';
-import styles from '@/styles/Home.module.scss';
 import { Navbar } from '@/components';
+import { goToSpecificEstimateStep } from '@/reduxSlices/orderSlice';
+import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (router.pathname === '/') {
+      dispatch(goToSpecificEstimateStep(1));
+    }
+  }, [dispatch, router.pathname]);
+
   return (
     <>
       <Head>

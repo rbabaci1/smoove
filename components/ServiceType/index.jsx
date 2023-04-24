@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoNavigateOutline } from 'react-icons/io5';
 
 import { updateServiceType } from '@/reduxSlices/orderSlice';
+import { ClickAnimation } from '@/Wrappers/MotionWraps';
 import styles from './styles.module.scss';
 
 const ServiceType = ({ service, img, uniqueStyles }) => {
@@ -15,26 +16,27 @@ const ServiceType = ({ service, img, uniqueStyles }) => {
   };
 
   return (
-    <motion.div
-      className={`${styles.container} ${
-        serviceType === service ? styles.serviceSelected : ''
-      }`}
-      onClick={goToNextStep}
-      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-    >
-      <section className={styles.img}>
-        <Image
-          src={img}
-          alt='service icon'
-          style={uniqueStyles ? { ...uniqueStyles } : {}}
-        />
-      </section>
+    <ClickAnimation>
+      <div
+        className={`${styles.container} ${
+          serviceType === service ? styles.serviceSelected : ''
+        }`}
+        onClick={goToNextStep}
+      >
+        <section className={styles.img}>
+          <Image
+            src={img}
+            alt='service icon'
+            style={uniqueStyles ? { ...uniqueStyles } : {}}
+          />
+        </section>
 
-      <section className={styles.title}>
-        <h4>{service}</h4>
-        <IoNavigateOutline />
-      </section>
-    </motion.div>
+        <section className={styles.title}>
+          <h4>{service}</h4>
+          <IoNavigateOutline />
+        </section>
+      </div>
+    </ClickAnimation>
   );
 };
 

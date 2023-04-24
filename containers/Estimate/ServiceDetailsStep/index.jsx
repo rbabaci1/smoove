@@ -35,12 +35,17 @@ const ServiceDetailsStep = () => {
 
   return (
     <div className={styles.container}>
+      {/* Left side first container */}
       <div className={styles.dateTimeDesc}>
         <div className={styles.dateTime}></div>
 
         <div className={styles.description}></div>
       </div>
 
+      {/* Left side second container */}
+      {estimateStep === 5 && <div className={styles.descContact}></div>}
+
+      {/* Right side container */}
       <div className={styles.mapDetails}>
         <div className={styles.map}>
           <Image src={map} alt='Itinerary map' />
@@ -71,15 +76,6 @@ const ServiceDetailsStep = () => {
             </section>
           </div>
 
-          <div className={styles.dateTime}>
-            <BsCalendarCheck className={styles.dataIcon} />
-
-            <section className={styles.info}>
-              <h3>{movingDate}</h3>
-              <p>{movingWindow}</p>
-            </section>
-          </div>
-
           <div className={styles.vehicleType}>
             <BsTruck className={styles.dataIcon} />
 
@@ -89,6 +85,15 @@ const ServiceDetailsStep = () => {
             </section>
 
             <EditIcon step={3} />
+          </div>
+
+          <div className={styles.dateTime}>
+            <BsCalendarCheck className={styles.dataIcon} />
+
+            <section className={styles.info}>
+              <h3>{movingDate}</h3>
+              <p>{movingWindow}</p>
+            </section>
           </div>
 
           <div className={styles.price}>

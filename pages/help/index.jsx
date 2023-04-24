@@ -17,7 +17,7 @@ import styles from './styles.module.scss';
 
 const questions = [
   {
-    text: ' How does Smoove work?',
+    text: 'How does Smoove work?',
     title: <h4>How does Smoove work?</h4>,
     answer:
       'Smoove is a platform that connects you with professional movers and a truck to help you with your local moves. You can schedule a move, choose the type of service you need, and track your move in real-time.',
@@ -133,16 +133,21 @@ const Help = () => {
                           className={styles.collapse}
                           bordered={false}
                         >
-                          <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 30 }}
-                            layout
+                          <Collapse.Panel
+                            header={
+                              <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 30 }}
+                                layout
+                              >
+                                {question.title}
+                              </motion.div>
+                            }
+                            key={index}
                           >
-                            <Collapse.Panel header={question.title} key={index}>
-                              <p>{question.answer}</p>
-                            </Collapse.Panel>
-                          </motion.div>
+                            <p>{question.answer}</p>
+                          </Collapse.Panel>
                         </Collapse>
                       ))
                   : null}

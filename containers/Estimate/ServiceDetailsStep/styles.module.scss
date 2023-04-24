@@ -2,7 +2,7 @@
 @import '/styles/mixins.module.scss';
 
 .container {
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100dvh - 5rem);
   @include flex(row, space-between);
   // change on mobile to take full screen
   padding: 2rem 1.5rem;
@@ -132,10 +132,14 @@
   }
 
   @media screen and (max-width: 767px) {
-    // min-height: calc(100vh - 4rem);
+    min-height: calc(100dvh - 4rem);
 
     .dateTimeDesc {
       width: 100%;
     }
+  }
+
+  @media screen and (max-width: 374px) {
+    min-height: calc(100dvh - 3rem);
   }
 }

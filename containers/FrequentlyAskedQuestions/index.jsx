@@ -8,16 +8,7 @@ const { Panel } = Collapse;
 
 const questionsAnswers = {
   question1: {
-    header: (
-      <motion.h4
-        initial={{ x: -50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        What are the operating hours of Smoove?
-      </motion.h4>
-    ),
+    header: 'What are the operating hours of Smoove?',
     answer: (
       <p>
         Smoove operates Monday to Saturday from 7 AM to 9 PM, and Sunday from 9
@@ -28,16 +19,7 @@ const questionsAnswers = {
     ),
   },
   question2: {
-    header: (
-      <motion.h4
-        initial={{ x: -65, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        How can I request an additional moving crew?
-      </motion.h4>
-    ),
+    header: 'How can I request an additional moving crew?',
     answer: (
       <p>
         To request an additional moving crew with Smoove, you can access your
@@ -52,16 +34,7 @@ const questionsAnswers = {
   },
 
   question3: {
-    header: (
-      <motion.h4
-        initial={{ x: -80, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        What are the dimensions of our vehicles?
-      </motion.h4>
-    ),
+    header: 'What are the dimensions of our vehicles?',
     answer: (
       <div>
         <p>
@@ -97,16 +70,7 @@ const questionsAnswers = {
     ),
   },
   question4: {
-    header: (
-      <motion.h4
-        initial={{ x: -95, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        How many items are included in the price of a move?
-      </motion.h4>
-    ),
+    header: 'How many items are included in the price of a move?',
     answer: (
       <p>
         A move covers whatever items can fit into a Smoove Pickup, Smoove Van,
@@ -117,16 +81,7 @@ const questionsAnswers = {
     ),
   },
   question5: {
-    header: (
-      <motion.h4
-        initial={{ x: -110, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-      >
-        Will the movers bring my items inside?
-      </motion.h4>
-    ),
+    header: 'Will the movers bring my items inside?',
     answer: (
       <p>
         Absolutely! Our movers will pick up and drop off your items right to the
@@ -160,7 +115,16 @@ const FrequentlyAskedQuestions = ({ bgColor = '#fff' }) => {
         <Collapse bordered={false} className={styles.collapse}>
           {Object.keys(questionsAnswers).map((question, index) => (
             <Panel
-              header={questionsAnswers[question].header}
+              header={
+                <motion.h4
+                  initial={{ x: -50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  {questionsAnswers[question].header}
+                </motion.h4>
+              }
               key={index}
               className={styles.panel}
             >

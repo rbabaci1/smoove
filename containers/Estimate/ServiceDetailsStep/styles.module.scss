@@ -4,6 +4,7 @@
 .container {
   min-height: calc(100vh - 5rem);
   @include flex(row, space-between);
+  // change on mobile to take full screen
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -16,18 +17,106 @@
   }
 
   .mapDetails {
-    width: 38%;
-    min-height: calc(100vh - 12rem);
+    @include flex(column, space-between);
+    width: 420px;
     background-color: $white;
     border-radius: 0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px -3px 6px, rgba(0, 0, 0, 0.4) 0px 6px 10px,
+      rgba(0, 0, 0, 0.3) 0px 4px 8px -5px inset;
 
     .map {
-      height: 250px;
+      height: 230px;
 
       img {
         height: 100%;
         object-fit: cover;
         @include radius(0.75rem, 0.75rem, 0, 0);
+      }
+    }
+
+    .details {
+      flex: 1;
+      width: 100%;
+      padding: 1rem;
+
+      .addresses {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $light-blue;
+
+        .pickup,
+        .dropOff {
+          @include flex(row, space-between);
+          width: 100%;
+
+          .address {
+            flex: 1;
+          }
+        }
+
+        .pickup {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .dateTime {
+        @include flex(row, space-between);
+        padding: 1rem 0;
+        border-bottom: 1px solid $light-blue;
+
+        .info {
+          flex: 1;
+        }
+      }
+
+      .vehicleType {
+        @include flex(row, space-between);
+        padding: 1rem 0;
+        border-bottom: 1px solid $light-blue;
+
+        .vehicle {
+          flex: 1;
+        }
+      }
+
+      .price {
+        @include flex(row, flex-start);
+        padding-top: 1rem;
+
+        span {
+          margin-right: 1rem;
+        }
+      }
+
+      // .details level styles
+      .dataIcon {
+        margin-right: 1.5rem;
+        transform: scale(1.2);
+        color: $main-color;
+      }
+
+      .editIcon {
+        font-size: 1.5rem;
+        color: $main-color;
+        cursor: pointer;
+
+        &:hover {
+          color: lighten($color: $main-color, $amount: 20);
+        }
+      }
+
+      h3 {
+        font-size: clamp(1.1rem, 5vw, 1.3rem);
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        margin: 0;
+      }
+      span {
+        display: inline-block;
+        font-weight: 500;
+        color: gray;
+        margin-bottom: 0.3rem;
       }
     }
   }

@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip } from 'antd';
 import { motion } from 'framer-motion';
 
-import { selectVehicleType } from '@/reduxSlices/orderSlice';
+import { selectVehicleType, setMovingPrice } from '@/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const VehicleCard = ({ vehicle }) => {
   const dispatch = useDispatch();
   const { vehicleType } = useSelector(state => state.order);
 
-  const handleVehicleType = () => {
+  const handleVehicleTypeAndPricing = () => {
     dispatch(selectVehicleType(vehicle.name));
+
+    dispatch(setMovingPrice(vehicle.price));
   };
 
   return (
@@ -19,7 +21,7 @@ const VehicleCard = ({ vehicle }) => {
       className={`${styles.container} ${
         vehicleType === vehicle.name ? styles.vehicleSelected : ''
       }`}
-      onClick={handleVehicleType}
+      onClick={handleVehicleTypeAndPricing}
       whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
     >
       <section className={styles.img}>

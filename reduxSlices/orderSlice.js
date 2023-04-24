@@ -7,17 +7,12 @@ const initialState = {
   },
   serviceType: '',
   vehicleType: '',
-  movingDate: 'Today',
-  availableMovingWindows: [],
-  movingWindow: '',
+  movingDate: 'Tuesday, April 25th',
+  movingWindow: '9AM - 10AM',
   description: '',
   additionalContacts: [],
   estimateStep: 1,
-  prices: {
-    Pickup: '$40 + $0.95 per labor min',
-    Van: '$90 + $2.00 per labor min',
-    XL: '$140 + $2.10 per labor min',
-  },
+  price: '',
   serviceTypeSelected: false,
 };
 
@@ -37,22 +32,22 @@ export const OrderSlice = createSlice({
     selectVehicleType: (state, action) => {
       state.vehicleType = action.payload;
     },
-    updateMovingDate: (state, action) => {
+    setMovingPrice: (state, action) => {
+      state.price = action.payload;
+    },
+    setMovingDate: (state, action) => {
       state.movingDate = action.payload;
     },
-    updateAvailableMovingWindows: (state, action) => {
-      state.availableMovingWindows = action.payload;
-    },
-    updateMovingWindow: (state, action) => {
+    setMovingWindow: (state, action) => {
       state.movingWindow = action.payload;
     },
-    updateDescription: (state, action) => {
+    setDescription: (state, action) => {
       state.description = action.payload;
     },
     addAdditionalContact: (state, action) => {
       state.additionalContacts = [...state.additionalContacts, action.payload];
     },
-    enableServiceTypeSelected: (state, action) => {
+    enableServiceTypeSelected: state => {
       state.serviceTypeSelected = true;
     },
     goToNextEstimateStep: state => {
@@ -71,10 +66,10 @@ export const {
   updateAddresses,
   updateServiceType,
   selectVehicleType,
-  updateDescription,
-  updateMovingDate,
-  updateMovingWindow,
-  updateAvailableMovingWindows,
+  setMovingPrice,
+  setDescription,
+  setMovingDate,
+  setMovingWindow,
   addAdditionalContact,
   enableServiceTypeSelected,
   goToNextEstimateStep,

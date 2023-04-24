@@ -18,7 +18,6 @@ import {
   goToPreviousEstimateStep,
   goToNextEstimateStep,
 } from '@/reduxSlices/orderSlice';
-import { ClickAnimation } from '@/Wrappers/MotionWraps';
 import styles from './styles.module.scss';
 
 const EstimateNavbar = () => {
@@ -92,9 +91,7 @@ const EstimateNavbar = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 50, opacity: 0 }}
             >
-              <ClickAnimation>
-                <button onClick={handleNext}>Next</button>
-              </ClickAnimation>
+              <button onClick={handleNext}>Next</button>
             </motion.section>
           )}
         </AnimatePresence>

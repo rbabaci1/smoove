@@ -4,7 +4,7 @@
 .main {
   .content {
     @include flex(column, flex-start);
-    height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
     max-width: 1200px;
     margin: 0 auto;
     padding: 8rem 1.5rem 0 1.5rem;
@@ -139,8 +139,8 @@
     }
 
     @media screen and (max-width: 374px) {
+      min-height: calc(100vh - 3rem);
       padding: 3rem 0.5rem 0 0.5rem;
-      height: calc(100vh - 3rem);
 
       .header {
         h1 {

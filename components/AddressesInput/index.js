@@ -7,7 +7,6 @@ import {
   updateAddresses,
   goToSpecificEstimateStep,
 } from '../../reduxSlices/orderSlice';
-import { ClickAnimation } from '@/Wrappers/MotionWraps';
 import styles from './styles.module.scss';
 
 const AddressesInput = ({
@@ -73,9 +72,7 @@ const AddressesInput = ({
           </div>
         </section>
 
-        <ClickAnimation>
-          <button type='submit'>{buttonText}</button>
-        </ClickAnimation>
+        <button type='submit'>{buttonText}</button>
       </form>
     </motion.div>
   );

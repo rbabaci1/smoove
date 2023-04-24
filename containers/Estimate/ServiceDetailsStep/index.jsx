@@ -36,6 +36,7 @@ const ServiceDetailsStep = () => {
   return (
     <div className={styles.container}>
       {/* Left side first container */}
+
       <div className={styles.dateTimeDesc}>
         <div className={styles.dateTime}></div>
 

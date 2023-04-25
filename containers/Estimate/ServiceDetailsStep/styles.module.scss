@@ -186,14 +186,17 @@
       .movingWindows {
         padding-bottom: 0;
 
-        h3,
+        h3 {
+          line-height: 1.15;
+        }
+
         span {
-          line-height: 1.1;
+          line-height: 1.3;
         }
 
         .movingWindowsList {
           span {
-            width: 6.4rem;
+            width: 7rem;
             font-weight: 600;
           }
         }

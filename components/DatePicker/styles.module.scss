@@ -87,6 +87,12 @@
   }
 
   @media screen and (max-width: 767px) {
+    .day,
+    .moreBtn,
+    .lessBtn {
+      height: 4rem;
+      width: 4rem;
+    }
   }
 
   @media screen and (max-width: 374px) {

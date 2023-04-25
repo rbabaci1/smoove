@@ -77,7 +77,7 @@ const ServiceDetailsStep = () => {
         <div className={styles.movingWindows}>
           <h3>When should we arrive at your pickup location?</h3>
           <span>
-            {`The chosen time slot is only for the crew's arrival, not the
+            {`This is the movers's arrival time, not the
             duration of the move.`}
           </span>
 

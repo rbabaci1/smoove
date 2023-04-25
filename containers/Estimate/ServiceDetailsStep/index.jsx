@@ -7,6 +7,7 @@ import {
   BsCalendarCheck,
   BsTruck,
 } from 'react-icons/bs';
+import { motion } from 'framer-motion';
 
 import { map } from '@/public/images';
 import styles from './styles.module.scss';
@@ -68,37 +69,51 @@ const ServiceDetailsStep = () => {
   return (
     <div className={styles.container}>
       {/* Left side first container */}
+      <div>
+        {estimateStep === 4 && (
+          <motion.div
+            className={styles.dateTimeMovWinds}
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+          >
+            <section className={styles.date}>
+              <DatePicker />
+            </section>
 
-      <div className={styles.dateTimeMovWinds}>
-        <section className={styles.date}>
-          <DatePicker />
-        </section>
-
-        <div className={styles.movingWindows}>
-          <h3>When should we arrive at your pickup location?</h3>
-          <span>
-            {`This is the movers's arrival time, not the
+            <div className={styles.movingWindows}>
+              <h3>When should we arrive at your pickup location?</h3>
+              <span>
+                {`This is the movers's arrival time, not the
             duration of the move.`}
-          </span>
-
-          <div className={styles.movingWindowsList}>
-            {movingWindows.map((window, index) => (
-              <span
-                key={index}
-                className={`${
-                  movingWindow === window ? styles.movingWindowSelected : ''
-                }`}
-                onClick={() => selectWindow(window)}
-              >
-                {window}
               </span>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      {/* Left side second container */}
-      {estimateStep === 5 && <div className={styles.descContact}></div>}
+              <div className={styles.movingWindowsList}>
+                {movingWindows.map((window, index) => (
+                  <span
+                    key={index}
+                    className={`${
+                      movingWindow === window ? styles.movingWindowSelected : ''
+                    }`}
+                    onClick={() => selectWindow(window)}
+                  >
+                    {window}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {estimateStep === 5 && (
+          <motion.div
+            className={styles.descContact}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+          >
+            <h3>I need description</h3>
+          </motion.div>
+        )}
+      </div>
 
       {/* Right side container */}
       <div className={styles.mapDetails}>

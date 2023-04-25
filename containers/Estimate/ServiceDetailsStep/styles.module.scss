@@ -11,6 +11,7 @@
 
   .dateTimeMovWinds {
     max-width: 550px;
+    border: 1px solid red;
 
     .date {
       padding-bottom: 2rem;
@@ -61,6 +62,13 @@
         }
       }
     }
+  }
+
+  // after above step is finish
+  .descContact {
+    width: 550px;
+    height: 600px;
+    border: 1px solid red;
   }
 
   .mapDetails {
@@ -169,6 +177,9 @@
   @media screen and (max-width: 1024px) {
     .dateTimeMovWinds {
       max-width: 100%;
+    }
+
+    .descContact {
     }
 
     .mapDetails {

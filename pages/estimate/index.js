@@ -103,6 +103,20 @@ const Estimate = () => {
             <ServiceDetailsStep />
           </motion.div>
         );
+      case 5:
+        return (
+          <motion.div
+            key={4}
+            className={styles.stepContainer}
+            variants={variants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={transition}
+          >
+            <ServiceDetailsStep />
+          </motion.div>
+        );
       case 6:
         return (
           <motion.div

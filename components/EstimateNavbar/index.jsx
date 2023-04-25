@@ -38,7 +38,7 @@ const EstimateNavbar = () => {
       estimateStep > 1 &&
         ((estimateStep === 2 && serviceType) ||
           (estimateStep === 3 && vehicleType) ||
-          (estimateStep === 4 && movingDate && movingWindow && description) ||
+          (estimateStep === 4 && movingDate && movingWindow) ||
           (estimateStep === 5 && description))
     );
   }, [

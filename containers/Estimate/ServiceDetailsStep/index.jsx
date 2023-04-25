@@ -10,8 +10,30 @@ import {
 
 import { map } from '@/public/images';
 import styles from './styles.module.scss';
-import { goToSpecificEstimateStep } from '@/reduxSlices/orderSlice';
+import {
+  goToSpecificEstimateStep,
+  setMovingWindow,
+} from '@/reduxSlices/orderSlice';
 import { DatePicker } from '@/components';
+import { useEffect } from 'react';
+
+const movingWindows = [
+  '7am - 8am',
+  '8am - 9am',
+  '9am - 10am',
+  '10am - 11am',
+  '11am - 12pm',
+  '12pm - 1pm',
+  '1pm - 2pm',
+  '2pm - 3pm',
+  '3pm - 4pm',
+  '4pm - 5pm',
+  '5pm - 6pm',
+  '6pm - 7pm',
+  '7pm - 8pm',
+  '8pm - 9pm',
+  '9pm - 10pm',
+];
 
 const EditIcon = ({ step = 1 }) => {
   const dispatch = useDispatch();
@@ -25,6 +47,7 @@ const EditIcon = ({ step = 1 }) => {
 };
 
 const ServiceDetailsStep = () => {
+  const dispatch = useDispatch();
   const {
     addresses,
     movingDate,
@@ -34,16 +57,44 @@ const ServiceDetailsStep = () => {
     estimateStep,
   } = useSelector(state => state.order);
 
+  useEffect(() => {
+    dispatch(setMovingWindow(movingWindows[0]));
+  }, [dispatch]);
+
+  const selectWindow = window => {
+    dispatch(setMovingWindow(window));
+  };
+
   return (
     <div className={styles.container}>
       {/* Left side first container */}
 
-      <div className={styles.dateTimeDesc}>
-        <div className={styles.dateTime}>
+      <div className={styles.dateTimeMovWinds}>
+        <section className={styles.date}>
           <DatePicker />
-        </div>
+        </section>
 
-        <div className={styles.description}></div>
+        <div className={styles.movingWindows}>
+          <h3>When should we arrive at your pickup location?</h3>
+          <span>
+            {`The chosen time slot is only for the crew's arrival, not the
+            duration of the move.`}
+          </span>
+
+          <div className={styles.movingWindowsList}>
+            {movingWindows.map((window, index) => (
+              <span
+                key={index}
+                className={`${
+                  movingWindow === window ? styles.movingWindowSelected : ''
+                }`}
+                onClick={() => selectWindow(window)}
+              >
+                {window}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Left side second container */}

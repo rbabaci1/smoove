@@ -3,6 +3,7 @@
 
 .container {
   width: 100%;
+  width: 540px;
 
   h3 {
     padding: 1rem 0;
@@ -26,13 +27,14 @@
 
   .day {
     transition: all 0.2s ease-in-out;
+
     span {
       color: gray;
       font-weight: 500;
       font-size: clamp(0.55rem, 5vw, 0.75rem);
     }
     h4 {
-      font-size: clamp(1.15rem, 5vw, 1.5rem);
+      font-size: clamp(1.15rem, 5vw, 1.4rem);
       margin-top: 0.35rem;
     }
 
@@ -84,5 +86,11 @@
     span {
       color: $white;
     }
+  }
+
+  @media screen and (max-width: 767px) {
+  }
+
+  @media screen and (max-width: 374px) {
   }
 }

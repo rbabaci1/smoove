@@ -8,7 +8,7 @@ const initialState = {
   serviceType: '',
   vehicleType: '',
   movingDate: '',
-  movingWindow: '9AM - 10AM',
+  movingWindow: '',
   description: '',
   additionalContacts: [],
   estimateStep: 1,

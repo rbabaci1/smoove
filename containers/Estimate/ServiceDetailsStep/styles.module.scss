@@ -46,10 +46,12 @@
           color: $dark-blue;
           font-size: clamp(0.65rem, 5vw, 1rem);
           cursor: pointer;
+          transition: all 0.1s ease-in-out;
 
           &:hover {
-            background-color: $main-color;
-            color: $white;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
           }
         }
 
@@ -184,8 +186,6 @@
 
     .dateTimeMovWinds {
       .movingWindows {
-        padding-bottom: 0;
-
         h3 {
           line-height: 1.15;
         }
@@ -210,5 +210,16 @@
 
   @media screen and (max-width: 374px) {
     min-height: calc(100dvh - 3rem);
+    padding: 1rem 0.5rem;
+
+    .dateTimeMovWinds {
+      .movingWindows {
+        .movingWindowsList {
+          span {
+            width: 5rem;
+          }
+        }
+      }
+    }
   }
 }

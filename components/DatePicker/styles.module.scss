@@ -31,7 +31,7 @@
   }
 
   .day {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     span {
       color: gray;
@@ -43,6 +43,7 @@
       margin-top: 0.35rem;
     }
   }
+
   .moreBtn,
   .lessBtn {
     border: 2px solid $main-color;
@@ -51,11 +52,6 @@
     svg {
       transform: scale(1.5);
     }
-
-    // &:hover {
-    //   background-color: $main-color;
-    //   color: $white;
-    // }
   }
 
   .firstDayOfMonth {
@@ -93,5 +89,27 @@
   }
 
   @media screen and (max-width: 374px) {
+    .day,
+    .moreBtn,
+    .lessBtn {
+      height: 2.4rem;
+      width: 2.4rem;
+
+      svg {
+        transform: scale(1.1);
+      }
+    }
+
+    .day {
+      transition: all 0.1s ease-in-out;
+
+      span {
+        font-size: clamp(0.3rem, 5vw, 0.55rem);
+      }
+      h4 {
+        font-size: clamp(0.8rem, 5vw, 1.15rem);
+        margin-top: 0.2rem;
+      }
+    }
   }
 }

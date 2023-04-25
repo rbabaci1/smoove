@@ -10,7 +10,7 @@
   margin: 0 auto;
 
   .dateTimeMovWinds {
-    width: 50%;
+    max-width: 550px;
 
     .date {
       padding-bottom: 2rem;
@@ -19,6 +19,10 @@
 
     .movingWindows {
       padding: 1.5rem 0;
+
+      h3 {
+        font-size: clamp(1.25rem, 5vw, 1.5rem);
+      }
 
       span {
         display: inline-block;

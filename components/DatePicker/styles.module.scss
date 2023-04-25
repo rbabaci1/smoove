@@ -3,7 +3,6 @@
 
 .container {
   width: 100%;
-  width: 540px;
 
   h3 {
     padding: 1rem 0;
@@ -31,10 +30,10 @@
     span {
       color: gray;
       font-weight: 500;
-      font-size: clamp(0.55rem, 5vw, 0.75rem);
+      font-size: clamp(0.55rem, 5vw, 0.7rem);
     }
     h4 {
-      font-size: clamp(1.15rem, 5vw, 1.4rem);
+      font-size: clamp(1.15rem, 5vw, 1.35rem);
       margin-top: 0.35rem;
     }
 

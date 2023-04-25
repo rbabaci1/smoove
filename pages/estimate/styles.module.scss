@@ -3,10 +3,19 @@
 
 .main {
   overflow: hidden;
+  margin-top: 5rem;
 
   .background {
     background-image: url('/images/bgImg.png');
     background-position: fixed;
     background-size: cover;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 4rem;
+  }
+
+  @media screen and (max-width: 374px) {
+    margin-top: 3rem;
   }
 }

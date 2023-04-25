@@ -9,11 +9,27 @@ import styles from './styles.module.scss';
 const NextJSDatePicker = () => {
   const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [screenWidth, setScreenWidth] = useState(null);
 
   const formattedDate = format(selectedDate, 'EEEE, MMM do');
 
   useEffect(() => {
     dispatch(setMovingDate(formattedDate));
+
+    function handleResize() {
+      setScreenWidth(window.innerWidth);
+    }
+
+    // Set initial width on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [dispatch, formattedDate, selectedDate]);
 
   const handleDateChange = date => {
@@ -25,7 +41,8 @@ const NextJSDatePicker = () => {
   const dateRange = Array.from({ length: 30 }, (_, i) => addDays(today, i));
 
   // calculate index for end of first date range
-  const endOfFirstRangeIndex = Math.min(5, dateRange.length) - 1;
+  const endOfFirstRangeIndex =
+    Math.min(screenWidth > 767 ? 5 : 3, dateRange.length) - 1;
 
   // state to track whether to show more dates
   const [showMoreDates, setShowMoreDates] = useState(false);

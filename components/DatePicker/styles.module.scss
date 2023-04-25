@@ -22,6 +22,12 @@
     background-color: $white;
     border-radius: 50%;
     cursor: pointer;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
   }
 
   .day {
@@ -36,15 +42,6 @@
       font-size: clamp(1.15rem, 5vw, 1.35rem);
       margin-top: 0.35rem;
     }
-
-    &:hover {
-      background-color: $main-color;
-
-      span,
-      h4 {
-        color: $white;
-      }
-    }
   }
   .moreBtn,
   .lessBtn {
@@ -55,10 +52,10 @@
       transform: scale(1.5);
     }
 
-    &:hover {
-      background-color: $main-color;
-      color: $white;
-    }
+    // &:hover {
+    //   background-color: $main-color;
+    //   color: $white;
+    // }
   }
 
   .firstDayOfMonth {

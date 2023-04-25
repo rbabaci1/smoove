@@ -11,6 +11,7 @@ import {
 import { map } from '@/public/images';
 import styles from './styles.module.scss';
 import { goToSpecificEstimateStep } from '@/reduxSlices/orderSlice';
+import { DatePicker } from '@/components';
 
 const EditIcon = ({ step = 1 }) => {
   const dispatch = useDispatch();
@@ -38,7 +39,9 @@ const ServiceDetailsStep = () => {
       {/* Left side first container */}
 
       <div className={styles.dateTimeDesc}>
-        <div className={styles.dateTime}></div>
+        <div className={styles.dateTime}>
+          <DatePicker />
+        </div>
 
         <div className={styles.description}></div>
       </div>

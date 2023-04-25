@@ -12,8 +12,11 @@
   .dateTimeDesc {
     min-height: calc(100vh - 9rem);
     width: 50%;
-    border-radius: 0.75rem;
-    background-color: $white;
+    border: 1px solid red;
+
+    .dateTime {
+      @include flex();
+    }
   }
 
   .mapDetails {

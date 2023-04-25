@@ -1,0 +1,88 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.container {
+  width: 100%;
+
+  h3 {
+    padding: 1rem 0;
+  }
+
+  .days {
+    @include flex(row, flex-start);
+    gap: 0.5rem;
+  }
+
+  .day,
+  .moreBtn,
+  .lessBtn {
+    @include flex(column);
+    height: 4.5rem;
+    width: 4.5rem;
+    background-color: $white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .day {
+    transition: all 0.2s ease-in-out;
+    span {
+      color: gray;
+      font-weight: 500;
+      font-size: clamp(0.55rem, 5vw, 0.75rem);
+    }
+    h4 {
+      font-size: clamp(1.15rem, 5vw, 1.5rem);
+      margin-top: 0.35rem;
+    }
+
+    &:hover {
+      background-color: $main-color;
+
+      span,
+      h4 {
+        color: $white;
+      }
+    }
+  }
+  .moreBtn,
+  .lessBtn {
+    border-radius: 0.5rem;
+    border: 2px solid $main-color;
+    color: $main-color;
+
+    svg {
+      transform: scale(1.5);
+    }
+
+    &:hover {
+      background-color: $main-color;
+      color: $white;
+    }
+  }
+
+  .firstDayOfMonth {
+    background-color: $apricot;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+    span,
+    h4 {
+      color: $white;
+    }
+
+    span {
+      font-size: clamp(0.8rem, 5vw, 1rem);
+      font-weight: 600;
+    }
+  }
+  .selectedDate {
+    background-color: $main-color;
+
+    h4,
+    span {
+      color: $white;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import CustomerReview from './CustomerReview';
 import ErrorMessage from './ErrorMessage';
 import ServiceType from './ServiceType';
 import VehicleCard from './VehicleCard';
+import DatePicker from './DatePicker';
 
 export {
   Carousel,
@@ -18,4 +19,5 @@ export {
   ErrorMessage,
   ServiceType,
   VehicleCard,
+  DatePicker,
 };

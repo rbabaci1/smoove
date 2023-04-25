@@ -7,7 +7,7 @@ const initialState = {
   },
   serviceType: '',
   vehicleType: '',
-  movingDate: 'Tuesday, April 25th',
+  movingDate: '',
   movingWindow: '9AM - 10AM',
   description: '',
   additionalContacts: [],

@@ -148,8 +148,8 @@ input {
   &:-webkit-autofill,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
-    -webkit-text-fill-color: #fff;
+    // -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
+    // -webkit-text-fill-color: #fff;
   }
 
   @media screen and (max-width: 374px) {

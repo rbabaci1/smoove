@@ -52,6 +52,15 @@
             left: 0.55rem;
             color: $light-gray;
           }
+
+          input {
+            &:-webkit-autofill,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px $main-color inset !important;
+              -webkit-text-fill-color: #fff;
+            }
+          }
         }
 
         ::placeholder {

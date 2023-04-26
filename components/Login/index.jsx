@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 const verificationCodeLength = 4;
 const CODE = '1234';
 
-const Login = () => {
+const Login = ({ animate = true }) => {
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 
@@ -129,7 +129,7 @@ const Login = () => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={animate ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}

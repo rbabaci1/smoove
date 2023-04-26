@@ -10,7 +10,7 @@ const stepsNames = [
   'Select a category',
   'Select a vehicle',
   'Select Day & time',
-  'Provide a description',
+  'Description',
   'Get verified',
 ];
 

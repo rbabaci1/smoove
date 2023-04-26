@@ -1,6 +1,43 @@
-.container {
-  min-height: calc(100dvh - 5rem);
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.background {
+  background-color: $white;
+
+  .container {
+    min-height: calc(100dvh - 5rem);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    @include flex(row, center, flex-start);
+    padding-top: 8rem;
+
+    .loginSignUp {
+      max-width: 21rem;
+      background-color: $white;
+      border-radius: 0.75rem;
+
+      h3 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+
+      span {
+        display: inline-block;
+        color: gray;
+        line-height: 1.3;
+        font-weight: 600;
+        margin-top: 0.3rem;
+      }
+    }
+
+    @media screen and (max-width: 374px) {
+      padding: 3rem 0.5rem 0 0.5rem;
+
+      .loginSignUp {
+        span {
+          font-size: clamp(0.75rem, 5vw, 1.1rem);
+        }
+      }
+    }
+  }
 }

@@ -11,7 +11,6 @@
 
   .dateTimeMovWinds {
     max-width: 550px;
-    border: 1px solid red;
 
     .date {
       padding-bottom: 2rem;
@@ -22,14 +21,14 @@
       padding: 1.5rem 0;
 
       h3 {
-        font-size: clamp(1.2rem, 5vw, 1.4rem);
+        // font-size: clamp(1.2rem, 5vw, 1.4rem);
       }
 
       span {
         display: inline-block;
         color: gray;
         font-weight: 500;
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
         font-size: clamp(0.7rem, 5vw, 0.95rem);
       }
 
@@ -47,6 +46,7 @@
           color: $dark-blue;
           font-size: clamp(0.65rem, 5vw, 1rem);
           cursor: pointer;
+          font-weight: 600;
           transition: all 0.1s ease-in-out;
 
           &:hover {
@@ -66,9 +66,108 @@
 
   // after above step is finish
   .descContact {
-    width: 550px;
-    height: 600px;
-    border: 1px solid red;
+    max-width: 550px;
+
+    h3 {
+      padding-bottom: 1rem;
+    }
+
+    textarea {
+      padding: 1rem;
+      background-color: $white;
+      font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      border-radius: 0.5rem;
+      border: 1px solid $light-blue;
+      letter-spacing: 0.5px;
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+
+      &:hover {
+        border-color: $main-color;
+      }
+    }
+
+    .addContacts {
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      border-top: 1px solid $light-blue;
+
+      .header {
+        h3 {
+          padding-bottom: 0.2rem;
+        }
+        span {
+          color: gray;
+          font-weight: 500;
+        }
+      }
+
+      .contacts {
+        padding: 1rem 0;
+        @include flex(row, flex-start);
+        gap: 1rem;
+
+        section {
+          @include flex(row, flex-start);
+          background-color: $white;
+          width: fit-content;
+          padding: 0.3rem 1rem;
+          border-radius: 0.5rem;
+          position: relative;
+
+          p {
+            margin: 0 0 0 0.5rem;
+          }
+
+          svg {
+            position: absolute;
+            right: -0.2rem;
+            top: -0.5rem;
+          }
+        }
+      }
+
+      .newContact {
+        @include flex(row, space-between);
+        padding: 0.2rem 0;
+
+        .name,
+        .phoneNumber {
+          background-color: $white;
+          width: fit-content;
+          border-radius: 0.5rem;
+          width: 46%;
+        }
+
+        input {
+          border: 1px solid $light-blue;
+          border-radius: 0.5rem;
+          font-weight: 600;
+          font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+          box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+
+          &:hover {
+            border-color: $main-color;
+          }
+        }
+
+        select,
+        img {
+          display: none;
+        }
+      }
+
+      svg {
+        color: $error-color;
+        cursor: pointer;
+        transform: scale(1.8);
+      }
+
+      button {
+        margin-top: 0.5rem;
+      }
+    }
   }
 
   .mapDetails {

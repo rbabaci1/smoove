@@ -44,8 +44,8 @@ export const OrderSlice = createSlice({
     setDescription: (state, action) => {
       state.description = action.payload;
     },
-    addAdditionalContact: (state, action) => {
-      state.additionalContacts = [...state.additionalContacts, action.payload];
+    updateAdditionalContacts: (state, action) => {
+      state.additionalContacts = action.payload;
     },
     enableServiceTypeSelected: state => {
       state.serviceTypeSelected = true;
@@ -70,7 +70,7 @@ export const {
   setDescription,
   setMovingDate,
   setMovingWindow,
-  addAdditionalContact,
+  updateAdditionalContacts,
   enableServiceTypeSelected,
   goToNextEstimateStep,
   goToPreviousEstimateStep,

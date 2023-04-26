@@ -158,7 +158,7 @@ const ServiceDetailsStep = () => {
             name='desc'
             id='desc'
             rows='11'
-            cols='50'
+            cols='52'
             placeholder='Inform us of what you are moving or any instructions you might
                 have.'
             value={description}
@@ -168,8 +168,18 @@ const ServiceDetailsStep = () => {
 
           <div className={styles.addContacts}>
             <div className={styles.header}>
-              <h3>Additional contacts</h3>
-              <span>To keep them updated about the status of your move.</span>
+              <section>
+                <h3>Additional contacts</h3>
+                <span>To keep them updated about the status of your move.</span>
+              </section>
+
+              {showContacts ? (
+                <button onClick={handleAddContact}>Add contact</button>
+              ) : (
+                <button onClick={() => setShowContacts(true)}>
+                  Add contact
+                </button>
+              )}
             </div>
 
             <div className={styles.contacts}>
@@ -177,9 +187,9 @@ const ServiceDetailsStep = () => {
                 {additionalContacts.map((contact, index) => (
                   <motion.section
                     key={index}
-                    initial={{ x: -40, opacity: 0 }}
+                    initial={{ x: -30, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -40, opacity: 0 }}
+                    exit={{ x: -30, opacity: 0 }}
                   >
                     <h4>{contact.name}</h4>
                     <p>{contact.phoneNumber}</p>
@@ -191,75 +201,50 @@ const ServiceDetailsStep = () => {
               </AnimatePresence>
             </div>
 
-            <motion.div layout>
-              <AnimatePresence>
-                {showContacts && (
-                  <motion.section
-                    className={styles.newContact}
-                    initial={{ y: -40, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    duration={{ duration: 0.1 }}
-                  >
-                    <input
-                      type='text'
-                      placeholder='Name'
-                      name='name'
-                      onChange={handleContactChange}
-                      value={newContact.name}
-                      className={styles.name}
-                    />
+            <AnimatePresence>
+              {showContacts && (
+                <motion.section
+                  className={styles.newContact}
+                  initial={{ y: -30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -30, opacity: 0 }}
+                >
+                  <input
+                    type='text'
+                    placeholder='Name'
+                    name='name'
+                    onChange={handleContactChange}
+                    value={newContact.name}
+                    className={styles.name}
+                  />
 
-                    <PhoneInput
-                      placeholder='Phone number'
-                      value={newContact.phoneNumber}
-                      onChange={value =>
-                        handleContactChange({
-                          target: {
-                            name: 'phoneNumber',
-                            value,
-                          },
-                        })
-                      }
-                      country='US'
-                      defaultCountry='US'
-                      limitMaxLength={true}
-                      international={false}
-                      className={styles.phoneNumber}
-                    />
+                  <PhoneInput
+                    placeholder='Phone number'
+                    value={newContact.phoneNumber}
+                    onChange={value =>
+                      handleContactChange({
+                        target: {
+                          name: 'phoneNumber',
+                          value,
+                        },
+                      })
+                    }
+                    country='US'
+                    defaultCountry='US'
+                    limitMaxLength={true}
+                    international={false}
+                    className={styles.phoneNumber}
+                  />
 
-                    <AiOutlineCloseSquare
-                      onClick={() => {
-                        setShowContacts(false);
-                        setNewContact({ name: '', phoneNumber: '' });
-                      }}
-                    />
-                  </motion.section>
-                )}
-              </AnimatePresence>
-
-              <AnimatePresence>
-                {showContacts ? (
-                  <motion.button
-                    onClick={handleAddContact}
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 40, opacity: 0 }}
-                  >
-                    Add contact
-                  </motion.button>
-                ) : (
-                  <motion.button
-                    onClick={() => setShowContacts(true)}
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 40, opacity: 0 }}
-                  >
-                    Add contact
-                  </motion.button>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                  <AiOutlineCloseSquare
+                    onClick={() => {
+                      setShowContacts(false);
+                      setNewContact({ name: '', phoneNumber: '' });
+                    }}
+                  />
+                </motion.section>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       )}

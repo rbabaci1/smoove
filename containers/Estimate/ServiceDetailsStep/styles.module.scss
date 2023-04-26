@@ -94,6 +94,8 @@
       border-top: 1px solid $light-blue;
 
       .header {
+        @include flex(row, space-between);
+
         h3 {
           padding-bottom: 0.2rem;
         }
@@ -162,10 +164,6 @@
         color: $error-color;
         cursor: pointer;
         transform: scale(1.8);
-      }
-
-      button {
-        margin-top: 0.5rem;
       }
     }
   }

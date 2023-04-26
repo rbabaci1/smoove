@@ -114,7 +114,7 @@ const ServiceDetailsStep = () => {
     <div className={styles.container}>
       {/* Left side first container */}
 
-      {estimateStep === 4 ? (
+      {estimateStep === 4 && (
         <motion.div
           className={styles.dateTimeMovWinds}
           initial={{ x: -50, opacity: 0 }}
@@ -146,7 +146,9 @@ const ServiceDetailsStep = () => {
             </div>
           </div>
         </motion.div>
-      ) : (
+      )}
+
+      {estimateStep === 5 && (
         <motion.div
           className={styles.descContact}
           initial={{ y: 50, opacity: 0 }}
@@ -158,7 +160,6 @@ const ServiceDetailsStep = () => {
             name='desc'
             id='desc'
             rows='11'
-            // cols='54'
             placeholder='Inform us of what you are moving or any instructions you might
                 have.'
             value={description}

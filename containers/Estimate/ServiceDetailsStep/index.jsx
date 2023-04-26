@@ -158,7 +158,7 @@ const ServiceDetailsStep = () => {
             name='desc'
             id='desc'
             rows='11'
-            cols='52'
+            // cols='54'
             placeholder='Inform us of what you are moving or any instructions you might
                 have.'
             value={description}
@@ -173,13 +173,13 @@ const ServiceDetailsStep = () => {
                 <span>To keep them updated about the status of your move.</span>
               </section>
 
-              {showContacts ? (
-                <button onClick={handleAddContact}>Add contact</button>
-              ) : (
-                <button onClick={() => setShowContacts(true)}>
-                  Add contact
-                </button>
-              )}
+              <button
+                onClick={
+                  showContacts ? handleAddContact : () => setShowContacts(true)
+                }
+              >
+                Add contact
+              </button>
             </div>
 
             <div className={styles.contacts}>

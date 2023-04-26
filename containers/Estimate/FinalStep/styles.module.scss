@@ -21,11 +21,11 @@
         font-size: clamp(1.5rem, 5vw, 2rem);
       }
 
-      span {
+      .subTitle {
         display: inline-block;
         color: gray;
         line-height: 1.3;
-        font-weight: 600;
+        font-weight: 500;
         margin-top: 0.3rem;
       }
     }

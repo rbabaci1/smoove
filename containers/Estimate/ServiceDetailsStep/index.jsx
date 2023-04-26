@@ -171,7 +171,7 @@ const ServiceDetailsStep = () => {
             <div className={styles.header}>
               <section>
                 <h3>Additional contacts</h3>
-                <span>To keep them updated about the status of your move.</span>
+                <span>To keep them updated about the status of the move.</span>
               </section>
 
               <button

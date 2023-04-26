@@ -7,7 +7,7 @@ const FinalStep = () => {
       <div className={styles.container}>
         <div className={styles.loginSignUp}>
           <h3>Phone number</h3>
-          <span>
+          <span className={styles.subTitle}>
             {`You'll be receiving updates about your move to this phone number.`}
           </span>
 

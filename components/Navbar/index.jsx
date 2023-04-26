@@ -25,7 +25,8 @@ function Navbar() {
         <div className={styles.navLinks}>
           <Dropdown />
 
-          <Link href='/partner'>Partners</Link>
+          {/* Add later when partner page is built */}
+          {/* <Link href='/partner'>Partners</Link> */}
 
           <Link href='/login' className={styles.loginLink}>
             Sign in

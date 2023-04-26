@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 const FinalStep = () => {
-  return <div>FinalStep</div>;
+  return <div className={styles.container}>FinalStep</div>;
 };
 
 export default FinalStep;

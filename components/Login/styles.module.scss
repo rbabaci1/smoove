@@ -1,0 +1,173 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
+.container {
+  form {
+    @include flex(column, center, flex-start);
+    padding-top: 3rem;
+    min-width: 21rem;
+
+    input {
+      border-radius: 0.5rem;
+      border: 1px solid $light-gray;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+    }
+    ::placeholder {
+      font-weight: 500;
+    }
+
+    .phoneNumberInput {
+      width: 100%;
+      margin-bottom: 2rem;
+      position: relative;
+
+      .input input:disabled {
+        opacity: 0.5;
+      }
+
+      select,
+      img {
+        display: none;
+      }
+
+      .borderError input {
+        border-color: $error-color;
+      }
+    }
+
+    .verificationCode {
+      width: 100%;
+      position: relative;
+
+      input {
+        border: 1px solid $light-gray;
+      }
+
+      .borderError {
+        border-color: $error-color;
+      }
+
+      svg {
+        color: $main-color;
+        font-size: 1.3rem;
+        position: absolute;
+        right: 1rem;
+        top: 1.3rem;
+        animation: rotate 1s infinite linear;
+      }
+
+      button svg {
+        color: $dark-blue;
+      }
+
+      .resendCode {
+        position: absolute;
+        right: 0.5rem;
+        top: 1.4rem;
+        font-weight: 600;
+        color: $main-color;
+        cursor: pointer;
+        font-size: clamp(0.85rem, 5vw, 0.95rem);
+      }
+    }
+
+    .textError {
+      position: absolute;
+      text-align: center;
+      margin-top: 0.3rem;
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      position: relative;
+      height: 3.5rem;
+
+      svg {
+        top: 1.15rem !important;
+        right: 10rem !important;
+      }
+    }
+
+    button:disabled {
+      cursor: default;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    form {
+      input {
+        padding: 1.3rem 1rem;
+      }
+
+      svg {
+        top: 1.5rem !important;
+      }
+
+      button {
+        height: 4.2rem;
+
+        svg {
+          top: 1.4rem !important;
+        }
+      }
+
+      .verificationCode .resendCode {
+        top: 1.6rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    form {
+      padding-top: 2rem;
+      min-width: 100%;
+
+      input {
+        padding: 0.3rem 0.5rem;
+        font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+      }
+
+      .phoneNumberInput {
+        margin-bottom: 1rem;
+      }
+
+      button {
+        height: 1.8rem;
+        font-size: 0.7rem !important;
+
+        svg {
+          top: 1.4rem !important;
+        }
+      }
+
+      .verificationCode {
+        .resendCode {
+          top: 0.6rem;
+          font-size: clamp(0.6rem, 5vw, 0.8rem);
+        }
+
+        svg {
+          font-size: 0.8rem;
+          right: 50% !important;
+          top: 0.5rem !important;
+        }
+      }
+
+      .textError {
+        margin: 0.05rem;
+        font-size: clamp(0.6rem, 5vw, 0.8rem);
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

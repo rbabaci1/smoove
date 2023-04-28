@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
 import { motion } from 'framer-motion';
@@ -9,6 +9,7 @@ import Autosuggest from 'react-autosuggest';
 import {
   updateAddresses,
   goToSpecificEstimateStep,
+  updateAddressesTypingValues,
 } from '../../reduxSlices/orderSlice';
 import { fetchAddressesSuggestions } from '@/lib';
 import styles from './styles.module.scss';
@@ -19,15 +20,16 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const {
+    addresses: { typingValues },
+  } = useSelector(state => state.order);
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
   });
-  // typing state
-  const [addresses, setAddresses] = useState({ pickup: '', dropOff: '' });
 
   const handleChange = ({ target: { name, value } }) => {
-    setAddresses({ ...addresses, [name]: value });
+    dispatch(updateAddressesTypingValues({ type: name, value }));
   };
 
   const onSuggestionsClearRequested = () => {
@@ -40,23 +42,16 @@ const AddressesInput = ({
     const splitAddress = suggestion?.place_name.split(',');
     const placeType = suggestion?.place_type[0];
 
-    return placeType === 'address' ? (
-      <>
-        <CiLocationOn />
-
-        <section>
-          <p>{splitAddress[0]}</p>
-          <span>{splitAddress[1]}</span>
-        </section>
-      </>
-    ) : (
+    return (
       <>
         <CiLocationOn />
 
         <section>
           <p>{splitAddress[0]}</p>
           <span>
-            {splitAddress[1]}, {splitAddress[2]}
+            {placeType === 'address'
+              ? splitAddress[1]
+              : splitAddress[1] + ', ' + splitAddress[2]}
           </span>
         </section>
       </>
@@ -104,7 +99,7 @@ const AddressesInput = ({
                 placeholder: 'Enter pickup',
                 autoComplete: 'Pickup address',
                 name: 'pickup',
-                value: addresses.pickup,
+                value: typingValues.pickup,
                 onChange: handleChange,
                 required: true,
               }}
@@ -114,11 +109,12 @@ const AddressesInput = ({
                 dispatch(
                   updateAddresses({ type: 'pickup', address: suggestionValue })
                 );
-
-                setAddresses({
-                  ...addresses,
-                  pickup: splitAddress[0] + ',' + splitAddress[1],
-                });
+                dispatch(
+                  updateAddressesTypingValues({
+                    type: 'pickup',
+                    value: splitAddress[0] + ',' + splitAddress[1],
+                  })
+                );
               }}
             />
           </div>
@@ -147,7 +143,7 @@ const AddressesInput = ({
                 placeholder: 'Enter destination',
                 autoComplete: 'DropOff address',
                 name: 'dropOff',
-                value: addresses.dropOff,
+                value: typingValues.dropOff,
                 onChange: handleChange,
                 required: true,
               }}
@@ -158,10 +154,12 @@ const AddressesInput = ({
                   updateAddresses({ type: 'dropOff', address: suggestionValue })
                 );
 
-                setAddresses({
-                  ...addresses,
-                  dropOff: splitAddress[0] + ', ' + splitAddress[1],
-                });
+                dispatch(
+                  updateAddressesTypingValues({
+                    type: 'dropOff',
+                    value: splitAddress[0] + ',' + splitAddress[1],
+                  })
+                );
               }}
             />
           </div>

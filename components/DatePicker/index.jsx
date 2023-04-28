@@ -58,10 +58,6 @@ const NextJSDatePicker = () => {
             .toLocaleString('en-us', { weekday: 'short' })
             .toUpperCase();
 
-          if (date.getDate() === 1) {
-            setFirstMonthName(format(date, 'MMMM'));
-          }
-
           const isStartOfMonth = date.getDate() === 1;
 
           return (

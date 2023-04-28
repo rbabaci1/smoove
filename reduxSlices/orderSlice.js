@@ -4,6 +4,11 @@ const initialState = {
   addresses: {
     pickup: '',
     dropOff: '',
+
+    typingValues: {
+      pickup: '',
+      dropOff: '',
+    },
   },
   serviceType: '',
   vehicleType: '',
@@ -24,6 +29,12 @@ export const OrderSlice = createSlice({
       state.addresses = {
         ...state.addresses,
         [action.payload.type]: action.payload.address,
+      };
+    },
+    updateAddressesTypingValues: (state, action) => {
+      state.addresses.typingValues = {
+        ...state.addresses.typingValues,
+        [action.payload.type]: action.payload.value,
       };
     },
     updateServiceType: (state, action) => {
@@ -64,6 +75,7 @@ export const OrderSlice = createSlice({
 
 export const {
   updateAddresses,
+  updateAddressesTypingValues,
   updateServiceType,
   selectVehicleType,
   setMovingPrice,

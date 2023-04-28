@@ -16,14 +16,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import { map } from '@/public/images';
-import styles from './styles.module.scss';
+import { parseAddress } from '@/lib';
+import { DatePicker } from '@/components';
 import {
   goToSpecificEstimateStep,
   setMovingWindow,
   setDescription,
   updateAdditionalContacts,
 } from '@/reduxSlices/orderSlice';
-import { DatePicker } from '@/components';
+import styles from './styles.module.scss';
 
 const movingWindows = [
   '7am - 8am',
@@ -57,7 +58,7 @@ const EditIcon = ({ step = 1 }) => {
 const ServiceDetailsStep = () => {
   const dispatch = useDispatch();
   const {
-    addresses,
+    addresses: { pickup, dropOff },
     movingDate,
     movingWindow,
     price,
@@ -263,7 +264,7 @@ const ServiceDetailsStep = () => {
 
               <section className={styles.address}>
                 <span>Pickup address:</span>
-                <p>{addresses?.pickup}</p>
+                <p>{parseAddress(pickup)}</p>
               </section>
 
               <EditIcon />
@@ -274,7 +275,7 @@ const ServiceDetailsStep = () => {
 
               <section className={styles.address}>
                 <span>DropOff address:</span>
-                <p>{addresses?.dropOff}</p>
+                <p>{parseAddress(dropOff)}</p>
               </section>
 
               <EditIcon />

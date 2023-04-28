@@ -20,9 +20,7 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const {
-    addresses: { typingValues },
-  } = useSelector(state => state.order);
+  const { typingValues } = useSelector(state => state.order.addresses);
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
@@ -97,7 +95,7 @@ const AddressesInput = ({
               renderSuggestion={renderSuggestion}
               inputProps={{
                 placeholder: 'Enter pickup',
-                autoComplete: 'Pickup address',
+                autoComplete: 'off',
                 name: 'pickup',
                 value: typingValues.pickup,
                 onChange: handleChange,
@@ -112,7 +110,7 @@ const AddressesInput = ({
                 dispatch(
                   updateAddressesTypingValues({
                     type: 'pickup',
-                    value: splitAddress[0] + ',' + splitAddress[1],
+                    value: splitAddress[0],
                   })
                 );
               }}
@@ -141,7 +139,7 @@ const AddressesInput = ({
               renderSuggestion={renderSuggestion}
               inputProps={{
                 placeholder: 'Enter destination',
-                autoComplete: 'DropOff address',
+                autoComplete: 'off',
                 name: 'dropOff',
                 value: typingValues.dropOff,
                 onChange: handleChange,
@@ -157,7 +155,7 @@ const AddressesInput = ({
                 dispatch(
                   updateAddressesTypingValues({
                     type: 'dropOff',
-                    value: splitAddress[0] + ',' + splitAddress[1],
+                    value: splitAddress[0],
                   })
                 );
               }}

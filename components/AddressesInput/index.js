@@ -1,12 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import { CiLocationOn } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Autosuggest from 'react-autosuggest';
 
 import {
   updateAddresses,
   goToSpecificEstimateStep,
 } from '../../reduxSlices/orderSlice';
+import { fetchAddressesSuggestions } from '@/lib';
 import styles from './styles.module.scss';
 
 const AddressesInput = ({
@@ -15,12 +19,48 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const addresses = useSelector(state => state.order.addresses);
+  const [suggestions, setSuggestions] = useState({
+    pickup: [],
+    dropOff: [],
+  });
+  // typing state
+  const [addresses, setAddresses] = useState({ pickup: '', dropOff: '' });
 
-  const handleChange = event => {
-    let { name, value } = event.target;
+  const handleChange = ({ target: { name, value } }) => {
+    setAddresses({ ...addresses, [name]: value });
+  };
 
-    dispatch(updateAddresses({ type: name, address: value }));
+  const onSuggestionsClearRequested = () => {
+    setSuggestions({ pickup: [], dropOff: [] });
+  };
+
+  const getSuggestionValue = suggestion => suggestion;
+
+  const renderSuggestion = suggestion => {
+    const splitAddress = suggestion?.place_name.split(',');
+    const placeType = suggestion?.place_type[0];
+
+    return placeType === 'address' ? (
+      <>
+        <CiLocationOn />
+
+        <section>
+          <p>{splitAddress[0]}</p>
+          <span>{splitAddress[1]}</span>
+        </section>
+      </>
+    ) : (
+      <>
+        <CiLocationOn />
+
+        <section>
+          <p>{splitAddress[0]}</p>
+          <span>
+            {splitAddress[1]}, {splitAddress[2]}
+          </span>
+        </section>
+      </>
+    );
   };
 
   const handleSubmit = event => {
@@ -45,13 +85,41 @@ const AddressesInput = ({
 
           <div className={styles.input}>
             <p>Pickup address</p>
-            <input
-              type='text'
-              placeholder='Enter pickup'
-              name='pickup'
-              value={addresses.pickup}
-              onChange={handleChange}
-              required
+
+            <Autosuggest
+              suggestions={suggestions.pickup}
+              onSuggestionsFetchRequested={({ value, reason }) =>
+                fetchAddressesSuggestions(
+                  value,
+                  reason,
+                  'pickup',
+                  suggestions,
+                  setSuggestions
+                )
+              }
+              onSuggestionsClearRequested={onSuggestionsClearRequested}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={{
+                placeholder: 'Enter pickup',
+                autoComplete: 'Pickup address',
+                name: 'pickup',
+                value: addresses.pickup,
+                onChange: handleChange,
+                required: true,
+              }}
+              onSuggestionSelected={(_, { suggestionValue }) => {
+                const splitAddress = suggestionValue?.place_name.split(',');
+
+                dispatch(
+                  updateAddresses({ type: 'pickup', address: suggestionValue })
+                );
+
+                setAddresses({
+                  ...addresses,
+                  pickup: splitAddress[0] + ',' + splitAddress[1],
+                });
+              }}
             />
           </div>
         </section>
@@ -61,13 +129,40 @@ const AddressesInput = ({
 
           <div className={styles.input}>
             <p>DropOff address</p>
-            <input
-              type='text'
-              placeholder='Enter destination'
-              name='dropOff'
-              value={addresses.dropOff}
-              onChange={handleChange}
-              required
+            <Autosuggest
+              suggestions={suggestions.dropOff}
+              onSuggestionsFetchRequested={({ value, reason }) =>
+                fetchAddressesSuggestions(
+                  value,
+                  reason,
+                  'dropOff',
+                  suggestions,
+                  setSuggestions
+                )
+              }
+              onSuggestionsClearRequested={onSuggestionsClearRequested}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={{
+                placeholder: 'Enter destination',
+                autoComplete: 'DropOff address',
+                name: 'dropOff',
+                value: addresses.dropOff,
+                onChange: handleChange,
+                required: true,
+              }}
+              onSuggestionSelected={(_, { suggestionValue }) => {
+                const splitAddress = suggestionValue?.place_name.split(',');
+
+                dispatch(
+                  updateAddresses({ type: 'dropOff', address: suggestionValue })
+                );
+
+                setAddresses({
+                  ...addresses,
+                  dropOff: splitAddress[0] + ', ' + splitAddress[1],
+                });
+              }}
             />
           </div>
         </section>

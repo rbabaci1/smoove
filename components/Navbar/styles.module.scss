@@ -47,7 +47,7 @@
 
     .navLinks {
       @include flex(row, space-between);
-      width: 30%;
+      width: 40%;
 
       .loginLink {
         @include flex();

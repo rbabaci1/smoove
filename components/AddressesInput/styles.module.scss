@@ -20,6 +20,11 @@
       @include flex();
       position: relative;
       min-width: 300px;
+
+      .input .error {
+        color: $error-color;
+      }
+
       svg {
         margin-right: 0.5rem;
         color: gray;
@@ -27,6 +32,11 @@
       }
       input {
         padding: 0;
+      }
+
+      .loading {
+        color: $main-color;
+        animation: rotate 1s infinite linear;
       }
     }
 
@@ -102,5 +112,14 @@
         margin: 1rem 0 2rem 0;
       }
     }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

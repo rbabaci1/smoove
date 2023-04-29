@@ -332,8 +332,9 @@ a {
     border-radius: 0.5rem;
 
     li {
-      @include flex(row, space-between);
+      @include flex(row, flex-start);
       height: 4rem;
+
       padding: 0 0.5rem;
       cursor: pointer;
 

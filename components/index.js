@@ -9,6 +9,7 @@ import ErrorMessage from './ErrorMessage';
 import ServiceType from './ServiceType';
 import VehicleCard from './VehicleCard';
 import DatePicker from './DatePicker';
+import AddressAutosuggest from './AddressAutoSuggest';
 
 export {
   Carousel,
@@ -22,4 +23,5 @@ export {
   VehicleCard,
   DatePicker,
   Login,
+  AddressAutosuggest,
 };

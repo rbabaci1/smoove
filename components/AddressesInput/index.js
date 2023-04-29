@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import {
+  AiOutlineArrowUp,
+  AiOutlineArrowDown,
+  AiOutlineLoading3Quarters,
+} from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Autosuggest from 'react-autosuggest';
-
 import {
-  updateAddresses,
   goToSpecificEstimateStep,
   updateAddressesTypingValues,
 } from '../../reduxSlices/orderSlice';
 import { fetchAddressesSuggestions } from '@/lib';
+import { AddressAutosuggest } from '@/components';
 import styles from './styles.module.scss';
 
 const AddressesInput = ({
@@ -20,14 +22,30 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { typingValues } = useSelector(state => state.order.addresses);
+  const { pickup, dropOff, typingValues } = useSelector(
+    state => state.order.addresses
+  );
+  const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
   });
+  const [error, setError] = useState({ pickup: '', dropOff: '' });
 
   const handleChange = ({ target: { name, value } }) => {
     dispatch(updateAddressesTypingValues({ type: name, value }));
+  };
+
+  const onSuggestionsFetchRequested = (value, reason, addressType) => {
+    fetchAddressesSuggestions(
+      value,
+      reason,
+      addressType,
+      suggestions,
+      setSuggestions,
+      loading,
+      setLoading
+    );
   };
 
   const onSuggestionsClearRequested = () => {
@@ -58,6 +76,17 @@ const AddressesInput = ({
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    // verify that entered a valid pickup and dropOff address
+    if (!pickup) {
+      setError({ ...error, pickup: 'Please enter a valid pickup address' });
+      return;
+    }
+    if (!dropOff) {
+      setError({ ...error, dropOff: 'Please enter a valid dropOff address' });
+      return;
+    }
+
     dispatch(goToSpecificEstimateStep(2));
 
     // only push to /estimate if we're on the homepage
@@ -74,91 +103,51 @@ const AddressesInput = ({
     >
       <form className={styles.addresses} onSubmit={handleSubmit}>
         <section className={styles.pickup}>
-          <AiOutlineArrowUp />
+          {loading.pickup ? (
+            <AiOutlineLoading3Quarters className={styles.loading} />
+          ) : (
+            <AiOutlineArrowUp />
+          )}
 
           <div className={styles.input}>
-            <p>Pickup address</p>
+            <p className={error.pickup ? styles.error : ''}>Pickup address</p>
 
-            <Autosuggest
+            <AddressAutosuggest
+              addressType='pickup'
               suggestions={suggestions.pickup}
-              onSuggestionsFetchRequested={({ value, reason }) =>
-                fetchAddressesSuggestions(
-                  value,
-                  reason,
-                  'pickup',
-                  suggestions,
-                  setSuggestions
-                )
-              }
+              onSuggestionsFetchRequested={onSuggestionsFetchRequested}
               onSuggestionsClearRequested={onSuggestionsClearRequested}
               getSuggestionValue={getSuggestionValue}
               renderSuggestion={renderSuggestion}
-              inputProps={{
-                placeholder: 'Enter pickup',
-                autoComplete: 'off',
-                name: 'pickup',
-                value: typingValues.pickup,
-                onChange: handleChange,
-                required: true,
-              }}
-              onSuggestionSelected={(_, { suggestionValue }) => {
-                const splitAddress = suggestionValue?.place_name.split(',');
-
-                dispatch(
-                  updateAddresses({ type: 'pickup', address: suggestionValue })
-                );
-                dispatch(
-                  updateAddressesTypingValues({
-                    type: 'pickup',
-                    value: splitAddress[0],
-                  })
-                );
-              }}
+              typingValues={{ pickup: typingValues.pickup }}
+              handleChange={handleChange}
+              updateAddressesTypingValues={updateAddressesTypingValues}
+              clearError={() => setError({ ...error, pickup: '' })}
             />
           </div>
         </section>
 
         <section className={styles.dropOff}>
-          <AiOutlineArrowDown />
+          {loading.dropOff ? (
+            <AiOutlineLoading3Quarters className={styles.loading} />
+          ) : (
+            <AiOutlineArrowDown />
+          )}
 
           <div className={styles.input}>
-            <p>DropOff address</p>
-            <Autosuggest
+            <p className={error.dropOff ? styles.error : ''}>DropOff address</p>
+
+            <AddressAutosuggest
+              addressType='dropOff'
               suggestions={suggestions.dropOff}
-              onSuggestionsFetchRequested={({ value, reason }) =>
-                fetchAddressesSuggestions(
-                  value,
-                  reason,
-                  'dropOff',
-                  suggestions,
-                  setSuggestions
-                )
-              }
+              onSuggestionsFetchRequested={onSuggestionsFetchRequested}
               onSuggestionsClearRequested={onSuggestionsClearRequested}
               getSuggestionValue={getSuggestionValue}
               renderSuggestion={renderSuggestion}
-              inputProps={{
-                placeholder: 'Enter destination',
-                autoComplete: 'off',
-                name: 'dropOff',
-                value: typingValues.dropOff,
-                onChange: handleChange,
-                required: true,
-              }}
-              onSuggestionSelected={(_, { suggestionValue }) => {
-                const splitAddress = suggestionValue?.place_name.split(',');
-
-                dispatch(
-                  updateAddresses({ type: 'dropOff', address: suggestionValue })
-                );
-
-                dispatch(
-                  updateAddressesTypingValues({
-                    type: 'dropOff',
-                    value: splitAddress[0],
-                  })
-                );
-              }}
+              typingValues={{ dropOff: typingValues.dropOff }}
+              handleChange={handleChange}
+              updateAddressesTypingValues={updateAddressesTypingValues}
+              clearError={() => setError({ ...error, dropOff: '' })}
             />
           </div>
         </section>

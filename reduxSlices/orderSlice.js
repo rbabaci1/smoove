@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   addresses: {
-    pickup: '',
-    dropOff: '',
+    pickup: null,
+    dropOff: null,
 
     typingValues: {
       pickup: '',
@@ -19,6 +19,7 @@ const initialState = {
   estimateStep: 1,
   price: '',
   serviceTypeSelected: false,
+  addressesAreValid: false,
 };
 
 export const OrderSlice = createSlice({

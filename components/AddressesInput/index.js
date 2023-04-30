@@ -109,7 +109,7 @@ const AddressesInput = ({
         <div className={styles.pickup}>
           <section className={styles.icon}>
             {loading.pickup ? (
-              <AiOutlineLoading3Quarters className={styles.loading} />
+              <AiOutlineLoading3Quarters className='loading' />
             ) : (
               <AiOutlineArrowUp className={styles.svg} />
             )}
@@ -136,7 +136,7 @@ const AddressesInput = ({
         <div className={styles.dropOff}>
           <section className={styles.icon}>
             {loading.dropOff ? (
-              <AiOutlineLoading3Quarters className={styles.loading} />
+              <AiOutlineLoading3Quarters className='loading' />
             ) : (
               <AiOutlineArrowDown className={styles.svg} />
             )}

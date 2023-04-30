@@ -120,7 +120,9 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
             >
               <section className={styles.icon}>
                 {loading.pickup ? (
-                  <AiOutlineLoading3Quarters className={styles.loading} />
+                  <AiOutlineLoading3Quarters
+                    className={`${styles.loading} loading`}
+                  />
                 ) : (
                   <AiOutlineArrowUp className={styles.svg} />
                 )}
@@ -158,7 +160,9 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
             >
               <section className={styles.icon}>
                 {loading.dropOff ? (
-                  <AiOutlineLoading3Quarters className={styles.loading} />
+                  <AiOutlineLoading3Quarters
+                    className={`${styles.loading} loading`}
+                  />
                 ) : (
                   <AiOutlineArrowDown className={styles.svg} />
                 )}

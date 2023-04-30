@@ -31,10 +31,6 @@
         color: gray;
         font-size: 1.1rem;
       }
-      .loading {
-        color: $main-color;
-        animation: rotate 1s infinite linear;
-      }
 
       .input .error {
         color: $error-color;
@@ -112,14 +108,5 @@
         margin: 1rem 0 2rem 0;
       }
     }
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }

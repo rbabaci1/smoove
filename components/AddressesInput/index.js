@@ -25,11 +25,11 @@ const AddressesInput = ({
   const { pickup, dropOff, typingValues } = useSelector(
     state => state.order.addresses
   );
-  const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
   });
+  const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [error, setError] = useState({ pickup: '', dropOff: '' });
 
   const handleChange = ({ target: { name, value } }) => {
@@ -74,18 +74,22 @@ const AddressesInput = ({
     );
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    // verify that entered a valid pickup and dropOff address
+  const addressesAreValid = () => {
     if (!pickup) {
       setError({ ...error, pickup: 'Please enter a valid pickup address' });
-      return;
+      return false;
     }
     if (!dropOff) {
       setError({ ...error, dropOff: 'Please enter a valid dropOff address' });
-      return;
+      return false;
     }
+    return true;
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    if (!addressesAreValid()) return;
 
     dispatch(goToSpecificEstimateStep(2));
 
@@ -102,12 +106,14 @@ const AddressesInput = ({
       viewport={{ once: true }}
     >
       <form className={styles.addresses} onSubmit={handleSubmit}>
-        <section className={styles.pickup}>
-          {loading.pickup ? (
-            <AiOutlineLoading3Quarters className={styles.loading} />
-          ) : (
-            <AiOutlineArrowUp />
-          )}
+        <div className={styles.pickup}>
+          <section className={styles.icon}>
+            {loading.pickup ? (
+              <AiOutlineLoading3Quarters className={styles.loading} />
+            ) : (
+              <AiOutlineArrowUp className={styles.svg} />
+            )}
+          </section>
 
           <div className={styles.input}>
             <p className={error.pickup ? styles.error : ''}>Pickup address</p>
@@ -125,14 +131,16 @@ const AddressesInput = ({
               clearError={() => setError({ ...error, pickup: '' })}
             />
           </div>
-        </section>
+        </div>
 
-        <section className={styles.dropOff}>
-          {loading.dropOff ? (
-            <AiOutlineLoading3Quarters className={styles.loading} />
-          ) : (
-            <AiOutlineArrowDown />
-          )}
+        <div className={styles.dropOff}>
+          <section className={styles.icon}>
+            {loading.dropOff ? (
+              <AiOutlineLoading3Quarters className={styles.loading} />
+            ) : (
+              <AiOutlineArrowDown className={styles.svg} />
+            )}
+          </section>
 
           <div className={styles.input}>
             <p className={error.dropOff ? styles.error : ''}>DropOff address</p>
@@ -150,7 +158,7 @@ const AddressesInput = ({
               clearError={() => setError({ ...error, dropOff: '' })}
             />
           </div>
-        </section>
+        </div>
 
         <button type='submit'>{buttonText}</button>
       </form>

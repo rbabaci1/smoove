@@ -48,13 +48,18 @@
           position: relative;
           width: 100%;
 
-          .svg {
+          .svg,
+          .loading {
             position: absolute;
             top: 1.15rem;
             font-size: 1.1rem;
             left: 0.55rem;
             color: $light-gray;
           }
+        }
+
+        .error input {
+          border-color: $error-color;
         }
 
         ::placeholder {

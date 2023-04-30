@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import {
+  AiOutlineArrowUp,
+  AiOutlineArrowDown,
+  AiOutlineLoading3Quarters,
+} from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
 import Autosuggest from 'react-autosuggest';
 
@@ -13,18 +17,35 @@ import {
 } from '../../reduxSlices/orderSlice';
 import { fetchAddressesSuggestions } from '@/lib';
 import styles from './styles.module.scss';
+import { AddressAutosuggest } from '@/components';
 
 const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { typingValues } = useSelector(state => state.order.addresses);
+  const { pickup, dropOff, typingValues } = useSelector(
+    state => state.order.addresses
+  );
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
   });
+  const [loading, setLoading] = useState({ pickup: false, dropOff: false });
+  const [error, setError] = useState({ pickup: '', dropOff: '' });
 
   const handleChange = ({ target: { name, value } }) => {
     dispatch(updateAddressesTypingValues({ type: name, value }));
+  };
+
+  const onSuggestionsFetchRequested = (value, reason, addressType) => {
+    fetchAddressesSuggestions(
+      value,
+      reason,
+      addressType,
+      suggestions,
+      setSuggestions,
+      loading,
+      setLoading
+    );
   };
 
   const onSuggestionsClearRequested = () => {
@@ -53,8 +74,23 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
     );
   };
 
+  const addressesAreValid = () => {
+    if (!pickup) {
+      setError({ ...error, pickup: 'Please enter a valid pickup address' });
+      return false;
+    }
+    if (!dropOff) {
+      setError({ ...error, dropOff: 'Please enter a valid dropOff address' });
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (!addressesAreValid()) return;
+
     dispatch(goToSpecificEstimateStep(2));
     router.push('/estimate');
   };
@@ -79,48 +115,29 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
           </p>
 
           <form className={styles.addresses} onSubmit={handleSubmit}>
-            <section className={styles.input}>
-              <AiOutlineArrowUp className={styles.svg} />
+            <section
+              className={`${styles.input} ${error.pickup ? styles.error : ''}`}
+            >
+              <section className={styles.icon}>
+                {loading.pickup ? (
+                  <AiOutlineLoading3Quarters className={styles.loading} />
+                ) : (
+                  <AiOutlineArrowUp className={styles.svg} />
+                )}
+              </section>
 
-              <Autosuggest
+              <AddressAutosuggest
+                addressType='pickup'
                 suggestions={suggestions.pickup}
-                onSuggestionsFetchRequested={({ value, reason }) =>
-                  fetchAddressesSuggestions(
-                    value,
-                    reason,
-                    'pickup',
-                    suggestions,
-                    setSuggestions
-                  )
-                }
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={{
-                  placeholder: 'Pickup address',
-                  autoComplete: 'off',
-                  name: 'pickup',
-                  className: 'input',
-                  value: typingValues.pickup,
-                  onChange: handleChange,
-                  required: true,
-                }}
-                onSuggestionSelected={(_, { suggestionValue }) => {
-                  const splitAddress = suggestionValue?.place_name.split(',');
-
-                  dispatch(
-                    updateAddresses({
-                      type: 'pickup',
-                      address: suggestionValue,
-                    })
-                  );
-                  dispatch(
-                    updateAddressesTypingValues({
-                      type: 'pickup',
-                      value: splitAddress[0],
-                    })
-                  );
-                }}
+                typingValues={{ pickup: typingValues.pickup }}
+                handleChange={handleChange}
+                updateAddressesTypingValues={updateAddressesTypingValues}
+                clearError={() => setError({ ...error, pickup: '' })}
+                className='input'
                 renderSuggestionsContainer={({ containerProps, children }) => {
                   return (
                     <div
@@ -136,48 +153,29 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
               />
             </section>
 
-            <section className={styles.input}>
-              <AiOutlineArrowDown className={styles.svg} />
+            <section
+              className={`${styles.input} ${error.dropOff ? styles.error : ''}`}
+            >
+              <section className={styles.icon}>
+                {loading.dropOff ? (
+                  <AiOutlineLoading3Quarters className={styles.loading} />
+                ) : (
+                  <AiOutlineArrowDown className={styles.svg} />
+                )}
+              </section>
 
-              <Autosuggest
+              <AddressAutosuggest
+                addressType='dropOff'
                 suggestions={suggestions.dropOff}
-                onSuggestionsFetchRequested={({ value, reason }) =>
-                  fetchAddressesSuggestions(
-                    value,
-                    reason,
-                    'dropOff',
-                    suggestions,
-                    setSuggestions
-                  )
-                }
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={{
-                  placeholder: 'DropOff address',
-                  autoComplete: 'off',
-                  name: 'dropOff',
-                  className: 'input',
-                  value: typingValues.dropOff,
-                  onChange: handleChange,
-                  required: true,
-                }}
-                onSuggestionSelected={(_, { suggestionValue }) => {
-                  const splitAddress = suggestionValue?.place_name.split(',');
-
-                  dispatch(
-                    updateAddresses({
-                      type: 'dropOff',
-                      address: suggestionValue,
-                    })
-                  );
-                  dispatch(
-                    updateAddressesTypingValues({
-                      type: 'dropOff',
-                      value: splitAddress[0],
-                    })
-                  );
-                }}
+                typingValues={{ dropOff: typingValues.dropOff }}
+                handleChange={handleChange}
+                updateAddressesTypingValues={updateAddressesTypingValues}
+                clearError={() => setError({ ...error, dropOff: '' })}
+                className='input'
                 renderSuggestionsContainer={({ containerProps, children }) => {
                   return (
                     <div

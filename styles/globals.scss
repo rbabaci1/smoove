@@ -334,9 +334,12 @@ a {
     li {
       @include flex(row, flex-start);
       height: 4rem;
-
       padding: 0 0.5rem;
       cursor: pointer;
+
+      svg {
+        margin-right: 0.5rem;
+      }
 
       &:hover {
         background-color: $main-color;

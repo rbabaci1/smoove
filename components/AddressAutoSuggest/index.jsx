@@ -14,6 +14,8 @@ const AddressAutosuggest = ({
   handleChange,
   updateAddressesTypingValues,
   clearError,
+  className = '',
+  renderSuggestionsContainer,
 }) => {
   const dispatch = useDispatch();
 
@@ -45,12 +47,14 @@ const AddressAutosuggest = ({
           addressType === 'pickup' ? 'pickup' : 'destination'
         }`,
         autoComplete: 'off',
+        className,
         name: addressType,
         value: typingValues[addressType],
         onChange: handleChange,
         required: true,
       }}
       onSuggestionSelected={handleSuggestionSelected}
+      renderSuggestionsContainer={renderSuggestionsContainer}
     />
   );
 };

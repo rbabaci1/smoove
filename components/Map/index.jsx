@@ -75,7 +75,7 @@ const MapContainer = () => {
               },
               paint: {
                 'line-color': '#410eff',
-                'line-width': 3,
+                'line-width': 4,
               },
             });
 

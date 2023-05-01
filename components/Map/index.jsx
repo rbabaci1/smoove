@@ -13,9 +13,7 @@ const MapContainer = () => {
   const [dropOffLongitude, dropOffLatitude] = dropOff.center;
 
   useEffect(() => {
-    if (!pickup || !dropOff) {
-      return;
-    }
+    if (!pickup || !dropOff) return;
 
     const map = new mapboxgl.Map({
       container: 'map-container',

@@ -166,8 +166,7 @@
 
   .mapDetails {
     @include flex(column, space-between);
-    // max-width: 440px;
-
+    min-width: 420px;
     background-color: $white;
     border-radius: 0.75rem;
 

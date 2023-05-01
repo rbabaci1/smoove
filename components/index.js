@@ -10,6 +10,7 @@ import ServiceType from './ServiceType';
 import VehicleCard from './VehicleCard';
 import DatePicker from './DatePicker';
 import AddressAutosuggest from './AddressAutoSuggest';
+import MapContainer from './Map';
 
 export {
   Carousel,
@@ -24,4 +25,5 @@ export {
   DatePicker,
   Login,
   AddressAutosuggest,
+  MapContainer,
 };

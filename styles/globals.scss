@@ -118,6 +118,7 @@ input {
   font-size: 1.1rem;
   padding: 1rem;
   width: 100%;
+  font-weight: 500;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -301,7 +302,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -369,6 +370,7 @@ a {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          font-weight: 600;
         }
       }
 
@@ -416,4 +418,20 @@ a {
   to {
     transform: rotate(360deg);
   }
+}
+
+#map-container {
+  @include radius(0.75rem, 0.75rem, 0, 0);
+  height: 230px;
+  width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    canvas {
+      width: 100%;
+    }
+  }
+}
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  display: none;
 }

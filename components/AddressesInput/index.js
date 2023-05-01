@@ -102,7 +102,7 @@ const AddressesInput = ({
       className={styles.container}
       initial={animate ? { y: 100, opacity: 0 } : { y: 0, opacity: 1 }}
       whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       viewport={{ once: true }}
     >
       <form className={styles.addresses} onSubmit={handleSubmit}>

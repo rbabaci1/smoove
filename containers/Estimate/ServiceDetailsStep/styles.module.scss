@@ -166,19 +166,10 @@
 
   .mapDetails {
     @include flex(column, space-between);
-    max-width: 430px;
+    // max-width: 440px;
+
     background-color: $white;
     border-radius: 0.75rem;
-
-    .map {
-      height: 230px;
-
-      img {
-        height: 100%;
-        object-fit: cover;
-        @include radius(0.75rem, 0.75rem, 0, 0);
-      }
-    }
 
     .details {
       flex: 1;
@@ -235,13 +226,14 @@
 
       // .details level styles
       .dataIcon {
-        margin-right: 1.5rem;
+        margin-right: 1rem;
         transform: scale(1.2);
         color: $main-color;
       }
 
       .editIcon {
         font-size: 1.5rem;
+        margin-left: 1rem;
         color: $main-color;
         cursor: pointer;
 
@@ -275,10 +267,7 @@
     .mapDetails {
       max-width: 100%;
       margin-top: 1.5rem;
-
-      .map {
-        height: 350px;
-      }
+      width: 100%;
     }
   }
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
 import { RiMapPin5Fill } from 'react-icons/ri';
 
-const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
+const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
 const MapContainer = () => {
   const [map, setMap] = useState(null);

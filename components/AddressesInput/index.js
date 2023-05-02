@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AiOutlineArrowUp,
@@ -22,9 +22,8 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { pickup, dropOff, typingValues } = useSelector(
-    state => state.order.addresses
-  );
+  const { addresses, userLocation } = useSelector(state => state.order);
+  const { pickup, dropOff, typingValues } = addresses;
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
@@ -36,7 +35,7 @@ const AddressesInput = ({
     dispatch(updateAddressesTypingValues({ type: name, value }));
   };
 
-  const onSuggestionsFetchRequested = (value, reason, addressType) => {
+  const onSuggestionsFetchRequested = async (value, reason, addressType) => {
     fetchAddressesSuggestions(
       value,
       reason,
@@ -44,7 +43,8 @@ const AddressesInput = ({
       suggestions,
       setSuggestions,
       loading,
-      setLoading
+      setLoading,
+      userLocation
     );
   };
 

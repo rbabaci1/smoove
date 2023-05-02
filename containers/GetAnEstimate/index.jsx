@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
@@ -8,10 +8,8 @@ import {
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
-import Autosuggest from 'react-autosuggest';
 
 import {
-  updateAddresses,
   goToSpecificEstimateStep,
   updateAddressesTypingValues,
 } from '../../reduxSlices/orderSlice';
@@ -22,9 +20,8 @@ import { AddressAutosuggest } from '@/components';
 const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { pickup, dropOff, typingValues } = useSelector(
-    state => state.order.addresses
-  );
+  const { addresses, userLocation } = useSelector(state => state.order);
+  const { pickup, dropOff, typingValues } = addresses;
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],
@@ -44,7 +41,8 @@ const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
       suggestions,
       setSuggestions,
       loading,
-      setLoading
+      setLoading,
+      userLocation
     );
   };
 

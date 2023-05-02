@@ -20,14 +20,14 @@ const AddressAutosuggest = ({
   const dispatch = useDispatch();
 
   const handleSuggestionSelected = (_, { suggestionValue }) => {
+    const placeType = suggestionValue?.place_type[0];
     const splitAddress = suggestionValue?.place_name.split(',');
 
     dispatch(updateAddresses({ type: addressType, address: suggestionValue }));
-
     dispatch(
       updateAddressesTypingValues({
         type: addressType,
-        value: splitAddress[0],
+        value: placeType === 'address' ? splitAddress[0] : splitAddress[1],
       })
     );
     clearError();

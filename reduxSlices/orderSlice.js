@@ -10,6 +10,7 @@ const initialState = {
       dropOff: '',
     },
   },
+  userLocation: null,
   serviceType: '',
   vehicleType: '',
   movingDate: '',
@@ -71,6 +72,9 @@ export const OrderSlice = createSlice({
     goToSpecificEstimateStep: (state, action) => {
       state.estimateStep = action.payload;
     },
+    setUserLocation: (state, action) => {
+      state.userLocation = action.payload;
+    },
   },
 });
 
@@ -88,6 +92,7 @@ export const {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
+  setUserLocation,
 } = OrderSlice.actions;
 
 export default OrderSlice.reducer;

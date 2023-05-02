@@ -46,7 +46,7 @@ const AddressAutosuggest = ({
         placeholder: `Enter ${
           addressType === 'pickup' ? 'pickup' : 'destination'
         }`,
-        autoComplete: 'off',
+        autoComplete: 'new-password',
         className,
         name: addressType,
         value: typingValues[addressType],

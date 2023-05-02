@@ -19,7 +19,7 @@ const MapContainer = () => {
       container: 'map-container',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-122.4194, 37.7749],
-      zoom: 12,
+      zoom: 13,
       accessToken: MAPBOX_ACCESS_TOKEN,
     });
 
@@ -90,7 +90,7 @@ const MapContainer = () => {
             .extend([dropOffLongitude, dropOffLatitude]);
           map.fitBounds(bounds, {
             padding: 50,
-            maxZoom: 12,
+            maxZoom: 13,
           });
         });
     }

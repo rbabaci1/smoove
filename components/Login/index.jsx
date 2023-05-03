@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
 import { auth } from '@/firebase/firebase.config';
@@ -70,6 +71,13 @@ const Login = ({ animate = true }) => {
 
   let recaptchaVerifier = null;
 
+  const clearRecaptcha = () => {
+    if (recaptchaVerifier) {
+      recaptchaVerifier.clear();
+      recaptchaVerifier = null;
+    }
+  };
+
   const generateRecaptcha = () => {
     const loginContainer = document.getElementById('login-container');
     const reCaptchaContainer = document.createElement('div');
@@ -85,7 +93,7 @@ const Login = ({ animate = true }) => {
 
         'expired-callback': async () => {
           // reCaptcha expired, reset the recaptchaVerifier and call it again
-          if (recaptchaVerifier) recaptchaVerifier.clear();
+          clearRecaptcha();
           reCaptchaContainer.remove();
           generateRecaptcha();
         },
@@ -160,11 +168,7 @@ const Login = ({ animate = true }) => {
     setVerificationCode('');
     setVerificationCodeErrors('');
     setVerificationCodeSent(false);
-
-    if (recaptchaVerifier) {
-      recaptchaVerifier.clear();
-      recaptchaVerifier = null;
-    }
+    clearRecaptcha();
   };
 
   const handleSubmit = e => {

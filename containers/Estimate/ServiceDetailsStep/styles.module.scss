@@ -168,6 +168,7 @@
     @include flex(column, space-between);
     background-color: $white;
     border-radius: 0.75rem;
+    max-width: 420px;
 
     .details {
       flex: 1;

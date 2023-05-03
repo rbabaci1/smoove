@@ -3,23 +3,24 @@ import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
+import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
 import styles from './styles.module.scss';
 
 // temporary verification code length
-const verificationCodeLength = 4;
-const CODE = '1234';
+const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
-  // const [user, setUser] = useState(null);
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [previousVerificationCode, setPreviousVerificationCode] = useState('');
+  const [confirmationResult, setConfirmationResult] = useState('');
 
   const [sendingVerificationCode, setSendingVerificationCode] = useState(false);
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
@@ -67,7 +68,60 @@ const Login = ({ animate = true }) => {
     }
   };
 
-  const verifyCode = event => {
+  let recaptchaVerifier = null;
+
+  const generateRecaptcha = () => {
+    const loginContainer = document.getElementById('login-container');
+    const reCaptchaContainer = document.createElement('div');
+    reCaptchaContainer.id = 'recaptcha-container';
+
+    // append recaptcha container to login container
+    if (loginContainer) loginContainer.appendChild(reCaptchaContainer);
+
+    recaptchaVerifier = new RecaptchaVerifier(
+      reCaptchaContainer,
+      {
+        size: 'invisible',
+
+        'expired-callback': async () => {
+          // reCaptcha expired, reset the recaptchaVerifier and call it again
+          if (recaptchaVerifier) recaptchaVerifier.clear();
+          reCaptchaContainer.remove();
+          generateRecaptcha();
+        },
+      },
+      auth
+    );
+  };
+
+  const sendVerificationCode = async () => {
+    setSendingVerificationCode(true);
+
+    try {
+      const reCaptchaContainer = document.getElementById('recaptcha-container');
+
+      // remove previous recaptcha container
+      if (reCaptchaContainer) reCaptchaContainer.remove();
+      generateRecaptcha();
+
+      const response = await signInWithPhoneNumber(
+        auth,
+        phoneNumber,
+        recaptchaVerifier
+      );
+
+      setConfirmationResult(response);
+      setSendingVerificationCode(false);
+      setVerificationCodeSent(true);
+      setPhoneNumberErrors('');
+    } catch (error) {
+      setSendingVerificationCode(false);
+      setPhoneNumberErrors('Something went wrong. Please try again.');
+      console.log(error.message);
+    }
+  };
+
+  const verifyCode = async event => {
     const {
       key,
       keyCode,
@@ -86,19 +140,18 @@ const Login = ({ animate = true }) => {
         setVerificationCodeErrors('');
         setPreviousVerificationCode(verificationCode);
 
-        setTimeout(() => {
-          setVerifyingCode(false);
+        try {
+          const result = await confirmationResult.confirm(verificationCode);
+          console.log(result);
 
-          // !! verify code with server and redirect to dashboard if successful
-          if (verificationCode === CODE) {
-            // redirect to dashboard
-            console.log('SUCCESS');
-          } else {
-            setVerificationCodeErrors(
-              'Wrong verification code. Please try again.'
-            );
-          }
-        }, 2000);
+          setVerifyingCode(false);
+        } catch (error) {
+          setVerifyingCode(false);
+          setVerificationCodeErrors(
+            'Wrong verification code. Please try again.'
+          );
+          console.log(error);
+        }
       }
     }
   };
@@ -107,18 +160,18 @@ const Login = ({ animate = true }) => {
     setVerificationCode('');
     setVerificationCodeErrors('');
     setVerificationCodeSent(false);
+
+    if (recaptchaVerifier) {
+      recaptchaVerifier.clear();
+      recaptchaVerifier = null;
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     if (isPossiblePhoneNumber(phoneNumber) === true) {
-      setSendingVerificationCode(true);
-
-      setTimeout(() => {
-        setSendingVerificationCode(false);
-        setVerificationCodeSent(true);
-      }, 2000);
+      sendVerificationCode();
     } else {
       if (phoneNumber === '') {
         setPhoneNumberErrors('Please enter a phone number');
@@ -129,9 +182,7 @@ const Login = ({ animate = true }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div id='recaptcha-container'></div>
-
+    <div id='login-container' className={styles.container}>
       <form onSubmit={handleSubmit}>
         <motion.div
           initial={animate ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}

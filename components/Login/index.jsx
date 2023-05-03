@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -11,8 +12,10 @@ const verificationCodeLength = 4;
 const CODE = '1234';
 
 const Login = ({ animate = true }) => {
+  const router = useRouter();
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
+  // const [user, setUser] = useState(null);
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
@@ -127,6 +130,8 @@ const Login = ({ animate = true }) => {
 
   return (
     <div className={styles.container}>
+      <div id='recaptcha-container'></div>
+
       <form onSubmit={handleSubmit}>
         <motion.div
           initial={animate ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}

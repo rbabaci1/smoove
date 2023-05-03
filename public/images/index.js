@@ -21,7 +21,6 @@ import service2 from './service2.png';
 import service3 from './service3.png';
 import service4 from './service4.png';
 import pickup from './pickup.jpg';
-import map from './map.png';
 
 export {
   fam1,
@@ -47,5 +46,4 @@ export {
   service3,
   service4,
   pickup,
-  map,
 };

@@ -21,7 +21,7 @@ const Login = ({ animate = true }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [previousVerificationCode, setPreviousVerificationCode] = useState('');
-  const [confirmationResult, setConfirmationResult] = useState('');
+  // const [confirmationResult, setConfirmationResult] = useState('');
 
   const [sendingVerificationCode, setSendingVerificationCode] = useState(false);
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
@@ -69,15 +69,6 @@ const Login = ({ animate = true }) => {
     }
   };
 
-  let recaptchaVerifier = null;
-
-  const clearRecaptcha = () => {
-    if (recaptchaVerifier) {
-      recaptchaVerifier.clear();
-      recaptchaVerifier = null;
-    }
-  };
-
   const generateRecaptcha = () => {
     const loginContainer = document.getElementById('login-container');
     const reCaptchaContainer = document.createElement('div');
@@ -86,17 +77,16 @@ const Login = ({ animate = true }) => {
     // append recaptcha container to login container
     if (loginContainer) loginContainer.appendChild(reCaptchaContainer);
 
-    recaptchaVerifier = new RecaptchaVerifier(
+    window.recaptchaVerifier = new RecaptchaVerifier(
       reCaptchaContainer,
       {
         size: 'invisible',
-
-        'expired-callback': async () => {
+        'expired-callback': () => {
           // reCaptcha expired, reset the recaptchaVerifier and call it again
-          clearRecaptcha();
           reCaptchaContainer.remove();
           generateRecaptcha();
         },
+        defaultCountry: 'US',
       },
       auth
     );
@@ -112,20 +102,21 @@ const Login = ({ animate = true }) => {
       if (reCaptchaContainer) reCaptchaContainer.remove();
       generateRecaptcha();
 
-      const response = await signInWithPhoneNumber(
+      const confirmationResult = await signInWithPhoneNumber(
         auth,
         phoneNumber,
-        recaptchaVerifier
+        window.recaptchaVerifier
       );
 
-      setConfirmationResult(response);
-      setSendingVerificationCode(false);
+      // setConfirmationResult(response);
+      window.confirmationResult = confirmationResult;
       setVerificationCodeSent(true);
       setPhoneNumberErrors('');
     } catch (error) {
-      setSendingVerificationCode(false);
       setPhoneNumberErrors('Something went wrong. Please try again.');
       console.log(error.message);
+    } finally {
+      setSendingVerificationCode(false);
     }
   };
 
@@ -149,8 +140,8 @@ const Login = ({ animate = true }) => {
         setPreviousVerificationCode(verificationCode);
 
         try {
-          const result = await confirmationResult.confirm(verificationCode);
-          console.log(result);
+          const res = await window.confirmationResult.confirm(verificationCode);
+          console.log(res);
 
           setVerifyingCode(false);
         } catch (error) {
@@ -168,10 +159,9 @@ const Login = ({ animate = true }) => {
     setVerificationCode('');
     setVerificationCodeErrors('');
     setVerificationCodeSent(false);
-    clearRecaptcha();
   };
 
-  const handleSubmit = e => {
+  const handleSignIn = e => {
     e.preventDefault();
 
     if (isPossiblePhoneNumber(phoneNumber) === true) {
@@ -187,7 +177,7 @@ const Login = ({ animate = true }) => {
 
   return (
     <div id='login-container' className={styles.container}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignIn}>
         <motion.div
           initial={animate ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}

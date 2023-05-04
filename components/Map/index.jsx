@@ -7,7 +7,7 @@ const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
 const MapContainer = () => {
   const [map, setMap] = useState(null);
-  const { addresses, userLocation } = useSelector(state => state.order);
+  const { addresses } = useSelector(state => state.order);
   const { pickup, dropOff } = addresses;
 
   const [pickupLongitude, pickupLatitude] = pickup.center;
@@ -19,7 +19,7 @@ const MapContainer = () => {
     const map = new mapboxgl.Map({
       container: 'map-container',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: userLocation,
+      center: pickup.center,
       zoom: 13,
       accessToken: MAPBOX_ACCESS_TOKEN,
     });
@@ -29,7 +29,7 @@ const MapContainer = () => {
     return () => {
       map.remove();
     };
-  }, [userLocation, pickup, dropOff]);
+  }, [pickup, dropOff]);
 
   const apiUrl = useMemo(() => {
     return `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupLongitude},${pickupLatitude};${dropOffLongitude},${dropOffLatitude}?geometries=geojson&access_token=${MAPBOX_ACCESS_TOKEN}`;

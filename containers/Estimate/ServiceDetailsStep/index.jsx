@@ -68,15 +68,15 @@ const ServiceDetailsStep = () => {
   } = useSelector(state => state.order);
   const [newContact, setNewContact] = useState({ name: '', phoneNumber: '' });
   const [showContacts, setShowContacts] = useState(false);
-  // const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // const handleResize = () => {
-    //   setIsMobile(window.innerWidth < 768); // Change 768 to your desired mobile width threshold
-    // };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Change 768 to your desired mobile width threshold
+    };
 
-    // window.addEventListener('resize', handleResize);
-    // handleResize(); // Call the handler once to set the initial value
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Call the handler once to set the initial value
     dispatch(setMovingWindow(movingWindows[0]));
 
     return () => {
@@ -92,7 +92,7 @@ const ServiceDetailsStep = () => {
     dispatch(setDescription(e.target.value));
   };
 
-  const handleContactChange = (event, index) => {
+  const handleContactChange = event => {
     const { name, value } = event.target;
 
     setNewContact({ ...newContact, [name]: value });
@@ -268,8 +268,7 @@ const ServiceDetailsStep = () => {
 
         {/* Right side container */}
         <div className={styles.mapDetails}>
-          {/* {!isMobile && <MapContainer />} */}
-          <MapContainer />
+          {!isMobile && <MapContainer />}
 
           <div className={styles.details}>
             <div className={styles.addresses}>

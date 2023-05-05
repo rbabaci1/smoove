@@ -12,7 +12,7 @@ import {
   goToSpecificEstimateStep,
   updateAddressesTypingValues,
 } from '../../reduxSlices/orderSlice';
-import { fetchAddressesSuggestions } from '@/lib';
+import { fetchAddressesSuggestions, getUserLocation } from '@/lib';
 import { AddressAutosuggest } from '@/components';
 import styles from './styles.module.scss';
 
@@ -22,7 +22,7 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { addresses, userLocation } = useSelector(state => state.order);
+  const { addresses } = useSelector(state => state.order);
   const { pickup, dropOff, typingValues } = addresses;
   const [suggestions, setSuggestions] = useState({
     pickup: [],
@@ -30,12 +30,22 @@ const AddressesInput = ({
   });
   const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [error, setError] = useState({ pickup: '', dropOff: '' });
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    const getAndSetUserLocation = async () => {
+      const userLocation = await getUserLocation();
+      setUserLocation(userLocation);
+    };
+
+    getAndSetUserLocation();
+  }, []);
 
   const handleChange = ({ target: { name, value } }) => {
     dispatch(updateAddressesTypingValues({ type: name, value }));
   };
 
-  const onSuggestionsFetchRequested = async (value, reason, addressType) => {
+  const onSuggestionsFetchRequested = (value, reason, addressType) => {
     fetchAddressesSuggestions(
       value,
       reason,

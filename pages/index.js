@@ -13,29 +13,16 @@ import {
   Footer,
 } from '@/containers';
 import { Navbar } from '@/components';
-import {
-  goToSpecificEstimateStep,
-  setUserLocation,
-} from '@/reduxSlices/orderSlice';
-import { getUserLocation } from '@/lib';
+import { goToSpecificEstimateStep } from '@/reduxSlices/orderSlice';
+
 import styles from '@/styles/Home.module.scss';
 
 export default function Home() {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getAndSetUserLocation = async () => {
-      const location = await getUserLocation();
-      dispatch(setUserLocation(location));
-    };
-    const handleHomePageLoad = () => {
-      dispatch(goToSpecificEstimateStep(1));
-    };
-
-    getAndSetUserLocation();
-    handleHomePageLoad();
-  }, [dispatch, router.pathname]);
+    dispatch(goToSpecificEstimateStep(1));
+  }, [dispatch]);
 
   return (
     <>

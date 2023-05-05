@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
@@ -14,7 +14,8 @@ import styles from './styles.module.scss';
 const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
-  // const router = useRouter();
+  const router = useRouter();
+  const [user, loading] = useAuthState(auth);
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 
@@ -39,6 +40,16 @@ const Login = ({ animate = true }) => {
       }
     }
   }, [verificationCodeSent, verifyingCode]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        router.replace('/dashboard');
+      }
+    });
+
+    return unsubscribe;
+  }, [router]);
 
   const handlePhoneNumberChange = value => {
     setPhoneNumber(value);
@@ -108,7 +119,6 @@ const Login = ({ animate = true }) => {
         window.recaptchaVerifier
       );
 
-      // setConfirmationResult(response);
       window.confirmationResult = confirmationResult;
       setVerificationCodeSent(true);
       setPhoneNumberErrors('');
@@ -141,9 +151,11 @@ const Login = ({ animate = true }) => {
 
         try {
           const res = await window.confirmationResult.confirm(verificationCode);
-          console.log(res);
-
           setVerifyingCode(false);
+
+          if (res.user) {
+            router.replace('/dashboard');
+          }
         } catch (error) {
           setVerifyingCode(false);
           setVerificationCodeErrors(
@@ -240,8 +252,8 @@ const Login = ({ animate = true }) => {
                   </AnimatePresence>
                 </section>
 
-                {verifyingCode || sendingVerificationCode ? (
-                  <AiOutlineLoading3Quarters />
+                {verifyingCode ? (
+                  <AiOutlineLoading3Quarters className='loading' />
                 ) : (
                   <span className={styles.resendCode} onClick={resendCode}>
                     Resend?
@@ -258,7 +270,7 @@ const Login = ({ animate = true }) => {
                 disabled={sendingVerificationCode}
               >
                 {sendingVerificationCode ? (
-                  <AiOutlineLoading3Quarters />
+                  <AiOutlineLoading3Quarters className='loading' />
                 ) : (
                   'Request verification code'
                 )}

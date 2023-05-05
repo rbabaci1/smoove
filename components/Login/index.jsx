@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -9,12 +10,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
 import styles from './styles.module.scss';
+import { setUser } from '@/reduxSlices/authSlice';
 
 // temporary verification code length
 const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [user, loading] = useAuthState(auth);
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
@@ -22,7 +25,6 @@ const Login = ({ animate = true }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [previousVerificationCode, setPreviousVerificationCode] = useState('');
-  // const [confirmationResult, setConfirmationResult] = useState('');
 
   const [sendingVerificationCode, setSendingVerificationCode] = useState(false);
   const [verificationCodeSent, setVerificationCodeSent] = useState(false);
@@ -41,6 +43,7 @@ const Login = ({ animate = true }) => {
     }
   }, [verificationCodeSent, verifyingCode]);
 
+  // redirect to dashboard if user is already logged in
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
@@ -94,10 +97,9 @@ const Login = ({ animate = true }) => {
         size: 'invisible',
         'expired-callback': () => {
           // reCaptcha expired, reset the recaptchaVerifier and call it again
-          reCaptchaContainer.remove();
+          window.reCaptchaContainer.remove();
           generateRecaptcha();
         },
-        defaultCountry: 'US',
       },
       auth
     );
@@ -116,7 +118,8 @@ const Login = ({ animate = true }) => {
       const confirmationResult = await signInWithPhoneNumber(
         auth,
         phoneNumber,
-        window.recaptchaVerifier
+        window.recaptchaVerifier,
+        { timeout: 300000 }
       );
 
       window.confirmationResult = confirmationResult;
@@ -151,11 +154,30 @@ const Login = ({ animate = true }) => {
 
         try {
           const res = await window.confirmationResult.confirm(verificationCode);
-          setVerifyingCode(false);
+          const {
+            uid,
+            accessToken,
+            displayName,
+            email,
+            emailVerified,
+            tenantId,
+            phoneNumber,
+          } = res.user;
 
-          if (res.user) {
-            router.replace('/dashboard');
-          }
+          setVerifyingCode(false);
+          dispatch(
+            setUser({
+              uid,
+              accessToken,
+              displayName,
+              email,
+              emailVerified,
+              tenantId,
+              phoneNumber,
+            })
+          );
+
+          router.replace('/dashboard');
         } catch (error) {
           setVerifyingCode(false);
           setVerificationCodeErrors(
@@ -171,6 +193,7 @@ const Login = ({ animate = true }) => {
     setVerificationCode('');
     setVerificationCodeErrors('');
     setVerificationCodeSent(false);
+    setPreviousVerificationCode('');
   };
 
   const handleSignIn = e => {

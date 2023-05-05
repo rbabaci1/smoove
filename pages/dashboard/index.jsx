@@ -26,8 +26,18 @@ const Dashboard = () => {
 
       <button
         onClick={() => {
+          router.push('/');
+        }}
+      >
+        Home
+      </button>
+
+      <div style={{ margin: '1rem 0' }} />
+
+      <button
+        onClick={() => {
           auth.signOut();
-          router.replace('/');
+          router.push('/login');
         }}
       >
         Sign out

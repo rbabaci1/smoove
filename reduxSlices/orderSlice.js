@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: null,
   addresses: {
     pickup: null,
     dropOff: null,
@@ -27,9 +26,6 @@ const OrderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
     updateAddresses: (state, action) => {
       state.addresses = {
         ...state.addresses,
@@ -82,7 +78,6 @@ const OrderSlice = createSlice({
 });
 
 export const {
-  setUser,
   updateAddresses,
   updateAddressesTypingValues,
   updateServiceType,

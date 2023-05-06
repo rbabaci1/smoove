@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { auth } from '@/firebase/firebase.config';
 import { WithAuth } from '@/components';
@@ -8,6 +7,13 @@ import styles from './styles.module.scss';
 
 const Dashboard = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    auth.signOut();
+    dispatch(setUser(null));
+    router.replace('/login');
+  };
 
   return (
     <div className={styles.container}>
@@ -23,14 +29,7 @@ const Dashboard = () => {
 
       <div style={{ margin: '1rem 0' }} />
 
-      <button
-        onClick={() => {
-          auth.signOut();
-          router.replace('/login');
-        }}
-      >
-        Sign out
-      </button>
+      <button onClick={logOut}>Sign out</button>
     </div>
   );
 };

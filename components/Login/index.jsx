@@ -15,9 +15,8 @@ import { setUser } from '@/reduxSlices/authSlice';
 const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
-  // const [user, loading] = useAuthState(auth);
+  const router = useRouter();
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 

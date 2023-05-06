@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { auth } from '@/firebase/firebase.config';
+import { setUser } from '@/reduxSlices/authSlice';
 import { WithAuth } from '@/components';
 import styles from './styles.module.scss';
 

@@ -1,12 +1,9 @@
 @import 'normalize.css';
 @import './variables.module.scss';
 @import './mixins.module.scss';
-// @import './fonts.scss';
 @import url('https://use.typekit.net/qzf0hrt.css');
 
 // Global SCSS Reset
-
-// Box sizing
 html {
   box-sizing: border-box;
   font-family: 'proxima-nova', sans-serif;

@@ -1,24 +1,13 @@
 import { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
-import { onAuthStateChanged } from 'firebase/auth';
+import { useSelector } from 'react-redux';
 
 import { auth } from '@/firebase/firebase.config';
+import { WithAuth } from '@/components';
 import styles from './styles.module.scss';
 
 const Dashboard = () => {
   const router = useRouter();
-  // const [user, loading] = useAuthState(auth);
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, user => {
-  //     if (!user) {
-  //       router.replace('/login');
-  //     }
-  //   });
-
-  //   return unsubscribe;
-  // }, [router]);
 
   return (
     <div className={styles.container}>
@@ -37,7 +26,7 @@ const Dashboard = () => {
       <button
         onClick={() => {
           auth.signOut();
-          router.push('/login');
+          router.replace('/login');
         }}
       >
         Sign out
@@ -46,4 +35,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default WithAuth(Dashboard);

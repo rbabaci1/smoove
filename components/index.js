@@ -11,6 +11,7 @@ import VehicleCard from './VehicleCard';
 import DatePicker from './DatePicker';
 import AddressAutosuggest from './AddressAutoSuggest';
 import MapContainer from './Map';
+import WithAuth from './WithAuth';
 
 export {
   Carousel,
@@ -26,4 +27,5 @@ export {
   Login,
   AddressAutosuggest,
   MapContainer,
+  WithAuth,
 };

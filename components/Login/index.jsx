@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
@@ -18,7 +17,7 @@ const verificationCodeLength = 6;
 const Login = ({ animate = true }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [user, loading] = useAuthState(auth);
+  // const [user, loading] = useAuthState(auth);
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 
@@ -177,7 +176,7 @@ const Login = ({ animate = true }) => {
             })
           );
 
-          router.replace('/dashboard');
+          router.push('/dashboard');
         } catch (error) {
           setVerifyingCode(false);
           setVerificationCodeErrors(

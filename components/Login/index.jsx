@@ -124,6 +124,10 @@ const Login = ({ animate = true }) => {
       setVerificationCodeSent(true);
       setPhoneNumberErrors('');
     } catch (error) {
+      window.recaptchaVerifier.render().then(function (widgetId) {
+        grecaptcha.reset(widgetId);
+      });
+
       setPhoneNumberErrors('Something went wrong. Please try again.');
       console.log(error.message);
     } finally {
@@ -175,7 +179,7 @@ const Login = ({ animate = true }) => {
             })
           );
 
-          router.push('/dashboard');
+          router.replace('/dashboard');
         } catch (error) {
           setVerifyingCode(false);
           setVerificationCodeErrors(

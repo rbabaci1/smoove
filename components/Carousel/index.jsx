@@ -8,7 +8,12 @@ const Carousel = () => {
   return (
     <ImagesCarousel dots={false} className={styles.carousel}>
       <div className={styles.item}>
-        <Image src={fam1} alt='happy family moved in' priority />
+        <Image
+          src={fam1}
+          alt='happy family moved in'
+          priority
+          loading='eager'
+        />
       </div>
 
       <div className={styles.item}>

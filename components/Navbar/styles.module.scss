@@ -17,17 +17,30 @@
     margin: 0 auto;
 
     .logo {
-      @include flex(column, center, flex-start);
+      position: relative;
+      height: 100%;
 
-      h2 {
-        margin-bottom: 0.3rem;
-        font-size: clamp(1.8rem, 4.5vw, 2.3rem);
-        color: $main-color;
+      img {
+        position: absolute;
+        left: -2.3rem;
+        width: fit-content;
+        width: 12rem;
+        bottom: -3.5rem;
+        object-fit: cover;
       }
+
+      // h2 {
+      //   margin-bottom: 0.3rem;
+      //   font-size: clamp(1.8rem, 4.5vw, 2.3rem);
+      //   color: $main-color;
+      // }
       span {
-        font-size: clamp(0.8rem, 4vw, 1.1rem);
+        font-size: clamp(0.8rem, 4vw, 1.05rem);
         color: gray;
         font-weight: 500;
+        position: relative;
+        top: 3.35rem;
+        left: 2.75rem;
       }
     }
 

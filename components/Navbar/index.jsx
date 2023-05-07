@@ -3,9 +3,11 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-import styles from './styles.module.scss';
 import { Dropdown } from '@/components';
+import { logo } from '@/public/images';
+import styles from './styles.module.scss';
 
 function Navbar() {
   const router = useRouter();
@@ -14,7 +16,8 @@ function Navbar() {
     <div className={styles.navWrapper}>
       <div className={styles.container}>
         <Link href='/' className={styles.logo}>
-          <h2>Smoove</h2>
+          {/* <h2>Smoove</h2> */}
+          <Image src={logo} alt='company logo' priority />
           <span>SF Bay area moving & delivery</span>
         </Link>
 

@@ -19,11 +19,10 @@
     .logo {
       position: relative;
       height: 100%;
-      // width: 20rem;
 
       img {
         position: relative;
-        left: -2.3rem;
+        left: -2.5rem;
         width: 13rem;
         object-fit: cover;
         height: auto;
@@ -36,8 +35,8 @@
         font-size: clamp(0.7rem, 4vw, 0.95rem);
         color: gray;
         font-weight: 500;
-        top: 3.6rem;
-        left: 3.2rem;
+        top: 3.55rem;
+        left: 3rem;
         width: 100%;
       }
 
@@ -84,15 +83,21 @@
       padding: 0.5rem;
 
       .logo {
+        width: 80%;
+
         img {
-          border: 1px solid red;
+          width: 6rem;
+          left: -1.1rem;
         }
         h2 {
           font-size: clamp(1.25rem, 10vw, 2.5rem) !important;
           margin: 0 !important;
         }
         span {
-          font-size: clamp(0.55rem, 4vw, 0.7rem);
+          font-size: clamp(0.4rem, 4vw, 0.65rem);
+          width: fit-content;
+          left: 1.45rem;
+          top: 1.45rem;
         }
       }
     }

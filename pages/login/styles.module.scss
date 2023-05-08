@@ -5,7 +5,7 @@
   .content {
     @include flex(column, flex-start);
     min-height: calc(100dvh - 5rem);
-    max-width: 24rem;
+    max-width: 25rem;
     margin: 0 auto;
     padding: 8rem 1.5rem 0 1.5rem;
 

@@ -1,11 +1,11 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const WithAuth = WrappedComponent => {
   const AuthWrapper = props => {
     const router = useRouter();
-    const user = useSelector(state => state.auth.user);
+    const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
       if (typeof window !== 'undefined' && !user) {

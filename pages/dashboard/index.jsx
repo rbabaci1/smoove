@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { auth } from '@/firebase/firebase.config';
 import { setUser } from '@/reduxSlices/authSlice';
-import { WithAuth } from '@/components';
+import { Sidebar, WithAuth } from '@/components';
 import styles from './styles.module.scss';
 
 const Dashboard = () => {
@@ -18,6 +18,8 @@ const Dashboard = () => {
 
   return (
     <div className={styles.container}>
+      {/* <Sidebar /> */}
+
       <h2>Welcome to Dashboard</h2>
 
       <button

@@ -13,6 +13,7 @@
       border: 1px solid $light-gray;
       font-weight: 600;
       font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+      letter-spacing: 0.05rem;
     }
     ::placeholder {
       font-weight: 500;

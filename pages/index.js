@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -14,14 +13,48 @@ import {
 } from '@/containers';
 import { Navbar } from '@/components';
 import { goToSpecificEstimateStep } from '@/reduxSlices/orderSlice';
+import { auth } from '@/firebase/firebase.config';
 
 import styles from '@/styles/Home.module.scss';
+import { setUser } from '@/reduxSlices/authSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(goToSpecificEstimateStep(1));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const {
+          uid,
+          accessToken,
+          displayName,
+          email,
+          emailVerified,
+          tenantId,
+          phoneNumber,
+        } = user;
+
+        dispatch(
+          setUser({
+            uid,
+            accessToken,
+            displayName,
+            email,
+            emailVerified,
+            tenantId,
+            phoneNumber,
+          })
+        );
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+
+    return unsubscribe;
   }, [dispatch]);
 
   return (

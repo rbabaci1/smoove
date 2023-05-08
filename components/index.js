@@ -12,6 +12,7 @@ import DatePicker from './DatePicker';
 import AddressAutosuggest from './AddressAutoSuggest';
 import MapContainer from './Map';
 import WithAuth from './WithAuth';
+import Sidebar from './Sidebar';
 
 export {
   Carousel,
@@ -28,4 +29,5 @@ export {
   AddressAutosuggest,
   MapContainer,
   WithAuth,
+  Sidebar,
 };

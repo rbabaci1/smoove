@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
-import { RiMapPin5Fill } from 'react-icons/ri';
+import { RiMapPin3Fill } from 'react-icons/ri';
 
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
@@ -109,9 +109,9 @@ const MapContainer = () => {
       <div id='map-container' />
 
       <div style={{ visibility: 'hidden' }}>
-        <RiMapPin5Fill id='up' size={25} color='green' />
+        <RiMapPin3Fill id='up' size={23} color='green' />
 
-        <RiMapPin5Fill id='down' size={25} color='red' />
+        <RiMapPin3Fill id='down' size={23} color='red' />
       </div>
     </>
   );

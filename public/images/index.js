@@ -20,7 +20,9 @@ import service1 from './service1.png';
 import service2 from './service2.png';
 import service3 from './service3.png';
 import service4 from './service4.png';
-import pickup from './pickup.jpg';
+import pickup from './pickup.png';
+import cargoVan from './cargoVan.png';
+import boxTruck from './boxTruck.png';
 import logo from './logo.png';
 
 export {
@@ -47,5 +49,7 @@ export {
   service3,
   service4,
   pickup,
+  cargoVan,
+  boxTruck,
   logo,
 };

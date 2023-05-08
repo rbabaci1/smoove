@@ -1,5 +1,5 @@
 import { VehicleCard } from '@/components';
-import { pickup } from '@/public/images';
+import { pickup, cargoVan, boxTruck } from '@/public/images';
 import styles from './styles.module.scss';
 
 const vehicles = [
@@ -12,14 +12,14 @@ const vehicles = [
   },
   {
     name: 'Medium size van',
-    image: pickup,
+    image: cargoVan,
     description: 'Small moves and deliveries of multi items.',
     price: '$62 + $1.85 per moving min',
     tooltip: 'Base fee of $62 + $1.85 per labor minute for loading/unloading.',
   },
   {
     name: 'Large',
-    image: pickup,
+    image: boxTruck,
     description: 'Large moves, purchases, and deliveries.',
     price: '$101 + $2.05 per moving min',
     tooltip: 'Base fee of $101 + $2.05 per labor minute for loading/unloading.',

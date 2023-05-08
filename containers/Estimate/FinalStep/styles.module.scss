@@ -2,8 +2,6 @@
 @import '/styles/mixins.module.scss';
 
 .background {
-  background-color: $white;
-
   .container {
     min-height: calc(100dvh - 5rem);
     padding: 2rem 1.5rem 1.5rem 1.5rem;
@@ -13,9 +11,14 @@
     padding-top: 8rem;
 
     .loginSignUp {
-      max-width: 21rem;
+      max-width: 24rem;
+      width: 100%;
       background-color: $white;
       border-radius: 0.75rem;
+      padding: 3rem 1.5rem;
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px,
+        rgba(0, 0, 0, 0.3) 0px 3px 8px -7px,
+        rgba(0, 0, 0, 0.2) 0px 0px 0px inset;
 
       h3 {
         font-size: clamp(1.5rem, 5vw, 2rem);
@@ -30,10 +33,17 @@
       }
     }
 
+    @media screen and (max-width: 767px) {
+      min-height: calc(100dvh - 4rem);
+    }
+
     @media screen and (max-width: 374px) {
-      padding: 3rem 0.5rem 0 0.5rem;
+      min-height: calc(100dvh - 3rem);
+      padding: 8rem 0.5rem 0 0.5rem;
 
       .loginSignUp {
+        padding: 1rem 0.5rem;
+
         span {
           font-size: clamp(0.75rem, 5vw, 1.1rem);
         }

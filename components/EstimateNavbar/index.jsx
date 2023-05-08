@@ -79,10 +79,6 @@ const EstimateNavbar = () => {
           <h3>{stepsNames[estimateStep - 1]}</h3>
         </section>
 
-        <section className={styles.logo}>
-          <h2 onClick={() => router.push('/')}>Smoove</h2>
-        </section>
-
         <AnimatePresence>
           {showNextButton && (
             <motion.section

@@ -4,7 +4,7 @@
 .container {
   min-height: calc(100dvh - 5rem);
   padding: 2rem 1.5rem 1.5rem 1.5rem;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 
   .header {
@@ -27,7 +27,7 @@
   .vehicles {
     @include flex();
     gap: 1rem;
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 
   @media screen and (max-width: 374px) {

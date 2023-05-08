@@ -31,7 +31,6 @@ const VehicleCard = ({ vehicle }) => {
       <section className={styles.info}>
         <div className={styles.title}>
           <h3>{vehicle.name}</h3>
-          {vehicle?.isOneMover && <span>{'1 Mover'}</span>}
         </div>
 
         <p>{vehicle.description}</p>

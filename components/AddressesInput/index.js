@@ -30,7 +30,10 @@ const AddressesInput = ({
   });
   const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [error, setError] = useState({ pickup: '', dropOff: '' });
-  const [userLocation, setUserLocation] = useState({});
+  const [userLocation, setUserLocation] = useState({
+    longitude: -122.4194,
+    latitude: 37.7749,
+  });
 
   useEffect(() => {
     const getAndSetUserLocation = async () => {

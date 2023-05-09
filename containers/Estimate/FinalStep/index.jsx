@@ -1,4 +1,5 @@
-import { Login } from '@/components';
+import { Login, NoAuthRender } from '@/components';
+
 import styles from './styles.module.scss';
 
 const FinalStep = () => {
@@ -18,4 +19,4 @@ const FinalStep = () => {
   );
 };
 
-export default FinalStep;
+export default NoAuthRender(FinalStep);

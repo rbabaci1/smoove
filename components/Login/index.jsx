@@ -17,7 +17,6 @@ const verificationCodeLength = 6;
 const Login = ({ animate = true }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { user } = useSelector(state => state.auth);
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 
@@ -42,13 +41,6 @@ const Login = ({ animate = true }) => {
       }
     }
   }, [verificationCodeSent, verifyingCode]);
-
-  // redirect to dashboard if user is already logged in
-  useEffect(() => {
-    if (user) {
-      router.replace('/dashboard');
-    }
-  }, [router, user]);
 
   const handlePhoneNumberChange = value => {
     setPhoneNumber(value);

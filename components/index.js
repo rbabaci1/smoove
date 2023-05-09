@@ -12,6 +12,7 @@ import DatePicker from './DatePicker';
 import AddressAutosuggest from './AddressAutoSuggest';
 import MapContainer from './Map';
 import WithAuth from './WithAuth';
+import NoAuthRender from './NoAuthRender';
 import Sidebar from './Sidebar';
 
 export {
@@ -29,5 +30,6 @@ export {
   AddressAutosuggest,
   MapContainer,
   WithAuth,
+  NoAuthRender,
   Sidebar,
 };

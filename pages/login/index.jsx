@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
-import { Navbar, Login } from '@/components';
+import { Navbar, Login, NoAuthRender } from '@/components';
 
 const LoginPage = () => {
   return (
@@ -37,4 +37,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default NoAuthRender(LoginPage);

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mapbox/mapbox-sdk": "^0.15.0",
     "@reduxjs/toolkit": "^1.9.3",
     "antd": "^5.4.0",
     "date-fns": "^2.29.3",

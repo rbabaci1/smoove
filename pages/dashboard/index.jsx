@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   return (
     <div className={styles.container}>
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       <h2>Welcome to Dashboard</h2>
 

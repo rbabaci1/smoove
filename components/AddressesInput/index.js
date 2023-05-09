@@ -31,7 +31,10 @@ const AddressesInput = ({
   const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [error, setError] = useState({ pickup: '', dropOff: '' });
   // set default user location to San Francisco Bay Area
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState({
+    longitude: -122.4194,
+    latitude: 37.7749,
+  });
 
   useEffect(() => {
     const getAndSetUserLocation = async () => {

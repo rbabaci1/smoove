@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
@@ -16,6 +17,7 @@ const Login = ({ animate = true }) => {
   const router = useRouter();
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
+  const { user } = useSelector(state => state.auth);
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
@@ -113,11 +115,11 @@ const Login = ({ animate = true }) => {
         setPreviousVerificationCode(verificationCode);
 
         try {
-          const res = await confirmationResult.confirm(verificationCode);
+          await confirmationResult.confirm(verificationCode);
 
-          if (res?.user) {
-            setVerifyingCode(false);
+          if (user) {
             router.replace('/dashboard');
+            setVerifyingCode(false);
           }
         } catch (error) {
           setVerifyingCode(false);

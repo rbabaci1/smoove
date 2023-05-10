@@ -10,7 +10,7 @@ const NoAuthRender = WrappedComponent => {
     useEffect(() => {
       if (typeof window !== 'undefined' && user) {
         // Redirect to login page if user is not authenticated
-        router.push('/dashboard');
+        router.replace('/dashboard');
       }
     }, [user, router]);
 

@@ -1,46 +1,16 @@
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { auth } from '@/firebase/firebase.config';
 
 import { store, persistor } from '@/state/reduxStore';
-import { setUser } from '@/state/reduxSlices/authSlice';
+import { handleAuthStateChange } from '@/lib';
 import '../styles/globals.scss';
 
 const App = ({ Component, pageProps }) => {
-  const { dispatch } = store;
-
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        const {
-          uid,
-          accessToken,
-          displayName,
-          email,
-          emailVerified,
-          tenantId,
-          phoneNumber,
-        } = user;
-
-        dispatch(
-          setUser({
-            uid,
-            accessToken,
-            displayName,
-            email,
-            emailVerified,
-            tenantId,
-            phoneNumber,
-          })
-        );
-      } else {
-        dispatch(setUser(null));
-      }
-    });
-
+    const unsubscribe = handleAuthStateChange(store.dispatch);
     return unsubscribe;
-  }, [dispatch]);
+  }, []);
 
   return (
     <Provider store={store}>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Drawer, Divider } from 'antd';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -13,7 +13,6 @@ import { BiLogOutCircle } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { auth } from '@/firebase/firebase.config';
-import { setUser } from '@/state/reduxSlices/authSlice';
 import styles from './styles.module.scss';
 
 const sidebarItems = [
@@ -42,8 +41,7 @@ const sidebarItems = [
 
 const Sidebar = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [active, setActive] = useState(1);
   const { displayName } = useSelector(state => state.auth.user);
 
@@ -56,15 +54,12 @@ const Sidebar = () => {
   };
 
   const logOut = () => {
-    console.log('logOut');
-    // router.push('/login');
-    // auth.signOut();
-    // dispatch(setUser(null));
+    router.push('/login');
+    auth.signOut();
   };
 
   const routeHome = () => {
-    console.log('routeHome');
-    // router.push('/');
+    router.push('/');
   };
 
   return (

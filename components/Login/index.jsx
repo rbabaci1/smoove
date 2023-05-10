@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
-import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
 import styles from './styles.module.scss';
@@ -15,7 +13,6 @@ import styles from './styles.module.scss';
 const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
@@ -119,28 +116,6 @@ const Login = ({ animate = true }) => {
           const res = await confirmationResult.confirm(verificationCode);
 
           if (res?.user) {
-            const {
-              uid,
-              accessToken,
-              displayName,
-              email,
-              emailVerified,
-              tenantId,
-              phoneNumber,
-            } = res.user;
-
-            dispatch(
-              setUser({
-                uid,
-                accessToken,
-                displayName,
-                email,
-                emailVerified,
-                tenantId,
-                phoneNumber,
-              })
-            );
-
             setVerifyingCode(false);
             router.replace('/dashboard');
           }

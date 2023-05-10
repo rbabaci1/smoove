@@ -13,50 +13,14 @@ import {
 } from '@/containers';
 import { Navbar } from '@/components';
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
-import { auth } from '@/firebase/firebase.config';
 
 import styles from '@/styles/Home.module.scss';
-import { setUser } from '@/state/reduxSlices/authSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(goToSpecificEstimateStep(1));
-  }, [dispatch]);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log('user', user);
-        // const {
-        //   uid,
-        //   accessToken,
-        //   displayName,
-        //   email,
-        //   emailVerified,
-        //   tenantId,
-        //   phoneNumber,
-        // } = user;
-
-        // dispatch(
-        //   setUser({
-        //     uid,
-        //     accessToken,
-        //     displayName,
-        //     email,
-        //     emailVerified,
-        //     tenantId,
-        //     phoneNumber,
-        //   })
-        // );
-      } else {
-        console.log('no user');
-        dispatch(setUser(null));
-      }
-    });
-
-    return unsubscribe;
   }, [dispatch]);
 
   return (

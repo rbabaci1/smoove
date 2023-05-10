@@ -1,5 +1,13 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
+.dashboardWrapper {
+  .dashboardContent {
+    max-width: 1200px;
+    margin-left: auto;
+
+    padding: 2rem 1.5rem;
+    border: 1px solid red;
+    min-height: 100dvh;
+  }
 }

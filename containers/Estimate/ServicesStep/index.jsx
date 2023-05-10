@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   goToSpecificEstimateStep,
   enableServiceTypeSelected,
-} from '@/reduxSlices/orderSlice';
+} from '@/state/reduxSlices/orderSlice';
 import { ServiceType } from '@/components';
 import { service1, service2, service3, service4 } from '@/public/images';
 import styles from './styles.module.scss';

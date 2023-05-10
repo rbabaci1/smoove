@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip } from 'antd';
 import { motion } from 'framer-motion';
 
-import { selectVehicleType, setMovingPrice } from '@/reduxSlices/orderSlice';
+import {
+  selectVehicleType,
+  setMovingPrice,
+} from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const VehicleCard = ({ vehicle }) => {

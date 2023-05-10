@@ -12,7 +12,7 @@ import { CiLocationOn } from 'react-icons/ci';
 import {
   goToSpecificEstimateStep,
   updateAddressesTypingValues,
-} from '../../reduxSlices/orderSlice';
+} from '../../state/reduxSlices/orderSlice';
 import { fetchAddressesSuggestions } from '@/lib';
 import styles from './styles.module.scss';
 import { AddressAutosuggest } from '@/components';

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { auth } from '@/firebase/firebase.config';
-import { setUser } from '@/reduxSlices/authSlice';
+import { setUser } from '@/state/reduxSlices/authSlice';
 import { Sidebar, WithAuth } from '@/components';
 import styles from './styles.module.scss';
 
@@ -12,27 +12,29 @@ const Dashboard = () => {
 
   const logOut = () => {
     auth.signOut();
-    dispatch(setUser(null));
+    // dispatch(setUser(null));
     router.replace('/login');
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.dashboardWrapper}>
       <Sidebar />
 
-      <h2>Welcome to Dashboard</h2>
+      <div className={styles.dashboardContent}>
+        <h2>Welcome to Dashboard</h2>
 
-      <button
-        onClick={() => {
-          router.push('/');
-        }}
-      >
-        Home
-      </button>
+        <button
+          onClick={() => {
+            router.push('/');
+          }}
+        >
+          Home
+        </button>
 
-      <div style={{ margin: '1rem 0' }} />
+        <div style={{ margin: '1rem 0' }} />
 
-      <button onClick={logOut}>Sign out</button>
+        <button onClick={logOut}>Sign out</button>
+      </div>
     </div>
   );
 };

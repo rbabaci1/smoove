@@ -1,2 +1,29 @@
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
 .container {
+  position: relative;
+
+  .closeIcon,
+  .openIcon {
+    position: absolute;
+    @include radius(0, 0.2rem, 0, 0.2rem);
+    top: 2rem;
+    border: 1px solid $main-color;
+    border-left: none;
+    background-color: $main-color;
+    width: 2.5rem;
+    height: 2.2rem;
+    color: $white;
+    cursor: pointer;
+    left: 0;
+  }
+
+  .closeIcon {
+    left: 280px;
+  }
+
+  .openIcon {
+    left: 0;
+  }
 }

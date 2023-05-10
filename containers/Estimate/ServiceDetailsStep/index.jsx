@@ -22,7 +22,7 @@ import {
   setMovingWindow,
   setDescription,
   updateAdditionalContacts,
-} from '@/reduxSlices/orderSlice';
+} from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const movingWindows = [

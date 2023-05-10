@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import {
   goToSpecificEstimateStep,
   updateAddressesTypingValues,
-} from '../../reduxSlices/orderSlice';
+} from '../../state/reduxSlices/orderSlice';
 import { fetchAddressesSuggestions, getUserLocation } from '@/lib';
 import { AddressAutosuggest } from '@/components';
 import styles from './styles.module.scss';

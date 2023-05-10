@@ -17,7 +17,7 @@ const stepsNames = [
 import {
   goToPreviousEstimateStep,
   goToNextEstimateStep,
-} from '@/reduxSlices/orderSlice';
+} from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const EstimateNavbar = () => {

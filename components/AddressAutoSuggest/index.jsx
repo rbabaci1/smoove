@@ -1,7 +1,7 @@
 import Autosuggest from 'react-autosuggest';
 import { useDispatch } from 'react-redux';
 
-import { updateAddresses } from '@/reduxSlices/orderSlice';
+import { updateAddresses } from '@/state/reduxSlices/orderSlice';
 
 const AddressAutosuggest = ({
   addressType,

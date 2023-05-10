@@ -3,7 +3,7 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { FcHome, FcShop, FcFullTrash, FcDonate } from 'react-icons/fc';
 import { useDispatch } from 'react-redux';
 
-import { updateServiceType } from 'reduxSlices/orderSlice.js';
+import { updateServiceType } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const Dropdown = () => {

@@ -6,7 +6,7 @@ import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
-import { setUser } from '@/reduxSlices/authSlice';
+import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
 import styles from './styles.module.scss';

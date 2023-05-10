@@ -3,7 +3,7 @@ import { addDays, format } from 'date-fns';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
-import { setMovingDate } from '@/reduxSlices/orderSlice';
+import { setMovingDate } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const NextJSDatePicker = () => {

@@ -22,7 +22,7 @@ const initialState = {
   addressesAreValid: false,
 };
 
-const OrderSlice = createSlice({
+const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
@@ -91,6 +91,6 @@ export const {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
-} = OrderSlice.actions;
+} = orderSlice.actions;
 
-export default OrderSlice.reducer;
+export default orderSlice.reducer;

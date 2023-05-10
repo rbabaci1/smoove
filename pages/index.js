@@ -22,40 +22,42 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(goToSpecificEstimateStep(1));
+    dispatch(goToSpecificEstimateStep(1));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       const {
-  //         uid,
-  //         accessToken,
-  //         displayName,
-  //         email,
-  //         emailVerified,
-  //         tenantId,
-  //         phoneNumber,
-  //       } = user;
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('user', user);
+        // const {
+        //   uid,
+        //   accessToken,
+        //   displayName,
+        //   email,
+        //   emailVerified,
+        //   tenantId,
+        //   phoneNumber,
+        // } = user;
 
-  //       // dispatch(
-  //       //   setUser({
-  //       //     uid,
-  //       //     accessToken,
-  //       //     displayName,
-  //       //     email,
-  //       //     emailVerified,
-  //       //     tenantId,
-  //       //     phoneNumber,
-  //       //   })
-  //       // );
-  //     } else {
-  //       dispatch(setUser(null));
-  //     }
-  //   });
+        // dispatch(
+        //   setUser({
+        //     uid,
+        //     accessToken,
+        //     displayName,
+        //     email,
+        //     emailVerified,
+        //     tenantId,
+        //     phoneNumber,
+        //   })
+        // );
+      } else {
+        console.log('no user');
+        dispatch(setUser(null));
+      }
+    });
 
-  //   return unsubscribe;
-  // }, [dispatch]);
+    return unsubscribe;
+  }, [dispatch]);
 
   return (
     <>

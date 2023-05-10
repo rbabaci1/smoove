@@ -16,7 +16,8 @@ const WithAuth = WrappedComponent => {
 
     if (!user) {
       // Render nothing on server-side until we know if user is authenticated
-      return <h3>Loading...</h3>;
+      // return <h3>Loading...</h3>;
+      return null;
     }
 
     // Render the wrapped component with authenticated user

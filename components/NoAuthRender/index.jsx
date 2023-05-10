@@ -16,7 +16,6 @@ const NoAuthRender = WrappedComponent => {
 
     if (user) {
       // Render nothing on server-side until we know if user is authenticated
-
       return null;
     }
 

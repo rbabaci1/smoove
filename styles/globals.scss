@@ -431,3 +431,61 @@ a {
 .mapboxgl-ctrl-bottom-right {
   display: none;
 }
+
+.ant-drawer-wrapper-body {
+  .title {
+    @include flex(row, flex-start);
+
+    p {
+      color: gray;
+      margin: 0 0 0 0.5rem;
+    }
+  }
+
+  .ant-drawer-body {
+    padding-left: 0;
+    padding-right: 0;
+
+    .items {
+      .btn-item {
+        text-align: center;
+      }
+
+      .item {
+        @include flex(row, flex-start);
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+
+        svg {
+          margin-right: 0.5rem;
+          height: 1.4rem;
+          width: 1.4rem;
+        }
+
+        p {
+          margin: 0;
+          border-bottom: 2px solid transparent;
+        }
+
+        &:hover {
+          svg,
+          p {
+            color: $main-color;
+          }
+        }
+      }
+
+      .active-item {
+        svg {
+          color: $main-color;
+        }
+
+        p {
+          border-color: $main-color;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}

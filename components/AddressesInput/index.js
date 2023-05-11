@@ -15,6 +15,7 @@ import {
 import { fetchAddressesSuggestions, getUserLocation } from '@/lib';
 import { AddressAutosuggest } from '@/components';
 import styles from './styles.module.scss';
+import { setUserLocation } from '@/state/reduxSlices/authSlice';
 
 const AddressesInput = ({
   buttonText = 'Get an estimate',
@@ -22,7 +23,10 @@ const AddressesInput = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   const { addresses } = useSelector(state => state.order);
+  const { userLocation } = useSelector(state => state.auth);
+
   const { pickup, dropOff, typingValues } = addresses;
   const [suggestions, setSuggestions] = useState({
     pickup: [],
@@ -30,20 +34,15 @@ const AddressesInput = ({
   });
   const [loading, setLoading] = useState({ pickup: false, dropOff: false });
   const [error, setError] = useState({ pickup: '', dropOff: '' });
-  // set default user location to San Francisco Bay Area
-  const [userLocation, setUserLocation] = useState({
-    longitude: -122.4194,
-    latitude: 37.7749,
-  });
 
   useEffect(() => {
     const getAndSetUserLocation = async () => {
       const userLocation = await getUserLocation();
-      setUserLocation(userLocation);
+      dispatch(setUserLocation(userLocation));
     };
 
     getAndSetUserLocation();
-  }, []);
+  }, [dispatch]);
 
   const handleChange = ({ target: { name, value } }) => {
     dispatch(updateAddressesTypingValues({ type: name, value }));

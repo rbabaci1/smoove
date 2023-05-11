@@ -69,7 +69,7 @@ const Sidebar = () => {
           <motion.div
             className={styles.iconContainer}
             initial={{ x: 0, opacity: 0 }}
-            animate={{ x: 250, opacity: 1 }}
+            animate={{ x: 240, opacity: 1 }}
             exit={{ x: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
@@ -85,9 +85,9 @@ const Sidebar = () => {
         {!open && (
           <motion.div
             className={styles.iconContainer}
-            initial={{ x: 250, opacity: 0 }}
+            initial={{ x: 240, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 250, opacity: 0 }}
+            exit={{ x: 240, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             <RiMenuUnfoldLine
@@ -111,7 +111,7 @@ const Sidebar = () => {
         onClose={toggleDrawer}
         open={open}
         key='left'
-        width={250}
+        width={240}
         mask={false}
       >
         <div className='items'>

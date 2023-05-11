@@ -20,6 +20,7 @@ const initialState = {
   price: '',
   serviceTypeSelected: false,
   addressesAreValid: false,
+  status: 'draft',
 };
 
 const orderSlice = createSlice({

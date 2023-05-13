@@ -2,7 +2,7 @@ import { Login, NoAuthRender } from '@/components';
 
 import styles from './styles.module.scss';
 
-const FinalStep = () => {
+const AuthStep = () => {
   return (
     <div className={styles.background}>
       <div className={styles.container}>
@@ -19,4 +19,4 @@ const FinalStep = () => {
   );
 };
 
-export default NoAuthRender(FinalStep);
+export default NoAuthRender(AuthStep);

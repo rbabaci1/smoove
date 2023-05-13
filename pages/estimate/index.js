@@ -10,7 +10,7 @@ import {
   ServicesStep,
   ServiceVehiclesStep,
   ServiceDetailsStep,
-  FinalStep,
+  AuthStep,
 } from '@/containers/Estimate';
 
 const Estimate = () => {
@@ -128,7 +128,7 @@ const Estimate = () => {
             exit='exit'
             transition={transition}
           >
-            <FinalStep />
+            <AuthStep />
           </motion.div>
         );
       default:

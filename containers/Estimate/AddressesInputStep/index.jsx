@@ -2,6 +2,8 @@ import { AddressesInput } from '@/components';
 import styles from './styles.module.scss';
 
 const AddressesInputStep = () => {
+  // !!! check if addresses exist, if so, redirect to next step
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>

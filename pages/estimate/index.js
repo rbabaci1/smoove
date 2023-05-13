@@ -11,6 +11,8 @@ import {
   ServiceVehiclesStep,
   ServiceDetailsStep,
   AuthStep,
+  PersonalInfoStep,
+  PaymentMethodsStep,
 } from '@/containers/Estimate';
 
 const Estimate = () => {
@@ -46,106 +48,30 @@ const Estimate = () => {
       damping: 30,
     };
 
-    switch (estimateStep) {
-      case 1:
-        return (
-          <motion.div
-            key={1}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <AddressesInputStep />
-          </motion.div>
-        );
-      case 2:
-        return (
-          <motion.div
-            key={2}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <ServicesStep />
-          </motion.div>
-        );
-      case 3:
-        return (
-          <motion.div
-            key={3}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <ServiceVehiclesStep />
-          </motion.div>
-        );
-      case 4:
-        return (
-          <motion.div
-            key={4}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <ServiceDetailsStep />
-          </motion.div>
-        );
-      case 5:
-        return (
-          <motion.div
-            key={4}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <ServiceDetailsStep />
-          </motion.div>
-        );
-      case 6:
-        return (
-          <motion.div
-            key={6}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <AuthStep />
-          </motion.div>
-        );
-      default:
-        return (
-          <motion.div
-            key={1}
-            className={styles.stepContainer}
-            variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
-            transition={transition}
-          >
-            <AddressesInputStep />
-          </motion.div>
-        );
-    }
+    const stepComponents = {
+      1: <AddressesInputStep />,
+      2: <ServicesStep />,
+      3: <ServiceVehiclesStep />,
+      4: <ServiceDetailsStep />,
+      5: <ServiceDetailsStep />,
+      6: <AuthStep />,
+      7: <PersonalInfoStep />,
+      8: <PaymentMethodsStep />,
+    };
+
+    return (
+      <motion.div
+        key={estimateStep}
+        className={styles.stepContainer}
+        variants={variants}
+        initial='enter'
+        animate='center'
+        exit='exit'
+        transition={transition}
+      >
+        {stepComponents[estimateStep]}
+      </motion.div>
+    );
   };
 
   return (

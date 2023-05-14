@@ -20,7 +20,7 @@ const initialState = {
   price: '',
   serviceTypeSelected: false,
   addressesAreValid: false,
-  status: 'draft',
+  status: null,
 };
 
 const orderSlice = createSlice({
@@ -75,6 +75,9 @@ const orderSlice = createSlice({
     setUserLocation: (state, action) => {
       state.userLocation = action.payload;
     },
+    updateOrderStatus: (state, action) => {
+      state.status = action.payload;
+    },
   },
 });
 
@@ -92,6 +95,7 @@ export const {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
+  updateOrderStatus,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

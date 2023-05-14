@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   goToSpecificEstimateStep,
   enableServiceTypeSelected,
+  updateOrderStatus,
 } from '@/state/reduxSlices/orderSlice';
 import { ServiceType } from '@/components';
 import { service1, service2, service3, service4 } from '@/public/images';
@@ -22,6 +23,7 @@ const ServicesStep = () => {
     }
 
     dispatch(enableServiceTypeSelected());
+    dispatch(updateOrderStatus('draft'));
   }, [dispatch, serviceTypeSelected, serviceType]);
 
   return (

@@ -9,48 +9,22 @@ import {
   RiUserSettingsLine,
 } from 'react-icons/ri';
 import { AiOutlineHome, AiOutlineOrderedList } from 'react-icons/ai';
+import { GrInProgress } from 'react-icons/gr';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { auth } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
-const sidebarItems = [
-  {
-    title: <p>Home</p>,
-    icon: <AiOutlineHome />,
-    action: fc => fc(),
-  },
-  {
-    title: <p>My Moves</p>,
-    icon: <AiOutlineOrderedList />,
-    action: fc => fc(),
-  },
-  {
-    title: <p>My Account</p>,
-    icon: <RiUserSettingsLine />,
-    action: fc => fc(),
-  },
-
-  {
-    title: <p>Log Out</p>,
-    icon: <BiLogOutCircle />,
-    action: fc => fc(),
-  },
-];
-
 const Sidebar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
-  const [active, setActive] = useState(1);
+  const { status } = useSelector(state => state.order);
+  const [active, setActive] = useState(status === 'draft' ? 0 : 1);
   const { displayName } = useSelector(state => state.auth.user);
 
   const toggleDrawer = () => {
     setOpen(!open);
-  };
-
-  const setContainer = () => {
-    console.log('setContainer');
   };
 
   const logOut = () => {
@@ -123,28 +97,56 @@ const Sidebar = () => {
 
           <Divider />
 
-          {sidebarItems.map((item, index) => (
-            <div key={index}>
-              {index === 3 && <Divider />}
+          {status === 'draft' && (
+            <>
+              <div className={`item ${active === 0 ? 'active-item' : ''}`}>
+                <section onClick={() => setActive(0)}>
+                  <GrInProgress />
 
-              <div
-                onClick={() => {
-                  setActive(index);
-                  item.action(
-                    index === 3
-                      ? logOut
-                      : index === 0
-                      ? routeHome
-                      : setContainer
-                  );
-                }}
-                className={`item ${index === active ? 'active-item' : ''}`}
-              >
-                {item.icon}
-                {item.title}
+                  <p>Current Move</p>
+                </section>
               </div>
-            </div>
-          ))}
+
+              <Divider />
+            </>
+          )}
+
+          <div className='item'>
+            <section onClick={routeHome}>
+              <AiOutlineHome />
+              <p>Home</p>
+            </section>
+          </div>
+
+          <div className='item'>
+            <section
+              className={`${active === 1 ? 'active-item' : ''}`}
+              onClick={() => setActive(1)}
+            >
+              <AiOutlineOrderedList />
+
+              <p>My Moves</p>
+            </section>
+          </div>
+
+          <div className='item'>
+            <section
+              className={`${active === 2 ? 'active-item' : ''}`}
+              onClick={() => setActive(2)}
+            >
+              <RiUserSettingsLine />
+
+              <p>My Account</p>
+            </section>
+          </div>
+
+          <div className='item'>
+            <section onClick={() => logOut()}>
+              <BiLogOutCircle />
+
+              <p>Log Out</p>
+            </section>
+          </div>
         </div>
       </Drawer>
     </div>

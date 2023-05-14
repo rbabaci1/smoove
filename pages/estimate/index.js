@@ -11,8 +11,6 @@ import {
   ServiceVehiclesStep,
   ServiceDetailsStep,
   AuthStep,
-  PersonalInfoStep,
-  PaymentMethodsStep,
 } from '@/containers/Estimate';
 
 const Estimate = () => {
@@ -55,8 +53,6 @@ const Estimate = () => {
       4: <ServiceDetailsStep />,
       5: <ServiceDetailsStep />,
       6: <AuthStep />,
-      7: <PersonalInfoStep />,
-      8: <PaymentMethodsStep />,
     };
 
     return (

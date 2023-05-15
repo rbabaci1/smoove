@@ -67,6 +67,8 @@
 
     // after above step is finish
     .descContact {
+      min-width: 550px;
+
       h3 {
         padding-bottom: 1rem;
       }
@@ -102,10 +104,6 @@
           span {
             color: gray;
             font-weight: 500;
-          }
-
-          button {
-            margin-left: 1rem;
           }
         }
 
@@ -143,7 +141,7 @@
             background-color: $white;
             width: fit-content;
             border-radius: 0.5rem;
-            width: 46%;
+            width: 45%;
           }
 
           input {
@@ -177,7 +175,7 @@
     @include flex(column, space-between);
     background-color: $white;
     border-radius: 0.75rem;
-    min-width: 370px;
+    min-width: 400px;
 
     .details {
       flex: 1;
@@ -310,6 +308,8 @@
     }
 
     .descContact {
+      min-width: 100% !important;
+
       button {
         width: fit-content;
         margin-top: 1rem;

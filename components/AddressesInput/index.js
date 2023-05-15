@@ -129,7 +129,11 @@ const AddressesInput = ({
           </section>
 
           <div className={styles.input}>
-            <p className={error.pickup ? styles.error : ''}>Pickup address</p>
+            <p
+              className={`${styles.label} ${error.pickup ? styles.error : ''}`}
+            >
+              Point A
+            </p>
 
             <AddressAutosuggest
               addressType='pickup'
@@ -156,7 +160,11 @@ const AddressesInput = ({
           </section>
 
           <div className={styles.input}>
-            <p className={error.dropOff ? styles.error : ''}>DropOff address</p>
+            <p
+              className={`${styles.label} ${error.pickup ? styles.error : ''}`}
+            >
+              Point B
+            </p>
 
             <AddressAutosuggest
               addressType='dropOff'

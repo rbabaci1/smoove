@@ -72,16 +72,25 @@
         padding: 0.5rem;
         width: 100%;
         border: none;
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
 
         .input {
+          padding: 0.5rem 0;
           width: 90%;
+
+          .label {
+            display: none;
+          }
         }
       }
 
       .dropOff {
         border: none;
         margin: 1.5rem 0 3rem 0;
+      }
+
+      button {
+        border-radius: 0.75rem;
       }
     }
   }
@@ -96,9 +105,6 @@
           font-size: 0.5rem;
         }
 
-        p {
-          font-size: clamp(0.4rem, 4vw, 0.8rem);
-        }
         input {
           font-size: clamp(0.6rem, 4vw, 0.9rem);
         }

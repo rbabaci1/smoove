@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import {
   selectVehicleType,
   setMovingPrice,
+  goToNextEstimateStep,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
@@ -15,8 +16,8 @@ const VehicleCard = ({ vehicle }) => {
 
   const handleVehicleTypeAndPricing = () => {
     dispatch(selectVehicleType(vehicle.name));
-
     dispatch(setMovingPrice(vehicle.price));
+    dispatch(goToNextEstimateStep());
   };
 
   return (

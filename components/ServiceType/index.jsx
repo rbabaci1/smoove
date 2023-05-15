@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoNavigateOutline } from 'react-icons/io5';
 
-import { updateServiceType } from '@/state/reduxSlices/orderSlice';
+import {
+  updateServiceType,
+  goToNextEstimateStep,
+} from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
 const ServiceType = ({ service, img, uniqueStyles }) => {
@@ -12,6 +15,7 @@ const ServiceType = ({ service, img, uniqueStyles }) => {
 
   const goToNextStep = () => {
     dispatch(updateServiceType(service));
+    dispatch(goToNextEstimateStep());
   };
 
   return (

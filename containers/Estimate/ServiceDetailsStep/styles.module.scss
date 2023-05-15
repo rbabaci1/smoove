@@ -9,14 +9,15 @@
   margin: 0 auto;
 
   .left {
+    min-width: 570px;
+    max-width: 570px;
+
     .nextBtn {
       width: 100%;
       margin-bottom: 2rem;
     }
 
     .dateTimeMovWinds {
-      max-width: 550px;
-
       .date {
         padding-bottom: 2rem;
         border-bottom: 1px solid $light-blue;
@@ -67,8 +68,6 @@
 
     // after above step is finish
     .descContact {
-      min-width: 550px;
-
       h3 {
         padding-bottom: 1rem;
       }
@@ -267,11 +266,8 @@
 
   @media screen and (max-width: 1024px) {
     .left {
-      width: 100%;
-
-      .dateTimeMovWinds {
-        max-width: 100%;
-      }
+      min-width: 100%;
+      max-width: 100%;
     }
 
     .mapDetails {

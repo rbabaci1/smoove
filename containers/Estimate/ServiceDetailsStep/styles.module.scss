@@ -67,8 +67,6 @@
 
     // after above step is finish
     .descContact {
-      min-width: 550px;
-
       h3 {
         padding-bottom: 1rem;
       }
@@ -104,6 +102,10 @@
           span {
             color: gray;
             font-weight: 500;
+          }
+
+          button {
+            margin-left: 1rem;
           }
         }
 
@@ -165,7 +167,7 @@
         svg {
           color: $error-color;
           cursor: pointer;
-          transform: scale(1.8);
+          transform: scale(1.6);
         }
       }
     }
@@ -266,8 +268,12 @@
   }
 
   @media screen and (max-width: 1024px) {
-    .dateTimeMovWinds {
-      max-width: 100%;
+    .left {
+      width: 100%;
+
+      .dateTimeMovWinds {
+        max-width: 100%;
+      }
     }
 
     .mapDetails {
@@ -304,8 +310,6 @@
     }
 
     .descContact {
-      min-width: 100% !important;
-
       button {
         width: fit-content;
         margin-top: 1rem;
@@ -317,18 +321,7 @@
         }
 
         .newContact {
-          padding: 0;
-          gap: 0.5rem;
-
-          .name,
-          .phoneNumber {
-            width: 90%;
-          }
-
-          svg {
-            position: relative;
-            top: -2.1rem;
-          }
+          @include flex(row, flex-start);
         }
       }
     }

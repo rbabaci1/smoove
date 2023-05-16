@@ -20,7 +20,7 @@ const Sidebar = () => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const { status } = useSelector(state => state.order);
-  const [active, setActive] = useState(status === 'draft' ? 0 : 1);
+  const [active, setActive] = useState(1);
   const { displayName } = useSelector(state => state.auth.user);
 
   const toggleDrawer = () => {
@@ -96,20 +96,6 @@ const Sidebar = () => {
           </div>
 
           <Divider />
-
-          {status === 'draft' && (
-            <>
-              <div className={`item ${active === 0 ? 'active-item' : ''}`}>
-                <section onClick={() => setActive(0)}>
-                  <GrInProgress />
-
-                  <p>Current Move</p>
-                </section>
-              </div>
-
-              <Divider />
-            </>
-          )}
 
           <div className='item'>
             <section onClick={routeHome}>

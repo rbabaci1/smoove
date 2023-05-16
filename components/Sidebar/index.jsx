@@ -9,18 +9,17 @@ import {
   RiUserSettingsLine,
 } from 'react-icons/ri';
 import { AiOutlineHome, AiOutlineOrderedList } from 'react-icons/ai';
-import { GrInProgress } from 'react-icons/gr';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { auth } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
-const Sidebar = () => {
+const Sidebar = ({ activeContainer, setActiveContainer }) => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
-  const { status } = useSelector(state => state.order);
-  const [active, setActive] = useState(1);
+  // const { status } = useSelector(state => state.order);
+
   const { displayName } = useSelector(state => state.auth.user);
 
   const toggleDrawer = () => {
@@ -106,8 +105,8 @@ const Sidebar = () => {
 
           <div className='item'>
             <section
-              className={`${active === 1 ? 'active-item' : ''}`}
-              onClick={() => setActive(1)}
+              className={`${activeContainer === 1 ? 'active-item' : ''}`}
+              onClick={() => setActiveContainer(1)}
             >
               <AiOutlineOrderedList />
 
@@ -117,8 +116,8 @@ const Sidebar = () => {
 
           <div className='item'>
             <section
-              className={`${active === 2 ? 'active-item' : ''}`}
-              onClick={() => setActive(2)}
+              className={`${activeContainer === 2 ? 'active-item' : ''}`}
+              onClick={() => setActiveContainer(2)}
             >
               <RiUserSettingsLine />
 

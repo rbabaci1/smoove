@@ -2,9 +2,10 @@
 @import '/styles/variables.module.scss';
 
 .dashboardWrapper {
-  .dashboardContent {
+  .dashboardContainer {
     margin-left: 240px;
     padding: 2rem 1.5rem;
     min-height: 100dvh;
+    border: 1px solid red;
   }
 }

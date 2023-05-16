@@ -13,6 +13,12 @@ import {
   AuthStep,
 } from '@/containers/Estimate';
 
+const transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 30,
+};
+
 const Estimate = () => {
   const { estimateStep } = useSelector(state => state.order);
   const [prevStep, setPrevStep] = useState(estimateStep);
@@ -24,37 +30,31 @@ const Estimate = () => {
     window.scrollTo(0, 0);
   }, [estimateStep]);
 
+  const variants = {
+    enter: {
+      x: estimateStep > prevStep ? '100vw' : '-100vw',
+      opacity: 0,
+    },
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: {
+      x: estimateStep > prevStep ? '-100vw' : '100vw',
+      opacity: 0,
+    },
+  };
+
+  const stepComponents = {
+    1: <AddressesInputStep />,
+    2: <ServicesStep />,
+    3: <ServiceVehiclesStep />,
+    4: <ServiceDetailsStep />,
+    5: <ServiceDetailsStep />,
+    6: <AuthStep />,
+  };
+
   const renderStepContainer = () => {
-    const variants = {
-      enter: {
-        x: estimateStep > prevStep ? '100vw' : '-100vw',
-        opacity: 0,
-      },
-      center: {
-        x: 0,
-        opacity: 1,
-      },
-      exit: {
-        x: estimateStep > prevStep ? '-100vw' : '100vw',
-        opacity: 0,
-      },
-    };
-
-    const transition = {
-      type: 'spring',
-      stiffness: 300,
-      damping: 30,
-    };
-
-    const stepComponents = {
-      1: <AddressesInputStep />,
-      2: <ServicesStep />,
-      3: <ServiceVehiclesStep />,
-      4: <ServiceDetailsStep />,
-      5: <ServiceDetailsStep />,
-      6: <AuthStep />,
-    };
-
     return (
       <motion.div
         key={estimateStep}

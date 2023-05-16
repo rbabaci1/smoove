@@ -35,31 +35,16 @@ const ServicesStep = () => {
         </section>
 
         <div className={styles.services}>
-          <section className={styles.top}>
-            <ServiceType
-              service='Regular move'
-              img={service1}
-              uniqueStyles={{ top: '1rem' }}
-            />
-            <ServiceType
-              service='Store delivery'
-              img={service2}
-              uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
-            />
-          </section>
-
-          <section className={styles.bottom}>
-            <ServiceType
-              service='Dumping'
-              img={service3}
-              uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
-            />
-            <ServiceType
-              service='Donations'
-              img={service4}
-              uniqueStyles={{ top: '0.3rem' }}
-            />
-          </section>
+          <ServiceType
+            service='Regular move'
+            img={service1}
+            uniqueStyles={{ top: '1rem' }}
+          />
+          <ServiceType
+            service='Store delivery'
+            img={service2}
+            uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
+          />
         </div>
       </div>
     </div>

@@ -28,15 +28,9 @@
     }
 
     .services {
-      @include flex(column);
+      @include flex();
       gap: 1rem;
       padding-top: 2rem;
-
-      .top,
-      .bottom {
-        @include flex();
-        gap: 1rem;
-      }
     }
 
     @media screen and (max-width: 374px) {

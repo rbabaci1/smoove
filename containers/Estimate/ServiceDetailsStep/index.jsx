@@ -22,7 +22,6 @@ import {
   setMovingWindow,
   setDescription,
   updateAdditionalContacts,
-  goToNextEstimateStep,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
@@ -127,172 +126,145 @@ const ServiceDetailsStep = () => {
       <div className={styles.container}>
         {/* Left side first container */}
 
-        <div className={styles.left}>
-          {estimateStep === 4 && (
-            <motion.div
-              className={styles.dateTimeMovWinds}
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-            >
-              <section className={styles.date}>
-                <DatePicker />
-              </section>
+        {estimateStep === 4 && (
+          <motion.div
+            className={styles.dateTimeMovWinds}
+            // initial={{ x: -50, opacity: 0 }}
+            // animate={{ x: 0, opacity: 1 }}
+          >
+            <section className={styles.date}>
+              <DatePicker />
+            </section>
 
-              <div className={styles.movingWindows}>
-                <h3>When should we arrive at your pickup location?</h3>
-                <span>
-                  {`This is the movers's arrival time, not the
+            <div className={styles.movingWindows}>
+              <h3>When should we arrive at your pickup location?</h3>
+              <span>
+                {`This is the movers's arrival time, not the
             duration of the move.`}
-                </span>
+              </span>
 
-                <div className={styles.movingWindowsList}>
-                  {movingWindows.map((window, index) => (
-                    <span
-                      key={index}
-                      className={`${
-                        movingWindow === window
-                          ? styles.movingWindowSelected
-                          : ''
-                      }`}
-                      onClick={() => selectWindow(window)}
-                    >
-                      {window}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {estimateStep === 5 && (
-            <motion.div
-              className={styles.descContact}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <h3>What are you moving?</h3>
-
-              <textarea
-                name='desc'
-                id='desc'
-                rows='11'
-                placeholder='Inform us of what you are moving or any instructions you might
-                have.'
-                value={description}
-                onChange={handleDescChange}
-                required
-              />
-
-              <div className={styles.addContacts}>
-                <div className={styles.header}>
-                  <section>
-                    <h3>Additional contacts</h3>
-                    <span>
-                      To keep them updated about the status of the move.
-                    </span>
-                  </section>
-
-                  <button
-                    onClick={
-                      showContacts
-                        ? handleAddContact
-                        : () => setShowContacts(true)
-                    }
+              <div className={styles.movingWindowsList}>
+                {movingWindows.map((window, index) => (
+                  <span
+                    key={index}
+                    className={`${
+                      movingWindow === window ? styles.movingWindowSelected : ''
+                    }`}
+                    onClick={() => selectWindow(window)}
                   >
-                    Add contact
-                  </button>
-                </div>
+                    {window}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
 
-                <div className={styles.contacts}>
-                  <AnimatePresence>
-                    {additionalContacts.map((contact, index) => (
-                      <motion.section
-                        key={index}
-                        initial={{ x: -30, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: -30, opacity: 0 }}
-                      >
-                        <h4>{contact.name}</h4>
-                        <p>{contact.phoneNumber}</p>
-                        <AiFillCloseCircle
-                          onClick={() => handleDeleteContact(index)}
-                        />
-                      </motion.section>
-                    ))}
-                  </AnimatePresence>
-                </div>
+        {estimateStep === 5 && (
+          <motion.div
+            className={styles.descContact}
+            // initial={{ y: 50, opacity: 0 }}
+            // animate={{ y: 0, opacity: 1 }}
+          >
+            <h3>What are you moving?</h3>
 
+            <textarea
+              name='desc'
+              id='desc'
+              rows='11'
+              placeholder='Inform us of what you are moving or any instructions you might
+                have.'
+              value={description}
+              onChange={handleDescChange}
+              required
+            />
+
+            <div className={styles.addContacts}>
+              <div className={styles.header}>
+                <section>
+                  <h3>Additional contacts</h3>
+                  <span>
+                    To keep them updated about the status of the move.
+                  </span>
+                </section>
+
+                <button
+                  onClick={
+                    showContacts
+                      ? handleAddContact
+                      : () => setShowContacts(true)
+                  }
+                >
+                  Add contact
+                </button>
+              </div>
+
+              <div className={styles.contacts}>
                 <AnimatePresence>
-                  {showContacts && (
+                  {additionalContacts.map((contact, index) => (
                     <motion.section
-                      className={styles.newContact}
-                      initial={{ y: -30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -30, opacity: 0 }}
+                      key={index}
+                      initial={{ x: -30, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -30, opacity: 0 }}
                     >
-                      <input
-                        type='text'
-                        placeholder='Name'
-                        name='name'
-                        onChange={handleContactChange}
-                        value={newContact.name}
-                        className={styles.name}
-                      />
-
-                      <PhoneInput
-                        placeholder='Phone number'
-                        value={newContact.phoneNumber}
-                        onChange={value =>
-                          handleContactChange({
-                            target: {
-                              name: 'phoneNumber',
-                              value,
-                            },
-                          })
-                        }
-                        country='US'
-                        defaultCountry='US'
-                        limitMaxLength={true}
-                        international={false}
-                        className={styles.phoneNumber}
-                      />
-
-                      <AiOutlineCloseSquare
-                        onClick={() => {
-                          setShowContacts(false);
-                          setNewContact({ name: '', phoneNumber: '' });
-                        }}
+                      <h4>{contact.name}</h4>
+                      <p>{contact.phoneNumber}</p>
+                      <AiFillCloseCircle
+                        onClick={() => handleDeleteContact(index)}
                       />
                     </motion.section>
-                  )}
+                  ))}
                 </AnimatePresence>
               </div>
-            </motion.div>
-          )}
 
-          {estimateStep !== 5 ? (
-            <button
-              className={styles.nextBtn}
-              onClick={() => dispatch(goToNextEstimateStep())}
-            >
-              Next
-            </button>
-          ) : null}
+              <AnimatePresence>
+                {showContacts && (
+                  <motion.section
+                    className={styles.newContact}
+                    initial={{ y: -30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -30, opacity: 0 }}
+                  >
+                    <input
+                      type='text'
+                      placeholder='Name'
+                      name='name'
+                      onChange={handleContactChange}
+                      value={newContact.name}
+                      className={styles.name}
+                    />
 
-          <AnimatePresence>
-            {estimateStep === 5 && description.length ? (
-              <motion.button
-                className={styles.nextBtn}
-                onClick={() => dispatch(goToNextEstimateStep())}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 50, opacity: 0 }}
-              >
-                Next
-              </motion.button>
-            ) : null}
-          </AnimatePresence>
-        </div>
+                    <PhoneInput
+                      placeholder='Phone number'
+                      value={newContact.phoneNumber}
+                      onChange={value =>
+                        handleContactChange({
+                          target: {
+                            name: 'phoneNumber',
+                            value,
+                          },
+                        })
+                      }
+                      country='US'
+                      defaultCountry='US'
+                      limitMaxLength={true}
+                      international={false}
+                      className={styles.phoneNumber}
+                    />
+
+                    <AiOutlineCloseSquare
+                      onClick={() => {
+                        setShowContacts(false);
+                        setNewContact({ name: '', phoneNumber: '' });
+                      }}
+                    />
+                  </motion.section>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
 
         {/* Right side container */}
         <div className={styles.mapDetails}>

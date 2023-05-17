@@ -7,6 +7,14 @@
   max-width: 1200px;
   margin: 0 auto;
 
+  form {
+    border: 1px solid red;
+
+    input {
+      background-color: $white;
+    }
+  }
+
   @media screen and (max-width: 767px) {
     min-height: calc(100dvh - 4rem);
   }

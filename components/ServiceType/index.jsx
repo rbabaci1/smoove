@@ -20,7 +20,9 @@ const ServiceType = ({ service, img, uniqueStyles }) => {
 
   return (
     <motion.div
-      className={styles.container}
+      className={`${styles.container} ${
+        serviceType === service ? styles.serviceSelected : ''
+      }`}
       onClick={goToNextStep}
       whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
     >

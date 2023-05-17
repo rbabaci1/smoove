@@ -63,12 +63,20 @@
       }
     }
 
-    .nextButton {
+    .nextButton,
+    .logOutBtn {
       text-align: end;
 
       button {
         width: 6rem;
       }
+    }
+
+    .logOutBtn svg {
+      height: 2.1rem;
+      width: 2.1rem;
+      cursor: pointer;
+      color: $error-color;
     }
 
     @media screen and (max-width: 1024px) {

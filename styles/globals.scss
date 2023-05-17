@@ -98,8 +98,9 @@ button {
   padding: 1rem;
   font-size: clamp(0.7rem, 4.5vw, 1.15rem) !important;
   background-color: $yellow;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   color: $dark-blue;
+
   font-weight: 600;
   cursor: pointer;
   z-index: 1;
@@ -115,6 +116,7 @@ input {
   padding: 1rem;
   width: 100%;
   font-weight: 500;
+  border-radius: 0.75rem;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -139,7 +141,7 @@ input:-webkit-autofill:active {
   background-color: $main-color;
   caret-color: #fff;
   border: 1px solid $primary-color;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   outline: none;
   border-color: #a1a2a4;
 

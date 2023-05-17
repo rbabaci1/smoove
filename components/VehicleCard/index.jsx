@@ -22,7 +22,9 @@ const VehicleCard = ({ vehicle }) => {
 
   return (
     <motion.div
-      className={styles.container}
+      className={`${styles.container} ${
+        vehicleType === vehicle.name ? styles.vehicleSelected : ''
+      }`}
       onClick={handleVehicleTypeAndPricing}
       whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
     >

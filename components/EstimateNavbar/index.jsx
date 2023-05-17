@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
-import { BiListUl } from 'react-icons/bi';
+import { BiListUl, BiLogOutCircle } from 'react-icons/bi';
 import { AiFillLock } from 'react-icons/ai';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 
@@ -12,11 +12,12 @@ const stepsNames = [
   'Select Day & time',
   'Description',
   'Get verified',
-  'Personal info',
+  'Personal information',
   'Payment',
   'Checkout',
 ];
 
+import { auth } from '@/firebase/firebase.config';
 import {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
@@ -34,7 +35,11 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
   const handleBack = () => {
     if (estimateStep === 1) {
       router.push('/');
-    } else if (estimateStep === 6 || estimateStep === 7) {
+    } else if (
+      (estimateStep === 8 && user?.displayName && user?.email) ||
+      estimateStep === 6 ||
+      estimateStep === 7
+    ) {
       dispatch(goToSpecificEstimateStep(4));
     } else if (estimateStep === 4 && showMoreInfo) {
       setShowMoreInfo(false);
@@ -48,11 +53,20 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
       if (!showMoreInfo) {
         setShowMoreInfo(true);
       } else {
-        dispatch(goToSpecificEstimateStep(showMoreInfo && user ? 7 : 6));
+        if (user?.displayName && user?.email) {
+          dispatch(goToSpecificEstimateStep(8));
+        } else {
+          dispatch(goToSpecificEstimateStep(showMoreInfo && user ? 7 : 6));
+        }
       }
     } else {
       dispatch(goToNextEstimateStep());
     }
+  };
+
+  const handleLogOut = () => {
+    // router.push('/');
+    // auth.signOut();
   };
 
   return (
@@ -103,6 +117,10 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
               >
                 Next
               </motion.button>
+            </section>
+          ) : estimateStep >= 7 ? (
+            <section className={styles.logOutBtn}>
+              <BiLogOutCircle onClick={handleLogOut} />
             </section>
           ) : null}
         </AnimatePresence>

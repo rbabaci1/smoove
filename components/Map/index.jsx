@@ -109,9 +109,9 @@ const MapContainer = () => {
       <div id='map-container' />
 
       <div style={{ visibility: 'hidden' }}>
-        <RiMapPin3Fill id='up' size={20} color='green' />
+        <RiMapPin3Fill id='up' size={17} color='green' />
 
-        <RiMapPin3Fill id='down' size={20} color='red' />
+        <RiMapPin3Fill id='down' size={17} color='red' />
       </div>
     </>
   );

@@ -27,8 +27,8 @@ const Sidebar = ({ activeContainer, setActiveContainer }) => {
   };
 
   const logOut = () => {
-    router.replace('/login');
     auth.signOut();
+    router.replace('/');
   };
 
   const routeHome = () => {
@@ -126,7 +126,7 @@ const Sidebar = ({ activeContainer, setActiveContainer }) => {
           </div>
 
           <div className='item'>
-            <section onClick={() => logOut()}>
+            <section onClick={logOut}>
               <BiLogOutCircle />
 
               <p>Log Out</p>

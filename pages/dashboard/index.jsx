@@ -33,7 +33,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.dashboardWrapper}>
+    <div className={styles.main}>
       <Sidebar
         activeContainer={activeContainer}
         setActiveContainer={setActiveContainer}

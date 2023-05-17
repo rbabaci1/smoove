@@ -10,11 +10,15 @@ const stepsNames = [
   'Select Day & time',
   'Description',
   'Get verified',
+  'Personal info',
+  'Payment',
+  'Checkout',
 ];
 
 import {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
+  goToSpecificEstimateStep,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -23,15 +27,24 @@ const EstimateNavbar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { estimateStep, description } = useSelector(state => state.order);
+  const { user } = useSelector(state => state.auth);
 
   const handleBack = () => {
-    estimateStep === 1
-      ? router.push('/')
-      : dispatch(goToPreviousEstimateStep());
+    if (estimateStep === 1) {
+      router.push('/');
+    } else if (estimateStep === 7 && user) {
+      dispatch(goToSpecificEstimateStep(5));
+    } else {
+      dispatch(goToPreviousEstimateStep());
+    }
   };
 
   const handleNext = () => {
-    dispatch(goToNextEstimateStep());
+    if (estimateStep === 5 && user) {
+      dispatch(goToSpecificEstimateStep(7));
+    } else {
+      dispatch(goToNextEstimateStep());
+    }
   };
 
   return (

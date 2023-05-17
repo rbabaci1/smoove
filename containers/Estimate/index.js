@@ -3,6 +3,9 @@ import ServiceDetailsStep from './ServiceDetailsStep';
 import ServicesStep from './ServicesStep';
 import ServiceVehiclesStep from './ServiceVehiclesStep';
 import AuthStep from './AuthStep';
+import UserInfoStep from './UserInfoStep';
+import PaymentMethodStep from './PaymentMethodStep';
+import FinalStep from './FinalStep';
 
 export {
   AddressesInputStep,
@@ -10,4 +13,7 @@ export {
   ServicesStep,
   ServiceVehiclesStep,
   AuthStep,
+  UserInfoStep,
+  PaymentMethodStep,
+  FinalStep,
 };

@@ -19,7 +19,6 @@ const initialState = {
   estimateStep: 1,
   price: '',
   serviceTypeSelected: false,
-  addressesAreValid: false,
   status: null,
 };
 

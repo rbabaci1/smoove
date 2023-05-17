@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
+import { goToNextEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
@@ -16,7 +16,8 @@ const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
   const dispatch = useDispatch();
-  const router = useRouter();
+  const { estimateStep } = useSelector(state => state.order);
+
   const phoneNumberInputRef = useRef(null);
   const verificationCodeInputRef = useRef(null);
 
@@ -132,8 +133,13 @@ const Login = ({ animate = true }) => {
               })
             );
 
-            router.replace('/dashboard');
             setVerifyingCode(false);
+
+            if (estimateStep === 6) {
+              dispatch(goToNextEstimateStep());
+            } else {
+              router.replace('/dashboard');
+            }
           }
         } catch (error) {
           setVerifyingCode(false);

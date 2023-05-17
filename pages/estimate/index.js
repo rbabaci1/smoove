@@ -11,7 +11,10 @@ import {
   ServiceVehiclesStep,
   ServiceDetailsStep,
   AuthStep,
+  UserInfoStep,
+  PaymentMethodStep,
 } from '@/containers/Estimate';
+import FinalStep from '@/containers/Estimate/FinalStep';
 
 const transition = {
   type: 'spring',
@@ -52,6 +55,9 @@ const Estimate = () => {
     4: <ServiceDetailsStep />,
     5: <ServiceDetailsStep />,
     6: <AuthStep />,
+    7: <UserInfoStep />,
+    8: <PaymentMethodStep />,
+    9: <FinalStep />,
   };
 
   const renderStepContainer = () => {

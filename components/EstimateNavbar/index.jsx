@@ -23,7 +23,7 @@ import {
 import styles from './styles.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const EstimateNavbar = () => {
+const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { estimateStep, description } = useSelector(state => state.order);
@@ -32,16 +32,22 @@ const EstimateNavbar = () => {
   const handleBack = () => {
     if (estimateStep === 1) {
       router.push('/');
-    } else if (estimateStep === 7 && user) {
-      dispatch(goToSpecificEstimateStep(5));
+    } else if (estimateStep === 6) {
+      dispatch(goToSpecificEstimateStep(4));
+    } else if (estimateStep === 4 && showMoreInfo) {
+      setShowMoreInfo(false);
     } else {
       dispatch(goToPreviousEstimateStep());
     }
   };
 
   const handleNext = () => {
-    if (estimateStep === 5 && user) {
-      dispatch(goToSpecificEstimateStep(7));
+    if (estimateStep === 4) {
+      if (!showMoreInfo) {
+        setShowMoreInfo(true);
+      } else {
+        dispatch(goToSpecificEstimateStep(showMoreInfo && user ? 7 : 6));
+      }
     } else {
       dispatch(goToNextEstimateStep());
     }
@@ -56,14 +62,22 @@ const EstimateNavbar = () => {
           </div>
 
           {estimateStep > 1 ? (
-            <span>{estimateStep}</span>
+            <span>{estimateStep === 4 && showMoreInfo ? 5 : estimateStep}</span>
           ) : (
             <span>
               <BiListUl />
             </span>
           )}
 
-          <h3>{stepsNames[estimateStep - 1]}</h3>
+          <h3>
+            {
+              stepsNames[
+                estimateStep === 4 && showMoreInfo
+                  ? estimateStep
+                  : estimateStep - 1
+              ]
+            }
+          </h3>
         </section>
 
         <AnimatePresence>

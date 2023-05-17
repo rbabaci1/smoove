@@ -54,7 +54,7 @@ const EditIcon = ({ step = 1 }) => {
   );
 };
 
-const ServiceDetailsStep = () => {
+const ServiceDetailsStep = ({ showMoreInfo }) => {
   const dispatch = useDispatch();
   const {
     addresses: { pickup, dropOff },
@@ -126,11 +126,11 @@ const ServiceDetailsStep = () => {
       <div className={styles.container}>
         {/* Left side first container */}
 
-        {estimateStep === 4 && (
+        {!showMoreInfo && (
           <motion.div
             className={styles.dateTimeMovWinds}
-            // initial={{ x: -50, opacity: 0 }}
-            // animate={{ x: 0, opacity: 1 }}
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
           >
             <section className={styles.date}>
               <DatePicker />
@@ -160,11 +160,11 @@ const ServiceDetailsStep = () => {
           </motion.div>
         )}
 
-        {estimateStep === 5 && (
+        {showMoreInfo && (
           <motion.div
             className={styles.descContact}
-            // initial={{ y: 50, opacity: 0 }}
-            // animate={{ y: 0, opacity: 1 }}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
           >
             <h3>What are you moving?</h3>
 

@@ -25,6 +25,7 @@ const transition = {
 const Estimate = () => {
   const { estimateStep } = useSelector(state => state.order);
   const [prevStep, setPrevStep] = useState(estimateStep);
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   useEffect(() => {
     setPrevStep(estimateStep);
@@ -52,8 +53,7 @@ const Estimate = () => {
     1: <AddressesInputStep />,
     2: <ServicesStep />,
     3: <ServiceVehiclesStep />,
-    4: <ServiceDetailsStep />,
-    5: <ServiceDetailsStep />,
+    4: <ServiceDetailsStep showMoreInfo={showMoreInfo} />,
     6: <AuthStep />,
     7: <UserInfoStep />,
     8: <PaymentMethodStep />,
@@ -87,7 +87,10 @@ const Estimate = () => {
       </Head>
 
       <div className={styles.main}>
-        <EstimateNavbar />
+        <EstimateNavbar
+          showMoreInfo={showMoreInfo}
+          setShowMoreInfo={setShowMoreInfo}
+        />
 
         <div className={styles.background}>
           <div className={styles.stepContainer}>{renderStepContainer()}</div>

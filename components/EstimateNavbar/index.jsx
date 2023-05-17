@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { BiListUl } from 'react-icons/bi';
+import { AiFillLock } from 'react-icons/ai';
+import { RiSecurePaymentFill } from 'react-icons/ri';
 
 const stepsNames = [
   'Provide addresses',
@@ -32,7 +34,7 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
   const handleBack = () => {
     if (estimateStep === 1) {
       router.push('/');
-    } else if (estimateStep === 6) {
+    } else if (estimateStep === 6 || estimateStep === 7) {
       dispatch(goToSpecificEstimateStep(4));
     } else if (estimateStep === 4 && showMoreInfo) {
       setShowMoreInfo(false);
@@ -62,7 +64,17 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
           </div>
 
           {estimateStep > 1 ? (
-            <span>{estimateStep === 4 && showMoreInfo ? 5 : estimateStep}</span>
+            <span>
+              {estimateStep === 4 && showMoreInfo ? (
+                5
+              ) : estimateStep === 7 ? (
+                <AiFillLock />
+              ) : estimateStep === 8 ? (
+                <RiSecurePaymentFill />
+              ) : (
+                estimateStep
+              )}
+            </span>
           ) : (
             <span>
               <BiListUl />

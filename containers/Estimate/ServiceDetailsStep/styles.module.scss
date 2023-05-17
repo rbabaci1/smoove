@@ -10,6 +10,7 @@
 
   .dateTimeMovWinds {
     max-width: 550px;
+
     .date {
       padding-bottom: 2rem;
       border-bottom: 1px solid $light-blue;
@@ -257,6 +258,14 @@
   }
 
   @media screen and (max-width: 1024px) {
+    .dateTimeMovWinds {
+      max-width: 100%;
+    }
+
+    .descContact {
+      width: 100%;
+    }
+
     .mapDetails {
       max-width: 100%;
       margin-top: 1.5rem;

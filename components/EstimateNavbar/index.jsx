@@ -12,7 +12,7 @@ const stepsNames = [
   'Select Day & time',
   'Description',
   'Get verified',
-  'Personal information',
+  'Personal info',
   'Payment',
   'Checkout',
 ];

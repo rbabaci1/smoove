@@ -6,7 +6,7 @@
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  @include flex(column);
+  @include flex(column, flex-start);
 
   form {
     @include flex(column, flex-start);
@@ -19,6 +19,7 @@
       width: 48%;
       font-size: 1.3rem;
       letter-spacing: 0.2px;
+      font-weight: 500;
     }
     .error {
       border: 1px solid $error-color;

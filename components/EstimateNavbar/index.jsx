@@ -65,8 +65,8 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
   };
 
   const handleLogOut = () => {
-    // router.push('/');
-    // auth.signOut();
+    router.replace('/');
+    auth.signOut();
   };
 
   return (

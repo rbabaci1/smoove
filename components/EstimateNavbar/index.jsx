@@ -114,6 +114,7 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
                 initial={{ x: 40, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 40, opacity: 0 }}
+                whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
               >
                 Next
               </motion.button>

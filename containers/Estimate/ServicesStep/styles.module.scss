@@ -46,4 +46,12 @@
       }
     }
   }
+
+  @media screen and (max-width: 767px) {
+    min-height: calc(100dvh - 4rem);
+  }
+
+  @media screen and (max-width: 374px) {
+    min-height: calc(100dvh - 3rem);
+  }
 }

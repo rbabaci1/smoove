@@ -6,12 +6,57 @@
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  @include flex(column);
 
   form {
-    border: 1px solid red;
+    @include flex(column, flex-start);
+    max-width: 500px;
+    gap: 1rem;
+    padding: 1rem;
 
     input {
       background-color: $white;
+      width: 48%;
+      font-size: 1.3rem;
+      letter-spacing: 0.2px;
+    }
+    .error {
+      border: 1px solid $error-color;
+    }
+
+    .phoneNumber {
+      @include flex(row, space-between);
+      width: 100%;
+      background-color: $white;
+      border-radius: 0.75rem;
+      padding: 0 0 0 1rem;
+
+      input {
+        box-shadow: rgba(0, 0, 0, 0.06) 3px 3px 3px 1px inset;
+        background-color: #f5f5f5;
+        color: #878787;
+        cursor: not-allowed;
+        font-weight: 600;
+      }
+    }
+
+    .name {
+      @include flex(row, space-between);
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 2px solid $light-blue;
+    }
+
+    .email {
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    button {
+      width: 100%;
     }
   }
 

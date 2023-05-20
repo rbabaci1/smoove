@@ -133,13 +133,12 @@
         .name,
         .phoneNumber {
           background-color: $white;
-          border-radius: 0.5rem;
+          border-radius: 0.75rem;
           max-width: 45%;
         }
 
         input {
           border: 1px solid $light-blue;
-          border-radius: 0.5rem;
           font-weight: 500;
           font-size: clamp(0.9rem, 4.5vw, 1.3rem);
           box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;

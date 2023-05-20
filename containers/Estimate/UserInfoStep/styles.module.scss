@@ -21,6 +21,7 @@
       letter-spacing: 0.2px;
       font-weight: 500;
     }
+
     .error {
       border: 1px solid $error-color;
     }
@@ -45,7 +46,6 @@
       @include flex(row, space-between);
       padding-top: 2rem;
       margin-top: 2rem;
-      border-top: 2px solid $light-blue;
     }
 
     .email {
@@ -83,7 +83,6 @@
         gap: 1rem;
         padding-top: 1.5rem;
         margin-top: 0;
-        border-top: none;
 
         input {
           width: 100%;

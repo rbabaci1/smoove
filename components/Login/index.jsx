@@ -5,7 +5,7 @@ import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
 
-import { goToNextEstimateStep } from '@/state/reduxSlices/orderSlice';
+import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
@@ -136,7 +136,8 @@ const Login = ({ animate = true }) => {
             setVerifyingCode(false);
 
             if (estimateStep === 6) {
-              dispatch(goToNextEstimateStep());
+              // dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));
+              dispatch(goToSpecificEstimateStep(7));
             } else {
               router.replace('/dashboard');
             }

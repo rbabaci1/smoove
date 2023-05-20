@@ -14,8 +14,8 @@ const UserInfoStep = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const [userInfo, setUserInfo] = useState({
-    firstName: user?.displayName.split(' ')[0] || '',
-    lastName: user?.displayName.split(' ')[1] || '',
+    firstName: user?.displayName?.split(' ')[0] || '',
+    lastName: user?.displayName?.split(' ')[1] || '',
     email: user?.email || '',
   });
   const [errors, setErrors] = useState({

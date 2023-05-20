@@ -8,7 +8,6 @@ import { auth } from '@/firebase/firebase.config';
 import { formatPhoneNumber } from '@/lib';
 import styles from './styles.module.scss';
 import { setUser } from '@/state/reduxSlices/authSlice';
-import { set } from 'date-fns';
 
 const UserInfoStep = () => {
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const UserInfoStep = () => {
 
     try {
       setErrors({ ...errors, saving: false });
-      throw new Error('Test error');
+
       await updateProfile(auth.currentUser, {
         displayName: `${firstName} ${lastName}`,
         email,

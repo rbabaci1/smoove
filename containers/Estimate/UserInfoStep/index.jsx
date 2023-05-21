@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { updateProfile, updateEmail } from 'firebase/auth';
@@ -13,9 +13,9 @@ const UserInfoStep = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const [userInfo, setUserInfo] = useState({
-    firstName: user?.displayName?.split(' ')[0] || '',
-    lastName: user?.displayName?.split(' ')[1] || '',
-    email: user?.email || '',
+    firstName: '',
+    lastName: '',
+    email: '',
   });
   const [errors, setErrors] = useState({
     firstName: false,
@@ -23,6 +23,20 @@ const UserInfoStep = () => {
     saving: false,
   });
   const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      if (user.displayName) {
+        const [firstName, lastName] = user.displayName.split(' ');
+
+        setUserInfo({
+          firstName,
+          lastName,
+          email: user.email,
+        });
+      }
+    }
+  }, [user]);
 
   const handleChange = e => {
     const { name, value } = e.target;

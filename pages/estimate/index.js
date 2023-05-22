@@ -29,7 +29,6 @@ const Estimate = () => {
 
   useEffect(() => {
     setPrevStep(estimateStep);
-
     // Scroll to top of the page when user changes step
     window.scrollTo(0, 0);
   }, [estimateStep]);

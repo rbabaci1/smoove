@@ -48,15 +48,18 @@ const UserInfoStep = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setSaving(true);
+    setErrors({ firstName: false, lastName: false, saving: false });
 
     const { firstName, lastName, email } = userInfo;
 
     if (firstName.length < 3) {
       setErrors({ ...errors, firstName: true });
+      setSaving(false);
       return;
     }
     if (lastName.length < 3) {
       setErrors({ ...errors, lastName: true });
+      setSaving(false);
       return;
     }
 
@@ -74,7 +77,9 @@ const UserInfoStep = () => {
       dispatch(
         setUser({ ...user, displayName: `${firstName} ${lastName}`, email })
       );
+      dispatch(goToSpecificEstimateStep(8));
     } catch (error) {
+      console.log('error');
       setSaving(false);
       setErrors({ ...errors, saving: true });
       console.error('Error updating user profile:', error);
@@ -127,7 +132,7 @@ const UserInfoStep = () => {
           />
         </section>
 
-        {errors.saving ? (
+        {!errors.saving ? (
           <span className={styles.error}>Error occurred, try again!</span>
         ) : null}
 

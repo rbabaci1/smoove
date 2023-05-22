@@ -76,6 +76,15 @@ const Login = ({ animate = true }) => {
     setSendingVerificationCode(true);
 
     try {
+      // Recreate reCaptcha container
+      const reCaptchaContainer = document.getElementById('recaptcha-container');
+      if (reCaptchaContainer) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.id = 'recaptcha-container';
+
+        reCaptchaContainer.replaceWith(emptyDiv);
+      }
+
       const verifier = new RecaptchaVerifier(
         'recaptcha-container',
         { size: 'invisible' },
@@ -158,15 +167,6 @@ const Login = ({ animate = true }) => {
     setVerificationCodeErrors('');
     setVerificationCodeSent(false);
     setPreviousVerificationCode('');
-
-    // Recreate reCaptcha container
-    const reCaptchaContainer = document.getElementById('recaptcha-container');
-    if (reCaptchaContainer) {
-      const emptyDiv = document.createElement('div');
-      emptyDiv.id = 'recaptcha-container';
-
-      reCaptchaContainer.replaceWith(emptyDiv);
-    }
   };
 
   const handleSignIn = e => {

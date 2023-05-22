@@ -23,7 +23,8 @@
     }
 
     .error {
-      border: 1px solid $error-color;
+      color: $error-color;
+      font-weight: 500;
     }
 
     .phoneNumber {
@@ -50,6 +51,7 @@
 
     .email {
       width: 100%;
+      position: relative;
 
       input {
         width: 100%;

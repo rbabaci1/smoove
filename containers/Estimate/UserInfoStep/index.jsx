@@ -26,15 +26,15 @@ const UserInfoStep = () => {
 
   useEffect(() => {
     if (user) {
-      if (user.displayName) {
-        const [firstName, lastName] = user.displayName.split(' ');
+      const [firstName, lastName] = user.displayNam
+        ? user.displayName.split(' ')
+        : ['', ''];
 
-        setUserInfo({
-          firstName,
-          lastName,
-          email: user.email,
-        });
-      }
+      setUserInfo({
+        firstName,
+        lastName,
+        email: user.email ? user.email : '',
+      });
     }
   }, [user]);
 

@@ -6,8 +6,9 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import { auth } from '@/firebase/firebase.config';
 import { formatPhoneNumber } from '@/lib';
-import styles from './styles.module.scss';
+import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
+import styles from './styles.module.scss';
 
 const UserInfoStep = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const UserInfoStep = () => {
 
   useEffect(() => {
     if (user) {
-      const [firstName, lastName] = user.displayNam
+      const [firstName, lastName] = user.displayName
         ? user.displayName.split(' ')
         : ['', ''];
 
@@ -132,7 +133,7 @@ const UserInfoStep = () => {
           />
         </section>
 
-        {!errors.saving ? (
+        {errors.saving ? (
           <span className={styles.error}>Error occurred, try again!</span>
         ) : null}
 

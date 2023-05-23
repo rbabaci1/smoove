@@ -28,8 +28,7 @@
     "react-phone-number-input": "^3.2.19",
     "react-redux": "^8.0.5",
     "react-vertical-timeline-component": "^3.6.0",
-    "redux-persist": "^6.0.0",
-    "stripe": "^12.6.0"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "sass": "^1.61.0"

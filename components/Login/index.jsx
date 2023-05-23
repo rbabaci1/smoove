@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -9,6 +10,7 @@ import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
+import { createPaymentMethodsCollection } from '@/lib';
 import styles from './styles.module.scss';
 
 // temporary verification code length
@@ -16,6 +18,7 @@ const verificationCodeLength = 6;
 
 const Login = ({ animate = true }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { estimateStep } = useSelector(state => state.order);
 
   const phoneNumberInputRef = useRef(null);
@@ -129,8 +132,13 @@ const Login = ({ animate = true }) => {
           const res = await confirmationResult.confirm(verificationCode);
 
           if (res.user) {
+            const { metadata } = res.user;
+            const isNewUser = metadata.creationTime === metadata.lastSignInTime;
+
             const { uid, displayName, email, emailVerified, phoneNumber } =
               res.user;
+
+            createPaymentMethodsCollection(uid);
 
             dispatch(
               setUser({
@@ -143,6 +151,10 @@ const Login = ({ animate = true }) => {
             );
 
             setVerifyingCode(false);
+
+            if (isNewUser) {
+              createPaymentMethodsCollection(uid);
+            }
 
             if (estimateStep === 6) {
               // dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));

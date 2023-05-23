@@ -1,4 +1,11 @@
+import { auth } from '@/firebase/firebase.config';
+// import { loadStripe } from '@stripe/stripe-js';
+// import { Elements } from '@stripe/react-stripe-js';
+
+import stripeConfig from '@/stripe/stripe.config.js';
 import styles from './styles.module.scss';
+
+// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const PaymentMethodStep = () => {
   const handleSubmit = e => {

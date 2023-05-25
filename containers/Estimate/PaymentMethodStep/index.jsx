@@ -1,13 +1,31 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { auth } from '@/firebase/firebase.config';
 // import { loadStripe } from '@stripe/stripe-js';
 // import { Elements } from '@stripe/react-stripe-js';
 
 import stripeConfig from '@/stripe/stripe.config.js';
+import { getPaymentMethods } from '@/lib';
 import styles from './styles.module.scss';
 
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const PaymentMethodStep = () => {
+  const { user } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    const fetchPaymentMethods = async () => {
+      try {
+        const methods = await getPaymentMethods(user.uid);
+        console.log({ methods });
+      } catch (error) {
+        console.error('Failed to fetch payment methods:', error);
+      }
+    };
+
+    fetchPaymentMethods();
+  }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
   };

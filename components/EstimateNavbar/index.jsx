@@ -107,7 +107,8 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
         </section>
 
         <AnimatePresence>
-          {estimateStep === 4 || (estimateStep === 5 && description.length) ? (
+          {(estimateStep === 4 && !showMoreInfo) ||
+          (estimateStep === 4 && description.length) ? (
             <section className={styles.nextButton}>
               <motion.button
                 onClick={handleNext}

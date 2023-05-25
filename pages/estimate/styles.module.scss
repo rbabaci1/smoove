@@ -9,13 +9,29 @@
     background-image: url('/images/bgImg.png');
     background-position: fixed;
     background-size: cover;
+
+    .stepContainer {
+      min-height: calc(100vh - 5rem);
+    }
   }
 
   @media screen and (max-width: 767px) {
     margin-top: 4rem;
+
+    .background {
+      .stepContainer {
+        min-height: calc(100vh - 4rem);
+      }
+    }
   }
 
   @media screen and (max-width: 374px) {
     margin-top: 3rem;
+
+    .background {
+      .stepContainer {
+        min-height: calc(100vh - 3rem);
+      }
+    }
   }
 }

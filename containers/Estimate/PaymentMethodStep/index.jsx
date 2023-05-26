@@ -12,11 +12,12 @@ import styles from './styles.module.scss';
 
 const PaymentMethodStep = () => {
   const { user } = useSelector(state => state.auth);
+  const userId = user?.uid;
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
-        const methods = await getPaymentMethods(user.uid);
+        const methods = await getPaymentMethods(userId);
         console.log({ methods });
       } catch (error) {
         console.error('Failed to fetch payment methods:', error);
@@ -24,7 +25,7 @@ const PaymentMethodStep = () => {
     };
 
     fetchPaymentMethods();
-  }, []);
+  }, [userId]);
 
   const handleSubmit = e => {
     e.preventDefault();

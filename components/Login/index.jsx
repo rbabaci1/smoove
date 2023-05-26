@@ -138,8 +138,6 @@ const Login = ({ animate = true }) => {
             const { uid, displayName, email, emailVerified, phoneNumber } =
               res.user;
 
-            createPaymentMethodsCollection(uid);
-
             dispatch(
               setUser({
                 uid,
@@ -157,8 +155,7 @@ const Login = ({ animate = true }) => {
             }
 
             if (estimateStep === 6) {
-              // dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));
-              dispatch(goToSpecificEstimateStep(7));
+              dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));
             } else {
               router.replace('/dashboard');
             }

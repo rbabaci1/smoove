@@ -24,7 +24,7 @@ const PaymentMethodStep = () => {
       }
     };
 
-    fetchPaymentMethods();
+    if (userId) fetchPaymentMethods();
   }, [userId]);
 
   const handleSubmit = e => {

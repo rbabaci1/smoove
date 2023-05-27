@@ -76,7 +76,7 @@ const MapContainer = () => {
               },
               paint: {
                 'line-color': '#410eff',
-                'line-width': 3,
+                'line-width': 4,
               },
             });
 
@@ -109,9 +109,9 @@ const MapContainer = () => {
       <div id='map-container' />
 
       <div style={{ visibility: 'hidden' }}>
-        <RiMapPin3Fill id='up' size={17} color='green' />
+        <RiMapPin3Fill id='up' size={18} color='green' />
 
-        <RiMapPin3Fill id='down' size={17} color='red' />
+        <RiMapPin3Fill id='down' size={18} color='red' />
       </div>
     </>
   );

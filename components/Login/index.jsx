@@ -10,7 +10,6 @@ import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import { auth } from '@/firebase/firebase.config';
 import { ErrorMessage } from '@/components';
-import { createPaymentMethodsCollection } from '@/lib';
 import styles from './styles.module.scss';
 
 // temporary verification code length
@@ -133,7 +132,6 @@ const Login = ({ animate = true }) => {
 
           if (res.user) {
             const { metadata } = res.user;
-            const isNewUser = metadata.creationTime === metadata.lastSignInTime;
 
             const { uid, displayName, email, emailVerified, phoneNumber } =
               res.user;
@@ -149,10 +147,6 @@ const Login = ({ animate = true }) => {
             );
 
             setVerifyingCode(false);
-
-            if (isNewUser) {
-              createPaymentMethodsCollection(uid);
-            }
 
             if (estimateStep === 6) {
               dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));

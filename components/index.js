@@ -14,6 +14,7 @@ import MapContainer from './Map';
 import WithAuth from './WithAuth';
 import NoAuthRender from './NoAuthRender';
 import Sidebar from './Sidebar';
+import AddPaymentMethod from './AddPaymentMethod';
 
 export {
   Carousel,
@@ -32,4 +33,5 @@ export {
   WithAuth,
   NoAuthRender,
   Sidebar,
+  AddPaymentMethod,
 };

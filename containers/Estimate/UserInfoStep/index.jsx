@@ -86,7 +86,6 @@ const UserInfoStep = () => {
       dispatch(setUser({ ...user, displayName, email }));
       dispatch(goToSpecificEstimateStep(8));
     } catch (error) {
-      console.log('error');
       setSaving(false);
       setErrors({ ...errors, saving: true });
       console.error('Error updating user profile:', error);

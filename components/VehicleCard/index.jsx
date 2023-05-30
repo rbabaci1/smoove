@@ -7,6 +7,7 @@ import {
   selectVehicleType,
   setMovingPrice,
   goToNextEstimateStep,
+  goToSpecificEstimateStep,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
@@ -17,7 +18,9 @@ const VehicleCard = ({ vehicle }) => {
   const handleVehicleTypeAndPricing = () => {
     dispatch(selectVehicleType(vehicle.name));
     dispatch(setMovingPrice(vehicle.price));
-    dispatch(goToNextEstimateStep());
+    // to avoid rendering map for now
+    dispatch(goToSpecificEstimateStep(6));
+    // dispatch(goToNextEstimateStep());
   };
 
   return (

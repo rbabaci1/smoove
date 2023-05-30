@@ -5,7 +5,7 @@ import { updateProfile, updateEmail } from 'firebase/auth';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import { auth } from '@/firebase/firebase.config';
-import { formatPhoneNumber } from '@/lib';
+import { createStripeCustomer, formatPhoneNumber } from '@/lib';
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import styles from './styles.module.scss';
@@ -66,18 +66,24 @@ const UserInfoStep = () => {
 
     try {
       setErrors({ ...errors, saving: false });
+      const displayName = `${firstName} ${lastName}`;
 
       await updateProfile(auth.currentUser, {
-        displayName: `${firstName} ${lastName}`,
+        displayName,
         email,
       });
       await updateEmail(auth.currentUser, email);
 
+      await createStripeCustomer(
+        user.uid,
+        displayName,
+        email,
+        user.phoneNumber
+      );
+
       setSaving(false);
 
-      dispatch(
-        setUser({ ...user, displayName: `${firstName} ${lastName}`, email })
-      );
+      dispatch(setUser({ ...user, displayName, email }));
       dispatch(goToSpecificEstimateStep(8));
     } catch (error) {
       console.log('error');

@@ -131,8 +131,6 @@ const Login = ({ animate = true }) => {
           const res = await confirmationResult.confirm(verificationCode);
 
           if (res.user) {
-            const { metadata } = res.user;
-
             const { uid, displayName, email, emailVerified, phoneNumber } =
               res.user;
 

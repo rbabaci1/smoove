@@ -1,2 +1,64 @@
+@import '/styles/variables.module.scss';
+@import '/styles/mixins.module.scss';
+
 .container {
+  max-width: 500px;
+
+  h4 {
+    padding: 2rem 0 0.5rem 0;
+  }
+
+  form {
+    @include flex(column, center, flex-start);
+    width: fit-content;
+
+    .cardInputContainer {
+      // padding-bottom: 0.5rem;
+    }
+
+    .encryptText {
+      padding: 0.5rem 0 1.5rem 0;
+      color: gray;
+      font-size: clamp(0.7rem, 5vw, 0.95rem);
+      font-weight: 500;
+    }
+
+    .inputField {
+      padding: 1.15rem;
+      font-size: 1.2rem;
+      border-radius: 0.75rem;
+    }
+
+    .errorText {
+      color: $error-color;
+    }
+
+    .extraInfo {
+      @include flex(row, space-between, center);
+      width: 100%;
+      padding-bottom: 1.5rem;
+
+      input {
+        width: 49%;
+        background-color: $white;
+      }
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .assureCustomer {
+    padding-top: 3rem;
+    color: gray;
+    font-size: clamp(0.7rem, 5vw, 1.05rem);
+    line-height: 1.5;
+    font-weight: 500;
+
+    span {
+      color: $main-color;
+      font-weight: 700;
+    }
+  }
 }

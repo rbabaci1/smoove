@@ -19,7 +19,7 @@ const VehicleCard = ({ vehicle }) => {
     dispatch(selectVehicleType(vehicle.name));
     dispatch(setMovingPrice(vehicle.price));
     // to avoid rendering map for now
-    dispatch(goToSpecificEstimateStep(6));
+    dispatch(goToSpecificEstimateStep(8));
     // dispatch(goToNextEstimateStep());
   };
 

@@ -268,7 +268,8 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
 
         {/* Right side container */}
         <div className={styles.mapDetails}>
-          {!isMobile && <MapContainer />}
+          {/* {!isMobile && <MapContainer />} */}
+          <div>Map Container</div>
 
           <div className={styles.details}>
             <div className={styles.addresses}>

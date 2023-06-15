@@ -7,9 +7,9 @@ import styles from './styles.module.scss';
 const AddPaymentMethod = () => {
   const [cardInfo, setCardInfo] = useState({
     name: '',
-    cardNumber: '4111111111111111',
-    expiry: '12/24',
-    cvc: '321',
+    cardNumber: '',
+    expiry: '',
+    cvc: '',
     zipCode: '',
     // cardNumber: '',
     // expiry: '',

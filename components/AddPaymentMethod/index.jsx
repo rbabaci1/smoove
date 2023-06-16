@@ -37,6 +37,8 @@ const AddPaymentMethod = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    // !!! Send card info to backend
+
     console.log(cardInfo);
   };
 

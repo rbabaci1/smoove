@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import CreditCardInput from 'react-credit-card-input';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
@@ -11,29 +11,33 @@ const AddPaymentMethod = () => {
     expiry: '',
     cvc: '',
     zipCode: '',
-    // cardNumber: '',
-    // expiry: '',
-    // cvc: '',
   });
+  const [cardNumberError, setCardNumberError] = useState(false);
 
   const handleCardNumberChange = e => {
-    console.log('card number changed:', e.target.value);
+    setCardNumberError(false);
+    setCardInfo({ ...cardInfo, cardNumber: e.target.value });
   };
   const handleCardExpiryChange = e => {
-    console.log('card expiry changed:', e.target.value);
+    setCardInfo({ ...cardInfo, expiry: e.target.value });
   };
   const handleCardCVCChange = e => {
-    console.log('card cvc changed:', e.target.value);
+    setCardInfo({ ...cardInfo, cvc: e.target.value });
   };
 
   const handleCardNumberError = e => {
-    console.log('card number error:', e);
+    setCardNumberError(true);
+    console.log(e);
+  };
+
+  const handleChange = e => {
+    setCardInfo({ ...cardInfo, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log('submitting payment method');
+    console.log(cardInfo);
   };
 
   return (
@@ -55,7 +59,6 @@ const AddPaymentMethod = () => {
             onChange: handleCardCVCChange,
           }}
           onError={handleCardNumberError}
-          // fieldClassName='input'
           containerClassName={styles.cardInputContainer}
           dangerTextClassName={styles.errorText}
           fieldClassName={styles.inputField}
@@ -68,24 +71,39 @@ const AddPaymentMethod = () => {
         <section className={styles.extraInfo}>
           <input
             value={cardInfo.name}
+            name='name'
             type='text'
             placeholder='Name on card'
+            onChange={handleChange}
             required
           />
           <input
             value={cardInfo.zipCode}
+            name='zipCode'
             type='text'
             placeholder='ZIP code'
+            onChange={handleChange}
             required
           />
         </section>
 
-        <motion.button
-          type='submit'
-          whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-        >
-          Add card
-        </motion.button>
+        <AnimatePresence>
+          {!cardNumberError &&
+            cardInfo.cardNumber &&
+            cardInfo.expiry &&
+            cardInfo.cvc &&
+            cardInfo.name &&
+            cardInfo.zipCode && (
+              <motion.button
+                type='submit'
+                whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                Add card
+              </motion.button>
+            )}
+        </AnimatePresence>
       </form>
 
       <div className={styles.assureCustomer}>

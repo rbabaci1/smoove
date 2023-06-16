@@ -27,6 +27,10 @@
       padding: 1.15rem;
       font-size: 1.2rem;
       border-radius: 0.75rem;
+
+      input {
+        padding: 0;
+      }
     }
 
     .errorText {
@@ -42,6 +46,7 @@
       input {
         width: 49%;
         background-color: $white;
+        font-size: 1.2rem;
       }
     }
 

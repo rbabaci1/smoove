@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CreditCardInput from 'react-credit-card-input';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import styles from './styles.module.scss';
 
 const AddPaymentMethod = () => {
+  const { user } = useSelector(state => state.auth);
   const [cardInfo, setCardInfo] = useState({
     name: '',
-    cardNumber: '',
-    expiry: '',
-    cvc: '',
+    cardNumber: '4266841357490014',
+    expiry: '10/25',
+    cvc: '389',
     zipCode: '',
   });
+  const [addingCard, setAddingCard] = useState(false);
   const [cardNumberError, setCardNumberError] = useState(false);
 
   const handleCardNumberChange = e => {
@@ -34,12 +38,41 @@ const AddPaymentMethod = () => {
     setCardInfo({ ...cardInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    // !!! Send card info to backend
+    if (user) {
+      try {
+        const response = await fetch('/api/addPaymentMethod', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerId: user.uid,
+            paymentMethod: cardInfo,
+          }),
+        });
 
-    console.log(cardInfo);
+        const data = await response.json();
+
+        console.log(data);
+
+        if (response.ok) {
+          // Payment method added successfully
+          console.log('Payment method added successfully');
+          // console.log(response)
+        } else {
+          // Handle error response
+          const errorData = await response.json();
+          console.error(
+            'Failed to add payment method:',
+            errorData.error.message
+          );
+        }
+      } catch (error) {
+        // Handle network or other errors
+        console.error('Error occurred:', error.message);
+      }
+    }
   };
 
   return (
@@ -102,7 +135,11 @@ const AddPaymentMethod = () => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                Add card
+                {addingCard ? (
+                  <AiOutlineLoading3Quarters className='loading' />
+                ) : (
+                  'Add card'
+                )}
               </motion.button>
             )}
         </AnimatePresence>

@@ -1,8 +1,6 @@
 import Stripe from 'stripe';
 
-import { db } from '@/firebase/firebase.config';
-
-import { doc, getDoc } from 'firebase/firestore';
+import { db, doc, getDoc } from '@/firebase/firebase.config';
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
@@ -10,26 +8,16 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
-  const { customerId, paymentMethod } = req.body;
+  const { stripeCustomerId, paymentMethod } = req.body;
 
-  const docRef = doc(db, 'users', customerId);
-  const docSnap = await getDoc(docRef);
-
-  if (!docSnap.exists()) {
-    return res.status(200).json({ found: true });
-  }
-
-  res.status(200).json({ test: 'docRef' });
+  // console.log({ stripeCustomerId, paymentMethod });
 
   try {
-    const userDoc = await db.doc(`users/${customerId}`).get();
-    console.log(userDoc);
-
     // Attach the payment method to the customer
     // const attachedPaymentMethod = await stripe.paymentMethods.attach(
     //   paymentMethod,
     //   {
-    //     customer: customerId,
+    //     customer: stripeCustomerId,
     //   }
     // );
 

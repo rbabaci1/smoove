@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import CreditCardInput from 'react-credit-card-input';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+// import { loadStripe } from '@stripe/stripe-js';
+import CreditCardInput from 'react-credit-card-input';
 
+import { db, doc, getDoc } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
-const AddPaymentMethod = () => {
+const AddPaymentMethod = async () => {
+  // const stripe = await loadStripe(
+  //   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  // );
+
   const { user } = useSelector(state => state.auth);
   const [cardInfo, setCardInfo] = useState({
     name: '',
@@ -41,37 +47,27 @@ const AddPaymentMethod = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (user) {
-      try {
+    try {
+      const userRef = doc(db, 'users', user.uid);
+      const userSnapshot = await getDoc(userRef);
+
+      if (userSnapshot.exists()) {
+        const { stripeCustomerId } = userSnapshot.data();
+
         const response = await fetch('/api/addPaymentMethod', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            customerId: user.uid,
+            stripeCustomerId,
             paymentMethod: cardInfo,
           }),
         });
-
-        const data = await response.json();
-
-        console.log(data);
-
-        if (response.ok) {
-          // Payment method added successfully
-          console.log('Payment method added successfully');
-          // console.log(response)
-        } else {
-          // Handle error response
-          const errorData = await response.json();
-          console.error(
-            'Failed to add payment method:',
-            errorData.error.message
-          );
-        }
-      } catch (error) {
-        // Handle network or other errors
-        console.error('Error occurred:', error.message);
+      } else {
+        console.log('No such user!');
       }
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Error occurred:', error.message);
     }
   };
 

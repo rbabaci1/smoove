@@ -8,11 +8,11 @@ import CreditCardInput from 'react-credit-card-input';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
-const AddPaymentMethod = async () => {
-  // const stripe = await loadStripe(
-  //   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  // );
+// const stripe = await loadStripe(
+//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+// );
 
+const AddPaymentMethod = () => {
   const { user } = useSelector(state => state.auth);
   const [cardInfo, setCardInfo] = useState({
     name: '',

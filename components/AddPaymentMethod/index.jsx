@@ -2,17 +2,12 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-// import { loadStripe } from '@stripe/stripe-js';
 import CreditCardInput from 'react-credit-card-input';
 
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
-// const stripe = await loadStripe(
-//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-// );
-
-const AddPaymentMethod = () => {
+const AddPaymentMethod = async () => {
   const { user } = useSelector(state => state.auth);
   const [cardInfo, setCardInfo] = useState({
     name: '',
@@ -34,7 +29,6 @@ const AddPaymentMethod = () => {
   const handleCardCVCChange = e => {
     setCardInfo({ ...cardInfo, cvc: e.target.value });
   };
-
   const handleCardNumberError = e => {
     setCardNumberError(true);
     console.log(e);
@@ -54,7 +48,7 @@ const AddPaymentMethod = () => {
       if (userSnapshot.exists()) {
         const { stripeCustomerId } = userSnapshot.data();
 
-        const response = await fetch('/api/addPaymentMethod', {
+        const res = await fetch('/api/addPaymentMethod', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

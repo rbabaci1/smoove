@@ -1,13 +1,16 @@
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 
-// const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+// import stripe from '@/stripe';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
 
-  // console.log({ stripeCustomerId, paymentMethod });
+  const { cardInfo, stripeCustomerId } = req.body;
+  const { name, cardNumber, expiry, cvc, zipCode } = cardInfo;
+
+  // console.log({ stripe });
 
   try {
     // Attach the payment method to the customer

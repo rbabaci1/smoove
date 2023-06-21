@@ -51,10 +51,7 @@ const AddPaymentMethod = async () => {
         const res = await fetch('/api/addPaymentMethod', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            stripeCustomerId,
-            paymentMethod: cardInfo,
-          }),
+          body: JSON.stringify({ stripeCustomerId, cardInfo }),
         });
       } else {
         console.log('No such user!');

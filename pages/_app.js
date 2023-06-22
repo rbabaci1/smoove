@@ -7,6 +7,13 @@ import { store, persistor } from '@/state/reduxStore';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import '../styles/globals.scss';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+
 const App = ({ Component, pageProps }) => {
   const { dispatch } = store;
 
@@ -23,7 +30,9 @@ const App = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Component {...pageProps} />
+        <Elements stripe={stripePromise}>
+          <Component {...pageProps} />
+        </Elements>
       </PersistGate>
     </Provider>
   );

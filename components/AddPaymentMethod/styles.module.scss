@@ -9,8 +9,22 @@
   }
 
   form {
-    @include flex(column, center, flex-start);
-    width: fit-content;
+    // @include flex(column, center, flex-start);
+    // width: fit-content;
+    .cardElementWrapper {
+      padding: 1rem 0;
+
+      .test {
+        border: 1px solid red;
+
+        padding: 0.5rem;
+
+        input {
+          border: 1px solid red;
+          font-size: 1.2rem;
+        }
+      }
+    }
 
     .cardInputContainer {
       // padding-bottom: 0.5rem;
@@ -21,21 +35,6 @@
       color: gray;
       font-size: clamp(0.7rem, 5vw, 0.95rem);
       font-weight: 500;
-    }
-
-    .inputField {
-      padding: 1.15rem;
-      font-size: 1.2rem;
-      border-radius: 0.75rem;
-
-      input {
-        padding: 0;
-      }
-    }
-
-    .errorText {
-      color: $error-color;
-      height: 1.3rem;
     }
 
     .extraInfo {

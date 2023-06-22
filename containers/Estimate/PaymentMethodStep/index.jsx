@@ -9,10 +9,10 @@ import { AddPaymentMethod } from '@/components';
 import styles from './styles.module.scss';
 
 const PaymentMethodStep = () => {
-  const { user } = useSelector(state => state.auth);
+  // const { user } = useSelector(state => state.auth);
   const [paymentMethods, setPaymentMethods] = useState([]);
 
-  const userId = user?.uid;
+  // const userId = user?.uid;
 
   // useEffect(() => {
   //   const fetchPaymentMethods = async () => {

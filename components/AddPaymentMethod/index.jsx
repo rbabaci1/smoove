@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-// import CreditCardInput from 'react-credit-card-input';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 import { db, doc, getDoc } from '@/firebase/firebase.config';
@@ -19,6 +18,17 @@ const AddPaymentMethod = () => {
   });
   const [addingCard, setAddingCard] = useState(false);
   const [isCardComplete, setCardComplete] = useState(false);
+
+  const CARD_OPTIONS = {
+    style: {
+      base: {
+        color: '#32325d',
+        fontFamily: 'Arial, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '19px',
+      },
+    },
+  };
 
   const handleChange = e => {
     setCardName({ ...cardName, [e.target.name]: e.target.value });
@@ -66,36 +76,7 @@ const AddPaymentMethod = () => {
 
   return (
     <div className={styles.container}>
-      <h4>Type your card number</h4>
-
       <form onSubmit={handleSubmit}>
-        <div className={styles.cardElementWrapper}>
-          <CardElement className={styles.test} />
-        </div>
-        {/* <CardElement /> */}
-        {/* <CreditCardInput
-          cardNumberInputProps={{
-            value: cardInfo.cardNumber,
-            onChange: handleCardNumberChange,
-          }}
-          cardExpiryInputProps={{
-            value: cardInfo.expiry,
-            onChange: handleCardExpiryChange,
-          }}
-          cardCVCInputProps={{
-            value: cardInfo.cvc,
-            onChange: handleCardCVCChange,
-          }}
-          onError={handleCardNumberError}
-          containerClassName={styles.cardInputContainer}
-          dangerTextClassName={styles.errorText}
-          fieldClassName={styles.inputField}
-        /> */}
-
-        <span className={styles.encryptText}>
-          This is a payment secured with 256-bit SSL encryption 🔐
-        </span>
-
         <section className={styles.extraInfo}>
           <input
             value={cardName.firstName}
@@ -114,6 +95,16 @@ const AddPaymentMethod = () => {
             required
           />
         </section>
+
+        <h4>Type your card number</h4>
+
+        <div className={styles.cardElementWrapper}>
+          <CardElement options={CARD_OPTIONS} />
+        </div>
+
+        <span className={styles.encryptText}>
+          This is a payment secured with 256-bit SSL encryption 🔐
+        </span>
 
         <AnimatePresence>
           <motion.button

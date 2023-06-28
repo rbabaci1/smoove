@@ -4,49 +4,37 @@
 .container {
   max-width: 500px;
 
+  .extraInfo {
+    @include flex(row, space-between, center);
+    width: 100%;
+    padding-top: 1rem;
+
+    input {
+      width: 49%;
+      background-color: $white;
+      font-size: 1.2rem;
+    }
+  }
+
   h4 {
-    padding: 2rem 0 0.5rem 0;
+    padding: 1.5rem 0 0.5rem 0;
+    font-size: clamp(1rem, 5vw, 1.15rem);
   }
 
   form {
-    // @include flex(column, center, flex-start);
-    // width: fit-content;
     .cardElementWrapper {
       padding: 1rem 0;
-
-      .test {
-        border: 1px solid red;
-
-        padding: 0.5rem;
-
-        input {
-          border: 1px solid red;
-          font-size: 1.2rem;
-        }
-      }
-    }
-
-    .cardInputContainer {
-      // padding-bottom: 0.5rem;
+      border: 1px solid $light-gray;
+      border-radius: 0.75rem;
+      padding-left: 0.5rem;
     }
 
     .encryptText {
-      padding: 0.5rem 0 1.5rem 0;
+      display: inline-block;
       color: gray;
       font-size: clamp(0.7rem, 5vw, 0.95rem);
       font-weight: 500;
-    }
-
-    .extraInfo {
-      @include flex(row, space-between, center);
-
-      width: 100%;
-
-      input {
-        width: 49%;
-        background-color: $white;
-        font-size: 1.2rem;
-      }
+      margin-top: 0.5rem;
     }
 
     button {

@@ -4,8 +4,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { db, doc, getDoc } from '@/firebase/firebase.config';
+import { db, doc, updateDoc, arrayUnion } from '@/firebase/firebase.config';
+import {
+  attachPaymentMethod,
+  checkPaymentMethodExists,
+  createPaymentMethod,
+} from '@/lib';
 import styles from './styles.module.scss';
+
+const CARD_OPTIONS = {
+  style: {
+    base: {
+      color: '#32325d',
+      fontFamily: 'Arial, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '19px',
+    },
+  },
+  hidePostalCode: false,
+};
 
 const AddPaymentMethod = () => {
   const stripe = useStripe();
@@ -19,17 +36,6 @@ const AddPaymentMethod = () => {
   const [addingCard, setAddingCard] = useState(false);
   const [isCardComplete, setCardComplete] = useState(false);
 
-  const CARD_OPTIONS = {
-    style: {
-      base: {
-        color: '#32325d',
-        fontFamily: 'Arial, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '19px',
-      },
-    },
-  };
-
   const handleChange = e => {
     setCardName({ ...cardName, [e.target.name]: e.target.value });
   };
@@ -37,40 +43,41 @@ const AddPaymentMethod = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (!isCardComplete) {
-      console.log('Please fill out the card details.');
-      return;
-    }
+    // Check if card is complete, if not, return
+    if (!isCardComplete) return;
+
+    setAddingCard(true);
 
     try {
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: elements.getElement(CardElement),
-      });
-
-      if (error) {
-        throw error;
-      }
-
+      const paymentMethod = await createPaymentMethod(
+        stripe,
+        elements,
+        CardElement
+      );
       const userRef = doc(db, 'users', user.uid);
-      const userSnapshot = await getDoc(userRef);
 
-      if (userSnapshot.exists()) {
-        const { stripeCustomerId } = userSnapshot.data();
+      const { methodExists, cardInfo, userSnapshot } =
+        await checkPaymentMethodExists(userRef, paymentMethod);
 
-        const res = await fetch('/api/addPaymentMethod', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            stripeCustomerId,
-            paymentMethodId: paymentMethod.id,
-          }),
-        });
-      } else {
-        console.log('No such user!');
+      // Check if card already exists
+      if (methodExists) {
+        alert('This payment method is already added. Add a different card.');
+        throw new Error('This payment method is already added.');
       }
+
+      await attachPaymentMethod(
+        userSnapshot.data().stripeCustomerId,
+        paymentMethod.id
+      );
+
+      // Append new payment method to 'cards' array in Firestore
+      await updateDoc(userRef, {
+        paymentMethods: arrayUnion(cardInfo),
+      });
     } catch (error) {
       console.error('Error occurred:', error.message);
+    } finally {
+      setAddingCard(false);
     }
   };
 
@@ -99,23 +106,35 @@ const AddPaymentMethod = () => {
         <h4>Type your card number</h4>
 
         <div className={styles.cardElementWrapper}>
-          <CardElement options={CARD_OPTIONS} />
+          <CardElement
+            options={CARD_OPTIONS}
+            onChange={e => setCardComplete(e.complete)}
+          />
         </div>
 
         <span className={styles.encryptText}>
           This is a payment secured with 256-bit SSL encryption 🔐
         </span>
 
-        <AnimatePresence>
-          <motion.button
-            type='submit'
-            whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Add card
-          </motion.button>
-        </AnimatePresence>
+        <section className={styles.addBtn}>
+          <AnimatePresence>
+            {isCardComplete && cardName.firstName && cardName.lastName && (
+              <motion.button
+                type='submit'
+                whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+              >
+                {addingCard ? (
+                  <AiOutlineLoading3Quarters className='loading' />
+                ) : (
+                  'Add card'
+                )}
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </section>
       </form>
 
       <div className={styles.assureCustomer}>

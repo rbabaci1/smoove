@@ -2,7 +2,7 @@
 @import '/styles/mixins.module.scss';
 
 .container {
-  max-width: 500px;
+  // max-width: 500px;
 
   .extraInfo {
     @include flex(row, space-between, center);

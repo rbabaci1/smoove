@@ -7,6 +7,34 @@
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  max-width: 500px;
+
+  h3 {
+    width: 100%;
+  }
+
+  .paymentMethods {
+    @include flex(column, flex-start, flex-start);
+    width: 100%;
+    max-width: 500px;
+
+    .selectPaymentMethod {
+      width: 100%;
+      padding: 1rem 0;
+
+      select {
+        width: 100%;
+        background-color: $white;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button {
+      }
+    }
+  }
 
   @media screen and (max-width: 767px) {
     min-height: calc(100dvh - 4rem);

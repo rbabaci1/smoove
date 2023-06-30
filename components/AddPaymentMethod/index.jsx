@@ -22,7 +22,7 @@ const CARD_OPTIONS = {
   hidePostalCode: false,
 };
 
-const AddPaymentMethod = () => {
+const AddPaymentMethod = ({ setShowAddPaymentMethod }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -53,8 +53,6 @@ const AddPaymentMethod = () => {
         CardElement
       );
       const userRef = doc(db, 'users', user.uid);
-
-      // await checkPaymentMethodExists(stripe, userRef, paymentMethod);
       const userSnapshot = await getDoc(userRef);
 
       if (!userSnapshot.exists()) {
@@ -71,6 +69,7 @@ const AddPaymentMethod = () => {
       // First check if method exists, if not, attach it to user
       await attachPaymentMethod(stripeCustomerId, cardInfo);
       toast.success('Card added successfully!');
+      setShowAddPaymentMethod(false);
     } catch (error) {
       console.error('Error occurred:', error.message);
       toast.error(error.message);

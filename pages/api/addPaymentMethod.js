@@ -1,5 +1,6 @@
-import { checkPaymentMethodExists } from '@/lib';
 import stripe from '@/stripe';
+
+import { checkPaymentMethodExists } from '@/lib';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {

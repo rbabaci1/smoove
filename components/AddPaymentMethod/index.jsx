@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { ToastContainer, toast } from 'react-toastify';
 
-import { db, doc, updateDoc, arrayUnion } from '@/firebase/firebase.config';
-import {
-  attachPaymentMethod,
-  checkPaymentMethodExists,
-  createPaymentMethod,
-} from '@/lib';
+import { db, doc, getDoc } from '@/firebase/firebase.config';
+import { attachPaymentMethod, createPaymentMethod } from '@/lib';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.scss';
 
 const CARD_OPTIONS = {
@@ -56,92 +54,106 @@ const AddPaymentMethod = () => {
       );
       const userRef = doc(db, 'users', user.uid);
 
-      const { methodExists, cardInfo, userSnapshot } =
-        await checkPaymentMethodExists(userRef, paymentMethod);
+      // await checkPaymentMethodExists(stripe, userRef, paymentMethod);
+      const userSnapshot = await getDoc(userRef);
 
-      // Check if card already exists
-      if (methodExists) {
-        alert('This payment method is already added. Add a different card.');
-        throw new Error('This payment method is already added.');
+      if (!userSnapshot.exists()) {
+        throw new Error(`User ${userRef.id} does not exist.`);
       }
 
-      await attachPaymentMethod(
-        userSnapshot.data().stripeCustomerId,
-        paymentMethod.id
-      );
+      const { stripeCustomerId } = userSnapshot.data();
+      const cardInfo = {
+        id: paymentMethod.id,
+        brand: paymentMethod.card.brand,
+        last4: paymentMethod.card.last4,
+      };
 
-      // Append new payment method to 'cards' array in Firestore
-      await updateDoc(userRef, {
-        paymentMethods: arrayUnion(cardInfo),
-      });
+      // First check if method exists, if not, attach it to user
+      await attachPaymentMethod(stripeCustomerId, cardInfo);
     } catch (error) {
       console.error('Error occurred:', error.message);
     } finally {
       setAddingCard(false);
+      toast.success('Card added successfully!');
     }
   };
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <section className={styles.extraInfo}>
-          <input
-            value={cardName.firstName}
-            name='firstName'
-            type='text'
-            placeholder='First name'
-            onChange={handleChange}
-            required
-          />
-          <input
-            value={cardName.lastName}
-            name='lastName'
-            type='text'
-            placeholder='Last name'
-            onChange={handleChange}
-            required
-          />
-        </section>
+    <>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
 
-        <h4>Type your card number</h4>
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <section className={styles.extraInfo}>
+            <input
+              value={cardName.firstName}
+              name='firstName'
+              type='text'
+              placeholder='First name'
+              onChange={handleChange}
+              required
+            />
+            <input
+              value={cardName.lastName}
+              name='lastName'
+              type='text'
+              placeholder='Last name'
+              onChange={handleChange}
+              required
+            />
+          </section>
 
-        <div className={styles.cardElementWrapper}>
-          <CardElement
-            options={CARD_OPTIONS}
-            onChange={e => setCardComplete(e.complete)}
-          />
+          <h4>Type your card number</h4>
+
+          <div className={styles.cardElementWrapper}>
+            <CardElement
+              options={CARD_OPTIONS}
+              onChange={e => setCardComplete(e.complete)}
+            />
+          </div>
+
+          <span className={styles.encryptText}>
+            This is a payment secured with 256-bit SSL encryption 🔐
+          </span>
+
+          <section className={styles.addBtn}>
+            <AnimatePresence>
+              {isCardComplete && cardName.firstName && cardName.lastName && (
+                <motion.button
+                  type='submit'
+                  whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 40 }}
+                >
+                  {addingCard ? (
+                    <AiOutlineLoading3Quarters className='loading' />
+                  ) : (
+                    'Add card'
+                  )}
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </section>
+        </form>
+
+        <div className={styles.assureCustomer}>
+          <span>Rest assured! </span>
+          No charges until your move is done. Cancel anytime without extra fees.
         </div>
-
-        <span className={styles.encryptText}>
-          This is a payment secured with 256-bit SSL encryption 🔐
-        </span>
-
-        <section className={styles.addBtn}>
-          <AnimatePresence>
-            {isCardComplete && cardName.firstName && cardName.lastName && (
-              <motion.button
-                type='submit'
-                whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 40 }}
-              >
-                {addingCard ? (
-                  <AiOutlineLoading3Quarters className='loading' />
-                ) : (
-                  'Add card'
-                )}
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </section>
-      </form>
-
-      <div className={styles.assureCustomer}>
-        <span>Rest assured! </span>
-        No charges until your move is done. Cancel anytime without extra fees.
       </div>
-    </div>
+    </>
   );
 };
 

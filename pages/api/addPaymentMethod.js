@@ -15,8 +15,7 @@ export default async function handler(req, res) {
       );
 
       if (methodExists) {
-        console.log('This payment method is already added.');
-        throw new Error('This payment method is already added.');
+        throw new Error('Card already in file. Try a different one!');
       }
 
       // Attach the payment method to the customer

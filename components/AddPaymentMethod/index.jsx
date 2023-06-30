@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -70,90 +70,86 @@ const AddPaymentMethod = () => {
 
       // First check if method exists, if not, attach it to user
       await attachPaymentMethod(stripeCustomerId, cardInfo);
+      toast.success('Card added successfully!');
     } catch (error) {
       console.error('Error occurred:', error.message);
+      toast.error(error.message);
     } finally {
       setAddingCard(false);
-      toast.success('Card added successfully!');
     }
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <ToastContainer
+        autoClose={1500}
         position='top-center'
-        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
         theme='light'
       />
 
-      <div className={styles.container}>
-        <form onSubmit={handleSubmit}>
-          <section className={styles.extraInfo}>
-            <input
-              value={cardName.firstName}
-              name='firstName'
-              type='text'
-              placeholder='First name'
-              onChange={handleChange}
-              required
-            />
-            <input
-              value={cardName.lastName}
-              name='lastName'
-              type='text'
-              placeholder='Last name'
-              onChange={handleChange}
-              required
-            />
-          </section>
+      <form onSubmit={handleSubmit}>
+        <section className={styles.extraInfo}>
+          <input
+            value={cardName.firstName}
+            name='firstName'
+            type='text'
+            placeholder='First name'
+            onChange={handleChange}
+            required
+          />
+          <input
+            value={cardName.lastName}
+            name='lastName'
+            type='text'
+            placeholder='Last name'
+            onChange={handleChange}
+            required
+          />
+        </section>
 
-          <h4>Type your card number</h4>
+        <h4>Type your card number</h4>
 
-          <div className={styles.cardElementWrapper}>
-            <CardElement
-              options={CARD_OPTIONS}
-              onChange={e => setCardComplete(e.complete)}
-            />
-          </div>
-
-          <span className={styles.encryptText}>
-            This is a payment secured with 256-bit SSL encryption 🔐
-          </span>
-
-          <section className={styles.addBtn}>
-            <AnimatePresence>
-              {isCardComplete && cardName.firstName && cardName.lastName && (
-                <motion.button
-                  type='submit'
-                  whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 40 }}
-                >
-                  {addingCard ? (
-                    <AiOutlineLoading3Quarters className='loading' />
-                  ) : (
-                    'Add card'
-                  )}
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </section>
-        </form>
-
-        <div className={styles.assureCustomer}>
-          <span>Rest assured! </span>
-          No charges until your move is done. Cancel anytime without extra fees.
+        <div className={styles.cardElementWrapper}>
+          <CardElement
+            options={CARD_OPTIONS}
+            onChange={e => setCardComplete(e.complete)}
+          />
         </div>
+
+        <span className={styles.encryptText}>
+          This is a payment secured with 256-bit SSL encryption 🔐
+        </span>
+
+        <section className={styles.addBtn}>
+          <AnimatePresence>
+            {isCardComplete && cardName.firstName && cardName.lastName && (
+              <motion.button
+                type='submit'
+                whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+              >
+                {addingCard ? (
+                  <AiOutlineLoading3Quarters className='loading' />
+                ) : (
+                  'Add card'
+                )}
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </section>
+      </form>
+
+      <div className={styles.assureCustomer}>
+        <span>Rest assured! </span>
+        No charges until your move is done. Cancel anytime without extra fees.
       </div>
-    </>
+    </div>
   );
 };
 

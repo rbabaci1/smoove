@@ -13,6 +13,8 @@ const PaymentMethodStep = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
 
+  console.log('paymentMethods', paymentMethods);
+
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {

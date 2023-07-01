@@ -1,11 +1,14 @@
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Select, Space } from 'antd';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 
 import styles from './styles.module.scss';
 import { checkTargetForNewValues } from 'framer-motion';
+import { visa, amex, mastercard, discover } from '@/public/images';
 
 const PaymentMethodStep = () => {
   const { user } = useSelector(state => state.auth);
@@ -55,6 +58,10 @@ const PaymentMethodStep = () => {
     if (user) fetchPaymentMethods();
   }, [user]);
 
+  const handleChange = value => {
+    console.log(`selected ${value}`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.paymentMethods}>
@@ -68,13 +75,27 @@ const PaymentMethodStep = () => {
           </section>
         ) : (
           <>
+            <Image src={visa} alt='' height={40} width={40} />
+
             <section className={styles.selectPaymentMethod}>
-              <select>
-                <option value='option1'>Option 1</option>
-                <option value='option2'>Option 2</option>
-                <option value='option3'>Option 3</option>
-                <option value='option4'>Option 4</option>
-              </select>
+              <Select
+                defaultValue='lucy'
+                onChange={handleChange}
+                style={{
+                  width: 120,
+                }}
+                options={[
+                  {
+                    value: 'lucy',
+                    label: 'Lucy',
+                  },
+                  {
+                    value: 'disabled',
+                    label: 'Disabled',
+                    disabled: true,
+                  },
+                ]}
+              />
             </section>
 
             <button onClick={() => setShowAddPaymentMethod(true)}>

@@ -24,6 +24,10 @@ import pickup from './pickup.png';
 import cargoVan from './cargoVan.png';
 import boxTruck from './boxTruck.png';
 import logo from './logo.png';
+import visa from './visa.png';
+import mastercard from './mastercard.png';
+import amex from './amex.png';
+import discover from './discover.png';
 
 export {
   fam1,
@@ -52,4 +56,8 @@ export {
   cargoVan,
   boxTruck,
   logo,
+  visa,
+  mastercard,
+  amex,
+  discover,
 };

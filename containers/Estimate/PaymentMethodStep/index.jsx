@@ -1,22 +1,22 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Select, Space } from 'antd';
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 
 import styles from './styles.module.scss';
-import { checkTargetForNewValues } from 'framer-motion';
+
 import { visa, amex, mastercard, discover } from '@/public/images';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const PaymentMethodStep = () => {
   const { user } = useSelector(state => state.auth);
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
-
-  console.log('paymentMethods', paymentMethods);
+  const [showMethods, setShowMethods] = useState(false);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
@@ -62,41 +62,64 @@ const PaymentMethodStep = () => {
     console.log(`selected ${value}`);
   };
 
+  const toggleMethods = () => {
+    setShowMethods(!showMethods);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.paymentMethods}>
         <h3>Payment Information</h3>
 
         {showAddPaymentMethod ? (
-          <section className={styles.paymentMethods__input}>
+          <div className={styles.paymentMethods__input}>
             <AddPaymentMethod
               setShowAddPaymentMethod={setShowAddPaymentMethod}
             />
-          </section>
+          </div>
         ) : (
           <>
-            <Image src={visa} alt='' height={40} width={40} />
+            {/* <Image src={visa} alt='' height={40} width={40} /> */}
 
-            <section className={styles.selectPaymentMethod}>
-              <Select
-                defaultValue='lucy'
-                onChange={handleChange}
-                style={{
-                  width: 120,
-                }}
-                options={[
-                  {
-                    value: 'lucy',
-                    label: 'Lucy',
-                  },
-                  {
-                    value: 'disabled',
-                    label: 'Disabled',
-                    disabled: true,
-                  },
-                ]}
-              />
-            </section>
+            <div className={styles.methodSelection} onClick={toggleMethods}>
+              <p>Select a method</p>
+              {showMethods ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
+            </div>
+
+            <AnimatePresence>
+              {showMethods && (
+                <motion.div
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 25 }}
+                  className={styles.methods}
+                >
+                  <div className={styles.method}>
+                    <Image src={visa} alt='' height={40} width={40} />
+                    <span>Visa ending in ...3898</span>
+                  </div>
+
+                  <div className={styles.method}>
+                    <Image src={amex} alt='' height={40} width={40} />
+                    <span>Amex ending in ...2356 </span>
+                  </div>
+
+                  <div className={styles.method}>
+                    <Image src={mastercard} alt='' height={40} width={40} />
+                    <span>Mastercard ending in ...1267</span>
+                  </div>
+                  {/* {paymentMethods.map(method => {
+                  const { brand, last4 } = method.card;
+
+                  return (
+                    <section className={styles.method} key={method.id}>
+                      {brand}
+                    </section>
+                  );
+                })} */}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <button onClick={() => setShowAddPaymentMethod(true)}>
               Add card

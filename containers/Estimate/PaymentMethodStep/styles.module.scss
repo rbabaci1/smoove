@@ -18,21 +18,59 @@
     width: 100%;
     max-width: 500px;
 
-    .selectPaymentMethod {
+    .methodSelection {
+      @include flex(row, space-between, center);
       width: 100%;
-      padding: 1rem 0;
+      background-color: $white;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
 
-      select {
-        width: 100%;
+      p {
+        margin: 0;
+      }
+
+      svg {
+        font-size: 2rem;
+      }
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+          rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+      }
+    }
+
+    .methods {
+      width: 100%;
+      margin-top: 0.3rem;
+
+      .method {
+        @include flex(row, flex-start, center);
         background-color: $white;
-        border-radius: 0.5rem;
-        padding: 0.5rem 0;
-        font-weight: 600;
+        padding: 0.7rem 0.5rem;
+        margin-bottom: 0.1rem;
         cursor: pointer;
-      }
+        border-radius: 0.3rem;
 
-      button {
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+            rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+        }
+
+        img {
+          margin-right: 1rem;
+        }
+
+        span {
+          font-size: clamp(0.7rem, 5vw, 1.03rem);
+          font-weight: 500;
+        }
       }
+    }
+
+    button {
+      margin-top: 1rem;
     }
   }
 

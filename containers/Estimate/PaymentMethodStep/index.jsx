@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
@@ -13,10 +14,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const PaymentMethodStep = () => {
   const { user } = useSelector(state => state.auth);
+
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [fetchMethods, setFetchMethods] = useState(true);
+  const [fetchingMethods, setFetchingMethods] = useState(true);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
@@ -29,6 +33,7 @@ const PaymentMethodStep = () => {
         }
 
         const { stripeCustomerId } = userSnapshot.data();
+        setFetchingMethods(true);
 
         const response = await fetch('/api/getPaymentMethods', {
           method: 'POST',
@@ -52,11 +57,16 @@ const PaymentMethodStep = () => {
       } catch (error) {
         console.error('Failed to fetch payment methods:', error);
         setShowAddPaymentMethod(true);
+      } finally {
+        setFetchingMethods(false);
       }
     };
 
-    if (user) fetchPaymentMethods();
-  }, [user]);
+    if (user && fetchMethods) {
+      fetchPaymentMethods();
+      setFetchMethods(false);
+    }
+  }, [user, fetchMethods]);
 
   const selectMethod = method => {
     setSelectedPaymentMethod(method);
@@ -77,78 +87,93 @@ const PaymentMethodStep = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        fetchingMethods ? styles.fetchingMethods : ''
+      }`}
+    >
       <div className={styles.paymentMethods}>
-        <h3>Payment Information</h3>
-
-        {showAddPaymentMethod ? (
-          <div className={styles.paymentMethods__input}>
-            <AddPaymentMethod
-              setShowAddPaymentMethod={setShowAddPaymentMethod}
-            />
-          </div>
+        {fetchingMethods ? (
+          <AiOutlineLoading3Quarters className={`${styles.loading} loading`} />
         ) : (
           <>
-            <div className={styles.methodSelection} onClick={toggleMethods}>
-              {selectedPaymentMethod ? (
-                <section className={styles.selectedMethod}>
-                  <Image
-                    src={getCardImg(selectedPaymentMethod.brand)}
-                    alt='credit card sign'
-                    height={40}
-                    width={40}
-                  />
-                  <span>
-                    {selectedPaymentMethod.brand} ending in ...
-                    {selectedPaymentMethod.last4}
-                  </span>
-                </section>
-              ) : (
-                <p>Select a method</p>
-              )}
+            <h3>Payment Information</h3>
 
-              {showMethods ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
-            </div>
+            {showAddPaymentMethod ? (
+              <div className={styles.paymentMethods__input}>
+                <AddPaymentMethod
+                  setShowAddPaymentMethod={setShowAddPaymentMethod}
+                  setFetchMethods={setFetchMethods}
+                />
+              </div>
+            ) : (
+              <>
+                <div className={styles.methodSelection} onClick={toggleMethods}>
+                  {selectedPaymentMethod ? (
+                    <section className={styles.selectedMethod}>
+                      <Image
+                        src={getCardImg(selectedPaymentMethod.brand)}
+                        alt='credit card sign'
+                        height={40}
+                        width={40}
+                      />
+                      <span>
+                        {selectedPaymentMethod.brand} ending in ...
+                        {selectedPaymentMethod.last4}
+                      </span>
+                    </section>
+                  ) : (
+                    <p>Select a method</p>
+                  )}
 
-            <AnimatePresence>
-              {showMethods && (
-                <motion.div
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 25 }}
-                  className={styles.methods}
+                  {showMethods ? (
+                    <RiArrowDropUpLine />
+                  ) : (
+                    <RiArrowDropDownLine />
+                  )}
+                </div>
+
+                <AnimatePresence>
+                  {showMethods && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 25 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 25 }}
+                      className={styles.methods}
+                    >
+                      {paymentMethods.map(method => {
+                        const { brand, last4 } = method.card;
+
+                        return (
+                          <section
+                            className={styles.method}
+                            key={method.id}
+                            onClick={() => selectMethod(method.card)}
+                          >
+                            <Image
+                              src={getCardImg(brand)}
+                              alt='Credit card sign'
+                              height={40}
+                              width={40}
+                            />
+                            <span>
+                              {brand} ending in ...{last4}
+                            </span>
+                          </section>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <button
+                  onClick={() => setShowAddPaymentMethod(true)}
+                  disabled={showMethods}
                 >
-                  {paymentMethods.map(method => {
-                    const { brand, last4 } = method.card;
-
-                    return (
-                      <section
-                        className={styles.method}
-                        key={method.id}
-                        onClick={() => selectMethod(method.card)}
-                      >
-                        <Image
-                          src={getCardImg(brand)}
-                          alt='Credit card sign'
-                          height={40}
-                          width={40}
-                        />
-                        <span>
-                          {brand} ending in ...{last4}
-                        </span>
-                      </section>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <button
-              onClick={() => setShowAddPaymentMethod(true)}
-              disabled={showMethods}
-            >
-              Add card
-            </button>
+                  Add card
+                </button>
+              </>
+            )}
           </>
         )}
       </div>

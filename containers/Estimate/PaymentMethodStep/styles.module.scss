@@ -5,9 +5,9 @@
   @include flex();
   min-height: calc(100dvh - 5rem);
   padding: 2rem 1.5rem;
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
-  max-width: 500px;
+  // max-width: 500px;
 
   h3 {
     width: 100%;
@@ -18,6 +18,11 @@
     width: 100%;
     max-width: 500px;
     position: relative;
+
+    .loading {
+      font-size: 2.5rem;
+      align-self: center;
+    }
 
     .methodSelection {
       @include flex(row, space-between, center);
@@ -107,4 +112,8 @@
     min-height: calc(100dvh - 3rem);
     padding: 1.5rem 0.5rem;
   }
+}
+
+.fetchingMethods {
+  background-color: rgba(0, 0, 0, 0.05);
 }

@@ -22,7 +22,7 @@ const CARD_OPTIONS = {
   hidePostalCode: false,
 };
 
-const AddPaymentMethod = ({ setShowAddPaymentMethod }) => {
+const AddPaymentMethod = ({ setShowAddPaymentMethod, setFetchMethods }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -70,6 +70,7 @@ const AddPaymentMethod = ({ setShowAddPaymentMethod }) => {
       await attachPaymentMethod(stripeCustomerId, cardInfo);
       toast.success('Card added successfully!');
       setShowAddPaymentMethod(false);
+      setFetchMethods(true);
     } catch (error) {
       console.error('Error occurred:', error.message);
       toast.error(error.message);

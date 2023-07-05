@@ -1,26 +1,28 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
-
+import { setPaymentMethod } from '@/state/reduxSlices/orderSlice';
+import { visa, amex, mastercard, discover } from '@/public/images';
 import styles from './styles.module.scss';
 
-import { visa, amex, mastercard, discover } from '@/public/images';
-import { motion, AnimatePresence } from 'framer-motion';
-
 const PaymentMethodStep = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
+  const { paymentMethod } = useSelector(state => state.order);
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [fetchMethods, setFetchMethods] = useState(true);
   const [fetchingMethods, setFetchingMethods] = useState(true);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+
+  console.log('paymentMethod', paymentMethod);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
@@ -69,7 +71,7 @@ const PaymentMethodStep = () => {
   }, [user, fetchMethods]);
 
   const selectMethod = method => {
-    setSelectedPaymentMethod(method);
+    dispatch(setPaymentMethod(method));
     setShowMethods(false);
   };
 
@@ -116,17 +118,17 @@ const PaymentMethodStep = () => {
             ) : (
               <>
                 <div className={styles.methodSelection} onClick={toggleMethods}>
-                  {selectedPaymentMethod ? (
+                  {paymentMethod ? (
                     <section className={styles.selectedMethod}>
                       <Image
-                        src={getCardImg(selectedPaymentMethod.brand)}
+                        src={getCardImg(paymentMethod.brand)}
                         alt='credit card sign'
                         height={40}
                         width={40}
                       />
                       <span>
-                        {selectedPaymentMethod.brand} ending in ...
-                        {selectedPaymentMethod.last4}
+                        {paymentMethod.brand} ending in ...
+                        {paymentMethod.last4}
                       </span>
                     </section>
                   ) : (

@@ -59,8 +59,18 @@ const PaymentMethodStep = () => {
   }, [user]);
 
   const selectMethod = method => {
-    console.log(`selected ${method}`);
+    setSelectedPaymentMethod(method);
+    setShowMethods(false);
   };
+
+  const getCardImg = brand =>
+    brand === 'visa'
+      ? visa
+      : brand === 'amex'
+      ? amex
+      : brand === 'mastercard'
+      ? mastercard
+      : discover;
 
   const toggleMethods = () => {
     setShowMethods(!showMethods);
@@ -80,7 +90,23 @@ const PaymentMethodStep = () => {
         ) : (
           <>
             <div className={styles.methodSelection} onClick={toggleMethods}>
-              <p>Select a method</p>
+              {selectedPaymentMethod ? (
+                <section className={styles.selectedMethod}>
+                  <Image
+                    src={getCardImg(selectedPaymentMethod.brand)}
+                    alt='credit card sign'
+                    height={40}
+                    width={40}
+                  />
+                  <span>
+                    {selectedPaymentMethod.brand} ending in ...
+                    {selectedPaymentMethod.last4}
+                  </span>
+                </section>
+              ) : (
+                <p>Select a method</p>
+              )}
+
               {showMethods ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
             </div>
 
@@ -94,26 +120,19 @@ const PaymentMethodStep = () => {
                 >
                   {paymentMethods.map(method => {
                     const { brand, last4 } = method.card;
-                    const cardImg =
-                      brand === 'visa'
-                        ? visa
-                        : brand === 'amex'
-                        ? amex
-                        : brand === 'mastercard'
-                        ? mastercard
-                        : discover;
 
                     return (
                       <section
                         className={styles.method}
                         key={method.id}
-                        onClick={() => {
-                          // setSelectedPaymentMethod(method);
-                          // selectMethod(method.card);
-                          console.log(method);
-                        }}
+                        onClick={() => selectMethod(method.card)}
                       >
-                        <Image src={cardImg} alt='' height={40} width={40} />
+                        <Image
+                          src={getCardImg(brand)}
+                          alt='Credit card sign'
+                          height={40}
+                          width={40}
+                        />
                         <span>
                           {brand} ending in ...{last4}
                         </span>

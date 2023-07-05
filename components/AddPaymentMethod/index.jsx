@@ -16,7 +16,7 @@ const CARD_OPTIONS = {
       color: '#32325d',
       fontFamily: 'Arial, sans-serif',
       fontSmoothing: 'antialiased',
-      fontSize: '19px',
+      fontSize: '18px',
     },
   },
   hidePostalCode: false,

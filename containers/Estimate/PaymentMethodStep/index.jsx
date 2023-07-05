@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
@@ -97,7 +97,14 @@ const PaymentMethodStep = () => {
           <AiOutlineLoading3Quarters className={`${styles.loading} loading`} />
         ) : (
           <>
-            <h3>Payment Information</h3>
+            <h3>
+              Payment Information
+              {showAddPaymentMethod && (
+                <AiFillCloseCircle
+                  onClick={() => setShowAddPaymentMethod(false)}
+                />
+              )}
+            </h3>
 
             {showAddPaymentMethod ? (
               <div className={styles.paymentMethods__input}>

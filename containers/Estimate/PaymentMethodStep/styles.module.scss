@@ -2,8 +2,8 @@
 @import '/styles/mixins.module.scss';
 
 .container {
-  min-height: calc(100dvh - 5rem);
   @include flex();
+  min-height: calc(100dvh - 5rem);
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -17,6 +17,7 @@
     @include flex(column, flex-start, flex-start);
     width: 100%;
     max-width: 500px;
+    position: relative;
 
     .methodSelection {
       @include flex(row, space-between, center);
@@ -44,6 +45,9 @@
     .methods {
       width: 100%;
       margin-top: 0.3rem;
+      position: absolute;
+      bottom: 2rem;
+      z-index: 99;
 
       .method {
         @include flex(row, flex-start, center);
@@ -54,8 +58,8 @@
         border-radius: 0.3rem;
 
         &:hover {
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-            rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+            rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         }
 
         img {
@@ -70,7 +74,12 @@
     }
 
     button {
-      margin-top: 1rem;
+      margin-top: 2rem;
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
     }
   }
 

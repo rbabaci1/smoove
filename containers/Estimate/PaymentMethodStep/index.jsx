@@ -58,8 +58,8 @@ const PaymentMethodStep = () => {
     if (user) fetchPaymentMethods();
   }, [user]);
 
-  const handleChange = value => {
-    console.log(`selected ${value}`);
+  const selectMethod = method => {
+    console.log(`selected ${method}`);
   };
 
   const toggleMethods = () => {
@@ -79,8 +79,6 @@ const PaymentMethodStep = () => {
           </div>
         ) : (
           <>
-            {/* <Image src={visa} alt='' height={40} width={40} /> */}
-
             <div className={styles.methodSelection} onClick={toggleMethods}>
               <p>Select a method</p>
               {showMethods ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
@@ -94,34 +92,42 @@ const PaymentMethodStep = () => {
                   exit={{ opacity: 0, y: 25 }}
                   className={styles.methods}
                 >
-                  <div className={styles.method}>
-                    <Image src={visa} alt='' height={40} width={40} />
-                    <span>Visa ending in ...3898</span>
-                  </div>
+                  {paymentMethods.map(method => {
+                    const { brand, last4 } = method.card;
+                    const cardImg =
+                      brand === 'visa'
+                        ? visa
+                        : brand === 'amex'
+                        ? amex
+                        : brand === 'mastercard'
+                        ? mastercard
+                        : discover;
 
-                  <div className={styles.method}>
-                    <Image src={amex} alt='' height={40} width={40} />
-                    <span>Amex ending in ...2356 </span>
-                  </div>
-
-                  <div className={styles.method}>
-                    <Image src={mastercard} alt='' height={40} width={40} />
-                    <span>Mastercard ending in ...1267</span>
-                  </div>
-                  {/* {paymentMethods.map(method => {
-                  const { brand, last4 } = method.card;
-
-                  return (
-                    <section className={styles.method} key={method.id}>
-                      {brand}
-                    </section>
-                  );
-                })} */}
+                    return (
+                      <section
+                        className={styles.method}
+                        key={method.id}
+                        onClick={() => {
+                          // setSelectedPaymentMethod(method);
+                          // selectMethod(method.card);
+                          console.log(method);
+                        }}
+                      >
+                        <Image src={cardImg} alt='' height={40} width={40} />
+                        <span>
+                          {brand} ending in ...{last4}
+                        </span>
+                      </section>
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            <button onClick={() => setShowAddPaymentMethod(true)}>
+            <button
+              onClick={() => setShowAddPaymentMethod(true)}
+              disabled={showMethods}
+            >
               Add card
             </button>
           </>

@@ -10,7 +10,6 @@ const initialState = {
       dropOff: '',
     },
   },
-  paymentMethod: null,
   serviceType: '',
   vehicleType: '',
   movingDate: '',
@@ -78,9 +77,6 @@ const orderSlice = createSlice({
     updateOrderStatus: (state, action) => {
       state.status = action.payload;
     },
-    setPaymentMethod: (state, action) => {
-      state.paymentMethod = action.payload;
-    },
   },
 });
 
@@ -99,7 +95,6 @@ export const {
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
   updateOrderStatus,
-  setPaymentMethod,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

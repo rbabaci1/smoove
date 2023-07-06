@@ -1,28 +1,24 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
-import { setPaymentMethod } from '@/state/reduxSlices/orderSlice';
 import { visa, amex, mastercard, discover } from '@/public/images';
 import styles from './styles.module.scss';
 
 const PaymentMethodStep = () => {
-  const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
-  const { paymentMethod } = useSelector(state => state.order);
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [fetchMethods, setFetchMethods] = useState(true);
   const [fetchingMethods, setFetchingMethods] = useState(true);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
-
-  console.log('paymentMethod', paymentMethod);
+  const [selectedMethod, setSelectedMethod] = useState(null);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
@@ -53,6 +49,7 @@ const PaymentMethodStep = () => {
         // Check if payment methods exist
         if (paymentMethods?.length > 0) {
           setShowAddPaymentMethod(false);
+          setSelectedMethod(paymentMethods[0].card);
         } else {
           setShowAddPaymentMethod(true);
         }
@@ -71,7 +68,7 @@ const PaymentMethodStep = () => {
   }, [user, fetchMethods]);
 
   const selectMethod = method => {
-    dispatch(setPaymentMethod(method));
+    setSelectedMethod(method);
     setShowMethods(false);
   };
 
@@ -101,7 +98,7 @@ const PaymentMethodStep = () => {
           <>
             <h3>
               Payment Information
-              {showAddPaymentMethod && (
+              {showAddPaymentMethod && selectedMethod && (
                 <AiFillCloseCircle
                   onClick={() => setShowAddPaymentMethod(false)}
                 />
@@ -118,17 +115,17 @@ const PaymentMethodStep = () => {
             ) : (
               <>
                 <div className={styles.methodSelection} onClick={toggleMethods}>
-                  {paymentMethod ? (
+                  {selectedMethod ? (
                     <section className={styles.selectedMethod}>
                       <Image
-                        src={getCardImg(paymentMethod.brand)}
+                        src={getCardImg(selectedMethod.brand)}
                         alt='credit card sign'
                         height={40}
                         width={40}
                       />
                       <span>
-                        {paymentMethod.brand} ending in ...
-                        {paymentMethod.last4}
+                        {selectedMethod.brand} ending in ...
+                        {selectedMethod.last4}
                       </span>
                     </section>
                   ) : (

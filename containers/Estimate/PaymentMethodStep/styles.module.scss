@@ -134,6 +134,12 @@
   @media screen and (max-width: 374px) {
     min-height: calc(100dvh - 3rem);
     padding: 1.5rem 0.5rem;
+
+    h3 {
+      svg {
+        font-size: 1.3rem;
+      }
+    }
   }
 }
 

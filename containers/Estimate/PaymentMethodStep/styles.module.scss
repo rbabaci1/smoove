@@ -33,7 +33,7 @@
     .methodSelection {
       @include flex(row, space-between, center);
       width: 100%;
-      height: 3rem;
+      height: 3.4rem;
       background-color: $white;
       border-radius: 0.5rem;
       padding: 0 0.5rem;
@@ -80,7 +80,7 @@
         @include flex(row, flex-start, center);
         background-color: $white;
         padding: 0 0.5rem;
-        height: 3rem;
+        height: 3.4rem;
         margin-bottom: 0.1rem;
         cursor: pointer;
         border-radius: 0.5rem;
@@ -113,7 +113,7 @@
         width: 100%;
 
         &:disabled {
-          cursor: not-allowed;
+          cursor: auto;
           opacity: 0.5;
         }
       }

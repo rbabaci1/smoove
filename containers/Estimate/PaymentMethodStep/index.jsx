@@ -209,15 +209,20 @@ const PaymentMethodStep = () => {
                     Add card
                   </button>
 
-                  {selectedMethod && (
-                    <button
-                      className={styles.bookBtn}
-                      onClick={() => dispatch(goToNextEstimateStep())}
-                      disabled={showMethods}
-                    >
-                      Book your move
-                    </button>
-                  )}
+                  <AnimatePresence>
+                    {selectedMethod && (
+                      <motion.button
+                        className={styles.bookBtn}
+                        onClick={() => dispatch(goToNextEstimateStep())}
+                        disabled={showMethods}
+                        initial={{ opacity: 0, y: 25 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 25 }}
+                      >
+                        Book your move
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
                 </div>
               </>
             )}

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
@@ -19,6 +19,8 @@ const PaymentMethodStep = () => {
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null);
+  const methodsRef = useRef(null);
+  const selectRef = useRef(null);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
@@ -67,6 +69,23 @@ const PaymentMethodStep = () => {
     }
   }, [user, fetchMethods]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        methodsRef.current &&
+        !methodsRef.current.contains(event.target) &&
+        !selectRef.current.contains(event.target)
+      ) {
+        setShowMethods(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const selectMethod = method => {
     setSelectedMethod(method);
     setShowMethods(false);
@@ -114,7 +133,11 @@ const PaymentMethodStep = () => {
               </div>
             ) : (
               <>
-                <div className={styles.methodSelection} onClick={toggleMethods}>
+                <div
+                  className={styles.methodSelection}
+                  onClick={toggleMethods}
+                  ref={selectRef}
+                >
                   {selectedMethod ? (
                     <section className={styles.selectedMethod}>
                       <Image
@@ -146,9 +169,12 @@ const PaymentMethodStep = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 25 }}
                       className={styles.methods}
+                      ref={methodsRef}
                     >
                       {paymentMethods.map(method => {
                         const { brand, last4 } = method.card;
+
+                        if (selectedMethod?.last4 === last4) return;
 
                         return (
                           <section

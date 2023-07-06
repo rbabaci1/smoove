@@ -150,8 +150,9 @@ const PaymentMethodStep = () => {
                         width={40}
                       />
                       <section>
-                        {selectedMethod.card.brand} ending in{' '}
-                        <span>...{selectedMethod.card.last4}</span>
+                        {selectedMethod.card.brand.charAt(0).toUpperCase() +
+                          selectedMethod.card.brand.slice(1)}{' '}
+                        ending in <span>...{selectedMethod.card.last4}</span>
                       </section>
                     </div>
                   ) : (
@@ -192,7 +193,8 @@ const PaymentMethodStep = () => {
                               width={40}
                             />
                             <section>
-                              {brand} ending in <span>...{last4}</span>
+                              {brand.charAt(0).toUpperCase() + brand.slice(1)}{' '}
+                              ending in <span>...{last4}</span>
                             </section>
                           </div>
                         );

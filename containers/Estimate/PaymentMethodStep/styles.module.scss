@@ -140,6 +140,46 @@
         font-size: 1.3rem;
       }
     }
+
+    .paymentMethods {
+      .methodSelection {
+        height: 2rem;
+        padding: 0 0.2rem;
+        margin-top: 0.5rem;
+
+        svg {
+          font-size: 1.3rem;
+        }
+
+        .selectedMethod {
+          img {
+            margin-right: 0.3rem;
+            transform: scale(0.8);
+          }
+
+          section {
+            font-size: clamp(0.6rem, 5vw, 0.9rem);
+          }
+        }
+      }
+
+      .methods {
+        .method {
+          height: 2rem;
+          margin-bottom: 0.1rem;
+          padding: 0 0.2rem;
+
+          img {
+            margin-right: 0.3rem;
+            transform: scale(0.8);
+          }
+
+          section {
+            font-size: clamp(0.6rem, 5vw, 0.9rem);
+          }
+        }
+      }
+    }
   }
 }
 

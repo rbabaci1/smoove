@@ -5,7 +5,10 @@ import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { goToNextEstimateStep } from '@/state/reduxSlices/orderSlice';
+import {
+  goToNextEstimateStep,
+  setPaymentMethod,
+} from '@/state/reduxSlices/orderSlice';
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 import { visa, amex, mastercard, discover } from '@/public/images';
@@ -14,6 +17,7 @@ import styles from './styles.module.scss';
 const PaymentMethodStep = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
+  const { paymentMethod } = useSelector(state => state.order);
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [fetchMethods, setFetchMethods] = useState(true);
@@ -90,6 +94,7 @@ const PaymentMethodStep = () => {
   }, []);
 
   const selectMethod = method => {
+    dispatch(setPaymentMethod({ id: method.id }));
     setSelectedMethod(method);
     setShowMethods(false);
   };

@@ -97,7 +97,7 @@
 
       .price {
         @include flex(row, flex-start);
-        padding: 1.5rem 0 0.5rem 0;
+        padding: 2rem 0 1rem 0;
 
         p {
           margin-right: 1rem;
@@ -147,10 +147,14 @@
 
   @media screen and (max-width: 767px) {
     min-height: calc(100dvh - 4rem);
+    padding: 0;
+
+    .mapDetails {
+      border-radius: 0;
+    }
   }
 
   @media screen and (max-width: 374px) {
     min-height: calc(100dvh - 3rem);
-    padding: 1.5rem 0.5rem;
   }
 }

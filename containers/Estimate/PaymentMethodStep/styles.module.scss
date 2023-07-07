@@ -148,17 +148,23 @@
         margin-top: 0.5rem;
 
         svg {
-          font-size: 1.3rem;
+          font-size: 1.2rem;
         }
 
         .selectedMethod {
           img {
             margin-right: 0.3rem;
-            transform: scale(0.8);
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
           }
 
           section {
-            font-size: clamp(0.6rem, 5vw, 0.9rem);
+            font-size: clamp(0.5rem, 5vw, 0.6rem);
+
+            span {
+              font-size: clamp(0.5rem, 5vw, 0.6rem);
+            }
           }
         }
       }
@@ -171,11 +177,17 @@
 
           img {
             margin-right: 0.3rem;
-            transform: scale(0.8);
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
           }
 
           section {
-            font-size: clamp(0.6rem, 5vw, 0.9rem);
+            font-size: clamp(0.5rem, 5vw, 0.6rem);
+
+            span {
+              font-size: clamp(0.5rem, 5vw, 0.6rem);
+            }
           }
         }
       }

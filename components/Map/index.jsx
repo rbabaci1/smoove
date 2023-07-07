@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
-import { RiMapPin3Fill } from 'react-icons/ri';
+import {
+  BsFillArrowUpCircleFill,
+  BsFillArrowDownCircleFill,
+} from 'react-icons/bs';
 
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
@@ -20,7 +23,7 @@ const MapContainer = () => {
       container: 'map-container',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: pickup.center,
-      zoom: 13,
+      zoom: 15,
       accessToken: MAPBOX_ACCESS_TOKEN,
     });
 
@@ -45,12 +48,12 @@ const MapContainer = () => {
           //  pickup marker
           const pickupMarker = new mapboxgl.Marker({
             draggable: false,
-            element: document.getElementById('up'),
+            element: document.getElementById('map-up-icon'),
           });
           // drop off marker
           const dropOffMarker = new mapboxgl.Marker({
             draggable: false,
-            element: document.getElementById('down'),
+            element: document.getElementById('map-down-icon'),
           });
 
           map.on('load', function () {
@@ -76,7 +79,7 @@ const MapContainer = () => {
               },
               paint: {
                 'line-color': '#410eff',
-                'line-width': 3,
+                'line-width': 4,
               },
             });
 
@@ -109,9 +112,9 @@ const MapContainer = () => {
       <div id='map-container' />
 
       <div style={{ visibility: 'hidden' }}>
-        <RiMapPin3Fill id='up' size={18} color='green' />
+        <BsFillArrowUpCircleFill id='map-up-icon' size={23} color='green' />
 
-        <RiMapPin3Fill id='down' size={18} color='red' />
+        <BsFillArrowDownCircleFill id='map-down-icon' size={23} color='red' />
       </div>
     </>
   );

@@ -8,7 +8,7 @@ import {
 
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
-const MapContainer = () => {
+const MapContainer = ({ height = '230px' }) => {
   const [map, setMap] = useState(null);
   const { addresses } = useSelector(state => state.order);
   const { pickup, dropOff } = addresses;
@@ -109,7 +109,7 @@ const MapContainer = () => {
 
   return (
     <>
-      <div id='map-container' />
+      <div id='map-container' style={{ height }} />
 
       <div style={{ visibility: 'hidden' }}>
         <BsFillArrowUpCircleFill id='map-up-icon' size={23} color='green' />

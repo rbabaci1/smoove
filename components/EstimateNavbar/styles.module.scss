@@ -63,6 +63,19 @@
       }
     }
 
+    .buttons {
+      @include flex(row, flex-end);
+
+      .checkoutBtn {
+        background-color: green;
+        color: $white;
+      }
+
+      .logOutBtn {
+        margin-left: 1.5rem;
+      }
+    }
+
     .nextButton,
     .logOutBtn {
       text-align: end;

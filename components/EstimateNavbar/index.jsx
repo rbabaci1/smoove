@@ -65,6 +65,10 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
     }
   };
 
+  const confirmBooking = () => {
+    console.log('Booking confirmed!');
+  };
+
   const handleLogOut = () => {
     router.replace('/');
     auth.signOut();
@@ -124,8 +128,20 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
               </motion.button>
             </section>
           ) : estimateStep >= 7 ? (
-            <section className={styles.logOutBtn}>
-              <BiLogOutCircle onClick={handleLogOut} />
+            <section className={styles.buttons}>
+              {estimateStep === 9 ? (
+                <motion.button
+                  className={styles.checkoutBtn}
+                  onClick={confirmBooking}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+                >
+                  Book your move
+                </motion.button>
+              ) : null}
+
+              <section className={styles.logOutBtn}>
+                <BiLogOutCircle onClick={handleLogOut} />
+              </section>
             </section>
           ) : null}
         </AnimatePresence>

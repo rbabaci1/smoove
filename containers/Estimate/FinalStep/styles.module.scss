@@ -46,6 +46,20 @@
         }
       }
 
+      .desc {
+        @include flex(row, space-between);
+        padding: 1rem 0;
+        border-bottom: 1px solid $light-blue;
+
+        .dataIcon {
+          transform: scale(1.4);
+        }
+
+        .text {
+          flex: 1;
+        }
+      }
+
       .vehicleType {
         @include flex(row, space-between);
         padding: 1rem 0;
@@ -81,28 +95,18 @@
         }
       }
 
-      .checkout {
-        @include flex(row, space-between);
-        padding: 2rem 0 1rem 0;
+      .price {
+        @include flex(row, flex-start);
+        padding: 1.5rem 0 0.5rem 0;
 
-        .price {
-          @include flex();
-
-          p {
-            margin-right: 1rem;
-            color: $main-color;
-          }
-
-          h3 {
-            margin: 0;
-            color: green;
-          }
+        p {
+          margin-right: 1rem;
+          color: $main-color;
         }
 
-        button {
-          background-color: #138d46;
-          color: #fff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        h3 {
+          margin: 0;
+          color: green;
         }
       }
 

@@ -9,7 +9,8 @@ import {
   BsCalendarCheck,
   BsCreditCard2Front,
 } from 'react-icons/bs';
-import { motion } from 'framer-motion';
+import { MdOutlineDescription } from 'react-icons/md';
+import './styles.module.scss';
 
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { MapContainer } from '@/components';
@@ -35,17 +36,14 @@ const FinalStep = () => {
     movingWindow,
     price,
     vehicleType,
+    description,
     paymentMethod,
   } = useSelector(state => state.order);
-
-  const confirmBooking = () => {
-    console.log('Booking confirmed!');
-  };
 
   return (
     <div className={styles.container}>
       <div className={styles.mapDetails}>
-        <MapContainer />
+        <MapContainer height='300px' />
 
         <div className={styles.details}>
           <div className={styles.addresses}>
@@ -70,6 +68,17 @@ const FinalStep = () => {
 
               <EditIcon />
             </section>
+          </div>
+
+          <div className={styles.desc}>
+            <MdOutlineDescription className={styles.dataIcon} />
+
+            <section className={styles.text}>
+              <span>Description:</span>
+              <p>{description}</p>
+            </section>
+
+            <EditIcon step={4} />
           </div>
 
           <div className={styles.vehicleType}>
@@ -120,18 +129,9 @@ const FinalStep = () => {
             <EditIcon step={8} />
           </div>
 
-          <div className={styles.checkout}>
-            <section className={styles.price}>
-              <p>Price:</p>
-              <h3>{price}</h3>
-            </section>
-
-            <motion.button
-              onClick={confirmBooking}
-              whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
-            >
-              Book your move
-            </motion.button>
+          <div className={styles.price}>
+            <p>Price:</p>
+            <h3>{price}</h3>
           </div>
         </div>
       </div>

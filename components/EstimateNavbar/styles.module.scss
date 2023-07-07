@@ -60,6 +60,12 @@
 
       h3 {
         font-size: clamp(1.05rem, 6vw, 1.15rem);
+
+        button {
+          height: 100%;
+          background-color: green;
+          color: $white;
+        }
       }
     }
 
@@ -131,6 +137,17 @@
         button {
           height: 100%;
           border-radius: 0;
+        }
+      }
+
+      .navigation {
+        h3 {
+          height: 100%;
+
+          button {
+            // height: 100%;
+            border-radius: 0;
+          }
         }
       }
 

@@ -12,10 +12,6 @@
     background-color: $white;
     border-radius: 0.75rem;
 
-    #map-container {
-      border: 1px solid red;
-    }
-
     .details {
       flex: 1;
       width: 100%;
@@ -60,12 +56,53 @@
         }
       }
 
-      .price {
-        @include flex(row, flex-start);
-        padding-top: 1rem;
+      .paymentMethod {
+        @include flex(row, space-between);
+        padding: 1rem 0 3rem 0;
+        border-bottom: 1px solid $light-blue;
 
-        span {
-          margin-right: 1rem;
+        .info {
+          flex: 1;
+          position: relative;
+        }
+
+        .card {
+          @include flex(row, flex-start);
+          position: absolute;
+          left: -0.5rem;
+          font-weight: 500;
+
+          p {
+            span {
+              color: $main-color;
+              margin: 0 0 0 0.5rem;
+            }
+          }
+        }
+      }
+
+      .checkout {
+        @include flex(row, space-between);
+        padding: 2rem 0 1rem 0;
+
+        .price {
+          @include flex();
+
+          p {
+            margin-right: 1rem;
+            color: $main-color;
+          }
+
+          h3 {
+            margin: 0;
+            color: green;
+          }
+        }
+
+        button {
+          background-color: #138d46;
+          color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
       }
 

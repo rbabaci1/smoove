@@ -9,9 +9,9 @@ import {
   goToNextEstimateStep,
   setPaymentMethod,
 } from '@/state/reduxSlices/orderSlice';
+import { getCardImgSrc } from '@/lib';
 import { AddPaymentMethod } from '@/components';
 import { db, doc, getDoc } from '@/firebase/firebase.config';
-import { visa, amex, mastercard, discover } from '@/public/images';
 import styles from './styles.module.scss';
 
 const PaymentMethodStep = () => {
@@ -103,15 +103,6 @@ const PaymentMethodStep = () => {
     setShowMethods(false);
   };
 
-  const getCardImg = brand =>
-    brand === 'visa'
-      ? visa
-      : brand === 'amex'
-      ? amex
-      : brand === 'mastercard'
-      ? mastercard
-      : discover;
-
   const toggleMethods = () => {
     setShowMethods(!showMethods);
   };
@@ -153,7 +144,7 @@ const PaymentMethodStep = () => {
                   {paymentMethod ? (
                     <div className={styles.selectedMethod}>
                       <Image
-                        src={getCardImg(paymentMethod.brand)}
+                        src={getCardImgSrc(paymentMethod.brand)}
                         alt='credit card sign'
                         height={40}
                         width={40}
@@ -196,7 +187,7 @@ const PaymentMethodStep = () => {
                             onClick={() => selectMethod(method)}
                           >
                             <Image
-                              src={getCardImg(brand)}
+                              src={getCardImgSrc(brand)}
                               alt='Credit card sign'
                               height={40}
                               width={40}

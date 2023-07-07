@@ -1,19 +1,24 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineEdit } from 'react-icons/ai';
+import Image from 'next/image';
 import {
   BsArrowUpSquare,
   BsArrowDownSquare,
   BsTruck,
   BsCalendarCheck,
+  BsCreditCard2Front,
 } from 'react-icons/bs';
+import { motion } from 'framer-motion';
 
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { MapContainer } from '@/components';
-import { parseAddress } from '@/lib';
+import { getCardImgSrc, parseAddress } from '@/lib';
 import styles from './styles.module.scss';
 
 const EditIcon = ({ step = 1 }) => {
   const dispatch = useDispatch();
+  const [booking, setBooking] = useState(false);
 
   return (
     <AiOutlineEdit
@@ -30,11 +35,12 @@ const FinalStep = () => {
     movingWindow,
     price,
     vehicleType,
-    description,
-    estimateStep,
-    additionalContacts,
     paymentMethod,
   } = useSelector(state => state.order);
+
+  const confirmBooking = () => {
+    console.log('Booking confirmed!');
+  };
 
   return (
     <div className={styles.container}>
@@ -88,10 +94,44 @@ const FinalStep = () => {
             <EditIcon step={4} />
           </div>
 
-          <div className={styles.price}>
-            <span>Price:</span>
+          <div className={styles.paymentMethod}>
+            <BsCreditCard2Front className={styles.dataIcon} />
 
-            <h3>{price}</h3>
+            <div className={styles.info}>
+              <h3>Payment method</h3>
+
+              <section className={styles.card}>
+                <Image
+                  src={getCardImgSrc(paymentMethod.brand)}
+                  width={40}
+                  height={40}
+                  alt='payment method card'
+                />
+
+                <p>
+                  {paymentMethod.brand.charAt(0).toUpperCase() +
+                    paymentMethod.brand.slice(1)}{' '}
+                  ending in
+                  <span>...{paymentMethod.last4}</span>
+                </p>
+              </section>
+            </div>
+
+            <EditIcon step={8} />
+          </div>
+
+          <div className={styles.checkout}>
+            <section className={styles.price}>
+              <p>Price:</p>
+              <h3>{price}</h3>
+            </section>
+
+            <motion.button
+              onClick={confirmBooking}
+              whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+            >
+              Book your move
+            </motion.button>
           </div>
         </div>
       </div>

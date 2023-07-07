@@ -226,7 +226,7 @@ const PaymentMethodStep = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 25 }}
                       >
-                        Book your move
+                        Proceed to checkout
                       </motion.button>
                     )}
                   </AnimatePresence>

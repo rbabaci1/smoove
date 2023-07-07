@@ -4,6 +4,7 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 import { BiListUl, BiLogOutCircle } from 'react-icons/bi';
 import { AiFillLock } from 'react-icons/ai';
 import { RiSecurePaymentFill } from 'react-icons/ri';
+import { IoBagCheckOutline } from 'react-icons/io5';
 
 const stepsNames = [
   'Provide addresses',
@@ -85,6 +86,8 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
                 <AiFillLock />
               ) : estimateStep === 8 ? (
                 <RiSecurePaymentFill />
+              ) : estimateStep === 9 ? (
+                <IoBagCheckOutline />
               ) : (
                 estimateStep
               )}

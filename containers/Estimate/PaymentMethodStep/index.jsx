@@ -24,7 +24,6 @@ const PaymentMethodStep = () => {
   const [fetchingMethods, setFetchingMethods] = useState(true);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState(null);
 
   const methodsRef = useRef(null);
   const selectRef = useRef(null);
@@ -58,7 +57,11 @@ const PaymentMethodStep = () => {
         // Check if payment methods exist
         if (paymentMethods?.length > 0) {
           setShowAddPaymentMethod(false);
-          setSelectedMethod(paymentMethods[0]);
+          const { brand, last4 } = paymentMethods[0].card;
+
+          dispatch(
+            setPaymentMethod({ id: paymentMethods[0].id, brand, last4 })
+          );
         } else {
           setShowAddPaymentMethod(true);
         }
@@ -74,7 +77,7 @@ const PaymentMethodStep = () => {
       fetchPaymentMethods();
       setFetchMethods(false);
     }
-  }, [user, fetchMethods]);
+  }, [dispatch, user, fetchMethods]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -94,8 +97,9 @@ const PaymentMethodStep = () => {
   }, []);
 
   const selectMethod = method => {
-    dispatch(setPaymentMethod({ id: method.id }));
-    setSelectedMethod(method);
+    const { brand, last4 } = method.card;
+
+    dispatch(setPaymentMethod({ id: method.id, brand, last4 }));
     setShowMethods(false);
   };
 
@@ -125,7 +129,7 @@ const PaymentMethodStep = () => {
           <>
             <h3>
               Payment Information
-              {showAddPaymentMethod && selectedMethod && (
+              {showAddPaymentMethod && paymentMethod && (
                 <AiFillCloseCircle
                   onClick={() => setShowAddPaymentMethod(false)}
                 />
@@ -146,18 +150,18 @@ const PaymentMethodStep = () => {
                   onClick={toggleMethods}
                   ref={selectRef}
                 >
-                  {selectedMethod ? (
+                  {paymentMethod ? (
                     <div className={styles.selectedMethod}>
                       <Image
-                        src={getCardImg(selectedMethod.card.brand)}
+                        src={getCardImg(paymentMethod.brand)}
                         alt='credit card sign'
                         height={40}
                         width={40}
                       />
                       <section>
-                        {selectedMethod.card.brand.charAt(0).toUpperCase() +
-                          selectedMethod.card.brand.slice(1)}{' '}
-                        ending in <span>...{selectedMethod.card.last4}</span>
+                        {paymentMethod.brand.charAt(0).toUpperCase() +
+                          paymentMethod.brand.slice(1)}{' '}
+                        ending in <span>...{paymentMethod.last4}</span>
                       </section>
                     </div>
                   ) : (
@@ -183,7 +187,7 @@ const PaymentMethodStep = () => {
                       {paymentMethods.map(method => {
                         const { brand, last4 } = method.card;
 
-                        if (selectedMethod?.card.last4 === last4) return;
+                        if (paymentMethod?.last4 === last4) return;
 
                         return (
                           <div
@@ -217,7 +221,7 @@ const PaymentMethodStep = () => {
                   </button>
 
                   <AnimatePresence>
-                    {selectedMethod && (
+                    {paymentMethod && (
                       <motion.button
                         className={styles.bookBtn}
                         onClick={() => dispatch(goToNextEstimateStep())}

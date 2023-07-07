@@ -36,8 +36,6 @@ const FinalStep = () => {
     paymentMethod,
   } = useSelector(state => state.order);
 
-  // console.log(order);
-
   return (
     <div className={styles.container}>
       <div className={styles.mapDetails}>
@@ -86,6 +84,8 @@ const FinalStep = () => {
               <h3>{movingDate}</h3>
               <p>{movingWindow}</p>
             </section>
+
+            <EditIcon step={4} />
           </div>
 
           <div className={styles.price}>

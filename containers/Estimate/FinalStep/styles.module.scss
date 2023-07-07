@@ -11,7 +11,6 @@
     @include flex(column, space-between);
     background-color: $white;
     border-radius: 0.75rem;
-    min-width: 400px;
 
     #map-container {
       border: 1px solid red;

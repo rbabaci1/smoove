@@ -104,15 +104,25 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
           )}
 
           <h3>
-            {estimateStep === 9 ? (
-              <button onClick={confirmBooking}>Book your move</button>
-            ) : (
-              stepsNames[
-                estimateStep === 4 && showMoreInfo
-                  ? estimateStep
-                  : estimateStep - 1
-              ]
-            )}
+            <AnimatePresence>
+              {estimateStep === 9 ? (
+                <motion.button
+                  onClick={confirmBooking}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 20, opacity: 0 }}
+                  whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+                >
+                  Book your move
+                </motion.button>
+              ) : (
+                stepsNames[
+                  estimateStep === 4 && showMoreInfo
+                    ? estimateStep
+                    : estimateStep - 1
+                ]
+              )}
+            </AnimatePresence>
           </h3>
         </section>
 

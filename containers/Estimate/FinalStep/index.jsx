@@ -10,6 +10,7 @@ import {
   BsCreditCard2Front,
 } from 'react-icons/bs';
 import { MdOutlineDescription } from 'react-icons/md';
+import { IoIosContacts } from 'react-icons/io';
 import './styles.module.scss';
 
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
@@ -37,6 +38,7 @@ const FinalStep = () => {
     price,
     vehicleType,
     description,
+    additionalContacts,
     paymentMethod,
   } = useSelector(state => state.order);
 
@@ -76,6 +78,24 @@ const FinalStep = () => {
             <section className={styles.text}>
               <span>Description:</span>
               <p>{description}</p>
+            </section>
+
+            <EditIcon step={4} />
+          </div>
+
+          <div className={styles.addContacts}>
+            <IoIosContacts className={styles.dataIcon} />
+
+            <section className={styles.contacts}>
+              {additionalContacts.map((contact, index) => {
+                return (
+                  <div key={index} className={styles.contact}>
+                    <p>
+                      {contact.name} <span>{contact.phoneNumber}</span>
+                    </p>
+                  </div>
+                );
+              })}
             </section>
 
             <EditIcon step={4} />

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineEdit } from 'react-icons/ai';
 import Image from 'next/image';
@@ -20,7 +19,6 @@ import styles from './styles.module.scss';
 
 const EditIcon = ({ step = 1 }) => {
   const dispatch = useDispatch();
-  const [booking, setBooking] = useState(false);
 
   return (
     <AiOutlineEdit

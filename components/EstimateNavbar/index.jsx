@@ -7,6 +7,7 @@ import { AiFillLock } from 'react-icons/ai';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import { IoBagCheckOutline } from 'react-icons/io5';
 import { ToastContainer, toast } from 'react-toastify';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const stepsNames = [
   'Provide addresses',
@@ -21,13 +22,13 @@ const stepsNames = [
 ];
 
 import { auth } from '@/firebase/firebase.config';
+import { postOrderToOnFleet } from '@/lib';
 import {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
-import { AnimatePresence, motion } from 'framer-motion';
 
 const EstimateNavbar = ({
   showMoreInfo,
@@ -85,13 +86,13 @@ const EstimateNavbar = ({
     }
   };
 
-  const confirmBooking = () => {
+  const confirmBooking = async () => {
     setConfirmingBooking(true);
 
-    setTimeout(() => {
-      setConfirmingBooking(false);
-      toast.success('Booking confirmed!');
-    }, 3000);
+    postOrderToOnFleet(order);
+
+    setConfirmingBooking(false);
+    toast.success('Booking confirmed!');
   };
 
   return (

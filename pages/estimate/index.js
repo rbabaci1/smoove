@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';
@@ -26,6 +27,7 @@ const Estimate = () => {
   const { estimateStep } = useSelector(state => state.order);
   const [prevStep, setPrevStep] = useState(estimateStep);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
+  const [confirmingBooking, setConfirmingBooking] = useState(false);
 
   useEffect(() => {
     setPrevStep(estimateStep);
@@ -86,9 +88,17 @@ const Estimate = () => {
       </Head>
 
       <div className={styles.main}>
+        {confirmingBooking ? (
+          <div className={styles.loadingContainer}>
+            <AiOutlineLoading3Quarters color='green' className='loading' />
+          </div>
+        ) : null}
+
         <EstimateNavbar
           showMoreInfo={showMoreInfo}
           setShowMoreInfo={setShowMoreInfo}
+          confirmingBooking={confirmingBooking}
+          setConfirmingBooking={setConfirmingBooking}
         />
 
         <div className={styles.background}>

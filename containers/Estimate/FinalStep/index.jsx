@@ -10,7 +10,6 @@ import {
 } from 'react-icons/bs';
 import { MdOutlineDescription } from 'react-icons/md';
 import { IoIosContacts } from 'react-icons/io';
-import './styles.module.scss';
 
 import { goToSpecificEstimateStep } from '@/state/reduxSlices/orderSlice';
 import { MapContainer } from '@/components';

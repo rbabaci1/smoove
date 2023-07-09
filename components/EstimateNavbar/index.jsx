@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
@@ -5,6 +6,7 @@ import { BiListUl, BiLogOutCircle } from 'react-icons/bi';
 import { AiFillLock } from 'react-icons/ai';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import { IoBagCheckOutline } from 'react-icons/io5';
+import { ToastContainer, toast } from 'react-toastify';
 
 const stepsNames = [
   'Provide addresses',
@@ -27,13 +29,20 @@ import {
 import styles from './styles.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
-  const dispatch = useDispatch();
+const EstimateNavbar = ({
+  showMoreInfo,
+  setShowMoreInfo,
+  confirmingBooking,
+  setConfirmingBooking,
+}) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { estimateStep, description } = useSelector(state => state.order);
   const { user } = useSelector(state => state.auth);
 
   const handleBack = () => {
+    if (confirmingBooking) return;
+
     if (estimateStep === 1) {
       router.push('/');
     } else if (
@@ -65,18 +74,37 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
     }
   };
 
-  const confirmBooking = () => {
-    console.log('Booking confirmed!');
+  const handleLogOut = () => {
+    if (confirmingBooking) return;
+
+    if (confirm('Are you sure you want to log out?')) {
+      router.replace('/');
+      auth.signOut();
+    }
   };
 
-  const handleLogOut = () => {
-    router.replace('/');
-    auth.signOut();
+  const confirmBooking = () => {
+    setConfirmingBooking(true);
+
+    setTimeout(() => {
+      setConfirmingBooking(false);
+      toast.success('Booking confirmed!');
+    }, 3000);
   };
-  // whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
 
   return (
     <div className={styles.navWrapper}>
+      <ToastContainer
+        position='top-center'
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        theme='colored'
+      />
+
       <div className={styles.container}>
         <section className={styles.navigation}>
           <div className={styles.arrowLeft}>
@@ -111,7 +139,12 @@ const EstimateNavbar = ({ showMoreInfo, setShowMoreInfo }) => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 20, opacity: 0 }}
-                  whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+                  whileTap={
+                    !confirmingBooking
+                      ? { scale: 0.9, transition: { duration: 0.1 } }
+                      : {}
+                  }
+                  disabled={confirmingBooking}
                 >
                   Book your move
                 </motion.button>

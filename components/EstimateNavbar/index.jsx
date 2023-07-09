@@ -37,8 +37,10 @@ const EstimateNavbar = ({
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { estimateStep, description } = useSelector(state => state.order);
   const { user } = useSelector(state => state.auth);
+  const order = useSelector(state => state.order);
+
+  const { estimateStep, description } = order;
 
   const handleBack = () => {
     if (confirmingBooking) return;

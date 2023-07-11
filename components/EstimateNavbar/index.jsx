@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
@@ -22,7 +21,7 @@ const stepsNames = [
 ];
 
 import { auth } from '@/firebase/firebase.config';
-import { postOrderToOnFleet } from '@/lib';
+import { postOrder } from '@/lib';
 import {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
@@ -36,8 +35,8 @@ const EstimateNavbar = ({
   confirmingBooking,
   setConfirmingBooking,
 }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
+  const router = useRouter();
   const { user } = useSelector(state => state.auth);
   const order = useSelector(state => state.order);
 
@@ -89,7 +88,7 @@ const EstimateNavbar = ({
   const confirmBooking = async () => {
     setConfirmingBooking(true);
 
-    postOrderToOnFleet(order);
+    postOrder(user.uid, order);
 
     setConfirmingBooking(false);
     toast.success('Booking confirmed!');
@@ -135,30 +134,28 @@ const EstimateNavbar = ({
           )}
 
           <h3>
-            <AnimatePresence>
-              {estimateStep === 9 ? (
-                <motion.button
-                  onClick={confirmBooking}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 20, opacity: 0 }}
-                  whileTap={
-                    !confirmingBooking
-                      ? { scale: 0.9, transition: { duration: 0.1 } }
-                      : {}
-                  }
-                  disabled={confirmingBooking}
-                >
-                  Book your move
-                </motion.button>
-              ) : (
-                stepsNames[
-                  estimateStep === 4 && showMoreInfo
-                    ? estimateStep
-                    : estimateStep - 1
-                ]
-              )}
-            </AnimatePresence>
+            {estimateStep === 9 ? (
+              <motion.button
+                onClick={confirmBooking}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 20, opacity: 0 }}
+                whileTap={
+                  !confirmingBooking
+                    ? { scale: 0.9, transition: { duration: 0.1 } }
+                    : {}
+                }
+                disabled={confirmingBooking}
+              >
+                Book your move
+              </motion.button>
+            ) : (
+              stepsNames[
+                estimateStep === 4 && showMoreInfo
+                  ? estimateStep
+                  : estimateStep - 1
+              ]
+            )}
           </h3>
         </section>
 

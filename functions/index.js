@@ -1,6 +1,6 @@
 // import twilio from 'twilio';
 
-const { onDocumentWritten } = require('firebase-functions/v2/firestore');
+const functions = require('firebase-functions');
 
 // const accountSid = process.env.NEXT_PUBLIC_TWILIO_ACCOUNT_SID;
 // const authToken = process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN;
@@ -8,14 +8,35 @@ const { onDocumentWritten } = require('firebase-functions/v2/firestore');
 
 // const client = twilio(accountSid, authToken);
 
-exports.sendSMSOnOrderSubmit = onDocumentWritten(
-  'users/{userId}/orders/{orderId}',
-  event => {
-    // If the document does not exist, it was deleted
-    const document = event.data.after.data();
+exports.sendSMSOnOrderChange = functions.firestore
+  .document('users/{userId}/orders/{orderId}')
+  .onWrite((change, context) => {
+    const orderRef = change.after.ref;
+    const newData = change.after.data();
+    const oldData = change.before.data();
 
-    console.log('Function triggered!');
-    // ....
-    console.log({ document });
-  }
-);
+    // Check if the document was created
+    if (!change.before.exists) {
+      return orderRef.update({
+        status: 'confirmed',
+      });
+    }
+
+    // Check if the document was deleted
+    if (!change.after.exists) {
+      // Document deleted (onDelete logic)
+      // Perform any necessary actions for document deletion
+      return null;
+    }
+
+    // Document updated (onUpdate logic)
+
+    // Example: Update status only if it has changed
+    if (newData.status !== oldData.status) {
+      return orderRef.update({
+        status: 'confirmed',
+      });
+    }
+
+    return null;
+  });

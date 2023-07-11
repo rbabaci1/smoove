@@ -26,6 +26,7 @@ import {
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
+  updateOrderStatus,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
@@ -91,7 +92,12 @@ const EstimateNavbar = ({
     postOrder(user.uid, order);
 
     setConfirmingBooking(false);
+    dispatch(updateOrderStatus('confirmed'));
     toast.success('Booking confirmed!');
+
+    setTimeout(() => {
+      router.replace('/dashboard');
+    }, 1500);
   };
 
   return (
@@ -101,9 +107,7 @@ const EstimateNavbar = ({
         autoClose={1500}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
         rtl={false}
-        draggable
         theme='colored'
       />
 

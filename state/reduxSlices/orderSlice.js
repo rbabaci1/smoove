@@ -81,6 +81,7 @@ const orderSlice = createSlice({
     setPaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
     },
+    resetOrder: () => initialState,
   },
 });
 
@@ -100,6 +101,7 @@ export const {
   goToSpecificEstimateStep,
   updateOrderStatus,
   setPaymentMethod,
+  resetOrder,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -27,6 +27,7 @@ import {
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,
   updateOrderStatus,
+  resetOrder,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
@@ -89,14 +90,17 @@ const EstimateNavbar = ({
   const confirmBooking = async () => {
     setConfirmingBooking(true);
 
+    dispatch(updateOrderStatus('confirmed'));
     postOrder(user.uid, order);
 
     setConfirmingBooking(false);
-    dispatch(updateOrderStatus('confirmed'));
+    // reset order state
     toast.success('Booking confirmed!');
 
     setTimeout(() => {
       router.replace('/dashboard');
+      dispatch(goToSpecificEstimateStep(1));
+      dispatch(resetOrder());
     }, 1500);
   };
 

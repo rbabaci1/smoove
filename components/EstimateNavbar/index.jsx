@@ -89,7 +89,7 @@ const EstimateNavbar = ({
   const confirmBooking = async () => {
     setConfirmingBooking(true);
 
-    postOrder(user.uid, { ...order, status: 'pending' });
+    postOrder(user, { ...order, status: 'pending' });
 
     setConfirmingBooking(false);
     toast.success('Booking confirmed!');

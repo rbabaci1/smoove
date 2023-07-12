@@ -29,7 +29,6 @@ import {
   resetOrder,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
-import { ca } from 'date-fns/locale';
 
 const EstimateNavbar = ({
   showMoreInfo,

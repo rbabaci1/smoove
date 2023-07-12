@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 
 import { Sidebar, WithAuth } from '@/components';
@@ -12,6 +13,7 @@ const transition = {
 };
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const [activeContainer, setActiveContainer] = useState(1);
 
   useEffect(() => {

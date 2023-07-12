@@ -29,6 +29,7 @@ import {
   resetOrder,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
+import { ca } from 'date-fns/locale';
 
 const EstimateNavbar = ({
   showMoreInfo,
@@ -87,18 +88,28 @@ const EstimateNavbar = ({
   };
 
   const confirmBooking = async () => {
-    setConfirmingBooking(true);
+    try {
+      if (!user) {
+        toast.error('You must be logged in to book a move');
+        return;
+      }
 
-    postOrder(user, { ...order, status: 'pending' });
+      setConfirmingBooking(true);
 
-    setConfirmingBooking(false);
-    toast.success('Booking confirmed!');
+      await postOrder(user, { ...order, status: 'pending' });
 
-    // setTimeout(() => {
-    //   router.replace('/dashboard');
-    //   dispatch(goToSpecificEstimateStep(1));
-    //   dispatch(resetOrder());
-    // }, 1500);
+      toast.success('Booking confirmed!');
+
+      setTimeout(() => {
+        router.replace('/dashboard');
+        dispatch(goToSpecificEstimateStep(1));
+        dispatch(resetOrder());
+      }, 1500);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setConfirmingBooking(false);
+    }
   };
 
   return (

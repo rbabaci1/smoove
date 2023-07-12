@@ -26,6 +26,7 @@ const AddressAutosuggest = ({
     dispatch(
       updateAddressesTypingValues({ type: addressType, value: splitAddress[0] })
     );
+
     clearError();
   };
 

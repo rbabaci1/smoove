@@ -23,8 +23,7 @@ export default async function sendSms(req, res) {
         twilioResponse,
       });
     } catch (error) {
-      console.error('Error sending SMS:', error);
-      res.status(500).json({ success: false, message: 'Failed to send SMS' });
+      res.status(500).json({ success: false, message: error.message });
     }
   } else {
     res.setHeader('Allow', 'POST');

@@ -10,7 +10,10 @@ export default async function handler(req, res) {
       }
 
       const additionalContactsString = order.additionalContacts
-        .map(contact => `- Name: ${contact.name}, Phone: ${contact.phone}`)
+        .map(
+          contact =>
+            `-Name: ${contact.name}, Phone Number: <tel:${contact.phoneNumber}|${contact.phoneNumber}>`
+        )
         .join('\n');
 
       return additionalContactsString;
@@ -22,7 +25,41 @@ export default async function handler(req, res) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `*Name:* \`${user.displayName}\` *Phone Number:* <tel:${user.phoneNumber}|${user.phoneNumber}>`,
+            text: `*Name:* \`${user.displayName}\`\t*Phone Number:* <tel:${user.phoneNumber}|${user.phoneNumber}>`,
+          },
+          accessory: {
+            type: 'button',
+            action_id: 'completeOrder',
+            text: {
+              type: 'plain_text',
+              text: 'Complete',
+            },
+            style: 'primary',
+            confirm: {
+              title: {
+                type: 'plain_text',
+                text: 'Confirmation',
+              },
+              text: {
+                type: 'mrkdwn',
+                text: 'Are you sure you want to mark this order as completed?',
+              },
+              confirm: {
+                type: 'plain_text',
+                text: 'Complete',
+              },
+              deny: {
+                type: 'plain_text',
+                text: 'Cancel',
+              },
+            },
+          },
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `*User ID:*\`${user.uid}\` \t*Order ID:* \`${order.orderId}\``,
           },
         },
         {
@@ -103,12 +140,22 @@ export default async function handler(req, res) {
       ],
     };
 
+    message.blocks.forEach(block => {
+      if (block.accessory) {
+        block.accessory.value = JSON.stringify({
+          userID: user.uid,
+          orderID: order.orderId,
+        });
+      }
+    });
+
     // Create a WebClient instance with your Slack API token
     const client = new WebClient(process.env.NEXT_PUBLIC_SLACK_API_TOKEN);
 
     // Send the message to Slack
     const result = await client.chat.postMessage({
       channel: process.env.NEXT_PUBLIC_SLACK_CHANNEL_NAME,
+      text: 'A new order has been received!',
       blocks: message.blocks,
     });
 

@@ -101,7 +101,7 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
   const isContactValid = () => {
     const { name, phoneNumber } = newContact;
 
-    return isPossiblePhoneNumber(phoneNumber) && name.length > 3 ? true : false;
+    return isPossiblePhoneNumber(phoneNumber) && name.length > 0 ? true : false;
   };
 
   const handleAddContact = () => {

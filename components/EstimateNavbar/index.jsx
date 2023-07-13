@@ -99,11 +99,11 @@ const EstimateNavbar = ({
 
       toast.success('Booking confirmed!');
 
-      // setTimeout(() => {
-      //   router.replace('/dashboard');
-      //   dispatch(goToSpecificEstimateStep(1));
-      //   dispatch(resetOrder());
-      // }, 1500);
+      setTimeout(() => {
+        router.replace('/dashboard');
+        dispatch(goToSpecificEstimateStep(1));
+        dispatch(resetOrder());
+      }, 1500);
     } catch (error) {
       toast.error(error.message);
     } finally {

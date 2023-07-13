@@ -93,8 +93,8 @@ const MapContainer = ({ height = '230px' }) => {
             .extend([pickupLongitude, pickupLatitude])
             .extend([dropOffLongitude, dropOffLatitude]);
           map.fitBounds(bounds, {
-            padding: 50,
-            maxZoom: 13,
+            padding: 40,
+            maxZoom: 11,
           });
         });
     }

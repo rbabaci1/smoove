@@ -112,7 +112,7 @@ export default async function handler(req, res) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `*Description:* \`${order.description}\``,
+            text: `*Description:* \`\`\`${order.description}\`\`\``,
           },
         },
         {

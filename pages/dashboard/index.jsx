@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 import { Sidebar, WithAuth } from '@/components';
+import { getUserOrders } from '@/lib';
 import { MyMoves, MyAccount } from '@/containers/Dashboard';
 import styles from './styles.module.scss';
 
@@ -14,12 +15,28 @@ const transition = {
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
   const [activeContainer, setActiveContainer] = useState(1);
+  const [userOrders, setUserOrders] = useState([]);
+
+  console.log('userOrders:', userOrders);
 
   useEffect(() => {
     // Scroll to top of the page when user changes step
     window.scrollTo(0, 0);
-  }, []);
+
+    async function fetchOrders() {
+      try {
+        const userOrders = await getUserOrders(user.uid);
+
+        setUserOrders(userOrders);
+      } catch (error) {
+        console.error('Error fetching user orders:', error);
+      }
+    }
+
+    fetchOrders();
+  }, [user.uid]);
 
   const dashboardComponents = {
     1: <MyMoves />,

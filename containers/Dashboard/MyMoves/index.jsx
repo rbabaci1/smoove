@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
+import { OrderCard } from '@/components';
 import styles from './styles.module.scss';
 
-const MyMoves = () => {
+const MyMoves = ({ userOrders }) => {
+  console.log({ userOrders });
   const router = useRouter();
-
-  // later fetch from db
-  const [moves, setMoves] = useState([]);
 
   return (
     <div className={styles.container}>

@@ -75,7 +75,9 @@ const Sidebar = ({ activeContainer, setActiveContainer }) => {
         title={
           <div className='title'>
             <FaUserCircle size={35} color='green' />
-            <p>Hello, {displayName ? displayName : 'there!'}</p>
+            <p>
+              Hello, {displayName ? displayName.split(' ')[0] + '!' : 'there!'}
+            </p>
           </div>
         }
         className={styles.drawer}

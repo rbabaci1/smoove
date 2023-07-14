@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const additionalContactsString = order.additionalContacts
         .map(
           contact =>
-            `-Name: ${contact.name}, Phone Number: <tel:${contact.phoneNumber}|${contact.phoneNumber}>`
+            `Name: ${contact.name}, Phone Number: <tel:${contact.phoneNumber}|${contact.phoneNumber}>`
         )
         .join('\n');
 

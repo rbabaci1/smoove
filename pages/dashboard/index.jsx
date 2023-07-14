@@ -16,10 +16,8 @@ const transition = {
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
-  const [activeContainer, setActiveContainer] = useState(1);
   const [userOrders, setUserOrders] = useState([]);
-
-  console.log('userOrders:', userOrders);
+  const [activeContainer, setActiveContainer] = useState(1);
 
   useEffect(() => {
     // Scroll to top of the page when user changes step
@@ -39,7 +37,7 @@ const Dashboard = () => {
   }, [user.uid]);
 
   const dashboardComponents = {
-    1: <MyMoves />,
+    1: <MyMoves userOrders={userOrders} />,
     2: <MyAccount />,
   };
 

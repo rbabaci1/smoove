@@ -9,7 +9,6 @@
     position: absolute;
     @include radius(0, 0.2rem, 0, 0.2rem);
     top: 2rem;
-    border: 1px solid $main-color;
     border-left: none;
     background-color: $main-color;
     width: 2.5rem;

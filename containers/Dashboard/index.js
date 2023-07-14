@@ -1,4 +1,4 @@
 import MyMoves from './MyMoves';
-import MyAccount from './MyAccount';
+import MyAccount from './MyProfile';
 
 export { MyMoves, MyAccount };

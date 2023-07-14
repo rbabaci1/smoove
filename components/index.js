@@ -15,6 +15,7 @@ import WithAuth from './WithAuth';
 import NoAuthRender from './NoAuthRender';
 import Sidebar from './Sidebar';
 import AddPaymentMethod from './AddPaymentMethod';
+import OrderCard from './OrderCard';
 
 export {
   Carousel,
@@ -34,4 +35,5 @@ export {
   NoAuthRender,
   Sidebar,
   AddPaymentMethod,
+  OrderCard,
 };

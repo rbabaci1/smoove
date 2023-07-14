@@ -15,7 +15,11 @@ const MoveCard = ({ order }) => {
   return (
     <div className={styles.container}>
       <div className={styles.map}>
-        <MapContainer addresses={addresses} height='300px' />
+        <MapContainer
+          addresses={addresses}
+          height='300px'
+          radius='0.75rem 0 0 0.75rem'
+        />
       </div>
 
       <div className={styles.details}>

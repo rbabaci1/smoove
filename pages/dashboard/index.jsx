@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
 
 import { DashboardNavbar, WithAuth } from '@/components';
 import { getUserOrders } from '@/lib';
 import { MyMoves, MyAccount } from '@/containers/Dashboard';
 import styles from './styles.module.scss';
-
-const transition = {
-  type: 'spring',
-  stiffness: 300,
-  damping: 30,
-};
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -44,13 +37,9 @@ const Dashboard = () => {
     2: <MyAccount />,
   };
 
-  const renderDashboardContainer = () => {
-    return (
-      <motion.div key={activeContainer} transition={transition}>
-        {dashboardComponents[activeContainer]}
-      </motion.div>
-    );
-  };
+  const renderDashboardContainer = () => (
+    <div>{dashboardComponents[activeContainer]}</div>
+  );
 
   return (
     <div className={styles.dashboardWrapper}>

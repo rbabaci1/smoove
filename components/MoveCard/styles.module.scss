@@ -3,10 +3,16 @@
 
 .container {
   @include flex(row, space-between, flex-start);
-  min-height: 300px;
   background-color: $white;
   border-radius: 0.75rem;
   min-width: 800px;
+  cursor: pointer;
+  transition-duration: 0.1s;
+
+  &:hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
 
   .map {
     width: 40%;
@@ -19,10 +25,49 @@
   .details {
     width: 60%;
     padding: 1rem;
+    @include flex(column, flex-start, flex-start);
+
+    p {
+      color: gray;
+    }
+    h4 {
+      margin-bottom: 1rem;
+
+      span {
+        color: $main-color;
+        font-size: clamp(0.95rem, 5vw, 1.2rem);
+      }
+    }
+
+    .addresses {
+      @include flex(column, space-evenly, flex-start);
+      border-top: 1px solid $light-blue;
+      flex: 1;
+
+      .address {
+        @include flex(row, flex-start);
+
+        svg {
+          margin-right: 0.75rem;
+          font-size: 1.5rem;
+        }
+
+        section {
+          span {
+            font-weight: 600;
+          }
+
+          p {
+            margin: 0;
+            font-size: clamp(0.85rem, 4.5vw, 1.05rem);
+          }
+        }
+      }
+    }
   }
 
   .map,
   .details {
-    min-height: 300px;
+    min-height: 280px;
   }
 }

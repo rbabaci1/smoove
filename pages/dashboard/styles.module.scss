@@ -5,21 +5,35 @@
   background-color: $primary-color;
 
   .main {
+    @include flex(column, flex-start);
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(100dvh - 5rem);
+    min-height: calc(120dvh - 5rem);
     padding: 2rem 1.5rem;
+
+    button {
+      width: 80%;
+      margin-bottom: 2rem;
+    }
 
     .dashboardContainer {
     }
 
     @media screen and (max-width: 767px) {
       min-height: calc(100dvh - 4rem);
+
+      button {
+        width: 100%;
+      }
     }
 
     @media screen and (max-width: 374px) {
       min-height: calc(100dvh - 3rem);
       padding: 1rem 0.5rem;
+
+      button {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import { DashboardNavbar, WithAuth } from '@/components';
 import { getUserOrders } from '@/lib';
@@ -8,6 +9,7 @@ import styles from './styles.module.scss';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { user } = useSelector(state => state.auth);
   const [fetchingOrders, setFetchingOrders] = useState(true);
   const [userOrders, setUserOrders] = useState([]);
@@ -49,6 +51,8 @@ const Dashboard = () => {
       />
 
       <div className={styles.main}>
+        <button onClick={() => router.push('/estimate')}>Book a move</button>
+
         <div className={styles.dashboardContainer}>
           {renderDashboardContainer()}
         </div>

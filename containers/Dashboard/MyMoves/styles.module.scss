@@ -4,6 +4,7 @@
 .container {
   .orders {
     @include flex(column);
+    gap: 1.5rem;
 
     .loading {
       font-size: 2rem;

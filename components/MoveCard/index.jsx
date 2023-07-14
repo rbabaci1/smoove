@@ -7,17 +7,19 @@ import MapContainer from '../Map';
 import styles from './styles.module.scss';
 
 const MoveCard = ({ order }) => {
-  const { addresses, movingDate, movingWindow, vehicleType } = order;
+  const { addresses, movingDate, movingWindow, vehicleType, status } = order;
 
   const pickupAddress = addresses.pickup.place_name.split(',');
   const dropOffAddress = addresses.dropOff.place_name.split(',');
+
+  console.log({ status });
 
   return (
     <div className={styles.container}>
       <div className={styles.map}>
         {/* <MapContainer
           addresses={addresses}
-          height='280px'
+          height='260px'
           radius='0.75rem 0 0 0.75rem'
         /> */}
       </div>

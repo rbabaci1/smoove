@@ -7,21 +7,22 @@ import {
 import styles from './styles.module.scss';
 
 const MoveCard = ({ order }) => {
-  console.log({ order });
-  const pickupAddress = order.addresses.pickup.place_name.split(',');
-  const dropOffAddress = order.addresses.dropOff.place_name.split(',');
+  const { addresses, movingDate, movingWindow, vehicleType } = order;
+
+  const pickupAddress = addresses.pickup.place_name.split(',');
+  const dropOffAddress = addresses.dropOff.place_name.split(',');
 
   return (
     <div className={styles.container}>
       <div className={styles.map}>
-        {/* <MapContainer addresses={order.addresses} height='300px' /> */}
+        <MapContainer addresses={addresses} height='300px' />
       </div>
 
       <div className={styles.details}>
-        <h3>{order.movingDate}</h3>
-        <p>Arrival between {order.movingWindow}</p>
+        <h3>{movingDate}</h3>
+        <p>Arrival between {movingWindow}</p>
         <h4>
-          Vehicle type: <span>{order.vehicleType}</span>
+          Vehicle type: <span>{vehicleType}</span>
         </h4>
 
         <div className={styles.addresses}>

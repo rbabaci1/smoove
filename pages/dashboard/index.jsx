@@ -16,6 +16,7 @@ const transition = {
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
+  const [fetchingOrders, setFetchingOrders] = useState(true);
   const [userOrders, setUserOrders] = useState([]);
   const [activeContainer, setActiveContainer] = useState(1);
 
@@ -30,6 +31,8 @@ const Dashboard = () => {
         setUserOrders(userOrders);
       } catch (error) {
         console.error('Error fetching user orders:', error);
+      } finally {
+        setFetchingOrders(false);
       }
     }
 
@@ -37,7 +40,7 @@ const Dashboard = () => {
   }, [user.uid]);
 
   const dashboardComponents = {
-    1: <MyMoves userOrders={userOrders} />,
+    1: <MyMoves userOrders={userOrders} fetchingOrders={fetchingOrders} />,
     2: <MyAccount />,
   };
 

@@ -1,18 +1,55 @@
 @import '/styles/mixins.module.scss';
 @import '/styles/variables.module.scss';
 
-.main {
-  @include flex(row, space-between, flex-start);
+.dashboardWrapper {
   background-color: $primary-color;
 
-  .dashboardContainer {
-    flex: 1;
+  .navBarWrapper {
+    background-color: $light-blue;
+    height: 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
+    nav {
+      @include flex(row, space-evenly, center);
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      span {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+        font-weight: 500;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        line-height: 1.5rem;
+        transition-duration: 0.3s;
+
+        &:hover {
+          color: $main-color;
+          border-color: $main-color;
+        }
+      }
+
+      .activeItem {
+        color: $main-color;
+        border-color: $main-color;
+      }
+    }
+  }
+
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
     border: 1px solid red;
-  }
 
-  @media screen and (max-width: 767px) {
-  }
+    .dashboardContainer {
+    }
 
-  @media screen and (max-width: 374px) {
+    @media screen and (max-width: 767px) {
+    }
+
+    @media screen and (max-width: 374px) {
+    }
   }
 }

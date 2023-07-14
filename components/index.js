@@ -15,6 +15,7 @@ import WithAuth from './WithAuth';
 import NoAuthRender from './NoAuthRender';
 import AddPaymentMethod from './AddPaymentMethod';
 import OrderCard from './OrderCard';
+import DashboardNavbar from './DashboardNavbar.js';
 
 export {
   Carousel,
@@ -34,4 +35,5 @@ export {
   NoAuthRender,
   AddPaymentMethod,
   OrderCard,
+  DashboardNavbar,
 };

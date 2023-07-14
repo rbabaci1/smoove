@@ -50,16 +50,43 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <ul className={styles.sideBar}>
-        <li onClick={() => setActiveContainer(1)}>Home</li>
-        <li onClick={() => setActiveContainer(2)}>My Moves</li>
-        <li onClick={() => setActiveContainer(3)}>My Account</li>
-        <li onClick={() => setActiveContainer(4)}>Log Out</li>
-      </ul>
+    <div className={styles.dashboardWrapper}>
+      <div className={styles.navBarWrapper}>
+        <nav>
+          <span
+            onClick={() => setActiveContainer(0)}
+            className={activeContainer === 0 ? styles.activeItem : null}
+          >
+            Home
+          </span>
 
-      <div className={styles.dashboardContainer}>
-        {renderDashboardContainer()}
+          <span
+            onClick={() => setActiveContainer(1)}
+            className={activeContainer === 1 ? styles.activeItem : null}
+          >
+            My Moves
+          </span>
+
+          <span
+            onClick={() => setActiveContainer(2)}
+            className={activeContainer === 2 ? styles.activeItem : null}
+          >
+            My Account
+          </span>
+
+          <span
+            onClick={() => setActiveContainer(3)}
+            className={activeContainer === 3 ? styles.activeItem : null}
+          >
+            Log Out
+          </span>
+        </nav>
+      </div>
+
+      <div className={styles.main}>
+        <div className={styles.dashboardContainer}>
+          {renderDashboardContainer()}
+        </div>
       </div>
     </div>
   );

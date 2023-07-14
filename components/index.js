@@ -13,7 +13,6 @@ import AddressAutosuggest from './AddressAutoSuggest';
 import MapContainer from './Map';
 import WithAuth from './WithAuth';
 import NoAuthRender from './NoAuthRender';
-import Sidebar from './Sidebar';
 import AddPaymentMethod from './AddPaymentMethod';
 import OrderCard from './OrderCard';
 
@@ -33,7 +32,6 @@ export {
   MapContainer,
   WithAuth,
   NoAuthRender,
-  Sidebar,
   AddPaymentMethod,
   OrderCard,
 };

@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
 import {
   BsFillArrowUpCircleFill,
@@ -8,9 +7,9 @@ import {
 
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
-const MapContainer = ({ height = '230px' }) => {
+const MapContainer = ({ addresses, height = '230px' }) => {
   const [map, setMap] = useState(null);
-  const { addresses } = useSelector(state => state.order);
+
   const { pickup, dropOff } = addresses;
 
   const [pickupLongitude, pickupLatitude] = pickup.center;

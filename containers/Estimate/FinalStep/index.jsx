@@ -42,7 +42,7 @@ const FinalStep = () => {
   return (
     <div className={styles.container}>
       <div className={styles.mapDetails}>
-        <MapContainer height='300px' />
+        <MapContainer height='300px' addresses={{ pickup, dropOff }} />
 
         <div className={styles.details}>
           <div className={styles.addresses}>

@@ -5,15 +5,18 @@ import { useRouter } from 'next/router';
 import { OrderCard } from '@/components';
 import styles from './styles.module.scss';
 
-const MyMoves = ({ userOrders }) => {
-  console.log({ userOrders });
+const MyOrders = ({ userOrders }) => {
   const router = useRouter();
 
   return (
     <div className={styles.container}>
-      <h3>My moves</h3>
+      <div className={styles.orders}>
+        {userOrders.map(order => (
+          <OrderCard key={order.id} order={order} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default MyMoves;
+export default MyOrders;

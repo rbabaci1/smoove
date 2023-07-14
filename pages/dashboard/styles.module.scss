@@ -2,9 +2,17 @@
 @import '/styles/variables.module.scss';
 
 .main {
-  overflow: hidden;
+  @include flex(row, space-between, flex-start);
+  background-color: $primary-color;
 
   .dashboardContainer {
-    margin-left: 280px;
+    flex: 1;
+    border: 1px solid red;
+  }
+
+  @media screen and (max-width: 767px) {
+  }
+
+  @media screen and (max-width: 374px) {
   }
 }

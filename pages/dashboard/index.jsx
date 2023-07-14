@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
-import { Sidebar, WithAuth } from '@/components';
+import { WithAuth } from '@/components';
 import { getUserOrders } from '@/lib';
-import { MyMoves, MyAccount } from '@/containers/Dashboard';
+import { MyOrders, MyAccount } from '@/containers/Dashboard';
 import styles from './styles.module.scss';
 
 const transition = {
@@ -37,7 +37,7 @@ const Dashboard = () => {
   }, [user.uid]);
 
   const dashboardComponents = {
-    1: <MyMoves userOrders={userOrders} />,
+    1: <MyOrders userOrders={userOrders} />,
     2: <MyAccount />,
   };
 
@@ -51,10 +51,12 @@ const Dashboard = () => {
 
   return (
     <div className={styles.main}>
-      <Sidebar
-        activeContainer={activeContainer}
-        setActiveContainer={setActiveContainer}
-      />
+      <ul className={styles.sideBar}>
+        <li onClick={() => setActiveContainer(1)}>Home</li>
+        <li onClick={() => setActiveContainer(2)}>My Moves</li>
+        <li onClick={() => setActiveContainer(3)}>My Account</li>
+        <li onClick={() => setActiveContainer(4)}>Log Out</li>
+      </ul>
 
       <div className={styles.dashboardContainer}>
         {renderDashboardContainer()}

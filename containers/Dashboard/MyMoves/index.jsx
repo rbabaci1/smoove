@@ -17,7 +17,7 @@ const MyMoves = ({ userOrders, fetchingOrders }) => {
         ) : userOrders.length > 0 ? (
           userOrders.map(order => <MoveCard key={order.id} order={order} />)
         ) : (
-          <p>No moves at the moment</p>
+          <p>No moves to display. Book your next move!</p>
         )}
       </div>
     </div>

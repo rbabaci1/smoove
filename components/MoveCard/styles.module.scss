@@ -7,7 +7,6 @@
   border-radius: 0.75rem;
   cursor: pointer;
   transition-duration: 0.1s;
-  min-width: 700px;
   border: 1px solid $light-blue;
 
   &:hover {
@@ -33,9 +32,19 @@
     padding: 1rem;
     flex: 1;
 
-    p {
-      color: gray;
+    section {
+      width: 350px;
+
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: gray;
+      }
     }
+
     h4 {
       padding-bottom: 1rem;
       border-bottom: 1px solid $light-blue;
@@ -91,14 +100,6 @@
 
           section {
             width: 265px;
-
-            p {
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 1;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
           }
         }
       }

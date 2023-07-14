@@ -7,19 +7,19 @@
   .main {
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(100dvh - 4rem);
+    min-height: calc(100dvh - 5rem);
     padding: 2rem 1.5rem;
 
     .dashboardContainer {
     }
 
     @media screen and (max-width: 767px) {
-      min-height: calc(100dvh - 3rem);
+      min-height: calc(100dvh - 4rem);
     }
 
     @media screen and (max-width: 374px) {
-      min-height: calc(100dvh - 2rem);
-      padding: 1.5rem 0.5rem;
+      min-height: calc(100dvh - 3rem);
+      padding: 1rem 0.5rem;
     }
   }
 }

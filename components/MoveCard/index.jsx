@@ -1,9 +1,9 @@
-import MapContainer from '../Map';
 import {
   BsFillArrowUpCircleFill,
   BsFillArrowDownCircleFill,
 } from 'react-icons/bs';
 
+import MapContainer from '../Map';
 import styles from './styles.module.scss';
 
 const MoveCard = ({ order }) => {
@@ -15,11 +15,11 @@ const MoveCard = ({ order }) => {
   return (
     <div className={styles.container}>
       <div className={styles.map}>
-        <MapContainer
+        {/* <MapContainer
           addresses={addresses}
-          height='300px'
+          height='280px'
           radius='0.75rem 0 0 0.75rem'
-        />
+        /> */}
       </div>
 
       <div className={styles.details}>

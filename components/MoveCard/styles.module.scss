@@ -5,7 +5,6 @@
   @include flex(row, space-between, flex-start);
   background-color: $white;
   border-radius: 0.75rem;
-  min-width: 800px;
   cursor: pointer;
   transition-duration: 0.1s;
 
@@ -14,8 +13,13 @@
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
 
+  .map,
+  .details {
+    min-height: 280px;
+  }
+
   .map {
-    width: 40%;
+    min-width: 300px;
     background-image: url('https://images.unsplash.com/photo-1586449480558-33ae22ffc60d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
     background-size: cover;
     background-position: center;
@@ -23,15 +27,16 @@
   }
 
   .details {
-    width: 60%;
-    padding: 1rem;
     @include flex(column, flex-start, flex-start);
+    padding: 1rem;
 
     p {
       color: gray;
     }
     h4 {
-      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $light-blue;
+      width: 100%;
 
       span {
         color: $main-color;
@@ -41,7 +46,6 @@
 
     .addresses {
       @include flex(column, space-evenly, flex-start);
-      border-top: 1px solid $light-blue;
       flex: 1;
 
       .address {
@@ -59,15 +63,86 @@
 
           p {
             margin: 0;
-            font-size: clamp(0.85rem, 4.5vw, 1.05rem);
+            font-size: clamp(0.85rem, 5vw, 1.05rem);
           }
         }
       }
     }
   }
 
-  .map,
-  .details {
-    min-height: 280px;
+  @media screen and (max-width: 767px) {
+    .map,
+    .details {
+      width: 100%;
+    }
+
+    .details {
+      .addresses {
+        .address {
+          svg {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+          }
+
+          section {
+            width: 265px;
+
+            p {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    width: 100%;
+
+    .map {
+      min-width: 100%;
+    }
+
+    .details {
+      padding: 0.5rem;
+
+      p {
+        padding: 0.5rem 0;
+      }
+
+      h4 {
+        span {
+          font-size: clamp(0.7rem, 5vw, 1rem);
+        }
+      }
+
+      .addresses {
+        display: inline-block;
+
+        .address {
+          svg {
+            font-size: 0.8rem;
+            margin-right: 0.25rem;
+          }
+
+          section {
+            width: 150px;
+
+            span {
+              font-size: clamp(0.7rem, 5vw, 1rem);
+            }
+
+            p {
+              font-size: clamp(0.6rem, 5vw, 0.9rem);
+              height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
   }
 }

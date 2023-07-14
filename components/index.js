@@ -14,7 +14,7 @@ import MapContainer from './Map';
 import WithAuth from './WithAuth';
 import NoAuthRender from './NoAuthRender';
 import AddPaymentMethod from './AddPaymentMethod';
-import OrderCard from './OrderCard';
+import MoveCard from './MoveCard';
 import DashboardNavbar from './DashboardNavbar.js';
 
 export {
@@ -34,6 +34,6 @@ export {
   WithAuth,
   NoAuthRender,
   AddPaymentMethod,
-  OrderCard,
+  MoveCard,
   DashboardNavbar,
 };

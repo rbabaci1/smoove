@@ -91,6 +91,7 @@ const MapContainer = ({ addresses, height = '230px' }) => {
           const bounds = new mapboxgl.LngLatBounds()
             .extend([pickupLongitude, pickupLatitude])
             .extend([dropOffLongitude, dropOffLatitude]);
+
           map.fitBounds(bounds, {
             padding: 40,
             maxZoom: 11,

@@ -4,52 +4,23 @@
 .dashboardWrapper {
   background-color: $primary-color;
 
-  .navBarWrapper {
-    background-color: $light-blue;
-    height: 4rem;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-
-    nav {
-      @include flex(row, space-evenly, center);
-      height: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-
-      span {
-        font-size: clamp(0.9rem, 4vw, 1.2rem);
-        font-weight: 500;
-        cursor: pointer;
-        border-bottom: 2px solid transparent;
-        line-height: 1.5rem;
-        transition-duration: 0.3s;
-
-        &:hover {
-          color: $main-color;
-          border-color: $main-color;
-        }
-      }
-
-      .activeItem {
-        color: $main-color;
-        border-color: $main-color;
-      }
-    }
-  }
-
   .main {
     max-width: 1200px;
     margin: 0 auto;
     border: 1px solid red;
+    min-height: calc(100dvh - 4rem);
+    padding: 2rem 1.5rem;
 
     .dashboardContainer {
     }
 
     @media screen and (max-width: 767px) {
+      min-height: calc(100dvh - 3rem);
     }
 
     @media screen and (max-width: 374px) {
+      min-height: calc(100dvh - 2rem);
+      padding: 1.5rem 0.5rem;
     }
   }
 }

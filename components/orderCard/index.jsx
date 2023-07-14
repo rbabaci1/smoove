@@ -1,4 +1,4 @@
-import { MapContainer } from '..';
+import MapContainer from '../Map';
 
 import styles from './styles.module.scss';
 

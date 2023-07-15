@@ -15,7 +15,9 @@ const MyMoves = ({ userOrders, fetchingOrders }) => {
         {fetchingOrders ? (
           <AiOutlineLoading3Quarters className={`${styles.loading} loading`} />
         ) : userOrders.length > 0 ? (
-          userOrders.map(order => <MoveCard key={order.id} order={order} />)
+          userOrders.map((order, index) => (
+            <MoveCard key={order.id} order={order} index={index + 1} />
+          ))
         ) : (
           <p>No moves to display. Book your next move!</p>
         )}

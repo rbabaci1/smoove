@@ -53,9 +53,7 @@ const Dashboard = () => {
       <div className={styles.main}>
         <button onClick={() => router.push('/estimate')}>Book a move</button>
 
-        <div className={styles.dashboardContainer}>
-          {renderDashboardContainer()}
-        </div>
+        {renderDashboardContainer()}
       </div>
     </div>
   );

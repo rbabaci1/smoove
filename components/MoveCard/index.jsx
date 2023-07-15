@@ -2,20 +2,39 @@ import {
   BsFillArrowUpCircleFill,
   BsFillArrowDownCircleFill,
 } from 'react-icons/bs';
+import { motion } from 'framer-motion';
 
 import MapContainer from '../Map';
 import styles from './styles.module.scss';
 
-const MoveCard = ({ order }) => {
+const statusColors = {
+  draft: '#f0f0f0',
+  confirmed: '#00ff00',
+  ongoing: '#ffa500',
+  completed: '#008000',
+  canceled: '#ff0000',
+  pending: '#cccccc',
+};
+
+const MoveCard = ({ order, index }) => {
   const { addresses, movingDate, movingWindow, vehicleType, status } = order;
 
   const pickupAddress = addresses.pickup.place_name.split(',');
   const dropOffAddress = addresses.dropOff.place_name.split(',');
 
-  console.log({ status });
-
   return (
-    <div className={styles.container}>
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0, y: index * 30 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      <div
+        className={styles.status}
+        style={{ backgroundColor: statusColors[status] }}
+      >
+        Status: {status}
+      </div>
+
       <div className={styles.map}>
         {/* <MapContainer
           addresses={addresses}
@@ -55,7 +74,7 @@ const MoveCard = ({ order }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

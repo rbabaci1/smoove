@@ -26,7 +26,7 @@
 
   .map,
   .details {
-    min-height: 260px;
+    min-height: 240px;
   }
 
   .map {
@@ -67,11 +67,15 @@
     }
 
     .addresses {
-      @include flex(column, space-evenly, flex-start);
+      @include flex(column, flex-end, flex-start);
       flex: 1;
 
       .address {
         @include flex(row, flex-start);
+
+        &:first-child {
+          padding-bottom: 0.5rem;
+        }
 
         svg {
           margin-right: 0.75rem;

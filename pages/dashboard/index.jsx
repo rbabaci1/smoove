@@ -3,17 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { DashboardNavbar, WithAuth } from '@/components';
+import { MyMove, MyMoves, MyAccount } from '@/containers/Dashboard';
 import { getUserOrders } from '@/lib';
-import { MyMoves, MyAccount } from '@/containers/Dashboard';
 import styles from './styles.module.scss';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { user } = useSelector(state => state.auth);
+
   const [fetchingOrders, setFetchingOrders] = useState(true);
   const [userOrders, setUserOrders] = useState([]);
   const [activeContainer, setActiveContainer] = useState(1);
+  const [selectedMove, setSelectedMove] = useState(null);
 
   useEffect(() => {
     // Scroll to top of the page when user changes step
@@ -35,13 +37,17 @@ const Dashboard = () => {
   }, [user.uid]);
 
   const dashboardComponents = {
-    1: <MyMoves userOrders={userOrders} fetchingOrders={fetchingOrders} />,
+    1: (
+      <MyMoves
+        userOrders={userOrders}
+        fetchingOrders={fetchingOrders}
+        setActiveContainer={setActiveContainer}
+        setSelectedMove={setSelectedMove}
+      />
+    ),
     2: <MyAccount />,
+    3: <MyMove selectedMove={selectedMove} />,
   };
-
-  const renderDashboardContainer = () => (
-    <div>{dashboardComponents[activeContainer]}</div>
-  );
 
   return (
     <div className={styles.dashboardWrapper}>
@@ -53,7 +59,7 @@ const Dashboard = () => {
       <div className={styles.main}>
         <button onClick={() => router.push('/estimate')}>Book a move</button>
 
-        {renderDashboardContainer()}
+        {dashboardComponents[activeContainer]}
       </div>
     </div>
   );

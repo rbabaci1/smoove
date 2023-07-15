@@ -8,6 +8,7 @@ import {
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
 const MapContainer = ({
+  orderId,
   addresses,
   height = '230px',
   radius = '0.75rem 0.75rem 0 0',
@@ -18,10 +19,9 @@ const MapContainer = ({
   const [pickupLongitude, pickupLatitude] = pickup.center;
   const [dropOffLongitude, dropOffLatitude] = dropOff.center;
 
-  const mapContainerId = `map-container-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
-
-  const mapUpIconId = `map-up-icon-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
-  const mapDownIconId = `map-down-icon-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
+  const mapContainerId = `map-container-${orderId}`;
+  const mapUpIconId = `map-up-icon-${orderId}`;
+  const mapDownIconId = `map-down-icon-${orderId}`;
 
   useEffect(() => {
     if (!pickup || !dropOff) return;

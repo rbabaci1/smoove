@@ -14,12 +14,7 @@ const DashboardNavbar = ({ activeContainer, setActiveContainer }) => {
   return (
     <div className={styles.navBarWrapper}>
       <nav>
-        <span
-          onClick={() => router.push('/')}
-          className={activeContainer === 0 ? styles.activeItem : null}
-        >
-          Home
-        </span>
+        <span onClick={() => router.push('/')}>Home</span>
 
         <span
           onClick={() => setActiveContainer(1)}
@@ -35,12 +30,7 @@ const DashboardNavbar = ({ activeContainer, setActiveContainer }) => {
           My Account
         </span>
 
-        <span
-          onClick={logOut}
-          className={activeContainer === 3 ? styles.activeItem : null}
-        >
-          Log Out
-        </span>
+        <span onClick={logOut}>Log Out</span>
       </nav>
     </div>
   );

@@ -16,19 +16,14 @@ const statusColors = {
   pending: '#cccccc',
 };
 
-const MoveCard = ({ order, index }) => {
+const MoveCard = ({ order, index, selectMove }) => {
   const { addresses, movingDate, movingWindow, vehicleType, status } = order;
 
   const pickupAddress = addresses.pickup.place_name.split(',');
   const dropOffAddress = addresses.dropOff.place_name.split(',');
 
   return (
-    <motion.div
-      className={styles.container}
-      initial={{ opacity: 0, y: index * 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-    >
+    <motion.div className={styles.container} onClick={() => selectMove(order)}>
       <div
         className={styles.status}
         style={{ backgroundColor: statusColors[status] }}
@@ -37,11 +32,12 @@ const MoveCard = ({ order, index }) => {
       </div>
 
       <div className={styles.map}>
-        <MapContainer
+        {/* <MapContainer
+          orderId={order.id}
           addresses={addresses}
           height='240px'
           radius='0.75rem 0 0 0.75rem'
-        />
+        /> */}
       </div>
 
       <div className={styles.details}>

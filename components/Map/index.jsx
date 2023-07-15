@@ -13,17 +13,21 @@ const MapContainer = ({
   radius = '0.75rem 0.75rem 0 0',
 }) => {
   const [map, setMap] = useState(null);
-
   const { pickup, dropOff } = addresses;
 
   const [pickupLongitude, pickupLatitude] = pickup.center;
   const [dropOffLongitude, dropOffLatitude] = dropOff.center;
 
+  const mapContainerId = `map-container-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
+
+  const mapUpIconId = `map-up-icon-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
+  const mapDownIconId = `map-down-icon-${pickupLongitude}-${pickupLatitude}-${dropOffLongitude}-${dropOffLatitude}`;
+
   useEffect(() => {
     if (!pickup || !dropOff) return;
 
     const map = new mapboxgl.Map({
-      container: 'map-container',
+      container: mapContainerId,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: pickup.center,
       zoom: 15,
@@ -35,7 +39,7 @@ const MapContainer = ({
     return () => {
       map.remove();
     };
-  }, [pickup, dropOff]);
+  }, [pickup, dropOff, mapContainerId]);
 
   const apiUrl = useMemo(() => {
     return `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupLongitude},${pickupLatitude};${dropOffLongitude},${dropOffLatitude}?geometries=geojson&access_token=${MAPBOX_ACCESS_TOKEN}`;
@@ -51,12 +55,12 @@ const MapContainer = ({
           //  pickup marker
           const pickupMarker = new mapboxgl.Marker({
             draggable: false,
-            element: document.getElementById('map-up-icon'),
+            element: document.getElementById(mapUpIconId),
           });
           // drop off marker
           const dropOffMarker = new mapboxgl.Marker({
             draggable: false,
-            element: document.getElementById('map-down-icon'),
+            element: document.getElementById(mapDownIconId),
           });
 
           map.on('load', function () {
@@ -109,16 +113,32 @@ const MapContainer = ({
     pickupLatitude,
     dropOffLongitude,
     dropOffLatitude,
+    mapUpIconId,
+    mapDownIconId,
   ]);
 
   return (
     <>
-      <div id='map-container' style={{ height, borderRadius: radius }} />
+      <div
+        id={mapContainerId}
+        className='map-container'
+        style={{ height, borderRadius: radius }}
+      />
 
       <div style={{ visibility: 'hidden' }}>
-        <BsFillArrowUpCircleFill id='map-up-icon' size={23} color='green' />
+        <BsFillArrowUpCircleFill
+          style={{ backgroundColor: '#fff', borderRadius: '50%' }}
+          id={mapUpIconId}
+          size={22}
+          color='green'
+        />
 
-        <BsFillArrowDownCircleFill id='map-down-icon' size={23} color='red' />
+        <BsFillArrowDownCircleFill
+          style={{ backgroundColor: '#fff', borderRadius: '50%' }}
+          id={mapDownIconId}
+          size={22}
+          color='red'
+        />
       </div>
     </>
   );

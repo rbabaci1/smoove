@@ -27,6 +27,7 @@ const MoveCard = ({ order, index }) => {
       className={styles.container}
       initial={{ opacity: 0, y: index * 30 }}
       animate={{ opacity: 1, y: 0 }}
+      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
     >
       <div
         className={styles.status}
@@ -36,11 +37,11 @@ const MoveCard = ({ order, index }) => {
       </div>
 
       <div className={styles.map}>
-        {/* <MapContainer
+        <MapContainer
           addresses={addresses}
           height='260px'
           radius='0.75rem 0 0 0.75rem'
-        /> */}
+        />
       </div>
 
       <div className={styles.details}>

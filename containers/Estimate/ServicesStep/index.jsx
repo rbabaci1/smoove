@@ -7,7 +7,7 @@ import {
   updateOrderStatus,
 } from '@/state/reduxSlices/orderSlice';
 import { ServiceType } from '@/components';
-import { service1, service2, service3, service4 } from '@/public/images';
+import { service1, service2 } from '@/public/images';
 import styles from './styles.module.scss';
 
 const ServicesStep = () => {
@@ -39,11 +39,14 @@ const ServicesStep = () => {
             service='Regular move'
             img={service1}
             uniqueStyles={{ top: '1rem' }}
+            tooltip={`Efficient and flexible moving. Load your items into our truck and we'll charge based on time and distance.`}
           />
+
           <ServiceType
             service='Store delivery'
             img={service2}
             uniqueStyles={{ transform: 'scale(0.95)', top: '0.3rem' }}
+            tooltip={`Convenient store-to-door delivery. Flat-rate pricing based on distance for hassle-free service.`}
           />
         </div>
       </div>

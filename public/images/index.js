@@ -1,5 +1,4 @@
 import fam1 from './fam1.jpg';
-import fam2 from './fam2.jpg';
 import loading from './loading.jpg';
 import truck from './truck.jpg';
 import howItWorks1 from './howItWorks1.png';
@@ -18,8 +17,7 @@ import trucks from './trucks.png';
 import bgImg from './bgImg.png';
 import service1 from './service1.png';
 import service2 from './service2.png';
-import service3 from './service3.png';
-import service4 from './service4.png';
+
 import pickup from './pickup.png';
 import cargoVan from './cargoVan.png';
 import boxTruck from './boxTruck.png';
@@ -28,10 +26,10 @@ import visa from './visa.png';
 import mastercard from './mastercard.png';
 import amex from './amex.png';
 import discover from './discover.png';
+import rabah from './rabah.jpg';
 
 export {
   fam1,
-  fam2,
   loading,
   truck,
   howItWorks1,
@@ -50,8 +48,6 @@ export {
   bgImg,
   service1,
   service2,
-  service3,
-  service4,
   pickup,
   cargoVan,
   boxTruck,
@@ -60,4 +56,5 @@ export {
   mastercard,
   amex,
   discover,
+  rabah,
 };

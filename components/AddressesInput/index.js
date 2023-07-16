@@ -132,7 +132,7 @@ const AddressesInput = ({
             <p
               className={`${styles.label} ${error.pickup ? styles.error : ''}`}
             >
-              Point A
+              Pickup address
             </p>
 
             <AddressAutosuggest
@@ -163,7 +163,7 @@ const AddressesInput = ({
             <p
               className={`${styles.label} ${error.pickup ? styles.error : ''}`}
             >
-              Point B
+              Destination
             </p>
 
             <AddressAutosuggest

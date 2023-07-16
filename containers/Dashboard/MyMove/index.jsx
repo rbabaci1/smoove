@@ -5,15 +5,7 @@ import {
   BsFillArrowDownCircleFill,
 } from 'react-icons/bs';
 
-import {
-  pickup,
-  cargoVan,
-  boxTruck,
-  visa,
-  mastercard,
-  amex,
-  discover,
-} from '@/public/images';
+import { pickup, cargoVan, boxTruck } from '@/public/images';
 import { MapContainer } from '@/components';
 import { getCardImgSrc } from '@/lib';
 import styles from './styles.module.scss';
@@ -65,12 +57,12 @@ const MyMove = ({ selectedMove }) => {
       </div>
 
       <div className={styles.map}>
-        {/* <MapContainer
+        <MapContainer
           orderId={selectedMove.id}
           addresses={selectedMove.addresses}
           height='300px'
           radius='0.75rem'
-        /> */}
+        />
       </div>
 
       <div className={styles.details}>

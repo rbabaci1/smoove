@@ -33,11 +33,27 @@
     background-color: $primary-color;
     text-align: center;
 
-    svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      color: $apricot;
-      margin-top: 0.4rem;
+    section {
+      @include flex();
+
+      svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        color: $apricot;
+        margin-top: 0.4rem;
+      }
+
+      span {
+        display: inline-block;
+        border: 1px solid $main-color;
+        background-color: $white;
+        border-radius: 50%;
+        height: 1.15rem;
+        width: 1.15rem;
+        line-height: 1.15rem;
+        color: $main-color;
+        margin-left: 0.3rem;
+      }
     }
   }
 

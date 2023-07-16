@@ -40,9 +40,9 @@ const AddressAutosuggest = ({
       getSuggestionValue={getSuggestionValue}
       renderSuggestion={renderSuggestion}
       inputProps={{
-        placeholder: `${
-          addressType === 'pickup' ? 'Pickup' : 'DropOff'
-        } address`,
+        placeholder: `Enter ${
+          addressType === 'pickup' ? 'Pickup' : 'Drop-off'
+        }`,
         autoComplete: 'off',
         className,
         name: addressType,

@@ -69,6 +69,7 @@ const orderSlice = createSlice({
     goToPreviousEstimateStep: state => {
       state.estimateStep -= 1;
     },
+
     goToSpecificEstimateStep: (state, action) => {
       state.estimateStep = action.payload;
     },

@@ -15,7 +15,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
-import { parseAddress } from '@/lib';
+import { parseAddress, getAvailableMovingWindows } from '@/lib';
 import { DatePicker, MapContainer } from '@/components';
 import {
   goToSpecificEstimateStep,
@@ -24,23 +24,6 @@ import {
   updateAdditionalContacts,
 } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
-
-const movingWindows = [
-  '7am - 8am',
-  '8am - 9am',
-  '9am - 10am',
-  '10am - 11am',
-  '11am - 12pm',
-  '12pm - 1pm',
-  '1pm - 2pm',
-  '2pm - 3pm',
-  '3pm - 4pm',
-  '4pm - 5pm',
-  '5pm - 6pm',
-  '6pm - 7pm',
-  '7pm - 8pm',
-  '8pm - 9pm',
-];
 
 const EditIcon = ({ step = 1 }) => {
   const dispatch = useDispatch();
@@ -62,9 +45,9 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
     price,
     vehicleType,
     description,
-    estimateStep,
     additionalContacts,
   } = useSelector(state => state.order);
+  const [availableMovingWindows, setAvailableMovingWindows] = useState([]);
   const [newContact, setNewContact] = useState({ name: '', phoneNumber: '' });
   const [showContacts, setShowContacts] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -76,12 +59,19 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
 
     window.addEventListener('resize', handleResize);
     handleResize(); // Call the handler once to set the initial value
-    dispatch(setMovingWindow(movingWindows[0]));
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    setAvailableMovingWindows(getAvailableMovingWindows(movingDate));
+  }, [movingDate]);
+
+  useEffect(() => {
+    dispatch(setMovingWindow(availableMovingWindows[0]));
+  }, [dispatch, availableMovingWindows]);
 
   const selectWindow = window => {
     dispatch(setMovingWindow(window));
@@ -143,17 +133,23 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
               </span>
 
               <div className={styles.movingWindowsList}>
-                {movingWindows.map((window, index) => (
-                  <span
-                    key={index}
-                    className={`${
-                      movingWindow === window ? styles.movingWindowSelected : ''
-                    }`}
-                    onClick={() => selectWindow(window)}
-                  >
-                    {window}
-                  </span>
-                ))}
+                {availableMovingWindows.length > 0 ? (
+                  availableMovingWindows.map((window, index) => (
+                    <span
+                      key={index}
+                      className={`${
+                        movingWindow === window
+                          ? styles.movingWindowSelected
+                          : ''
+                      }`}
+                      onClick={() => selectWindow(window)}
+                    >
+                      {window}
+                    </span>
+                  ))
+                ) : (
+                  <span>No available windows</span>
+                )}
               </div>
             </div>
           </motion.div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Carousel as ImagesCarousel } from 'antd';
 
-import { fam1, loading, truck, rabah } from '/public/images';
+import { fam1, fam2, loading, truck, rabah } from '/public/images';
 import styles from './styles.module.scss';
 
 const Carousel = () => {
@@ -14,7 +14,7 @@ const Carousel = () => {
     >
       <div className={styles.item}>
         <Image
-          src={truck}
+          src={loading}
           alt='happy family moved in'
           loading='eager'
           priority
@@ -23,9 +23,10 @@ const Carousel = () => {
 
       <div className={styles.item}>
         <Image
-          src={loading}
+          src={fam2}
           width='auto'
           height='auto'
+          loading='eager'
           alt='happy family unpacking after moving'
         />
       </div>
@@ -35,7 +36,18 @@ const Carousel = () => {
           src={rabah}
           width='auto'
           height='auto'
+          loading='eager'
           alt='company moving truck'
+        />
+      </div>
+
+      <div className={styles.item}>
+        <Image
+          src={truck}
+          width='auto'
+          height='auto'
+          loading='eager'
+          alt='movers loading truck'
         />
       </div>
 
@@ -44,6 +56,7 @@ const Carousel = () => {
           src={fam1}
           width='auto'
           height='auto'
+          loading='eager'
           alt='movers loading truck'
         />
       </div>

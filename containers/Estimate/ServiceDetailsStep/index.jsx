@@ -40,7 +40,6 @@ const movingWindows = [
   '6pm - 7pm',
   '7pm - 8pm',
   '8pm - 9pm',
-  '9pm - 10pm',
 ];
 
 const EditIcon = ({ step = 1 }) => {

@@ -32,6 +32,7 @@ const MapContainer = ({
       center: pickup.center,
       zoom: 15,
       accessToken: MAPBOX_ACCESS_TOKEN,
+      dragPan: false,
     });
 
     setMap(map);

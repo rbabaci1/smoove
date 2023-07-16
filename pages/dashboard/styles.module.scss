@@ -8,7 +8,7 @@
     @include flex(column, flex-start);
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(120dvh - 5rem);
+    min-height: calc(100dvh - 5rem);
     padding: 2rem 1.5rem;
 
     button {

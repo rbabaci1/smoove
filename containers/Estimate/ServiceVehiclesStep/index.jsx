@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 const vehicles = [
   {
-    name: 'Pickup',
+    name: 'Pickup truck',
     image: pickup,
     description: 'Single items deliveries, small items and loads.',
     price: '$32 + $1.52 per moving min',
@@ -18,7 +18,7 @@ const vehicles = [
     tooltip: 'Base fee of $62 + $1.85 per labor minute for loading/unloading.',
   },
   {
-    name: 'Large',
+    name: 'Large van',
     image: boxTruck,
     description: 'Large moves, purchases, and deliveries.',
     price: '$101 + $2.05 per moving min',

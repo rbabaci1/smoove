@@ -23,7 +23,13 @@ const MoveCard = ({ order, index, selectMove }) => {
   const dropOffAddress = addresses.dropOff.place_name.split(',');
 
   return (
-    <motion.div className={styles.container} onClick={() => selectMove(order)}>
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0, y: index * 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+      onClick={() => selectMove(order)}
+    >
       <div
         className={styles.status}
         style={{ backgroundColor: statusColors[status] }}

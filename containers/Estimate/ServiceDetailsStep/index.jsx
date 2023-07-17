@@ -263,7 +263,8 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
 
         {/* Right side container */}
         <div className={styles.mapDetails}>
-          {!isMobile && <MapContainer addresses={{ pickup, dropOff }} />}
+          {/* {!isMobile && } */}
+          <MapContainer addresses={{ pickup, dropOff }} />
 
           <div className={styles.details}>
             <div className={styles.addresses}>

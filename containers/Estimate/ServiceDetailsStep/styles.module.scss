@@ -292,7 +292,8 @@
     }
 
     .mapDetails {
-      display: none;
+      min-width: 100%;
+      margin-top: 0;
     }
 
     .descContact {
@@ -338,6 +339,21 @@
 
       svg {
         transform: scale(1.4);
+      }
+    }
+
+    .mapDetails {
+      span {
+        font-size: clamp(0.65rem, 4.5vw, 1rem);
+      }
+
+      .dataIcon,
+      .editIcon {
+        transform: scale(0.8) !important;
+      }
+
+      h3 {
+        font-size: clamp(0.7rem, 4.5vw, 1rem) !important;
       }
     }
   }

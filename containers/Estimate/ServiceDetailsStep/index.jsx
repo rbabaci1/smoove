@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
+import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import {
   AiOutlineEdit,
   AiOutlineCloseSquare,
@@ -11,9 +13,6 @@ import {
   BsCalendarCheck,
   BsTruck,
 } from 'react-icons/bs';
-
-import { motion, AnimatePresence } from 'framer-motion';
-import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 import { parseAddress, getAvailableMovingWindows } from '@/lib';
 import { DatePicker, MapContainer } from '@/components';
@@ -50,20 +49,6 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
   const [availableMovingWindows, setAvailableMovingWindows] = useState([]);
   const [newContact, setNewContact] = useState({ name: '', phoneNumber: '' });
   const [showContacts, setShowContacts] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Change 768 to your desired mobile width threshold
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Call the handler once to set the initial value
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [dispatch]);
 
   useEffect(() => {
     setAvailableMovingWindows(getAvailableMovingWindows(movingDate));

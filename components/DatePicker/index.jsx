@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { addDays, format } from 'date-fns';
-import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
+import { addDays, format } from 'date-fns';
+import { motion, AnimatePresence } from 'framer-motion';
+import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 
 import { setMovingDate } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
@@ -83,52 +84,61 @@ const NextJSDatePicker = () => {
           );
         })}
 
-        {showMoreDates ? (
-          <>
-            {dateRange.slice(endOfFirstRangeIndex + 1).map((date, i) => {
-              const dayOfWeek = date
-                .toLocaleString('en-us', { weekday: 'short' })
-                .toUpperCase();
-
-              const isStartOfMonth = date.getDate() === 1;
-
-              return (
-                <div
-                  className={`${styles.day} ${
-                    isStartOfMonth ? styles.firstDayOfMonth : ''
-                  } ${
-                    date.getDate() === selectedDate.getDate()
-                      ? styles.selectedDate
-                      : ''
-                  }`}
-                  key={i}
-                  onClick={() => handleDateChange(date)}
-                >
-                  {isStartOfMonth ? (
-                    <span>{format(date, 'MMMM')}</span>
-                  ) : (
-                    <span>{dayOfWeek}</span>
-                  )}
-                  <h4>{date.getDate()}</h4>
-                </div>
-              );
-            })}
-
-            <div
-              className={styles.lessBtn}
-              onClick={() => setShowMoreDates(false)}
+        <AnimatePresence>
+          {showMoreDates ? (
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
             >
-              <AiOutlineUp />
-            </div>
-          </>
-        ) : (
-          <div
-            className={styles.moreBtn}
-            onClick={() => setShowMoreDates(true)}
-          >
-            <AiOutlineDown />
-          </div>
-        )}
+              {dateRange.slice(endOfFirstRangeIndex + 1).map((date, i) => {
+                const dayOfWeek = date
+                  .toLocaleString('en-us', { weekday: 'short' })
+                  .toUpperCase();
+
+                const isStartOfMonth = date.getDate() === 1;
+
+                return (
+                  <div
+                    className={`${styles.day} ${
+                      isStartOfMonth ? styles.firstDayOfMonth : ''
+                    } ${
+                      date.getDate() === selectedDate.getDate()
+                        ? styles.selectedDate
+                        : ''
+                    }`}
+                    key={i}
+                    onClick={() => handleDateChange(date)}
+                  >
+                    {isStartOfMonth ? (
+                      <span>{format(date, 'MMMM')}</span>
+                    ) : (
+                      <span>{dayOfWeek}</span>
+                    )}
+                    <h4>{date.getDate()}</h4>
+                  </div>
+                );
+              })}
+
+              <div
+                className={styles.lessBtn}
+                onClick={() => setShowMoreDates(false)}
+              >
+                <AiOutlineUp />
+              </div>
+            </motion.section>
+          ) : (
+            <motion.div
+              className={styles.moreBtn}
+              onClick={() => setShowMoreDates(true)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <AiOutlineDown />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

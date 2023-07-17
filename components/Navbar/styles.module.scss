@@ -40,12 +40,6 @@
         left: 3rem;
         width: 100%;
       }
-
-      // h2 {
-      //   margin-bottom: 0.3rem;
-      //   font-size: clamp(1.8rem, 4.5vw, 2.3rem);
-      //   color: $main-color;
-      // }
     }
 
     .burgerMenu {
@@ -57,8 +51,8 @@
         color: $main-color;
         cursor: pointer;
       }
-      @media screen and (max-width: 389px) {
-        font-size: 1rem;
+      @media screen and (max-width: 374px) {
+        font-size: clamp(1.2rem, 5vw, 1.4rem);
       }
     }
 

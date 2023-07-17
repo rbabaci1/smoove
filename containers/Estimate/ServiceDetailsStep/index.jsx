@@ -148,7 +148,7 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
                     </span>
                   ))
                 ) : (
-                  <span>No available windows</span>
+                  <span>No available windows for the selected date.</span>
                 )}
               </div>
             </div>

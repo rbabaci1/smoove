@@ -20,8 +20,11 @@ import { AddressAutosuggest } from '@/components';
 const GetAnEstimate = ({ bgColor = '#f7faff' }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { addresses, userLocation } = useSelector(state => state.order);
+
+  const { userLocation } = useSelector(state => state.auth);
+  const { addresses } = useSelector(state => state.order);
   const { pickup, dropOff, typingValues } = addresses;
+
   const [suggestions, setSuggestions] = useState({
     pickup: [],
     dropOff: [],

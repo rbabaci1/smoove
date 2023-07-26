@@ -431,3 +431,8 @@ a {
 .mapboxgl-ctrl-bottom-right {
   display: none;
 }
+
+.ant-drawer-body {
+  @include flex(column, flex-start, flex-start);
+  gap: 2rem;
+}

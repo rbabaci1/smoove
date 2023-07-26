@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Drawer } from 'antd';
+import { Drawer, Divider } from 'antd';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
 
@@ -47,13 +47,42 @@ function Navbar() {
 
           <Drawer
             placement='left'
+            title={
+              <>
+                <Image
+                  style={{ transform: 'scale(0.5)', position: 'absolute' }}
+                  src={logo}
+                  alt='company logo'
+                  priority
+                />
+
+                <AiOutlineClose onClick={onClose} />
+              </>
+            }
             onClose={onClose}
             closable={false}
             mask={false}
             open={open}
-            width='80%'
+            // width='80%'
           >
-            <p>Some contents...</p>
+            <Dropdown mobile />
+
+            <Divider style={{ margin: 0 }} />
+
+            <Link href='/login' className={styles.loginLink}>
+              Sign in
+              <HiOutlineUser />
+            </Link>
+
+            <Divider style={{ margin: 0 }} />
+
+            <motion.button
+              whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+              type='text'
+              onClick={() => router.push('/estimate')}
+            >
+              Book now
+            </motion.button>
           </Drawer>
         </div>
 

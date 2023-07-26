@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { Drawer, Divider } from 'antd';
+import { Drawer } from 'antd';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
 import { BiLogOutCircle } from 'react-icons/bi';
@@ -17,13 +17,12 @@ function Navbar() {
   const router = useRouter();
   const { user } = useSelector(state => state.auth);
 
-  console.log({ user });
-
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
     setOpen(true);
   };
+
   const onClose = () => {
     setOpen(false);
   };
@@ -95,8 +94,6 @@ function Navbar() {
                 onClick={onClose}
               />
             </section>
-
-            {/* <Divider style={{ margin: 0 }} /> */}
 
             <motion.button
               whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}

@@ -51,6 +51,7 @@ function Navbar() {
             closable={false}
             mask={false}
             open={open}
+            width={'100%'}
           >
             <section
               style={{
@@ -87,7 +88,7 @@ function Navbar() {
 
               <AiOutlineClose
                 style={{
-                  fontSize: '2.2rem',
+                  fontSize: '2rem',
                   color: '#410eff',
                   cursor: 'pointer',
                 }}

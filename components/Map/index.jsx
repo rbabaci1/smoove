@@ -33,6 +33,7 @@ const MapContainer = ({
       zoom: 13,
       accessToken: MAPBOX_ACCESS_TOKEN,
       dragPan: false,
+      scrollZoom: false,
     });
 
     setMap(map);

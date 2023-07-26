@@ -45,20 +45,21 @@
     .burgerMenu {
       display: none;
 
-      @media screen and (max-width: 850px) {
+      @media screen and (max-width: 767px) {
         display: block;
         font-size: 2.2rem;
         color: $main-color;
         cursor: pointer;
       }
+
       @media screen and (max-width: 374px) {
         font-size: clamp(1.2rem, 5vw, 1.4rem);
       }
     }
 
     .navLinks {
-      @include flex(row, space-between);
-      width: 40%;
+      @include flex(row, flex-end);
+      gap: 4rem;
 
       .loginLink {
         @include flex();
@@ -68,7 +69,7 @@
         }
       }
 
-      @media screen and (max-width: 850px) {
+      @media screen and (max-width: 767px) {
         display: none;
       }
     }

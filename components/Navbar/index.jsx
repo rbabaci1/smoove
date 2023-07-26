@@ -2,17 +2,22 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Drawer, Divider } from 'antd';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
+import { BiLogOutCircle } from 'react-icons/bi';
 
-import { Dropdown } from '@/components';
 import { logo } from '@/public/images';
+import { auth } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
 function Navbar() {
   const router = useRouter();
+  const { user } = useSelector(state => state.auth);
+
+  console.log({ user });
 
   const [open, setOpen] = useState(false);
 
@@ -21,6 +26,13 @@ function Navbar() {
   };
   const onClose = () => {
     setOpen(false);
+  };
+
+  const handleLogOut = () => {
+    if (confirm('Are you sure you want to log out?')) {
+      router.replace('/');
+      auth.signOut();
+    }
   };
 
   return (
@@ -32,49 +44,59 @@ function Navbar() {
         </Link>
 
         <div className={styles.burgerMenu}>
-          {open ? (
-            <motion.section
-              initial={{ rotate: 0, opacity: 0 }}
-              animate={{ rotate: 360, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <AiOutlineClose onClick={onClose} />
-            </motion.section>
-          ) : (
-            <AiOutlineMenu onClick={showDrawer} />
-          )}
+          {open ? null : <AiOutlineMenu onClick={showDrawer} />}
 
           <Drawer
             placement='left'
-            title={
-              <>
-                <Image
-                  style={{ transform: 'scale(0.5)', position: 'absolute' }}
-                  src={logo}
-                  alt='company logo'
-                  priority
-                />
-
-                <AiOutlineClose onClick={onClose} />
-              </>
-            }
             onClose={onClose}
             closable={false}
             mask={false}
             open={open}
-            // width='80%'
           >
-            <Dropdown mobile />
+            <section
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderBottom: '1px solid #e8e8e8',
+                paddingBottom: '1.5rem',
+              }}
+            >
+              {user ? (
+                <p
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    margin: 0,
+                    cursor: 'pointer',
+                  }}
+                  onClick={handleLogOut}
+                >
+                  Log out
+                  <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
+                </p>
+              ) : (
+                <Link
+                  href='/'
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  Sign in
+                  <HiOutlineUser style={{ marginLeft: '0.2rem' }} />
+                </Link>
+              )}
 
-            <Divider style={{ margin: 0 }} />
+              <AiOutlineClose
+                style={{
+                  fontSize: '2.2rem',
+                  color: '#410eff',
+                  cursor: 'pointer',
+                }}
+                onClick={onClose}
+              />
+            </section>
 
-            <Link href='/login' className={styles.loginLink}>
-              Sign in
-              <HiOutlineUser />
-            </Link>
-
-            <Divider style={{ margin: 0 }} />
+            {/* <Divider style={{ margin: 0 }} /> */}
 
             <motion.button
               whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
@@ -87,8 +109,6 @@ function Navbar() {
         </div>
 
         <div className={styles.navLinks}>
-          <Dropdown />
-
           {/* Add later when partner page is built */}
           {/* <Link href='/partner'>Partners</Link> */}
 

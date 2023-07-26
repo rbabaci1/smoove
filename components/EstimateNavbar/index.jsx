@@ -142,7 +142,7 @@ const EstimateNavbar = ({
           </span>
 
           <h3>
-            {estimateStep === 9 ? (
+            {estimateStep === 8 ? (
               <motion.button
                 onClick={confirmBooking}
                 initial={{ y: 20, opacity: 0 }}

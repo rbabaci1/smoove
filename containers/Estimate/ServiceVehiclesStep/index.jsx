@@ -1,37 +1,41 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { VehicleCard } from '@/components';
 import { pickup, cargoVan, boxTruck } from '@/public/images';
+import { updateOrderStatus } from '@/state/reduxSlices/orderSlice';
 import styles from './styles.module.scss';
 
+const vehicles = [
+  {
+    name: 'Pickup truck',
+    image: pickup,
+    description: 'Single items deliveries, small items and loads.',
+    price: '$32 + $1.52 per moving min',
+    tooltip: 'Base fee of $32 + $1.52 per labor minute for loading/unloading.',
+  },
+  {
+    name: 'Medium size van',
+    image: cargoVan,
+    description: 'Small moves and deliveries of multi items.',
+    price: '$62 + $1.85 per moving min',
+    tooltip: 'Base fee of $62 + $1.85 per labor minute for loading/unloading.',
+  },
+  {
+    name: 'Large van',
+    image: boxTruck,
+    description: 'Large moves, purchases, and deliveries.',
+    price: '$101 + $2.05 per moving min',
+    tooltip: 'Base fee of $101 + $2.05 per labor minute for loading/unloading.',
+  },
+];
+
 const ServiceVehiclesStep = () => {
-  const vehicles = [
-    {
-      name: 'Pickup truck',
-      image: pickup,
-      description: 'Single items deliveries, small items and loads.',
-      price: '$32 + $1.52 per moving min',
-      storeDeliveryPrice: '$9.75 per mile',
-      tooltip:
-        'Base fee of $32 + $1.52 per labor minute for loading/unloading.',
-    },
-    {
-      name: 'Medium size van',
-      image: cargoVan,
-      description: 'Small moves and deliveries of multi items.',
-      price: '$62 + $1.85 per moving min',
-      storeDeliveryPrice: '$20.75 per mile',
-      tooltip:
-        'Base fee of $62 + $1.85 per labor minute for loading/unloading.',
-    },
-    {
-      name: 'Large van',
-      image: boxTruck,
-      description: 'Large moves, purchases, and deliveries.',
-      price: '$101 + $2.05 per moving min',
-      storeDeliveryPrice: '$30.25 per mile',
-      tooltip:
-        'Base fee of $101 + $2.05 per labor minute for loading/unloading.',
-    },
-  ];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateOrderStatus('draft'));
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>

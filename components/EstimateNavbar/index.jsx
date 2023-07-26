@@ -10,7 +10,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const stepsNames = [
   'Provide addresses',
-  'Select a category',
   'Select a vehicle',
   'Select Day & time',
   'Description',
@@ -49,12 +48,12 @@ const EstimateNavbar = ({
     if (estimateStep === 1) {
       router.push('/');
     } else if (
-      (estimateStep === 8 && user?.displayName && user?.email) ||
-      estimateStep === 6 ||
-      estimateStep === 7
+      (estimateStep === 7 && user?.displayName && user?.email) ||
+      estimateStep === 5 ||
+      estimateStep === 6
     ) {
-      dispatch(goToSpecificEstimateStep(4));
-    } else if (estimateStep === 4 && showMoreInfo) {
+      dispatch(goToSpecificEstimateStep(3));
+    } else if (estimateStep === 3 && showMoreInfo) {
       setShowMoreInfo(false);
     } else {
       dispatch(goToPreviousEstimateStep());
@@ -62,14 +61,14 @@ const EstimateNavbar = ({
   };
 
   const handleNext = () => {
-    if (estimateStep === 4) {
+    if (estimateStep === 3) {
       if (!showMoreInfo) {
         setShowMoreInfo(true);
       } else {
         if (user?.displayName && user?.email) {
-          dispatch(goToSpecificEstimateStep(8));
+          dispatch(goToSpecificEstimateStep(7));
         } else {
-          dispatch(goToSpecificEstimateStep(showMoreInfo && user ? 7 : 6));
+          dispatch(goToSpecificEstimateStep(user && showMoreInfo ? 6 : 5));
         }
       }
     } else {
@@ -130,13 +129,13 @@ const EstimateNavbar = ({
 
           {estimateStep > 1 ? (
             <span>
-              {estimateStep === 4 && showMoreInfo ? (
-                5
-              ) : estimateStep === 7 ? (
+              {estimateStep === 3 && showMoreInfo ? (
+                4
+              ) : estimateStep === 6 ? (
                 <AiFillLock />
-              ) : estimateStep === 8 ? (
+              ) : estimateStep === 7 ? (
                 <RiSecurePaymentFill />
-              ) : estimateStep === 9 ? (
+              ) : estimateStep === 8 ? (
                 <IoBagCheckOutline />
               ) : (
                 estimateStep
@@ -175,8 +174,8 @@ const EstimateNavbar = ({
         </section>
 
         <AnimatePresence>
-          {(estimateStep === 4 && !showMoreInfo) ||
-          (estimateStep === 4 && description.length) ? (
+          {(estimateStep === 3 && !showMoreInfo) ||
+          (estimateStep === 3 && description.length) ? (
             <section className={styles.nextButton}>
               <motion.button
                 onClick={handleNext}

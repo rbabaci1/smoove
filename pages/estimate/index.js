@@ -8,7 +8,6 @@ import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';
 import {
   AddressesInputStep,
-  ServicesStep,
   ServiceVehiclesStep,
   ServiceDetailsStep,
   AuthStep,
@@ -52,13 +51,12 @@ const Estimate = () => {
 
   const stepComponents = {
     1: <AddressesInputStep />,
-    2: <ServicesStep />,
-    3: <ServiceVehiclesStep />,
-    4: <ServiceDetailsStep showMoreInfo={showMoreInfo} />,
-    6: <AuthStep />,
-    7: <UserInfoStep />,
-    8: <PaymentMethodStep />,
-    9: <FinalStep />,
+    2: <ServiceVehiclesStep />,
+    3: <ServiceDetailsStep showMoreInfo={showMoreInfo} />,
+    5: <AuthStep />,
+    6: <UserInfoStep />,
+    7: <PaymentMethodStep />,
+    8: <FinalStep />,
   };
 
   const renderStepContainer = () => {

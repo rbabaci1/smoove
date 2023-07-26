@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 const VehicleCard = ({ vehicle }) => {
   const dispatch = useDispatch();
-  const { vehicleType, serviceType } = useSelector(state => state.order);
+  const { vehicleType } = useSelector(state => state.order);
 
   const handleVehicleTypeAndPricing = () => {
     dispatch(selectVehicleType(vehicle.name));
@@ -39,16 +39,12 @@ const VehicleCard = ({ vehicle }) => {
 
         <p>{vehicle.description}</p>
 
-        {serviceType === 'Regular move' ? (
-          <h4>
-            {vehicle.price}
-            <Tooltip title={vehicle.tooltip}>
-              <span>i</span>
-            </Tooltip>
-          </h4>
-        ) : (
-          <h4>{vehicle.storeDeliveryPrice}</h4>
-        )}
+        <h4>
+          {vehicle.price}
+          <Tooltip title={vehicle.tooltip}>
+            <span>i</span>
+          </Tooltip>
+        </h4>
       </section>
     </motion.div>
   );

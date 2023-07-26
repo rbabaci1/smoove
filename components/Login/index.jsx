@@ -146,8 +146,8 @@ const Login = ({ animate = true }) => {
 
             setVerifyingCode(false);
 
-            if (estimateStep === 6) {
-              dispatch(goToSpecificEstimateStep(displayName && email ? 8 : 7));
+            if (estimateStep === 5) {
+              dispatch(goToSpecificEstimateStep(displayName && email ? 7 : 6));
             } else {
               router.replace('/dashboard');
             }

@@ -84,7 +84,7 @@ const UserInfoStep = () => {
       setSaving(false);
 
       dispatch(setUser({ ...user, displayName, email }));
-      dispatch(goToSpecificEstimateStep(8));
+      dispatch(goToSpecificEstimateStep(7));
     } catch (error) {
       setSaving(false);
       setErrors({ ...errors, saving: true });

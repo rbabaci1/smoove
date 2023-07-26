@@ -30,7 +30,7 @@ const MapContainer = ({
       container: mapContainerId,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: pickup.center,
-      zoom: 15,
+      zoom: 13,
       accessToken: MAPBOX_ACCESS_TOKEN,
       dragPan: false,
     });
@@ -103,7 +103,7 @@ const MapContainer = ({
 
           map.fitBounds(bounds, {
             padding: 40,
-            maxZoom: 11,
+            maxZoom: 13,
           });
         });
     }

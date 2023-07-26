@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeftShort } from 'react-icons/bs';
-import { BiListUl, BiLogOutCircle } from 'react-icons/bi';
+import { BiLogOutCircle } from 'react-icons/bi';
 import { AiFillLock } from 'react-icons/ai';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import { IoBagCheckOutline } from 'react-icons/io5';
@@ -127,25 +127,19 @@ const EstimateNavbar = ({
             <BsArrowLeftShort onClick={handleBack} />
           </div>
 
-          {estimateStep > 1 ? (
-            <span>
-              {estimateStep === 3 && showMoreInfo ? (
-                4
-              ) : estimateStep === 6 ? (
-                <AiFillLock />
-              ) : estimateStep === 7 ? (
-                <RiSecurePaymentFill />
-              ) : estimateStep === 8 ? (
-                <IoBagCheckOutline />
-              ) : (
-                estimateStep
-              )}
-            </span>
-          ) : (
-            <span>
-              <BiListUl />
-            </span>
-          )}
+          <span>
+            {estimateStep === 3 && showMoreInfo ? (
+              4
+            ) : estimateStep === 6 ? (
+              <AiFillLock />
+            ) : estimateStep === 7 ? (
+              <RiSecurePaymentFill />
+            ) : estimateStep === 8 ? (
+              <IoBagCheckOutline />
+            ) : (
+              estimateStep
+            )}
+          </span>
 
           <h3>
             {estimateStep === 9 ? (

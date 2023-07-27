@@ -2,10 +2,11 @@
 @import '/styles/mixins.module.scss';
 
 .container {
+  @include flex(row, center, flex-start);
   padding: 8rem 1.5rem 1.5rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  @include flex(row, center, flex-start);
+  min-height: calc(100dvh - 5rem);
 
   .loginSignUp {
     max-width: 24rem;
@@ -29,7 +30,12 @@
     }
   }
 
+  @media screen and (max-width: 767px) {
+    min-height: calc(100dvh - 4rem);
+  }
+
   @media screen and (max-width: 374px) {
+    min-height: calc(100dvh - 3rem);
     padding: 8rem 0.5rem 0 0.5rem;
 
     .loginSignUp {

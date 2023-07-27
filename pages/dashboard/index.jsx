@@ -38,7 +38,18 @@ const Dashboard = () => {
     fetchOrders();
   }, [user.uid]);
 
-  const cancelMove = async () => {};
+  const cancelMove = async () => {
+    try {
+      setCancelingMove(true);
+
+      // !!! update order status to canceled
+    } catch (error) {
+      console.error('Error canceling move:', error);
+      toast.error('Error canceling move');
+    } finally {
+      setCancelingMove(false);
+    }
+  };
 
   const dashboardComponents = {
     1: (

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
-import styles from './styles.module.scss';
 import { EstimateNavbar } from '@/components';
 import {
   AddressesInputStep,
@@ -15,6 +14,7 @@ import {
   PaymentMethodStep,
 } from '@/containers/Estimate';
 import FinalStep from '@/containers/Estimate/FinalStep';
+import styles from './styles.module.scss';
 
 const transition = {
   type: 'spring',

@@ -6,6 +6,7 @@
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: calc(100dvh - 5rem);
 
   .dateTimeMovWinds {
     max-width: 550px;
@@ -283,6 +284,8 @@
   }
 
   @media screen and (max-width: 767px) {
+    min-height: calc(100dvh - 4rem);
+
     .dateTimeMovWinds {
       .movingWindows {
         h3 {
@@ -326,6 +329,7 @@
   }
 
   @media screen and (max-width: 374px) {
+    min-height: calc(100dvh - 3rem);
     padding: 1rem 0.5rem;
 
     .dateTimeMovWinds {

@@ -3,6 +3,7 @@
 
 .container {
   position: relative;
+  min-height: calc(100dvh - 5rem);
 
   .content {
     @include flex(column, flex-start);
@@ -34,6 +35,7 @@
     }
 
     @media screen and (max-width: 767px) {
+      min-height: calc(100dvh - 4rem);
       padding-top: 3rem;
 
       .header {
@@ -42,6 +44,7 @@
     }
 
     @media screen and (max-width: 374px) {
+      min-height: calc(100dvh - 3rem);
       padding: 1rem 0.5rem 0rem 0.5rem;
 
       .header {

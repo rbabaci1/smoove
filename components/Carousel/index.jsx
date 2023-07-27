@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const Carousel = () => {
   return (
     <ImagesCarousel
-      autoplay
+      // autoplay
       autoplaySpeed={10000}
       dots={false}
       className={styles.carousel}

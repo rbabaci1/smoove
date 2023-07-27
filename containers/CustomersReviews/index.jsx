@@ -122,7 +122,6 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}
-            play={false}
           >
             {reviews.map((review, index) => (
               <CustomerReview key={index} {...review} />
@@ -137,7 +136,6 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}
-            play={false}
           >
             {reviews.reverse().map((review, index) => (
               <CustomerReview key={index} {...review} />
@@ -152,7 +150,6 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}
-            play={false}
           >
             {reviews.map((review, index) => (
               <CustomerReview key={index} {...review} />

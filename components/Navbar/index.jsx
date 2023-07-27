@@ -49,7 +49,6 @@ function Navbar() {
             placement='left'
             onClose={onClose}
             closable={false}
-            mask={false}
             open={open}
             width={'100%'}
           >
@@ -88,7 +87,7 @@ function Navbar() {
 
               <AiOutlineClose
                 style={{
-                  fontSize: '2rem',
+                  fontSize: '2.1rem',
                   color: '#410eff',
                   cursor: 'pointer',
                 }}

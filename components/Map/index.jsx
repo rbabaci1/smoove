@@ -104,7 +104,7 @@ const MapContainer = ({
 
           map.fitBounds(bounds, {
             padding: 40,
-            maxZoom: 13,
+            maxZoom: 12,
           });
         });
     }
@@ -131,14 +131,14 @@ const MapContainer = ({
         <BsFillArrowUpCircleFill
           style={{ backgroundColor: '#fff', borderRadius: '50%' }}
           id={mapUpIconId}
-          size={22}
+          size={25}
           color='green'
         />
 
         <BsFillArrowDownCircleFill
           style={{ backgroundColor: '#fff', borderRadius: '50%' }}
           id={mapDownIconId}
-          size={22}
+          size={25}
           color='red'
         />
       </div>

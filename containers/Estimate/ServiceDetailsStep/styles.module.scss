@@ -50,6 +50,17 @@
           }
         }
 
+        .noAvailableWindows {
+          width: fit-content;
+          padding: 0.7rem;
+          color: gray;
+
+          &:hover {
+            box-shadow: none;
+            cursor: default;
+          }
+        }
+
         .movingWindowSelected {
           background-color: $main-color;
           color: $white;
@@ -286,6 +297,10 @@
           span {
             width: 7rem;
             font-weight: 600;
+          }
+
+          .noAvailableWindows {
+            padding: 0.5rem 0.3rem;
           }
         }
       }

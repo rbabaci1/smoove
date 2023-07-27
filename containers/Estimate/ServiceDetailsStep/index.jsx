@@ -133,7 +133,9 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
                     </span>
                   ))
                 ) : (
-                  <span>No available windows for the selected date.</span>
+                  <span className={styles.noAvailableWindows}>
+                    No available windows for the selected date.
+                  </span>
                 )}
               </div>
             </div>
@@ -283,7 +285,7 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
                 <p>{vehicleType}</p>
               </section>
 
-              <EditIcon step={3} />
+              <EditIcon step={2} />
             </div>
 
             <div className={styles.dateTime}>

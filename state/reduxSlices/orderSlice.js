@@ -11,7 +11,6 @@ const initialState = {
     },
   },
   paymentMethod: null,
-  serviceType: '',
   vehicleType: '',
   movingDate: '',
   movingWindow: '',
@@ -19,7 +18,6 @@ const initialState = {
   additionalContacts: [],
   estimateStep: 1,
   price: '',
-  serviceTypeSelected: false,
   status: null,
 };
 
@@ -39,9 +37,6 @@ const orderSlice = createSlice({
         [action.payload.type]: action.payload.value,
       };
     },
-    updateServiceType: (state, action) => {
-      state.serviceType = action.payload;
-    },
     selectVehicleType: (state, action) => {
       state.vehicleType = action.payload;
     },
@@ -60,9 +55,7 @@ const orderSlice = createSlice({
     updateAdditionalContacts: (state, action) => {
       state.additionalContacts = action.payload;
     },
-    enableServiceTypeSelected: state => {
-      state.serviceTypeSelected = true;
-    },
+
     goToNextEstimateStep: state => {
       state.estimateStep += 1;
     },
@@ -89,14 +82,12 @@ const orderSlice = createSlice({
 export const {
   updateAddresses,
   updateAddressesTypingValues,
-  updateServiceType,
   selectVehicleType,
   setMovingPrice,
   setDescription,
   setMovingDate,
   setMovingWindow,
   updateAdditionalContacts,
-  enableServiceTypeSelected,
   goToNextEstimateStep,
   goToPreviousEstimateStep,
   goToSpecificEstimateStep,

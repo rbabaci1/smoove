@@ -11,10 +11,10 @@ const questionsAnswers = {
     header: 'What are the operating hours of Smoove?',
     answer: (
       <p>
-        Smoove operates Monday to Saturday from 7 AM to 9 PM, and Sunday from 9
-        AM to 8 PM. You can schedule a move on-demand and we'll be there in as
-        little as 30 minutes, or you can book for a specific hour of your choice
-        up to 90 days in advance. Visit Smoove.homes/book to book your move.
+        Smoove operates Monday to Sunday from 7 AM to 9 PM. You can schedule a
+        move on-demand and we'll be there in as little as 30 minutes, or you can
+        book for a specific hour of your choice up to 90 days in advance. Visit
+        Smoove.homes/book to book your move.
       </p>
     ),
   },
@@ -54,7 +54,7 @@ const questionsAnswers = {
           </li>
 
           <li>
-            <h4>Smoove Van:</h4>
+            <h4>Smoove Medium Size Van:</h4>
             <p>
               Length of 8ft+, width of 4ft, and height of 5ft. Please note that
               king or cal king mattresses will not fit in this vehicle.
@@ -62,7 +62,7 @@ const questionsAnswers = {
           </li>
 
           <li>
-            <h4>Smoove XL:</h4>
+            <h4>Smoove Large Van:</h4>
             <p>Length of 10ft+, width of 6ft, and height of 7ft.</p>
           </li>
         </ul>

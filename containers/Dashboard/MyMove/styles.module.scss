@@ -4,12 +4,14 @@
 .container {
   width: 100%;
   max-width: 900px;
-  background-color: $white;
   border-radius: 0.75rem;
 
   .header {
     @include flex(row, space-between, center);
     padding: 1rem;
+    background-color: $white;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
 
     .vehicleDateTime {
       @include flex(row, space-between, center);
@@ -62,7 +64,7 @@
   .details {
     padding: 1rem;
     position: relative;
-    top: -1.5rem;
+    top: -2rem;
     background-color: $white;
     border-radius: 0.75rem;
     width: 90%;
@@ -78,10 +80,16 @@
       }
     }
 
+    h4 {
+      font-size: clamp(0.95rem, 5vw, 1.2rem);
+      color: $main-color;
+      margin-right: 0.75rem;
+    }
+
     .addresses {
       @include flex(row, space-between);
       border-bottom: 1px solid $light-blue;
-      padding-bottom: 1rem;
+      padding-bottom: 0.75rem;
 
       .address {
         @include flex(row, flex-start);
@@ -95,17 +103,11 @@
           margin-right: 0.75rem;
           font-size: 1.4rem;
         }
-
-        section {
-          span {
-            font-weight: 600;
-          }
-        }
       }
     }
 
     .info {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
 
       .payment {
         @include flex(column, flex-start, flex-start);
@@ -114,22 +116,42 @@
           @include flex(row, flex-start);
           color: green;
 
-          h4 {
-            font-size: clamp(0.95rem, 5vw, 1.3rem);
-            color: $main-color;
-            margin-right: 0.75rem;
+          h3 {
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
           }
         }
 
         .card {
           @include flex();
           color: $dark-blue;
-          padding-top: 1rem;
+          padding-top: 1.5rem;
           margin-left: -0.4rem;
 
           img {
             margin-right: 0.75rem;
           }
+        }
+
+        .addContacts {
+          @include flex(row, flex-start, center);
+          padding: 1rem 0;
+          gap: 1rem;
+
+          h4 {
+            margin: 0;
+          }
+
+          section {
+            @include flex(column);
+            background-color: $light-blue;
+            padding: 0 0.3rem 0.3rem 0.3rem;
+            border-radius: 0.5rem;
+          }
+        }
+
+        .desc {
+          @include flex(row, flex-start, center);
+          padding-bottom: 1rem;
         }
       }
     }

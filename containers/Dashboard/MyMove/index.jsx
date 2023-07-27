@@ -27,7 +27,10 @@ const MyMove = ({ selectedMove }) => {
   const pickupAddress = selectedMove.addresses.pickup.place_name.split(',');
   const dropOffAddress = selectedMove.addresses.dropOff.place_name.split(',');
 
-  const editMove = () => {};
+  const editMove = () => {
+    const phoneNumber = '510-646-7743';
+    window.location.href = 'tel:' + phoneNumber;
+  };
 
   const cancelMove = () => {};
 
@@ -71,7 +74,7 @@ const MyMove = ({ selectedMove }) => {
             <BsFillArrowUpCircleFill color='green' />
 
             <section>
-              <span>Pickup address:</span>
+              <h4>Pickup address:</h4>
               <p>
                 {pickupAddress[0]}, {pickupAddress[1]}
               </p>
@@ -82,7 +85,7 @@ const MyMove = ({ selectedMove }) => {
             <BsFillArrowDownCircleFill color='red' />
 
             <section>
-              <span>Pickup address:</span>
+              <h4>Drop-off address:</h4>
               <p>
                 {dropOffAddress[0]}, {dropOffAddress[1]}
               </p>
@@ -111,6 +114,23 @@ const MyMove = ({ selectedMove }) => {
                 ending in ...
                 <span>{selectedMove.paymentMethod.last4}</span>
               </p>
+            </section>
+
+            <section className={styles.addContacts}>
+              <h4>Additional contacts:</h4>
+
+              {selectedMove.additionalContacts.map((contact, i) => (
+                <section key={i}>
+                  <p>{contact.name}</p>
+                  <span>{contact.phoneNumber}</span>
+                </section>
+              ))}
+            </section>
+
+            <section className={styles.desc}>
+              <h4>Description:</h4>
+
+              <p>{selectedMove.description}</p>
             </section>
           </div>
         </div>

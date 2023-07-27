@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { DashboardNavbar, WithAuth } from '@/components';
 import { MyMove, MyMoves, MyAccount } from '@/containers/Dashboard';
@@ -12,6 +14,7 @@ const Dashboard = () => {
   const { user } = useSelector(state => state.auth);
 
   const [fetchingOrders, setFetchingOrders] = useState(true);
+  const [cancelingMove, setCancelingMove] = useState(false);
   const [userOrders, setUserOrders] = useState([]);
   const [activeContainer, setActiveContainer] = useState(1);
   const [selectedMove, setSelectedMove] = useState(null);
@@ -35,6 +38,8 @@ const Dashboard = () => {
     fetchOrders();
   }, [user.uid]);
 
+  const cancelMove = async () => {};
+
   const dashboardComponents = {
     1: (
       <MyMoves
@@ -45,11 +50,17 @@ const Dashboard = () => {
       />
     ),
     2: <MyAccount />,
-    3: <MyMove selectedMove={selectedMove} />,
+    3: <MyMove selectedMove={selectedMove} cancelMove={cancelMove} />,
   };
 
   return (
     <div className={styles.dashboardWrapper}>
+      {cancelingMove ? (
+        <div className={styles.loadingContainer}>
+          <AiOutlineLoading3Quarters color='red' className='loading' />
+        </div>
+      ) : null}
+
       <DashboardNavbar
         activeContainer={activeContainer}
         setActiveContainer={setActiveContainer}

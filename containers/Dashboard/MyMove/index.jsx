@@ -23,7 +23,7 @@ const getVehicleImage = vehicle => {
   }
 };
 
-const MyMove = ({ selectedMove }) => {
+const MyMove = ({ selectedMove, cancelMove }) => {
   const pickupAddress = selectedMove.addresses.pickup.place_name.split(',');
   const dropOffAddress = selectedMove.addresses.dropOff.place_name.split(',');
 
@@ -31,8 +31,6 @@ const MyMove = ({ selectedMove }) => {
     const phoneNumber = '510-646-7743';
     window.location.href = 'tel:' + phoneNumber;
   };
-
-  const cancelMove = () => {};
 
   return (
     <div className={styles.container}>

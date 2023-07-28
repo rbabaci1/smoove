@@ -16,6 +16,16 @@ const statusColors = {
   pending: '#cccccc',
 };
 
+const getStatusStyles = status => {
+  return {
+    backgroundColor: statusColors[status],
+    ...(status === 'canceled' && {
+      textDecoration: 'line-through',
+      color: '#ff0000',
+    }),
+  };
+};
+
 const MoveCard = ({ order, index, selectMove }) => {
   const { addresses, movingDate, movingWindow, vehicleType, status } = order;
 
@@ -30,10 +40,7 @@ const MoveCard = ({ order, index, selectMove }) => {
       whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
       onClick={() => selectMove(order)}
     >
-      <div
-        className={styles.status}
-        style={{ backgroundColor: statusColors[status] }}
-      >
+      <div className={styles.status} style={getStatusStyles(status)}>
         Status: {status}
       </div>
 

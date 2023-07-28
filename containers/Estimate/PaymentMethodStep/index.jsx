@@ -199,6 +199,12 @@ const PaymentMethodStep = () => {
                           </div>
                         );
                       })}
+
+                      {paymentMethods.length === 1 ? (
+                        <span className={styles.noOtherMethods}>
+                          No other methods
+                        </span>
+                      ) : null}
                     </motion.div>
                   )}
                 </AnimatePresence>

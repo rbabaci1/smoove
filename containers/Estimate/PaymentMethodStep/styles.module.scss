@@ -74,7 +74,8 @@
       width: 100%;
       margin-top: 0.2rem;
 
-      .method {
+      .method,
+      .noOtherMethods {
         @include flex(row, flex-start, center);
         background-color: $white;
         padding: 0 0.5rem;
@@ -99,6 +100,15 @@
           span {
             color: $main-color;
           }
+        }
+      }
+
+      .noOtherMethods {
+        justify-content: center;
+        cursor: default;
+
+        &:hover {
+          box-shadow: none;
         }
       }
     }

@@ -77,7 +77,7 @@ const FinalStep = () => {
               <p>{description}</p>
             </section>
 
-            <EditIcon step={4} />
+            <EditIcon step={3} />
           </div>
 
           <div className={styles.addContacts}>
@@ -95,7 +95,7 @@ const FinalStep = () => {
               })}
             </section>
 
-            <EditIcon step={4} />
+            <EditIcon step={3} />
           </div>
 
           <div className={styles.vehicleType}>
@@ -106,7 +106,7 @@ const FinalStep = () => {
               <p>{vehicleType}</p>
             </section>
 
-            <EditIcon step={3} />
+            <EditIcon step={2} />
           </div>
 
           <div className={styles.dateTime}>
@@ -117,7 +117,7 @@ const FinalStep = () => {
               <p>{movingWindow}</p>
             </section>
 
-            <EditIcon step={4} />
+            <EditIcon step={3} />
           </div>
 
           <div className={styles.paymentMethod}>
@@ -143,7 +143,7 @@ const FinalStep = () => {
               </section>
             </div>
 
-            <EditIcon step={8} />
+            <EditIcon step={7} />
           </div>
 
           <div className={styles.price}>

@@ -124,7 +124,7 @@ const MyMove = ({ selectedMove, cancelMove }) => {
               {selectedMove.additionalContacts.map((contact, i) => (
                 <section key={i}>
                   <p>{contact.name}</p>
-                  <span>{contact.phoneNumber}</span>
+                  <p>{contact.phoneNumber}</p>
                 </section>
               ))}
             </section>

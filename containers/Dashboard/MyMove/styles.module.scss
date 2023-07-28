@@ -125,7 +125,7 @@
           color: green;
 
           h3 {
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            font-size: clamp(1rem, 5vw, 1.5rem);
           }
         }
 
@@ -154,6 +154,10 @@
             background-color: $light-blue;
             padding: 0 0.3rem 0.3rem 0.3rem;
             border-radius: 0.5rem;
+
+            p {
+              line-height: 1.5rem !important;
+            }
           }
         }
 
@@ -166,8 +170,108 @@
   }
 
   @media screen and (max-width: 767px) {
+    .header {
+      padding: 0.5rem;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .vehicleDateTime {
+        width: 100%;
+
+        img {
+          max-width: 100px;
+        }
+      }
+    }
+
+    .details {
+      width: 98%;
+      padding: 0.5rem;
+    }
   }
 
   @media screen and (max-width: 374px) {
+    .header {
+      padding: 0.3rem;
+
+      .vehicleDateTime {
+        img {
+          max-width: 60px;
+        }
+      }
+    }
+
+    .details {
+      width: 100%;
+      padding: 0.3rem;
+
+      h4 {
+        font-size: clamp(0.8rem, 5vw, 0.95rem);
+        margin-right: 0.25rem;
+      }
+
+      p {
+        font-size: clamp(0.75rem, 5vw, 0.9rem);
+      }
+
+      .addresses {
+        padding-bottom: 0.5rem;
+
+        .address {
+          &:first-child {
+            padding-bottom: 0.25rem;
+          }
+
+          svg {
+            margin-right: 0.25rem;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .info {
+        padding-top: 0.75rem;
+
+        .payment {
+          .price {
+            line-height: 1rem;
+
+            h3 {
+              font-size: clamp(0.8rem, 5vw, 1rem);
+            }
+          }
+
+          .card {
+            color: $dark-blue;
+            padding-top: 0.5rem;
+            justify-content: flex-start;
+            margin-left: 0;
+
+            img {
+              margin-left: -0.3rem;
+              width: 35px;
+            }
+          }
+
+          .addContacts {
+            padding: 0.5rem 0;
+            gap: 0.5rem;
+
+            section {
+              padding: 0 0.2rem 0.2rem 0.2rem;
+
+              p {
+                line-height: 1rem !important;
+              }
+            }
+          }
+
+          .desc {
+            @include flex(row, flex-start, center);
+            padding-bottom: 0.5rem;
+          }
+        }
+      }
+    }
   }
 }

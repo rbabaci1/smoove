@@ -47,6 +47,11 @@
     nav {
       span {
         width: 5.8rem;
+        border-left: 1px solid $light-blue;
+
+        &:first-child {
+          border-left: none;
+        }
       }
     }
   }

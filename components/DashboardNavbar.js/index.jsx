@@ -7,8 +7,10 @@ const DashboardNavbar = ({ activeContainer, setActiveContainer }) => {
   const router = useRouter();
 
   const logOut = () => {
-    auth.signOut();
-    router.replace('/');
+    if (confirm('Are you sure you want to log out?')) {
+      auth.signOut();
+      router.replace('/');
+    }
   };
 
   return (

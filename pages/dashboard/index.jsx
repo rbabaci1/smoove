@@ -15,9 +15,9 @@ const Dashboard = () => {
 
   const [fetchingOrders, setFetchingOrders] = useState(true);
   const [cancelingMove, setCancelingMove] = useState(false);
-  const [userOrders, setUserOrders] = useState([]);
   const [activeContainer, setActiveContainer] = useState(1);
   const [selectedMove, setSelectedMove] = useState(null);
+  const [userOrders, setUserOrders] = useState([]);
 
   useEffect(() => {
     // Scroll to top of the page when user changes step

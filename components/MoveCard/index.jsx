@@ -12,7 +12,7 @@ const statusColors = {
   confirmed: '#00ff00',
   ongoing: '#ffa500',
   completed: '#008000',
-  canceled: '#ff0000',
+  canceled: '#ffcccc',
   pending: '#cccccc',
 };
 

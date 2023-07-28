@@ -38,12 +38,12 @@ const MoveCard = ({ order, index, selectMove }) => {
       </div>
 
       <div className={styles.map}>
-        {/* <MapContainer
+        <MapContainer
           orderId={order.id}
           addresses={addresses}
           height='240px'
           radius='0.75rem 0 0 0.75rem'
-        /> */}
+        />
       </div>
 
       <div className={styles.details}>

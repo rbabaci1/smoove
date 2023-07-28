@@ -18,7 +18,11 @@ const DashboardNavbar = ({ activeContainer, setActiveContainer }) => {
 
         <span
           onClick={() => setActiveContainer(1)}
-          className={activeContainer === 1 ? styles.activeItem : null}
+          className={
+            activeContainer === 1 || activeContainer === 3
+              ? styles.activeItem
+              : null
+          }
         >
           My Moves
         </span>

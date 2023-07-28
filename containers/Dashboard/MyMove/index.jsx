@@ -44,17 +44,21 @@ const MyMove = ({ selectedMove, cancelMove }) => {
           </section>
         </div>
 
-        <div className={styles.buttons}>
-          <button onClick={cancelMove}>
-            <AiOutlineCloseCircle />
-            Cancel
-          </button>
+        {selectedMove.status === 'confirmed' ? (
+          <div className={styles.buttons}>
+            <button onClick={cancelMove}>
+              <AiOutlineCloseCircle />
+              Cancel
+            </button>
 
-          <button onClick={editMove}>
-            <AiOutlineEdit />
-            Edit
-          </button>
-        </div>
+            <button onClick={editMove}>
+              <AiOutlineEdit />
+              Edit
+            </button>
+          </div>
+        ) : (
+          <h4 className={styles.canceledStatus}>Move canceled</h4>
+        )}
       </div>
 
       <div className={styles.map}>

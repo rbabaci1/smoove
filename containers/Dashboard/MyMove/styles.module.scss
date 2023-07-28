@@ -51,6 +51,14 @@
         }
       }
     }
+
+    .canceledStatus {
+      text-decoration: line-through;
+      background-color: #ffcccc;
+      padding: 5px 7px;
+      border-radius: 4px;
+      color: red;
+    }
   }
 
   .map {

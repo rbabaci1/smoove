@@ -119,6 +119,7 @@ const EstimateNavbar = ({
         newestOnTop={false}
         rtl={false}
         theme='colored'
+        pauseOnHover={false}
       />
 
       <div className={styles.container}>

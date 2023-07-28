@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { DashboardNavbar, WithAuth } from '@/components';
 import { MyMove, MyMoves, MyAccount } from '@/containers/Dashboard';
-import { getUserOrders } from '@/lib';
+import { getUserOrders, updateOrderStatus } from '@/lib';
 import styles from './styles.module.scss';
 
 const Dashboard = () => {
@@ -39,15 +39,37 @@ const Dashboard = () => {
   }, [user.uid]);
 
   const cancelMove = async () => {
-    try {
-      setCancelingMove(true);
+    if (confirm('Are you sure you want to cancel this move?')) {
+      try {
+        setCancelingMove(true);
 
-      // !!! update order status to canceled
-    } catch (error) {
-      console.error('Error canceling move:', error);
-      toast.error('Error canceling move');
-    } finally {
-      setCancelingMove(false);
+        await updateOrderStatus(user.uid, selectedMove.id, 'canceled');
+
+        toast.success('Move canceled!');
+
+        // Update the userOrders state with the new status for the canceled order
+        const updatedUserOrders = userOrders.map(order => {
+          if (order.id === selectedMove.id) {
+            return {
+              ...order,
+              status: 'canceled',
+            };
+          }
+          return order;
+        });
+
+        // Update the userOrders state with the updated order list
+        setUserOrders(updatedUserOrders);
+
+        setTimeout(() => {
+          setActiveContainer(1);
+        }, 1500);
+      } catch (error) {
+        console.error('Error canceling move:', error);
+        toast.error('Error canceling move');
+      } finally {
+        setCancelingMove(false);
+      }
     }
   };
 
@@ -66,6 +88,16 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardWrapper}>
+      <ToastContainer
+        position='top-center'
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        theme='colored'
+        pauseOnHover={false}
+      />
+
       {cancelingMove ? (
         <div className={styles.loadingContainer}>
           <AiOutlineLoading3Quarters color='red' className='loading' />

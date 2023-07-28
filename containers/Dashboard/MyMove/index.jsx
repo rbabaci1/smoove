@@ -100,9 +100,9 @@ const MyMove = ({ selectedMove, cancelMove }) => {
 
             <section className={styles.card}>
               <Image
+                src={getCardImgSrc(selectedMove.paymentMethod.brand)}
                 width={50}
                 height={50}
-                src={getCardImgSrc(selectedMove.paymentMethod.brand)}
                 alt='card payment method'
               />
 

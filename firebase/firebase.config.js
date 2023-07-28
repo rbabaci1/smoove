@@ -7,6 +7,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  updateDoc,
 } from 'firebase/firestore';
 
 const app = initializeApp({
@@ -24,5 +25,5 @@ const auth = getAuth(app);
 // Get the Firestore instance
 const db = getFirestore(app);
 
-export { auth, db, doc, getDoc, getDocs, collection, addDoc };
+export { auth, db, doc, getDoc, getDocs, collection, addDoc, updateDoc };
 export default app;

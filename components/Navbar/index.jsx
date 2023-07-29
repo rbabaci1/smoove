@@ -77,7 +77,7 @@ function Navbar() {
                 </p>
               ) : (
                 <Link
-                  href='/'
+                  href='/login'
                   style={{ display: 'flex', alignItems: 'center' }}
                 >
                   Sign in

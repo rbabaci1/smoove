@@ -24,7 +24,7 @@
       line-height: 1.5rem;
       transition-duration: 0.2s;
       height: 100%;
-      width: 8rem;
+      padding: 0 1rem;
 
       &:hover {
         color: $main-color;
@@ -46,8 +46,7 @@
 
     nav {
       span {
-        width: 5.8rem;
-        border-left: 1px solid $light-blue;
+        padding: 0 0.5rem;
 
         &:first-child {
           border-left: none;
@@ -63,7 +62,7 @@
       span {
         font-size: clamp(0.6rem, 4vw, 1rem);
         width: fit-content;
-        padding: 0.3rem;
+        padding: 0 0.3rem;
       }
     }
   }

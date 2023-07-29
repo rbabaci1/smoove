@@ -48,23 +48,22 @@ const UserInfoStep = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setSaving(true);
+
     setErrors({ firstName: false, lastName: false, saving: false });
 
     const { firstName, lastName, email } = userInfo;
 
     if (firstName.length < 3) {
       setErrors({ ...errors, firstName: true });
-      setSaving(false);
       return;
     }
     if (lastName.length < 3) {
       setErrors({ ...errors, lastName: true });
-      setSaving(false);
       return;
     }
 
     try {
+      setSaving(true);
       setErrors({ ...errors, saving: false });
       const displayName = `${firstName} ${lastName}`;
 
@@ -81,14 +80,13 @@ const UserInfoStep = () => {
         user.phoneNumber
       );
 
-      setSaving(false);
-
       dispatch(setUser({ ...user, displayName, email }));
       dispatch(goToSpecificEstimateStep(7));
     } catch (error) {
-      setSaving(false);
       setErrors({ ...errors, saving: true });
       console.error('Error updating user profile:', error);
+    } finally {
+      setSaving(false);
     }
   };
 

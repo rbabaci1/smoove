@@ -1,0 +1,56 @@
+@import '/styles/mixins.module.scss';
+@import '/styles/variables.module.scss';
+
+.container {
+  width: 100%;
+  max-width: 900px;
+
+  .header {
+    @include flex(row, space-between, center);
+
+    h3 {
+      padding-bottom: 1rem;
+    }
+
+    button {
+      width: 5rem;
+      height: 3.3rem;
+    }
+  }
+
+  .personalInfo {
+    border-bottom: 2px solid $light-blue;
+    padding-bottom: 2rem;
+
+    .info {
+      @include flex(row, space-between, center);
+      gap: 1rem;
+
+      .error {
+        border: 1px solid $error-color;
+      }
+
+      input {
+        background-color: $white;
+        width: 48%;
+      }
+    }
+  }
+
+  .paymentInfo {
+    padding-top: 2rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    .personalInfo {
+      .info {
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+  }
+}

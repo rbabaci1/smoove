@@ -96,8 +96,11 @@
   }
 
   .addCard {
+    border-bottom: 2px solid $light-blue;
+
     button {
       width: fit-content !important;
+      margin-bottom: 3rem !important;
     }
 
     .cancelBtn {
@@ -109,6 +112,22 @@
 
   .addPaymentForm {
     max-width: 500px;
+  }
+
+  .phoneNumber {
+    padding: 3rem 0;
+
+    h2 {
+      font-size: clamp(2rem, 2vw, 2.6rem);
+      font-weight: 700;
+      color: $main-color;
+      padding-top: 1rem;
+    }
+
+    span {
+      color: gray;
+      font-weight: 500;
+    }
   }
 
   @media screen and (max-width: 767px) {

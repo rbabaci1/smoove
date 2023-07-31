@@ -8,10 +8,10 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { auth } from '@/firebase/firebase.config';
-import { getCardImgSrc, getUserPaymentMethods } from '@/lib';
+import { getCardImgSrc, getUserPaymentMethods, formatPhoneNumber } from '@/lib';
 import { setUser } from '@/state/reduxSlices/authSlice';
-import styles from './styles.module.scss';
 import { AddPaymentMethod } from '@/components';
+import styles from './styles.module.scss';
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -296,6 +296,15 @@ const MyAccount = () => {
           </button>
         </motion.div>
       ) : null}
+
+      <div className={styles.phoneNumber}>
+        <h3>Phone number</h3>
+        <h2>{formatPhoneNumber(phoneNumber)}</h2>
+        <span>
+          You’ll receive updates about the status of your move via this phone
+          number.
+        </span>
+      </div>
     </div>
   );
 };

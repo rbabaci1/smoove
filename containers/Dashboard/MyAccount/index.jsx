@@ -153,17 +153,17 @@ const MyAccount = () => {
   return (
     <div className={styles.container}>
       <div className={styles.personalInfo}>
-        <ToastContainer
-          position='top-center'
-          autoClose={1500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          rtl={false}
-          theme='colored'
-          pauseOnHover={false}
-        />
-
         <section className={styles.header}>
+          <ToastContainer
+            position='top-center'
+            autoClose={1500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            rtl={false}
+            theme='colored'
+            pauseOnHover={false}
+          />
+
           <h3>Personal info</h3>
 
           <AnimatePresence>

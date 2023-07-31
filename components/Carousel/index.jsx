@@ -15,7 +15,7 @@ const Carousel = () => {
     >
       <div className={styles.item}>
         <Image
-          src={fam1}
+          src={fam2}
           alt='happy family moved in'
           loading='eager'
           priority
@@ -34,7 +34,7 @@ const Carousel = () => {
 
       <div className={styles.item}>
         <Image
-          src={fam2}
+          src={fam1}
           width='auto'
           height='auto'
           loading='eager'

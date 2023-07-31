@@ -22,7 +22,11 @@ const CARD_OPTIONS = {
   hidePostalCode: false,
 };
 
-const AddPaymentMethod = ({ setShowAddPaymentMethod, setFetchMethods }) => {
+const AddPaymentMethod = ({
+  setShowAddPaymentMethod,
+  paymentMethods,
+  setPaymentMethods,
+}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -41,7 +45,6 @@ const AddPaymentMethod = ({ setShowAddPaymentMethod, setFetchMethods }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // Check if card is complete, if not, return
     if (!isCardComplete) return;
 
     setAddingCard(true);
@@ -66,11 +69,12 @@ const AddPaymentMethod = ({ setShowAddPaymentMethod, setFetchMethods }) => {
         last4: paymentMethod.card.last4,
       };
 
-      // First check if method exists, if not, attach it to user
-      await attachPaymentMethod(stripeCustomerId, cardInfo);
+      const res = await attachPaymentMethod(stripeCustomerId, cardInfo);
+      const newPaymentMethod = res.payment;
+
+      setPaymentMethods([newPaymentMethod, ...paymentMethods]);
       toast.success('Card added successfully!');
       setShowAddPaymentMethod(false);
-      setFetchMethods(true);
     } catch (error) {
       console.error('Error occurred:', error.message);
       toast.error(error.message);

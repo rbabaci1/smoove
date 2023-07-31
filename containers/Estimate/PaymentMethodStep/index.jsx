@@ -25,7 +25,6 @@ const PaymentMethodStep = () => {
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [fetchMethods, setFetchMethods] = useState(true);
   const [fetchingMethods, setFetchingMethods] = useState(true);
 
   useEffect(() => {
@@ -52,15 +51,13 @@ const PaymentMethodStep = () => {
       } catch (error) {
         console.error('Error fetching payment methods:', error);
         toast.error(error.message);
-      } finally {
-        setFetchMethods(false);
       }
     };
 
-    if (user && fetchMethods) {
+    if (user) {
       fetchPaymentMethods();
     }
-  }, [dispatch, user, fetchMethods]);
+  }, [dispatch, user]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -124,7 +121,8 @@ const PaymentMethodStep = () => {
               <div className={styles.paymentMethods__input}>
                 <AddPaymentMethod
                   setShowAddPaymentMethod={setShowAddPaymentMethod}
-                  setFetchMethods={setFetchMethods}
+                  paymentMethods={paymentMethods}
+                  setPaymentMethods={setPaymentMethods}
                 />
               </div>
             ) : (

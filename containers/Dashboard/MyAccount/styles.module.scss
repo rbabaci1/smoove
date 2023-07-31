@@ -52,15 +52,16 @@
 
     .methods {
       @include flex(column);
-
       gap: 1rem;
+      padding-bottom: 2rem;
 
       .method {
         @include flex(row, space-between, center);
-        border: 1px solid $light-gray;
+        border: 1px solid $light-blue;
         width: 100%;
         border-radius: 0.5rem;
         padding: 0.5rem;
+        background-color: $white;
 
         button {
           @include flex();
@@ -94,8 +95,20 @@
     }
   }
 
-  p {
-    margin: 0;
+  .addCard {
+    button {
+      width: fit-content !important;
+    }
+
+    .cancelBtn {
+      background-color: $error-color !important;
+      color: $white;
+      margin-top: 2rem;
+    }
+  }
+
+  .addPaymentForm {
+    max-width: 500px;
   }
 
   @media screen and (max-width: 767px) {
@@ -109,5 +122,9 @@
   }
 
   @media screen and (max-width: 374px) {
+  }
+
+  p {
+    margin: 0;
   }
 }

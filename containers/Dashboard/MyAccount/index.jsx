@@ -11,6 +11,7 @@ import { auth } from '@/firebase/firebase.config';
 import { getCardImgSrc, getUserPaymentMethods } from '@/lib';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import styles from './styles.module.scss';
+import { AddPaymentMethod } from '@/components';
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const MyAccount = () => {
   const [firstName, lastName] = displayName.split(' ');
 
   const [paymentMethods, setPaymentMethods] = useState([]);
+  const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
   const [paymentMethodsFetched, setPaymentMethodsFetched] = useState(false);
   const [fetchingMethods, setFetchingMethods] = useState(false);
   const [deletingCardId, setDeletingCardId] = useState(null);
@@ -269,6 +271,31 @@ const MyAccount = () => {
           ) : null}
         </AnimatePresence>
       </div>
+
+      <div className={styles.addPaymentForm}>
+        {showAddPaymentMethod ? (
+          <AddPaymentMethod
+            setShowAddPaymentMethod={setShowAddPaymentMethod}
+            paymentMethods={paymentMethods}
+            setPaymentMethods={setPaymentMethods}
+          />
+        ) : null}
+      </div>
+
+      {paymentMethodsFetched ? (
+        <motion.div
+          className={styles.addCard}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <button
+            onClick={() => setShowAddPaymentMethod(!showAddPaymentMethod)}
+            className={showAddPaymentMethod ? styles.cancelBtn : null}
+          >
+            {showAddPaymentMethod ? 'Cancel' : 'Add new card'}
+          </button>
+        </motion.div>
+      ) : null}
     </div>
   );
 };

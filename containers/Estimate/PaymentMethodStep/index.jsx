@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AiOutlineLoading3Quarters, AiFillCloseCircle } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
   goToNextEstimateStep,
   setPaymentMethod,
 } from '@/state/reduxSlices/orderSlice';
-import { getCardImgSrc } from '@/lib';
+import { getCardImgSrc, getUserPaymentMethods } from '@/lib';
 import { AddPaymentMethod } from '@/components';
-import { db, doc, getDoc } from '@/firebase/firebase.config';
 import styles from './styles.module.scss';
 
 const PaymentMethodStep = () => {
@@ -19,39 +19,23 @@ const PaymentMethodStep = () => {
   const { user } = useSelector(state => state.auth);
   const { paymentMethod } = useSelector(state => state.order);
 
+  const methodsRef = useRef(null);
+  const selectRef = useRef(null);
+
+  const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
+  const [showMethods, setShowMethods] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [fetchMethods, setFetchMethods] = useState(true);
   const [fetchingMethods, setFetchingMethods] = useState(true);
-  const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
-  const [showMethods, setShowMethods] = useState(false);
-
-  const methodsRef = useRef(null);
-  const selectRef = useRef(null);
 
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
-        const userRef = doc(db, 'users', user.uid);
-        const userSnapshot = await getDoc(userRef);
+        const paymentMethods = await getUserPaymentMethods(
+          user.uid,
+          setFetchingMethods
+        );
 
-        if (!userSnapshot.exists()) {
-          return res.status(400).json({ message: 'User does not exist' });
-        }
-
-        const { stripeCustomerId } = userSnapshot.data();
-        setFetchingMethods(true);
-
-        const response = await fetch('/api/getPaymentMethods', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ stripeCustomerId }),
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch payment methods');
-        }
-
-        const paymentMethods = await response.json();
         setPaymentMethods(paymentMethods);
 
         // Check if payment methods exist
@@ -66,16 +50,15 @@ const PaymentMethodStep = () => {
           setShowAddPaymentMethod(true);
         }
       } catch (error) {
-        console.error('Failed to fetch payment methods:', error);
-        setShowAddPaymentMethod(true);
+        console.error('Error fetching payment methods:', error);
+        toast.error(error.message);
       } finally {
-        setFetchingMethods(false);
+        setFetchMethods(false);
       }
     };
 
     if (user && fetchMethods) {
       fetchPaymentMethods();
-      setFetchMethods(false);
     }
   }, [dispatch, user, fetchMethods]);
 
@@ -113,6 +96,16 @@ const PaymentMethodStep = () => {
         fetchingMethods ? styles.fetchingMethods : ''
       }`}
     >
+      <ToastContainer
+        position='top-center'
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        theme='colored'
+        pauseOnHover={false}
+      />
+
       <div className={styles.paymentMethods}>
         {fetchingMethods ? (
           <AiOutlineLoading3Quarters className={`${styles.loading} loading`} />

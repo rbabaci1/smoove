@@ -13,14 +13,14 @@
     }
 
     button {
-      width: 5rem;
+      width: 5rem !important;
       height: 3.3rem;
     }
   }
 
   .personalInfo {
     border-bottom: 2px solid $light-blue;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
 
     .info {
       @include flex(row, space-between, center);
@@ -39,6 +39,54 @@
 
   .paymentInfo {
     padding-top: 2rem;
+
+    .header_ {
+      @include flex(row, flex-start);
+      gap: 1rem;
+      padding-bottom: 2rem;
+
+      .loading {
+        font-size: 1.4rem;
+      }
+    }
+
+    .methods {
+      @include flex(column);
+
+      gap: 1rem;
+
+      .method {
+        @include flex(row, space-between, center);
+        border: 1px solid $light-gray;
+        width: 100%;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+
+        button {
+          width: fit-content;
+          background-color: $error-color;
+          color: $white;
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          padding: 0;
+          margin: 0;
+        }
+
+        .methodInfo {
+          @include flex(row, flex-start);
+
+          .default {
+            margin-left: 0.5rem;
+            color: gray;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0;
   }
 
   @media screen and (max-width: 767px) {

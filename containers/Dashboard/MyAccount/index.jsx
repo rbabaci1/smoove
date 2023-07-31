@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Image from 'next/image';
 import { updateProfile, updateEmail } from 'firebase/auth';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { auth } from '@/firebase/firebase.config';
+import { getCardImgSrc, getUserPaymentMethods } from '@/lib';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import styles from './styles.module.scss';
 
@@ -16,6 +18,9 @@ const MyAccount = () => {
   const { displayName, email, phoneNumber } = user;
   const [firstName, lastName] = displayName.split(' ');
 
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [fetchMethods, setFetchMethods] = useState(true);
+  const [fetchingMethods, setFetchingMethods] = useState(false);
   const [userInfoChanged, setUserInfoChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -24,6 +29,40 @@ const MyAccount = () => {
     lastName,
     email,
   });
+
+  useEffect(() => {
+    const fetchPaymentMethods = async () => {
+      try {
+        const paymentMethods = await getUserPaymentMethods(
+          user.uid,
+          setFetchingMethods
+        );
+
+        setPaymentMethods(paymentMethods);
+      } catch (error) {
+        console.error('Error fetching payment methods:', error);
+        toast.error(error.message);
+      } finally {
+        setFetchMethods(false);
+      }
+    };
+
+    if (user && fetchMethods) {
+      fetchPaymentMethods();
+    }
+  }, [user, fetchMethods, paymentMethods]);
+
+  useEffect(() => {
+    if (
+      userInfo.firstName !== firstName ||
+      userInfo.lastName !== lastName ||
+      userInfo.email !== email
+    ) {
+      setUserInfoChanged(true);
+    } else {
+      setUserInfoChanged(false);
+    }
+  }, [userInfo, firstName, lastName, email]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -38,18 +77,6 @@ const MyAccount = () => {
       setIsEmailValid(emailRegex.test(value));
     }
   };
-
-  useEffect(() => {
-    if (
-      userInfo.firstName !== firstName ||
-      userInfo.lastName !== lastName ||
-      userInfo.email !== email
-    ) {
-      setUserInfoChanged(true);
-    } else {
-      setUserInfoChanged(false);
-    }
-  }, [userInfo, firstName, lastName, email]);
 
   const handleSaveChanges = async () => {
     if (firstName.length < 3) {
@@ -85,6 +112,12 @@ const MyAccount = () => {
       toast.error('Error updating user info: ' + error.message);
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleCardDelete = async cardId => {
+    if (confirm('Are you sure you want to delete this card?')) {
+      console.log('Deleting card:', cardId);
     }
   };
 
@@ -154,7 +187,48 @@ const MyAccount = () => {
       </div>
 
       <div className={styles.paymentInfo}>
-        <h3>Payment info</h3>
+        <div className={styles.header_}>
+          <h3>Your cards</h3>
+          {fetchingMethods ? (
+            <AiOutlineLoading3Quarters
+              className={`${styles.loading} loading`}
+            />
+          ) : null}
+        </div>
+
+        <AnimatePresence>
+          {!fetchingMethods ? (
+            <motion.div
+              className={styles.methods}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+            >
+              {paymentMethods.map((method, i) => (
+                <div key={method.id} className={styles.method}>
+                  <div className={styles.methodInfo}>
+                    <Image
+                      src={getCardImgSrc(method.card.brand)}
+                      width={40}
+                      height={40}
+                      alt='credit card symbol'
+                    />
+
+                    <p>
+                      {method.card.brand.charAt(0).toUpperCase() +
+                        method.card.brand.slice(1)}{' '}
+                      ending in ...{method.card.last4}
+                    </p>
+
+                    {i === 0 ? <p className={styles.default}>Default</p> : null}
+                  </div>
+
+                  <button onClick={() => handleCardDelete(method.id)}>X</button>
+                </div>
+              ))}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </div>
   );

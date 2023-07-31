@@ -19,8 +19,9 @@ const MyAccount = () => {
   const [firstName, lastName] = displayName.split(' ');
 
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [fetchMethods, setFetchMethods] = useState(true);
+  const [paymentMethodsFetched, setPaymentMethodsFetched] = useState(false);
   const [fetchingMethods, setFetchingMethods] = useState(false);
+  const [deletingCardId, setDeletingCardId] = useState(null);
   const [userInfoChanged, setUserInfoChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -43,14 +44,14 @@ const MyAccount = () => {
         console.error('Error fetching payment methods:', error);
         toast.error(error.message);
       } finally {
-        setFetchMethods(false);
+        setPaymentMethodsFetched(true);
       }
     };
 
-    if (user && fetchMethods) {
+    if (user) {
       fetchPaymentMethods();
     }
-  }, [user, fetchMethods, paymentMethods]);
+  }, [user]);
 
   useEffect(() => {
     if (
@@ -117,25 +118,51 @@ const MyAccount = () => {
 
   const handleCardDelete = async cardId => {
     if (confirm('Are you sure you want to delete this card?')) {
-      console.log('Deleting card:', cardId);
+      try {
+        setDeletingCardId(cardId);
+
+        const response = await fetch('/api/deletePaymentMethod', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ cardId }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          toast.error(data.message || 'Failed to delete payment method.');
+        } else {
+          setPaymentMethods(prevState =>
+            prevState.filter(method => method.id !== cardId)
+          );
+          toast.success('Payment method deleted successfully!');
+        }
+      } catch (error) {
+        console.error('Error deleting payment method:', error.message);
+        toast.error(error.message);
+      } finally {
+        setDeletingCardId(null);
+      }
     }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.personalInfo}>
+        <ToastContainer
+          position='top-center'
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          theme='colored'
+          pauseOnHover={false}
+        />
+
         <section className={styles.header}>
           <h3>Personal info</h3>
-
-          <ToastContainer
-            position='top-center'
-            autoClose={1500}
-            hideProgressBar={false}
-            newestOnTop={false}
-            rtl={false}
-            theme='colored'
-            pauseOnHover={false}
-          />
 
           <AnimatePresence>
             {userInfoChanged ? (
@@ -197,35 +224,47 @@ const MyAccount = () => {
         </div>
 
         <AnimatePresence>
-          {!fetchingMethods ? (
+          {paymentMethodsFetched ? (
             <motion.div
               className={styles.methods}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
             >
-              {paymentMethods.map((method, i) => (
-                <div key={method.id} className={styles.method}>
-                  <div className={styles.methodInfo}>
-                    <Image
-                      src={getCardImgSrc(method.card.brand)}
-                      width={40}
-                      height={40}
-                      alt='credit card symbol'
-                    />
+              {paymentMethods.length > 0
+                ? paymentMethods.map((method, i) => (
+                    <div key={method.id} className={styles.method}>
+                      <div className={styles.methodInfo}>
+                        <Image
+                          src={getCardImgSrc(method.card.brand)}
+                          width={35}
+                          height={35}
+                          alt='credit card symbol'
+                        />
 
-                    <p>
-                      {method.card.brand.charAt(0).toUpperCase() +
-                        method.card.brand.slice(1)}{' '}
-                      ending in ...{method.card.last4}
-                    </p>
+                        <p>
+                          {method.card.brand.charAt(0).toUpperCase() +
+                            method.card.brand.slice(1)}{' '}
+                          ending in ...{method.card.last4}
+                        </p>
 
-                    {i === 0 ? <p className={styles.default}>Default</p> : null}
-                  </div>
+                        {i === 0 ? (
+                          <p className={styles.default}>Default</p>
+                        ) : null}
+                      </div>
 
-                  <button onClick={() => handleCardDelete(method.id)}>X</button>
-                </div>
-              ))}
+                      <button onClick={() => handleCardDelete(method.id)}>
+                        {deletingCardId === method.id ? (
+                          <AiOutlineLoading3Quarters
+                            className={`${styles.loading} loading`}
+                          />
+                        ) : (
+                          'X'
+                        )}
+                      </button>
+                    </div>
+                  ))
+                : 'You have no saved cards.'}
             </motion.div>
           ) : null}
         </AnimatePresence>

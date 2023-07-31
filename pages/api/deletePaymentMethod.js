@@ -1,4 +1,4 @@
-import { stripe } from '@/stripe/stripe.config'; // Replace with your Stripe configuration
+import stripe from '@/stripe';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -6,23 +6,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { paymentMethodId } = req.body;
+    const { cardId } = req.body;
 
     // Validate the inputs (you can add more validation if needed)
-    if (!paymentMethodId) {
+    if (!cardId) {
       return res
         .status(400)
         .json({ message: 'Invalid request. Missing required data.' });
     }
 
     // Delete the credit card from Stripe
-    const deletedCard = await stripe.paymentMethods.detach(paymentMethodId);
+    const deletedCard = await stripe.paymentMethods.detach(cardId);
 
     return res
       .status(200)
       .json({ deletedCard, message: 'Payment method deleted successfully.' });
   } catch (error) {
-    console.error('Error deleting payment method:', error);
     return res
       .status(500)
       .json({ message: 'Failed to delete payment method. Please try again.' });

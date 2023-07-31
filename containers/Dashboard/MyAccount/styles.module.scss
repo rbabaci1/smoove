@@ -63,6 +63,7 @@
         padding: 0.5rem;
 
         button {
+          @include flex();
           width: fit-content;
           background-color: $error-color;
           color: $white;
@@ -76,10 +77,18 @@
         .methodInfo {
           @include flex(row, flex-start);
 
+          img {
+            margin-right: 0.5rem;
+          }
+
           .default {
             margin-left: 0.5rem;
             color: gray;
           }
+        }
+
+        .loading {
+          color: $white;
         }
       }
     }

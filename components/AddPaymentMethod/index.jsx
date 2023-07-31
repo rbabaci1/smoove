@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { db, doc, getDoc } from '@/firebase/firebase.config';
 import { attachPaymentMethod, createPaymentMethod } from '@/lib';
@@ -81,16 +81,6 @@ const AddPaymentMethod = ({ setShowAddPaymentMethod, setFetchMethods }) => {
 
   return (
     <div className={styles.container}>
-      <ToastContainer
-        autoClose={1500}
-        position='top-center'
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        theme='light'
-      />
-
       <form onSubmit={handleSubmit}>
         <section className={styles.extraInfo}>
           <input

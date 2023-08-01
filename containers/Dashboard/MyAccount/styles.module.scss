@@ -61,7 +61,7 @@
         border: 1px solid $light-blue;
         width: 100%;
         border-radius: 0.5rem;
-        padding: 0.5rem;
+        padding: 1rem 0.5rem;
         background-color: $white;
 
         button {
@@ -133,6 +133,8 @@
 
   @media screen and (max-width: 767px) {
     .personalInfo {
+      padding-bottom: 2rem;
+
       .info {
         input {
           width: 100%;
@@ -144,6 +146,7 @@
       .methods .method {
         flex-direction: column;
         align-items: flex-start;
+        padding: 0.5rem;
         height: 6.5rem;
 
         button {
@@ -151,9 +154,14 @@
         }
       }
     }
-  }
 
-  @media screen and (max-width: 374px) {
+    .addCard button {
+      margin-bottom: 2rem !important;
+    }
+
+    .phoneNumber {
+      padding: 2rem 0;
+    }
   }
 
   p {

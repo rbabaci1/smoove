@@ -3,6 +3,8 @@ import { persistStore } from 'redux-persist';
 
 import persistedRootReducer from './persistConfig';
 
+const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
+
 export const store = configureStore({
   reducer: persistedRootReducer,
 
@@ -13,6 +15,7 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST'],
       },
     }),
+  devTools: !isProduction,
 });
 
 export const persistor = persistStore(store);

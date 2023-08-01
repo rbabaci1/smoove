@@ -5,22 +5,23 @@
   width: 100%;
   max-width: 900px;
 
-  .header {
-    @include flex(row, space-between, center);
-
-    h3 {
-      padding-bottom: 1rem;
-    }
-
-    button {
-      width: 5rem !important;
-      height: 3.3rem;
-    }
-  }
-
   .personalInfo {
     border-bottom: 2px solid $light-blue;
     padding-bottom: 3rem;
+
+    .header {
+      @include flex(row, space-between);
+
+      h3 {
+        flex: 1;
+      }
+
+      button {
+        width: 5rem;
+        height: 3.3rem;
+        margin-bottom: 2rem;
+      }
+    }
 
     .info {
       @include flex(row, space-between, center);
@@ -118,7 +119,7 @@
     padding: 3rem 0;
 
     h2 {
-      font-size: clamp(2rem, 2vw, 2.6rem);
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
       font-weight: 700;
       color: $main-color;
       padding-top: 1rem;
@@ -135,6 +136,18 @@
       .info {
         input {
           width: 100%;
+        }
+      }
+    }
+
+    .paymentInfo {
+      .methods .method {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 6.5rem;
+
+        button {
+          align-self: flex-end;
         }
       }
     }

@@ -98,7 +98,7 @@ export default async function handler(req, res) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `*Service Type:* \`${order.serviceType}\`    *Vehicle Type:* \`${order.vehicleType}\``,
+            text: `*Vehicle Type:* \`${order.vehicleType}\``,
           },
         },
         {

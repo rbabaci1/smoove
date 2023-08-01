@@ -17,7 +17,7 @@ const MyAccount = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const { displayName, email, phoneNumber } = user;
-  const [firstName, lastName] = displayName.split(' ');
+  const [firstName, lastName] = displayName ? displayName.split(' ') : ['', ''];
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);

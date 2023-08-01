@@ -101,8 +101,8 @@ const Login = ({ animate = true }) => {
       setVerificationCodeSent(true);
       setPhoneNumberErrors('');
     } catch (error) {
-      setPhoneNumberErrors('Something went wrong. Please try again.');
-      console.log(error);
+      setPhoneNumberErrors(error.message);
+      console.error(error);
     } finally {
       setSendingVerificationCode(false);
     }

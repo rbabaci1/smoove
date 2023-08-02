@@ -11,8 +11,11 @@ const NoAuthRender = WrappedComponent => {
       if (typeof window !== 'undefined' && user) {
         // Redirect to login page if user is not authenticated
 
-        // !!! check if estimateStep isn't 7-6 so route to right step accordingly
-        router.replace('/dashboard');
+        if (user.displayName && user.email) {
+          router.replace('/dashboard');
+        } else {
+          router.replace(`/dashboard/profile`);
+        }
       }
     }, [user, router]);
 

@@ -20,7 +20,6 @@ const Dashboard = () => {
   const [userOrders, setUserOrders] = useState([]);
 
   useEffect(() => {
-    // Scroll to top of the page when user changes step
     window.scrollTo(0, 0);
 
     async function fetchOrders() {

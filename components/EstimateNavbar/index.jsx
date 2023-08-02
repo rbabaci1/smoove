@@ -55,6 +55,7 @@ const EstimateNavbar = ({
       dispatch(goToSpecificEstimateStep(3));
     } else if (estimateStep === 3 && showMoreInfo) {
       setShowMoreInfo(false);
+      window.scrollTo(0, 0);
     } else {
       dispatch(goToPreviousEstimateStep());
     }
@@ -64,6 +65,7 @@ const EstimateNavbar = ({
     if (estimateStep === 3) {
       if (!showMoreInfo) {
         setShowMoreInfo(true);
+        window.scrollTo(0, 0);
       } else {
         if (user?.displayName && user?.email) {
           dispatch(goToSpecificEstimateStep(7));

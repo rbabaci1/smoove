@@ -146,10 +146,14 @@ const Login = ({ animate = true }) => {
 
             setVerifyingCode(false);
 
-            if (estimateStep === 5) {
-              dispatch(goToSpecificEstimateStep(displayName && email ? 7 : 6));
+            if (estimateStep === 1) {
+              if (displayName && email) {
+                router.replace('/dashboard');
+              } else {
+                router.replace('/dashboard/profile');
+              }
             } else {
-              router.replace('/dashboard');
+              dispatch(goToSpecificEstimateStep(displayName && email ? 7 : 6));
             }
           }
         } catch (error) {

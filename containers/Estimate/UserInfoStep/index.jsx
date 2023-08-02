@@ -103,6 +103,10 @@ const UserInfoStep = () => {
           />
         </section>
 
+        <span className={styles.finishSignUp}>
+          Complete your signup with name and email!
+        </span>
+
         <section className={styles.name}>
           <input
             type='text'

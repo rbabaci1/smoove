@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const WithAuth = WrappedComponent => {
   const AuthWrapper = props => {
@@ -15,9 +16,15 @@ const WithAuth = WrappedComponent => {
     }, [user, router]);
 
     if (!user) {
-      // Render nothing on server-side until we know if user is authenticated
-      // return <h3>Loading...</h3>;
-      return null;
+      return (
+        <AiOutlineLoading3Quarters
+          className='loading'
+          style={{ fontSize: '2rem' }}
+        />
+      );
+    } else if (user && !user.displayName && !user.email) {
+      // Redirect to profile info page if user has not completed profile info
+      router.replace('/dashboard/profile-info');
     }
 
     // Render the wrapped component with authenticated user

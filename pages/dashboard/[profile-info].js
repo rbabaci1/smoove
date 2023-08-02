@@ -7,7 +7,7 @@ import { UserInfoStep } from '@/containers/Estimate';
 import { WithAuth } from '@/components';
 import styles from './profile.module.scss';
 
-const Profile = () => {
+const ProfileInfo = () => {
   const router = useRouter();
 
   const handleLogOut = () => {
@@ -26,7 +26,7 @@ const Profile = () => {
               <AiFillLock />
             </span>
 
-            <h3>Personal info</h3>
+            <h3>Profile info</h3>
           </section>
 
           <section className={styles.logOutBtn}>
@@ -40,4 +40,4 @@ const Profile = () => {
   );
 };
 
-export default WithAuth(Profile);
+export default WithAuth(ProfileInfo);

@@ -14,7 +14,7 @@ const NoAuthRender = WrappedComponent => {
         if (user.displayName && user.email) {
           router.replace('/dashboard');
         } else {
-          router.replace(`/dashboard/profile`);
+          router.replace(`/dashboard/profile-info`);
         }
       }
     }, [user, router]);

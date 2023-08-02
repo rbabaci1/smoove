@@ -150,7 +150,7 @@ const Login = ({ animate = true }) => {
               if (displayName && email) {
                 router.replace('/dashboard');
               } else {
-                router.replace('/dashboard/profile');
+                router.replace('/dashboard/profile-info');
               }
             } else {
               dispatch(goToSpecificEstimateStep(displayName && email ? 7 : 6));

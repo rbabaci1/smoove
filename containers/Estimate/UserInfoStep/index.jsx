@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { updateProfile, updateEmail } from 'firebase/auth';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -12,7 +13,10 @@ import styles from './styles.module.scss';
 
 const UserInfoStep = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { user } = useSelector(state => state.auth);
+  const { estimateStep } = useSelector(state => state.order);
+
   const [userInfo, setUserInfo] = useState({
     firstName: '',
     lastName: '',
@@ -81,7 +85,12 @@ const UserInfoStep = () => {
       );
 
       dispatch(setUser({ ...user, displayName, email }));
-      dispatch(goToSpecificEstimateStep(7));
+
+      if (estimateStep === 1) {
+        router.replace('/dashboard');
+      } else {
+        dispatch(goToSpecificEstimateStep(7));
+      }
     } catch (error) {
       setErrors({ ...errors, saving: true });
       console.error('Error updating user profile:', error);
@@ -104,7 +113,7 @@ const UserInfoStep = () => {
         </section>
 
         <span className={styles.finishSignUp}>
-          Complete your signup with name and email!
+          Please complete your profile to proceed 😊
         </span>
 
         <section className={styles.name}>

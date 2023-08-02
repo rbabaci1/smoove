@@ -101,7 +101,10 @@ const Login = ({ animate = true }) => {
       setVerificationCodeSent(true);
       setPhoneNumberErrors('');
     } catch (error) {
-      setPhoneNumberErrors(error.message);
+      if (error.message.includes('invalid-phone-number')) {
+        setPhoneNumberErrors('Please enter a valid phone number.');
+      }
+
       console.error(error);
     } finally {
       setSendingVerificationCode(false);

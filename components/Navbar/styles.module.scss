@@ -19,6 +19,7 @@
     .logo {
       position: relative;
       height: 100%;
+      flex: 1;
 
       img {
         position: relative;
@@ -82,12 +83,6 @@
 
       @media screen and (max-width: 767px) {
         display: none;
-      }
-    }
-
-    @media screen and (max-width: 767px) {
-      .logo {
-        width: 80%;
       }
     }
 

@@ -118,7 +118,7 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
         <section className={`${styles.reviews} ${styles.firstReviews}`}>
           <Marquee
             direction='right'
-            speed={10}
+            speed={25}
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}
@@ -132,7 +132,7 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
         <section className={styles.reviews}>
           <Marquee
             direction='left'
-            speed={10}
+            speed={25}
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}
@@ -146,7 +146,7 @@ const CustomersReviews = ({ bgColor = '#f7faff' }) => {
         <section className={styles.reviews}>
           <Marquee
             direction='right'
-            speed={10}
+            speed={25}
             gradientWidth={40}
             gradientColor={[247, 250, 255]}
             className={styles.marquee}

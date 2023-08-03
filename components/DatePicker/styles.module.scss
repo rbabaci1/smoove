@@ -22,8 +22,8 @@
   .moreBtn,
   .lessBtn {
     @include flex(column);
-    height: 4.5rem;
-    width: 4.5rem;
+    height: 4.7rem;
+    width: 4.7rem;
     background-color: $white;
     border-radius: 50%;
     cursor: pointer;

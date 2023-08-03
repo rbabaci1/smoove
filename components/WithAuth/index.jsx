@@ -17,12 +17,22 @@ const WithAuth = WrappedComponent => {
 
     if (!user) {
       return (
-        <AiOutlineLoading3Quarters
-          className='loading'
-          style={{ fontSize: '2rem' }}
-        />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw',
+            height: '100vh',
+          }}
+        >
+          <AiOutlineLoading3Quarters
+            className='loading'
+            style={{ fontSize: '2rem' }}
+          />
+        </div>
       );
-    } else if (user && !user.displayName && !user.email) {
+    } else if (!user.displayName && !user.email) {
       // Redirect to profile info page if user has not completed profile info
       router.replace('/dashboard/profile-info');
     }

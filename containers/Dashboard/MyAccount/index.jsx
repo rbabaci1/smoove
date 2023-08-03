@@ -8,21 +8,18 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { auth } from '@/firebase/firebase.config';
-import { getCardImgSrc, getUserPaymentMethods, formatPhoneNumber } from '@/lib';
+import { getCardImgSrc, formatPhoneNumber } from '@/lib';
 import { setUser } from '@/state/reduxSlices/authSlice';
 import { AddPaymentMethod } from '@/components';
 import styles from './styles.module.scss';
 
-const MyAccount = () => {
+const MyAccount = ({ paymentMethods, setPaymentMethods }) => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const { displayName, email, phoneNumber } = user;
   const [firstName, lastName] = displayName ? displayName.split(' ') : ['', ''];
 
-  const [paymentMethods, setPaymentMethods] = useState([]);
   const [showAddPaymentMethod, setShowAddPaymentMethod] = useState(false);
-  const [paymentMethodsFetched, setPaymentMethodsFetched] = useState(false);
-  const [fetchingMethods, setFetchingMethods] = useState(false);
   const [deletingCardId, setDeletingCardId] = useState(null);
   const [userInfoChanged, setUserInfoChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -32,28 +29,6 @@ const MyAccount = () => {
     lastName,
     email,
   });
-
-  useEffect(() => {
-    const fetchPaymentMethods = async () => {
-      try {
-        const paymentMethods = await getUserPaymentMethods(
-          user.uid,
-          setFetchingMethods
-        );
-
-        setPaymentMethods(paymentMethods);
-      } catch (error) {
-        console.error('Error fetching payment methods:', error);
-        toast.error(error.message);
-      } finally {
-        setPaymentMethodsFetched(true);
-      }
-    };
-
-    if (user) {
-      fetchPaymentMethods();
-    }
-  }, [user]);
 
   useEffect(() => {
     if (
@@ -216,59 +191,50 @@ const MyAccount = () => {
       </div>
 
       <div className={styles.paymentInfo}>
-        <div className={styles.header_}>
-          <h3>Your cards</h3>
-          {fetchingMethods ? (
-            <AiOutlineLoading3Quarters
-              className={`${styles.loading} loading`}
-            />
-          ) : null}
-        </div>
+        <h3>Your cards</h3>
 
         <AnimatePresence>
-          {paymentMethodsFetched ? (
-            <motion.div
-              className={styles.methods}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-            >
-              {paymentMethods.length > 0
-                ? paymentMethods.map((method, i) => (
-                    <div key={method.id} className={styles.method}>
-                      <div className={styles.methodInfo}>
-                        <Image
-                          src={getCardImgSrc(method.card.brand)}
-                          width={35}
-                          height={35}
-                          alt='credit card symbol'
-                        />
+          <motion.div
+            className={styles.methods}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            {paymentMethods.length > 0
+              ? paymentMethods.map((method, i) => (
+                  <div key={method.id} className={styles.method}>
+                    <div className={styles.methodInfo}>
+                      <Image
+                        src={getCardImgSrc(method.card.brand)}
+                        width={35}
+                        height={35}
+                        alt='credit card symbol'
+                      />
 
-                        <p>
-                          {method.card.brand.charAt(0).toUpperCase() +
-                            method.card.brand.slice(1)}{' '}
-                          ending in ...{method.card.last4}
-                        </p>
+                      <p>
+                        {method.card.brand.charAt(0).toUpperCase() +
+                          method.card.brand.slice(1)}{' '}
+                        ending in ...{method.card.last4}
+                      </p>
 
-                        {i === 0 ? (
-                          <p className={styles.default}>Default</p>
-                        ) : null}
-                      </div>
-
-                      <button onClick={() => handleCardDelete(method.id)}>
-                        {deletingCardId === method.id ? (
-                          <AiOutlineLoading3Quarters
-                            className={`${styles.loading} loading`}
-                          />
-                        ) : (
-                          'X'
-                        )}
-                      </button>
+                      {i === 0 ? (
+                        <p className={styles.default}>Default</p>
+                      ) : null}
                     </div>
-                  ))
-                : 'You have no saved cards.'}
-            </motion.div>
-          ) : null}
+
+                    <button onClick={() => handleCardDelete(method.id)}>
+                      {deletingCardId === method.id ? (
+                        <AiOutlineLoading3Quarters
+                          className={`${styles.loading} loading`}
+                        />
+                      ) : (
+                        'X'
+                      )}
+                    </button>
+                  </div>
+                ))
+              : 'You have no saved cards.'}
+          </motion.div>
         </AnimatePresence>
       </div>
 
@@ -282,20 +248,18 @@ const MyAccount = () => {
         ) : null}
       </div>
 
-      {paymentMethodsFetched ? (
-        <motion.div
-          className={styles.addCard}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+      <motion.div
+        className={styles.addCard}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <button
+          onClick={() => setShowAddPaymentMethod(!showAddPaymentMethod)}
+          className={showAddPaymentMethod ? styles.cancelBtn : null}
         >
-          <button
-            onClick={() => setShowAddPaymentMethod(!showAddPaymentMethod)}
-            className={showAddPaymentMethod ? styles.cancelBtn : null}
-          >
-            {showAddPaymentMethod ? 'Cancel' : 'Add new card'}
-          </button>
-        </motion.div>
-      ) : null}
+          {showAddPaymentMethod ? 'Cancel' : 'Add new card'}
+        </button>
+      </motion.div>
 
       <div className={styles.phoneNumber}>
         <h3>Phone number</h3>

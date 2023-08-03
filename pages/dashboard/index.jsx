@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { DashboardNavbar, WithAuth } from '@/components';
 import { MyMove, MyMoves, MyAccount } from '@/containers/Dashboard';
-import { getUserOrders, updateOrderStatus } from '@/lib';
+import { getUserOrders, updateOrderStatus, getUserPaymentMethods } from '@/lib';
 import styles from './styles.module.scss';
 
 const Dashboard = () => {
@@ -18,6 +18,7 @@ const Dashboard = () => {
   const [activeContainer, setActiveContainer] = useState(1);
   const [selectedMove, setSelectedMove] = useState(null);
   const [userOrders, setUserOrders] = useState([]);
+  const [paymentMethods, setPaymentMethods] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,6 +37,23 @@ const Dashboard = () => {
 
     fetchOrders();
   }, [user.uid]);
+
+  useEffect(() => {
+    const fetchPaymentMethods = async () => {
+      try {
+        const paymentMethods = await getUserPaymentMethods(user.uid);
+
+        setPaymentMethods(paymentMethods);
+      } catch (error) {
+        console.error('Error fetching payment methods:', error);
+        toast.error(error.message);
+      }
+    };
+
+    if (user) {
+      fetchPaymentMethods();
+    }
+  }, [user]);
 
   const cancelMove = async () => {
     if (confirm('Are you sure you want to cancel this move?')) {
@@ -81,7 +99,12 @@ const Dashboard = () => {
         setSelectedMove={setSelectedMove}
       />
     ),
-    2: <MyAccount />,
+    2: (
+      <MyAccount
+        paymentMethods={paymentMethods}
+        setPaymentMethods={setPaymentMethods}
+      />
+    ),
     3: <MyMove selectedMove={selectedMove} cancelMove={cancelMove} />,
   };
 

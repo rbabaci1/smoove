@@ -41,8 +41,14 @@
   .paymentInfo {
     padding-top: 2rem;
 
-    h3 {
-      padding-bottom: 1rem;
+    .header_ {
+      @include flex(row, flex-start);
+      gap: 1rem;
+      padding-bottom: 2rem;
+
+      .loading {
+        font-size: 1.4rem;
+      }
     }
 
     .methods {

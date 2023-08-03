@@ -13,7 +13,12 @@ import { setUser } from '@/state/reduxSlices/authSlice';
 import { AddPaymentMethod } from '@/components';
 import styles from './styles.module.scss';
 
-const MyAccount = ({ paymentMethods, setPaymentMethods }) => {
+const MyAccount = ({
+  paymentMethods,
+  setPaymentMethods,
+  fetchingMethods,
+  paymentMethodsFetched,
+}) => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const { displayName, email, phoneNumber } = user;
@@ -191,50 +196,60 @@ const MyAccount = ({ paymentMethods, setPaymentMethods }) => {
       </div>
 
       <div className={styles.paymentInfo}>
-        <h3>Your cards</h3>
+        <div className={styles.header_}>
+          <h3>Your cards</h3>
+
+          {fetchingMethods ? (
+            <AiOutlineLoading3Quarters
+              className={`${styles.loading} loading`}
+            />
+          ) : null}
+        </div>
 
         <AnimatePresence>
-          <motion.div
-            className={styles.methods}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            {paymentMethods.length > 0
-              ? paymentMethods.map((method, i) => (
-                  <div key={method.id} className={styles.method}>
-                    <div className={styles.methodInfo}>
-                      <Image
-                        src={getCardImgSrc(method.card.brand)}
-                        width={35}
-                        height={35}
-                        alt='credit card symbol'
-                      />
-
-                      <p>
-                        {method.card.brand.charAt(0).toUpperCase() +
-                          method.card.brand.slice(1)}{' '}
-                        ending in ...{method.card.last4}
-                      </p>
-
-                      {i === 0 ? (
-                        <p className={styles.default}>Default</p>
-                      ) : null}
-                    </div>
-
-                    <button onClick={() => handleCardDelete(method.id)}>
-                      {deletingCardId === method.id ? (
-                        <AiOutlineLoading3Quarters
-                          className={`${styles.loading} loading`}
+          {paymentMethodsFetched ? (
+            <motion.div
+              className={styles.methods}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+            >
+              {paymentMethods.length > 0
+                ? paymentMethods.map((method, i) => (
+                    <div key={method.id} className={styles.method}>
+                      <div className={styles.methodInfo}>
+                        <Image
+                          src={getCardImgSrc(method.card.brand)}
+                          width={35}
+                          height={35}
+                          alt='credit card symbol'
                         />
-                      ) : (
-                        'X'
-                      )}
-                    </button>
-                  </div>
-                ))
-              : 'You have no saved cards.'}
-          </motion.div>
+
+                        <p>
+                          {method.card.brand.charAt(0).toUpperCase() +
+                            method.card.brand.slice(1)}{' '}
+                          ending in ...{method.card.last4}
+                        </p>
+
+                        {i === 0 ? (
+                          <p className={styles.default}>Default</p>
+                        ) : null}
+                      </div>
+
+                      <button onClick={() => handleCardDelete(method.id)}>
+                        {deletingCardId === method.id ? (
+                          <AiOutlineLoading3Quarters
+                            className={`${styles.loading} loading`}
+                          />
+                        ) : (
+                          'X'
+                        )}
+                      </button>
+                    </div>
+                  ))
+                : 'You have no saved cards.'}
+            </motion.div>
+          ) : null}
         </AnimatePresence>
       </div>
 

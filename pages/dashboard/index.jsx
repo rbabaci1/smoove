@@ -14,6 +14,8 @@ const Dashboard = () => {
   const { user } = useSelector(state => state.auth);
 
   const [fetchingOrders, setFetchingOrders] = useState(true);
+  const [fetchingMethods, setFetchingMethods] = useState(true);
+  const [paymentMethodsFetched, setPaymentMethodsFetched] = useState(false);
   const [cancelingMove, setCancelingMove] = useState(false);
   const [activeContainer, setActiveContainer] = useState(1);
   const [selectedMove, setSelectedMove] = useState(null);
@@ -41,12 +43,17 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
-        const paymentMethods = await getUserPaymentMethods(user.uid);
+        const paymentMethods = await getUserPaymentMethods(
+          user.uid,
+          setFetchingMethods
+        );
 
         setPaymentMethods(paymentMethods);
       } catch (error) {
         console.error('Error fetching payment methods:', error);
         toast.error(error.message);
+      } finally {
+        setPaymentMethodsFetched(true);
       }
     };
 
@@ -103,6 +110,8 @@ const Dashboard = () => {
       <MyAccount
         paymentMethods={paymentMethods}
         setPaymentMethods={setPaymentMethods}
+        fetchingMethods={fetchingMethods}
+        paymentMethodsFetched={paymentMethodsFetched}
       />
     ),
     3: <MyMove selectedMove={selectedMove} cancelMove={cancelMove} />,

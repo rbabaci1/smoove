@@ -177,7 +177,7 @@ const ServiceDetailsStep = ({ showMoreInfo }) => {
                       : () => setShowContacts(true)
                   }
                 >
-                  Add contact
+                  {showContacts ? 'Save' : 'Add contact'}
                 </button>
               </div>
 

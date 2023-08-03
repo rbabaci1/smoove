@@ -83,7 +83,7 @@ function Navbar() {
                     }}
                     onClick={handleLogOut}
                   >
-                    Log out
+                    Sign out
                     <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
                   </p>
 
@@ -132,7 +132,7 @@ function Navbar() {
           {user ? (
             <>
               <p className={styles.logoutLink} onClick={handleLogOut}>
-                Log out
+                Sign out
                 <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
               </p>
 

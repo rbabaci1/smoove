@@ -34,6 +34,7 @@ function Navbar() {
     }
   };
 
+  console.log(user);
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
@@ -109,10 +110,17 @@ function Navbar() {
           {/* Add later when partner page is built */}
           {/* <Link href='/partner'>Partners</Link> */}
 
-          <Link href='/login' className={styles.loginLink}>
-            Sign in
-            <HiOutlineUser />
-          </Link>
+          {user ? (
+            <p className={styles.logoutLink} onClick={handleLogOut}>
+              Log out
+              <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
+            </p>
+          ) : (
+            <Link href='/login' className={styles.loginLink}>
+              Sign in
+              <HiOutlineUser />
+            </Link>
+          )}
 
           <motion.button
             whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}

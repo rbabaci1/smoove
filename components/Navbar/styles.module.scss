@@ -69,6 +69,18 @@
         }
       }
 
+      .logoutLink {
+        @include flex();
+        margin: 0;
+        cursor: pointer;
+        font-weight: 600;
+        color: $error-color;
+
+        &:hover {
+          color: $main-color;
+        }
+      }
+
       @media screen and (max-width: 767px) {
         display: none;
       }

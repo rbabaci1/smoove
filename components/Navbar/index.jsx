@@ -8,6 +8,7 @@ import { Drawer } from 'antd';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { HiOutlineUser } from 'react-icons/hi';
 import { BiLogOutCircle } from 'react-icons/bi';
+import { MdOutlineDashboard } from 'react-icons/md';
 
 import { logo } from '@/public/images';
 import { auth } from '@/firebase/firebase.config';
@@ -34,7 +35,6 @@ function Navbar() {
     }
   };
 
-  console.log(user);
   return (
     <div className={styles.navWrapper}>
       <div className={styles.container}>
@@ -64,18 +64,37 @@ function Navbar() {
               }}
             >
               {user ? (
-                <p
+                <div
                   style={{
                     display: 'flex',
-                    alignItems: 'center',
-                    margin: 0,
-                    cursor: 'pointer',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '2rem',
                   }}
-                  onClick={handleLogOut}
                 >
-                  Log out
-                  <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
-                </p>
+                  <p
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      margin: 0,
+                      cursor: 'pointer',
+                      color: 'red',
+                      fontSize: 'clamp(0.9rem, 5vw, 1.1rem)',
+                    }}
+                    onClick={handleLogOut}
+                  >
+                    Log out
+                    <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
+                  </p>
+
+                  <Link
+                    href='/dashboard'
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    Dashboard
+                    <MdOutlineDashboard style={{ marginLeft: '0.2rem' }} />
+                  </Link>
+                </div>
               ) : (
                 <Link
                   href='/login'
@@ -111,10 +130,17 @@ function Navbar() {
           {/* <Link href='/partner'>Partners</Link> */}
 
           {user ? (
-            <p className={styles.logoutLink} onClick={handleLogOut}>
-              Log out
-              <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
-            </p>
+            <>
+              <p className={styles.logoutLink} onClick={handleLogOut}>
+                Log out
+                <BiLogOutCircle style={{ marginLeft: '0.2rem' }} />
+              </p>
+
+              <Link href='/dashboard' className={styles.loginLink}>
+                Dashboard
+                <MdOutlineDashboard />
+              </Link>
+            </>
           ) : (
             <Link href='/login' className={styles.loginLink}>
               Sign in

@@ -48,7 +48,6 @@ const NextJSDatePicker = () => {
   // state to track whether to show more dates
   const [showMoreDates, setShowMoreDates] = useState(false);
 
-  // return JSX
   return (
     <div className={styles.container}>
       <h3>What day are you moving?</h3>

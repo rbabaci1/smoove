@@ -50,18 +50,6 @@
         border-color: $error-color;
       }
 
-      svg {
-        color: $main-color;
-        font-size: 1.2rem;
-        position: absolute;
-        right: 1rem;
-        top: 1.35rem;
-      }
-
-      button svg {
-        color: $dark-blue;
-      }
-
       .resendCode {
         position: absolute;
         right: 0.5rem;
@@ -81,13 +69,13 @@
     }
 
     button {
+      @include flex();
       width: 100%;
       position: relative;
-      height: 3.7rem;
+      height: 3.6rem;
 
       svg {
-        top: 1.15rem !important;
-        right: 10rem !important;
+        color: $dark-blue;
       }
     }
 

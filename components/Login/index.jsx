@@ -258,13 +258,13 @@ const Login = ({ animate = true }) => {
                   </AnimatePresence>
                 </section>
 
-                {verifyingCode ? (
-                  <AiOutlineLoading3Quarters className='loading' />
-                ) : (
-                  <span className={styles.resendCode} onClick={resendCode}>
-                    Resend?
-                  </span>
-                )}
+                <span className={styles.resendCode} onClick={resendCode}>
+                  {verifyingCode ? (
+                    <AiOutlineLoading3Quarters className='loading' />
+                  ) : (
+                    'Resend?'
+                  )}
+                </span>
               </>
             ) : (
               <motion.button
